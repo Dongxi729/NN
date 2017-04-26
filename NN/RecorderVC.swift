@@ -88,6 +88,7 @@ class RecorderVC: UIViewController {
     }
     
     
+    
     let recordSettings = [
         AVSampleRateKey : NSNumber(value: Float(4000)),
         
@@ -97,9 +98,11 @@ class RecorderVC: UIViewController {
 
     
     // 开始录音
-    func startRecord(sender: AnyObject) {
+    func startRecord(sender: UIButton) {
 
         AvdioTool.shared.startRecord()
+        
+
     }
     
     // 停止录音

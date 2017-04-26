@@ -7,6 +7,7 @@
 
 #import "WXApi.h"
 
-#include "lame.h"
-#include "AudioWrapper.h"
+
 #import "VoiceConverter.h"
+
+#import "WavConvert.h"
