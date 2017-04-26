@@ -8,20 +8,87 @@
 
 /* Begin PBXBuildFile section */
 		2603D93B1EADC8D20069B132 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2603D93A1EADC8D20069B132 /* AppDelegate.swift */; };
-		2603D93D1EADC8D20069B132 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2603D93C1EADC8D20069B132 /* ViewController.swift */; };
 		2603D9401EADC8D20069B132 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2603D93E1EADC8D20069B132 /* Main.storyboard */; };
 		2603D9421EADC8D20069B132 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2603D9411EADC8D20069B132 /* Assets.xcassets */; };
 		2603D9451EADC8D20069B132 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2603D9431EADC8D20069B132 /* LaunchScreen.storyboard */; };
+		2603D9591EADCA3B0069B132 /* libWeChatSDK.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 2603D9511EADCA3B0069B132 /* libWeChatSDK.a */; };
+		2603D95A1EADCA3C0069B132 /* README.txt in Resources */ = {isa = PBXBuildFile; fileRef = 2603D9521EADCA3B0069B132 /* README.txt */; };
+		2603D95B1EADCA3C0069B132 /* WXApiManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 2603D9561EADCA3B0069B132 /* WXApiManager.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		2603D95C1EADCA3C0069B132 /* WXTool.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2603D9581EADCA3B0069B132 /* WXTool.swift */; };
+		2603D95F1EADCAF30069B132 /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2603D95E1EADCAF30069B132 /* CFNetwork.framework */; };
+		2603D9611EADCB020069B132 /* CoreTelephony.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2603D9601EADCB020069B132 /* CoreTelephony.framework */; };
+		2603D9631EADCB0C0069B132 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2603D9621EADCB0C0069B132 /* Security.framework */; };
+		2603D9651EADCB170069B132 /* libc++.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 2603D9641EADCB170069B132 /* libc++.tbd */; };
+		2603D9671EADCB490069B132 /* libsqlite3.0.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 2603D9661EADCB490069B132 /* libsqlite3.0.tbd */; };
+		2603D9691EADCB6F0069B132 /* Common.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2603D9681EADCB6F0069B132 /* Common.swift */; };
+		2603D96B1EADCCF10069B132 /* libz.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 2603D96A1EADCCF10069B132 /* libz.tbd */; };
+		2603D96D1EADCCFB0069B132 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2603D96C1EADCCFB0069B132 /* SystemConfiguration.framework */; };
+		2603D96F1EADCD440069B132 /* CustomAlertView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2603D96E1EADCD440069B132 /* CustomAlertView.swift */; };
+		2603D9711EADCD830069B132 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2603D9701EADCD830069B132 /* ViewController.swift */; };
+		2603D9731EADD1BB0069B132 /* MainGameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2603D9721EADD1BB0069B132 /* MainGameViewController.swift */; };
+		2603D9791EADD3AA0069B132 /* PersonMsgView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2603D9781EADD3AA0069B132 /* PersonMsgView.swift */; };
+		2603D9BD1EADE7E20069B132 /* ScrollLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2603D9BC1EADE7E20069B132 /* ScrollLabel.swift */; };
+		2603D9C11EADF1A60069B132 /* AbortVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2603D9C01EADF1A60069B132 /* AbortVC.swift */; };
+		260AFF3D1EAF681F0032F0BC /* libmp3lame.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 260AFF3C1EAF681F0032F0BC /* libmp3lame.a */; };
+		260AFF3F1EAF68360032F0BC /* RecorderVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 260AFF3E1EAF68360032F0BC /* RecorderVC.swift */; };
+		260AFF421EAF686D0032F0BC /* AudioWrapper.m in Sources */ = {isa = PBXBuildFile; fileRef = 260AFF411EAF686D0032F0BC /* AudioWrapper.m */; };
+		260AFF441EAF6B130032F0BC /* AvdioTool.swift in Sources */ = {isa = PBXBuildFile; fileRef = 260AFF431EAF6B130032F0BC /* AvdioTool.swift */; };
+		260AFF461EAF713E0032F0BC /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 260AFF451EAF713E0032F0BC /* AVFoundation.framework */; };
+		260AFF481EAF71480032F0BC /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 260AFF471EAF71480032F0BC /* UIKit.framework */; };
+		26F41BEF1EB09B4100F4A929 /* amrFileCodec.mm in Sources */ = {isa = PBXBuildFile; fileRef = 26F41BE31EB09B4100F4A929 /* amrFileCodec.mm */; };
+		26F41BF01EB09B4100F4A929 /* libopencore-amrnb.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 26F41BE51EB09B4100F4A929 /* libopencore-amrnb.a */; };
+		26F41BF11EB09B4100F4A929 /* libopencore-amrwb.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 26F41BE61EB09B4100F4A929 /* libopencore-amrwb.a */; };
+		26F41BF21EB09B4100F4A929 /* VoiceConverter.mm in Sources */ = {isa = PBXBuildFile; fileRef = 26F41BEE1EB09B4100F4A929 /* VoiceConverter.mm */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		2603D9371EADC8D20069B132 /* NN.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = NN.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2603D93A1EADC8D20069B132 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		2603D93C1EADC8D20069B132 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		2603D93F1EADC8D20069B132 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		2603D9411EADC8D20069B132 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		2603D9441EADC8D20069B132 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		2603D9461EADC8D20069B132 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		2603D94C1EADCA160069B132 /* NN-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NN-Bridging-Header.h"; sourceTree = "<group>"; };
+		2603D9511EADCA3B0069B132 /* libWeChatSDK.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libWeChatSDK.a; sourceTree = "<group>"; };
+		2603D9521EADCA3B0069B132 /* README.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = README.txt; sourceTree = "<group>"; };
+		2603D9531EADCA3B0069B132 /* WechatAuthSDK.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WechatAuthSDK.h; sourceTree = "<group>"; };
+		2603D9541EADCA3B0069B132 /* WXApi.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WXApi.h; sourceTree = "<group>"; };
+		2603D9551EADCA3B0069B132 /* WXApiManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WXApiManager.h; sourceTree = "<group>"; };
+		2603D9561EADCA3B0069B132 /* WXApiManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WXApiManager.m; sourceTree = "<group>"; };
+		2603D9571EADCA3B0069B132 /* WXApiObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WXApiObject.h; sourceTree = "<group>"; };
+		2603D9581EADCA3B0069B132 /* WXTool.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WXTool.swift; sourceTree = "<group>"; };
+		2603D95E1EADCAF30069B132 /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
+		2603D9601EADCB020069B132 /* CoreTelephony.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreTelephony.framework; path = System/Library/Frameworks/CoreTelephony.framework; sourceTree = SDKROOT; };
+		2603D9621EADCB0C0069B132 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
+		2603D9641EADCB170069B132 /* libc++.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = "libc++.tbd"; path = "usr/lib/libc++.tbd"; sourceTree = SDKROOT; };
+		2603D9661EADCB490069B132 /* libsqlite3.0.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libsqlite3.0.tbd; path = usr/lib/libsqlite3.0.tbd; sourceTree = SDKROOT; };
+		2603D9681EADCB6F0069B132 /* Common.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Common.swift; sourceTree = "<group>"; };
+		2603D96A1EADCCF10069B132 /* libz.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libz.tbd; path = usr/lib/libz.tbd; sourceTree = SDKROOT; };
+		2603D96C1EADCCFB0069B132 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
+		2603D96E1EADCD440069B132 /* CustomAlertView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomAlertView.swift; sourceTree = "<group>"; };
+		2603D9701EADCD830069B132 /* ViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		2603D9721EADD1BB0069B132 /* MainGameViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MainGameViewController.swift; path = ../MainGameViewController.swift; sourceTree = "<group>"; };
+		2603D9781EADD3AA0069B132 /* PersonMsgView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PersonMsgView.swift; sourceTree = "<group>"; };
+		2603D9BC1EADE7E20069B132 /* ScrollLabel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScrollLabel.swift; sourceTree = "<group>"; };
+		2603D9C01EADF1A60069B132 /* AbortVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AbortVC.swift; path = Weixin/AbortVC.swift; sourceTree = "<group>"; };
+		260AFF3B1EAF681F0032F0BC /* lame.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = lame.h; sourceTree = "<group>"; };
+		260AFF3C1EAF681F0032F0BC /* libmp3lame.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libmp3lame.a; sourceTree = "<group>"; };
+		260AFF3E1EAF68360032F0BC /* RecorderVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RecorderVC.swift; sourceTree = "<group>"; };
+		260AFF401EAF686D0032F0BC /* AudioWrapper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AudioWrapper.h; sourceTree = "<group>"; };
+		260AFF411EAF686D0032F0BC /* AudioWrapper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AudioWrapper.m; sourceTree = "<group>"; };
+		260AFF431EAF6B130032F0BC /* AvdioTool.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AvdioTool.swift; sourceTree = "<group>"; };
+		260AFF451EAF713E0032F0BC /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
+		260AFF471EAF71480032F0BC /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
+		26F41BE21EB09B4100F4A929 /* amrFileCodec.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = amrFileCodec.h; sourceTree = "<group>"; };
+		26F41BE31EB09B4100F4A929 /* amrFileCodec.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = amrFileCodec.mm; sourceTree = "<group>"; };
+		26F41BE51EB09B4100F4A929 /* libopencore-amrnb.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = "libopencore-amrnb.a"; sourceTree = "<group>"; };
+		26F41BE61EB09B4100F4A929 /* libopencore-amrwb.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = "libopencore-amrwb.a"; sourceTree = "<group>"; };
+		26F41BE81EB09B4100F4A929 /* interf_dec.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = interf_dec.h; sourceTree = "<group>"; };
+		26F41BE91EB09B4100F4A929 /* interf_enc.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = interf_enc.h; sourceTree = "<group>"; };
+		26F41BEB1EB09B4100F4A929 /* dec_if.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = dec_if.h; sourceTree = "<group>"; };
+		26F41BEC1EB09B4100F4A929 /* if_rom.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = if_rom.h; sourceTree = "<group>"; };
+		26F41BED1EB09B4100F4A929 /* VoiceConverter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VoiceConverter.h; sourceTree = "<group>"; };
+		26F41BEE1EB09B4100F4A929 /* VoiceConverter.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = VoiceConverter.mm; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -29,6 +96,19 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				260AFF481EAF71480032F0BC /* UIKit.framework in Frameworks */,
+				26F41BF01EB09B4100F4A929 /* libopencore-amrnb.a in Frameworks */,
+				260AFF461EAF713E0032F0BC /* AVFoundation.framework in Frameworks */,
+				2603D96D1EADCCFB0069B132 /* SystemConfiguration.framework in Frameworks */,
+				2603D96B1EADCCF10069B132 /* libz.tbd in Frameworks */,
+				26F41BF11EB09B4100F4A929 /* libopencore-amrwb.a in Frameworks */,
+				2603D9671EADCB490069B132 /* libsqlite3.0.tbd in Frameworks */,
+				2603D9651EADCB170069B132 /* libc++.tbd in Frameworks */,
+				2603D9631EADCB0C0069B132 /* Security.framework in Frameworks */,
+				2603D9611EADCB020069B132 /* CoreTelephony.framework in Frameworks */,
+				260AFF3D1EAF681F0032F0BC /* libmp3lame.a in Frameworks */,
+				2603D95F1EADCAF30069B132 /* CFNetwork.framework in Frameworks */,
+				2603D9591EADCA3B0069B132 /* libWeChatSDK.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -40,6 +120,8 @@
 			children = (
 				2603D9391EADC8D20069B132 /* NN */,
 				2603D9381EADC8D20069B132 /* Products */,
+				2603D94C1EADCA160069B132 /* NN-Bridging-Header.h */,
+				2603D95D1EADCAF30069B132 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -54,14 +136,148 @@
 		2603D9391EADC8D20069B132 /* NN */ = {
 			isa = PBXGroup;
 			children = (
+				260AFF351EAF67AC0032F0BC /* recorder */,
+				2603D9741EADD32B0069B132 /* mainG */,
+				2603D9501EADCA3B0069B132 /* Weixin */,
+				2603D9581EADCA3B0069B132 /* WXTool.swift */,
+				2603D9C01EADF1A60069B132 /* AbortVC.swift */,
+				2603D96E1EADCD440069B132 /* CustomAlertView.swift */,
+				2603D9701EADCD830069B132 /* ViewController.swift */,
+				2603D9BC1EADE7E20069B132 /* ScrollLabel.swift */,
 				2603D93A1EADC8D20069B132 /* AppDelegate.swift */,
-				2603D93C1EADC8D20069B132 /* ViewController.swift */,
+				2603D9681EADCB6F0069B132 /* Common.swift */,
 				2603D93E1EADC8D20069B132 /* Main.storyboard */,
 				2603D9411EADC8D20069B132 /* Assets.xcassets */,
 				2603D9431EADC8D20069B132 /* LaunchScreen.storyboard */,
 				2603D9461EADC8D20069B132 /* Info.plist */,
 			);
 			path = NN;
+			sourceTree = "<group>";
+		};
+		2603D9501EADCA3B0069B132 /* Weixin */ = {
+			isa = PBXGroup;
+			children = (
+				2603D9511EADCA3B0069B132 /* libWeChatSDK.a */,
+				2603D9521EADCA3B0069B132 /* README.txt */,
+				2603D9531EADCA3B0069B132 /* WechatAuthSDK.h */,
+				2603D9541EADCA3B0069B132 /* WXApi.h */,
+				2603D9551EADCA3B0069B132 /* WXApiManager.h */,
+				2603D9561EADCA3B0069B132 /* WXApiManager.m */,
+				2603D9571EADCA3B0069B132 /* WXApiObject.h */,
+			);
+			path = Weixin;
+			sourceTree = "<group>";
+		};
+		2603D95D1EADCAF30069B132 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				260AFF471EAF71480032F0BC /* UIKit.framework */,
+				260AFF451EAF713E0032F0BC /* AVFoundation.framework */,
+				2603D96C1EADCCFB0069B132 /* SystemConfiguration.framework */,
+				2603D96A1EADCCF10069B132 /* libz.tbd */,
+				2603D9661EADCB490069B132 /* libsqlite3.0.tbd */,
+				2603D9641EADCB170069B132 /* libc++.tbd */,
+				2603D9621EADCB0C0069B132 /* Security.framework */,
+				2603D9601EADCB020069B132 /* CoreTelephony.framework */,
+				2603D95E1EADCAF30069B132 /* CFNetwork.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		2603D9741EADD32B0069B132 /* mainG */ = {
+			isa = PBXGroup;
+			children = (
+				2603D9771EADD34D0069B132 /* model */,
+				2603D9761EADD3460069B132 /* view */,
+				2603D9751EADD33B0069B132 /* controller */,
+			);
+			name = mainG;
+			sourceTree = "<group>";
+		};
+		2603D9751EADD33B0069B132 /* controller */ = {
+			isa = PBXGroup;
+			children = (
+				2603D9721EADD1BB0069B132 /* MainGameViewController.swift */,
+			);
+			name = controller;
+			sourceTree = "<group>";
+		};
+		2603D9761EADD3460069B132 /* view */ = {
+			isa = PBXGroup;
+			children = (
+				2603D9781EADD3AA0069B132 /* PersonMsgView.swift */,
+			);
+			name = view;
+			sourceTree = "<group>";
+		};
+		2603D9771EADD34D0069B132 /* model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = model;
+			sourceTree = "<group>";
+		};
+		260AFF351EAF67AC0032F0BC /* recorder */ = {
+			isa = PBXGroup;
+			children = (
+				26F41BE01EB09B4100F4A929 /* VoiceConvert */,
+				260AFF401EAF686D0032F0BC /* AudioWrapper.h */,
+				260AFF411EAF686D0032F0BC /* AudioWrapper.m */,
+				260AFF3B1EAF681F0032F0BC /* lame.h */,
+				260AFF3C1EAF681F0032F0BC /* libmp3lame.a */,
+				260AFF3E1EAF68360032F0BC /* RecorderVC.swift */,
+				260AFF431EAF6B130032F0BC /* AvdioTool.swift */,
+			);
+			name = recorder;
+			sourceTree = "<group>";
+		};
+		26F41BE01EB09B4100F4A929 /* VoiceConvert */ = {
+			isa = PBXGroup;
+			children = (
+				26F41BE11EB09B4100F4A929 /* amrwapper */,
+				26F41BE41EB09B4100F4A929 /* lib */,
+				26F41BE71EB09B4100F4A929 /* opencore-amrnb */,
+				26F41BEA1EB09B4100F4A929 /* opencore-amrwb */,
+				26F41BED1EB09B4100F4A929 /* VoiceConverter.h */,
+				26F41BEE1EB09B4100F4A929 /* VoiceConverter.mm */,
+			);
+			path = VoiceConvert;
+			sourceTree = "<group>";
+		};
+		26F41BE11EB09B4100F4A929 /* amrwapper */ = {
+			isa = PBXGroup;
+			children = (
+				26F41BE21EB09B4100F4A929 /* amrFileCodec.h */,
+				26F41BE31EB09B4100F4A929 /* amrFileCodec.mm */,
+			);
+			path = amrwapper;
+			sourceTree = "<group>";
+		};
+		26F41BE41EB09B4100F4A929 /* lib */ = {
+			isa = PBXGroup;
+			children = (
+				26F41BE51EB09B4100F4A929 /* libopencore-amrnb.a */,
+				26F41BE61EB09B4100F4A929 /* libopencore-amrwb.a */,
+			);
+			path = lib;
+			sourceTree = "<group>";
+		};
+		26F41BE71EB09B4100F4A929 /* opencore-amrnb */ = {
+			isa = PBXGroup;
+			children = (
+				26F41BE81EB09B4100F4A929 /* interf_dec.h */,
+				26F41BE91EB09B4100F4A929 /* interf_enc.h */,
+			);
+			path = "opencore-amrnb";
+			sourceTree = "<group>";
+		};
+		26F41BEA1EB09B4100F4A929 /* opencore-amrwb */ = {
+			isa = PBXGroup;
+			children = (
+				26F41BEB1EB09B4100F4A929 /* dec_if.h */,
+				26F41BEC1EB09B4100F4A929 /* if_rom.h */,
+			);
+			path = "opencore-amrwb";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -97,6 +313,7 @@
 					2603D9361EADC8D20069B132 = {
 						CreatedOnToolsVersion = 8.3.1;
 						DevelopmentTeam = E38L2YCTY3;
+						LastSwiftMigration = 0830;
 						ProvisioningStyle = Automatic;
 					};
 				};
@@ -126,6 +343,7 @@
 			files = (
 				2603D9451EADC8D20069B132 /* LaunchScreen.storyboard in Resources */,
 				2603D9421EADC8D20069B132 /* Assets.xcassets in Resources */,
+				2603D95A1EADCA3C0069B132 /* README.txt in Resources */,
 				2603D9401EADC8D20069B132 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -137,8 +355,21 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				2603D93D1EADC8D20069B132 /* ViewController.swift in Sources */,
+				26F41BF21EB09B4100F4A929 /* VoiceConverter.mm in Sources */,
+				260AFF441EAF6B130032F0BC /* AvdioTool.swift in Sources */,
+				2603D9711EADCD830069B132 /* ViewController.swift in Sources */,
+				2603D9C11EADF1A60069B132 /* AbortVC.swift in Sources */,
+				2603D96F1EADCD440069B132 /* CustomAlertView.swift in Sources */,
+				2603D9BD1EADE7E20069B132 /* ScrollLabel.swift in Sources */,
+				260AFF421EAF686D0032F0BC /* AudioWrapper.m in Sources */,
+				2603D95C1EADCA3C0069B132 /* WXTool.swift in Sources */,
+				26F41BEF1EB09B4100F4A929 /* amrFileCodec.mm in Sources */,
+				2603D9731EADD1BB0069B132 /* MainGameViewController.swift in Sources */,
+				2603D95B1EADCA3C0069B132 /* WXApiManager.m in Sources */,
+				260AFF3F1EAF68360032F0BC /* RecorderVC.swift in Sources */,
+				2603D9691EADCB6F0069B132 /* Common.swift in Sources */,
 				2603D93B1EADC8D20069B132 /* AppDelegate.swift in Sources */,
+				2603D9791EADD3AA0069B132 /* PersonMsgView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -205,7 +436,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 10.3;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
@@ -250,7 +481,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 10.3;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
 				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
@@ -263,11 +494,25 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				DEVELOPMENT_TEAM = E38L2YCTY3;
+				ENABLE_BITCODE = NO;
 				INFOPLIST_FILE = NN/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/NN/Weixin",
+					"$(PROJECT_DIR)/NN",
+					"$(PROJECT_DIR)/NN/VoiceConvert/lib",
+				);
+				OTHER_LDFLAGS = (
+					"-all_load",
+					"-Objc",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.zdx.NN;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "NN-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 3.0;
 			};
 			name = Debug;
@@ -276,11 +521,24 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				DEVELOPMENT_TEAM = E38L2YCTY3;
+				ENABLE_BITCODE = NO;
 				INFOPLIST_FILE = NN/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/NN/Weixin",
+					"$(PROJECT_DIR)/NN",
+					"$(PROJECT_DIR)/NN/VoiceConvert/lib",
+				);
+				OTHER_LDFLAGS = (
+					"-all_load",
+					"-Objc",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.zdx.NN;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "NN-Bridging-Header.h";
 				SWIFT_VERSION = 3.0;
 			};
 			name = Release;
@@ -304,6 +562,7 @@
 				2603D94B1EADC8D20069B132 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
