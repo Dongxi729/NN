@@ -33,6 +33,9 @@
 		260AFF441EAF6B130032F0BC /* AvdioTool.swift in Sources */ = {isa = PBXBuildFile; fileRef = 260AFF431EAF6B130032F0BC /* AvdioTool.swift */; };
 		260AFF461EAF713E0032F0BC /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 260AFF451EAF713E0032F0BC /* AVFoundation.framework */; };
 		260AFF481EAF71480032F0BC /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 260AFF471EAF71480032F0BC /* UIKit.framework */; };
+		263D7F6E1EB1BA770064D1C5 /* BtnWithLongPress.swift in Sources */ = {isa = PBXBuildFile; fileRef = 263D7F6D1EB1BA770064D1C5 /* BtnWithLongPress.swift */; };
+		263D7F701EB1C5C70064D1C5 /* CaptureScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 263D7F6F1EB1C5C70064D1C5 /* CaptureScreen.swift */; };
+		263D7F721EB1C8610064D1C5 /* scree.png in Resources */ = {isa = PBXBuildFile; fileRef = 263D7F711EB1C8610064D1C5 /* scree.png */; };
 		26F41BEF1EB09B4100F4A929 /* amrFileCodec.mm in Sources */ = {isa = PBXBuildFile; fileRef = 26F41BE31EB09B4100F4A929 /* amrFileCodec.mm */; };
 		26F41BF01EB09B4100F4A929 /* libopencore-amrnb.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 26F41BE51EB09B4100F4A929 /* libopencore-amrnb.a */; };
 		26F41BF11EB09B4100F4A929 /* libopencore-amrwb.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 26F41BE61EB09B4100F4A929 /* libopencore-amrwb.a */; };
@@ -74,6 +77,9 @@
 		260AFF431EAF6B130032F0BC /* AvdioTool.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AvdioTool.swift; sourceTree = "<group>"; };
 		260AFF451EAF713E0032F0BC /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
 		260AFF471EAF71480032F0BC /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
+		263D7F6D1EB1BA770064D1C5 /* BtnWithLongPress.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BtnWithLongPress.swift; sourceTree = "<group>"; };
+		263D7F6F1EB1C5C70064D1C5 /* CaptureScreen.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CaptureScreen.swift; sourceTree = "<group>"; };
+		263D7F711EB1C8610064D1C5 /* scree.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = scree.png; sourceTree = "<group>"; };
 		26F41BE21EB09B4100F4A929 /* amrFileCodec.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = amrFileCodec.h; sourceTree = "<group>"; };
 		26F41BE31EB09B4100F4A929 /* amrFileCodec.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = amrFileCodec.mm; sourceTree = "<group>"; };
 		26F41BE51EB09B4100F4A929 /* libopencore-amrnb.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = "libopencore-amrnb.a"; sourceTree = "<group>"; };
@@ -218,6 +224,9 @@
 			children = (
 				26F41BE01EB09B4100F4A929 /* VoiceConvert */,
 				260AFF3E1EAF68360032F0BC /* RecorderVC.swift */,
+				263D7F6D1EB1BA770064D1C5 /* BtnWithLongPress.swift */,
+				263D7F711EB1C8610064D1C5 /* scree.png */,
+				263D7F6F1EB1C5C70064D1C5 /* CaptureScreen.swift */,
 				260AFF431EAF6B130032F0BC /* AvdioTool.swift */,
 				26F41BF31EB0B28A00F4A929 /* WavConvert.h */,
 				26F41BF41EB0B28A00F4A929 /* WavConvert.m */,
@@ -337,6 +346,7 @@
 			files = (
 				2603D9451EADC8D20069B132 /* LaunchScreen.storyboard in Resources */,
 				2603D9421EADC8D20069B132 /* Assets.xcassets in Resources */,
+				263D7F721EB1C8610064D1C5 /* scree.png in Resources */,
 				2603D95A1EADCA3C0069B132 /* README.txt in Resources */,
 				2603D9401EADC8D20069B132 /* Main.storyboard in Resources */,
 			);
@@ -355,6 +365,7 @@
 				2603D9C11EADF1A60069B132 /* AbortVC.swift in Sources */,
 				2603D96F1EADCD440069B132 /* CustomAlertView.swift in Sources */,
 				2603D9BD1EADE7E20069B132 /* ScrollLabel.swift in Sources */,
+				263D7F701EB1C5C70064D1C5 /* CaptureScreen.swift in Sources */,
 				2603D95C1EADCA3C0069B132 /* WXTool.swift in Sources */,
 				26F41BEF1EB09B4100F4A929 /* amrFileCodec.mm in Sources */,
 				2603D9731EADD1BB0069B132 /* MainGameViewController.swift in Sources */,
@@ -363,6 +374,7 @@
 				2603D9691EADCB6F0069B132 /* Common.swift in Sources */,
 				2603D93B1EADC8D20069B132 /* AppDelegate.swift in Sources */,
 				26F41BF51EB0B28A00F4A929 /* WavConvert.m in Sources */,
+				263D7F6E1EB1BA770064D1C5 /* BtnWithLongPress.swift in Sources */,
 				2603D9791EADD3AA0069B132 /* PersonMsgView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
