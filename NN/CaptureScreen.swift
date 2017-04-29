@@ -22,14 +22,25 @@ class CaptureScreen: UIViewController {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
-        view.addSubview(CapTureBtn)
-        
-        view.backgroundColor = UIColor.red
-        
+//        
+//        
+//        view.backgroundColor = UIColor.red
+//        
         let img : UIImageView = UIImageView.init(frame: view.bounds)
         
         img.image = UIImage.init(named: "scree")
         view.addSubview(img)
+        
+        img.screenShot()
+//        
+//        let redView             = UIView.init(frame: CGRect.init(x: 40, y: 40, width: 200, height: 200))
+//        redView.backgroundColor = UIColor.red
+//        
+//        view.addSubview(img)
+//        view.addSubview(redView)
+//        
+//        let imageView = UIImageView(image: img.screenShot())
+//        view.addSubview(imageView)
     }
     
     func captureSEL() -> Void {

@@ -76,6 +76,10 @@ class ViewController: UIViewController {
             CustomAlertView.shared.alertWithTitle(strTitle: "未安装微信或版本不支持")
         } else {
             wxTool.clickAuto()
+            
+            sleep(1)
+            
+            
         }
     }
     
@@ -91,6 +95,8 @@ class ViewController: UIViewController {
 //    };
 
     func wxShareSEL() -> Void {
+        
+        print("\((#file as NSString).lastPathComponent):(\(#line))\n",thirdNickName)
         
         if WXApi.isWXAppInstalled() == false {
             CustomAlertView.shared.alertWithTitle(strTitle: "未安装微信或版本不支持")

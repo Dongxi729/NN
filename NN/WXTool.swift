@@ -15,6 +15,8 @@ var pay:((_ _data:String)->Void)?
 ///微信验证结果回调
 var comfun:((_ _data : String) -> Void)?
 
+//typealias WXAuthBackInfo = (_ openID: String, _ headImg: String, _ userName : String) -> ()
+
 protocol WXToolDelegate {
     
     //微信登陆回调
@@ -144,6 +146,8 @@ class WXTool : UIView,WXApiDelegate,NSURLConnectionDelegate {
                     let refreshToken = accessDict[WX_REFRESH_TOKEN] as! String
                     
                     
+                    print("\((#file as NSString).lastPathComponent):(\(#line))\n",accessDict)
+                    
                     // 本地持久化，以便access_token的使用、刷新或者持续
                     
                     if (accessToken.characters.count != 0) && !(accessToken == "") && (openID.characters.count != 0) && !(openID == "") {
@@ -228,7 +232,6 @@ class WXTool : UIView,WXApiDelegate,NSURLConnectionDelegate {
                 
                 //微信昵称
                 let wxNickName = wxInfoData["nickname"] as! String
-                
                 
                 //写入运行内存中
                 
@@ -400,6 +403,8 @@ extension WXTool {
                 
                 print(refreshDict)
                 
+                
+                
                 let reAccessToken = refreshDict[WX_ACCESS_TOKEN] as! String
                 
                 // 如果reAccessToken为空,说明reAccessToken也过期了,反之则没有过期
@@ -410,6 +415,8 @@ extension WXTool {
                     UserDefaults.standard.set(refreshDict[WX_REFRESH_TOKEN], forKey: WX_REFRESH_TOKEN)
                     UserDefaults.standard.synchronize()
                     // 当存在reAccessToken不为空时直接执行AppDelegate中的
+                    
+                    
                 } else {
                     //没获取相关微信授权信息，则进行获取
                     self.wechatLogin()
