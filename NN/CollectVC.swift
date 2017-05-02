@@ -4,13 +4,12 @@
 //
 //  Created by 郑东喜 on 2017/4/29.
 //  Copyright © 2017年 郑东喜. All rights reserved.
-//
+//  数字键入操作
 
 import UIKit
 
 
-let SW = UIScreen.main.bounds.width
-let SH = UIScreen.main.bounds.width
+
 
 let gridWidth = (UIScreen.main.bounds.width / 375) * 54
 
@@ -33,9 +32,7 @@ class CollectVC: UIViewController {
         
         d.dataSource = self
         d.delegate = self
-        
-        
-        
+
         d.register(CollectionViewCell.self, forCellWithReuseIdentifier: "cellID")
         
         return d
@@ -43,8 +40,6 @@ class CollectVC: UIViewController {
     
     
     var dataSource : [String] = ["1","2","3","4","5","6","7","8","9","充数","0","删除"]
-    
-    var oneee : [String] = ["","","","","",""]
     
     var filltext : [Int:String] = [:]
     
@@ -61,7 +56,6 @@ class CollectVC: UIViewController {
         
         // Do any additional setup after loading the view.
         
-        
         view.addSubview(collV)
     }
 }
@@ -70,14 +64,7 @@ extension CollectVC : UICollectionViewDataSource,UICollectionViewDelegateFlowLay
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cellID", for: indexPath) as! CollectionViewCell
         
-        if indexPath.section == 0 {
-            
-            cell.labelll.text = oneee[indexPath.row]
-        } else {
-            cell.labelll.text = dataSource[indexPath.row]
-        }
-        
-        
+        cell.labelll.text = dataSource[indexPath.row]
         return cell
     }
     
@@ -85,15 +72,12 @@ extension CollectVC : UICollectionViewDataSource,UICollectionViewDelegateFlowLay
     
     func numberOfSections(in collectionView: UICollectionView) -> Int {
         
-        return 2
+        return 1
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        if section == 0 {
-            return oneee.count
-        } else {
-            return dataSource.count
-        }
+        
+        return dataSource.count
         
     }
     
@@ -102,37 +86,56 @@ extension CollectVC : UICollectionViewDataSource,UICollectionViewDelegateFlowLay
         let selecttext = dataSource[indexPath.row]
         
         /// 添加数据
-        if !selecttext.contains("删除") || !selecttext.contains("充数") {
+        
+        let d = addLabelView.init(frame: CGRect.init(x: CGFloat(64 * texIndex), y: 0, width: UIScreen.main.bounds.width / 6, height: 64))
+  
+        if selecttext == "删除" {
+            print("\((#file as NSString).lastPathComponent):(\(#line))\n",dddd.count)
             
-            /// 索引
-            texIndex += 1
-            
-
-
-            
-            print("\((#file as NSString).lastPathComponent):(\(#line))\n",selecttext)
-            
-            let d = addLabelView.init(frame: CGRect.init(x: CGFloat(64 * texIndex), y: 0, width: UIScreen.main.bounds.width / 6, height: 64))
-            
-            d.labelText(dd: selecttext)
-            view.addSubview(d)
-            
-            dddd.append(d)
-            
-            print("\((#file as NSString).lastPathComponent):(\(#line))\n",dddd)
-         
-            
-            if texIndex > 5 {
+            if dddd.count > 0 {
+                view.subviews.last?.removeFromSuperview()
                 
-                dddd[1].removeFromSuperview()
+                dddd.removeLast()
+                
+                texIndex -= 1
+            }
+            
+            return
+        } else {
+            
+//            if selecttext == "充数" {
+//                
+//            } else {
+//                
+                /// 索引
+                texIndex += 1
+                
+                d.labelText(dd: selecttext)
+                view.addSubview(d)
+                dddd.append(d)
+                
+                if texIndex > 5 {
+                    return
+                }
+//            }
+        }
+        
+        if selecttext == "充数" {
+            for index : UIView in dddd {
+                
+                index.removeFromSuperview()
+                
                 dddd.removeAll()
                 
+                /// 重新计数
+                texIndex = 0
                 
-                return
             }
+            
         }
         
     }
+    
 }
 
 
@@ -146,6 +149,7 @@ class addLabelView: UIView {
     
     func labelText(dd : String) -> Void {
         la.text = dd
+        
     }
     
     override init(frame: CGRect) {

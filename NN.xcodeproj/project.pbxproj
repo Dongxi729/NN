@@ -53,15 +53,18 @@
 		260C66721EB23415006C119E /* TransformationMatrix.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 260C665E1EB23415006C119E /* TransformationMatrix.cpp */; };
 		260C66DE1EB23831006C119E /* PopViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 260C66DD1EB23831006C119E /* PopViewController.swift */; };
 		262E1C3A1EB1CBDE007CC745 /* CaptureScreenTool.swift in Sources */ = {isa = PBXBuildFile; fileRef = 262E1C391EB1CBDE007CC745 /* CaptureScreenTool.swift */; };
-		262E1C3C1EB1CD30007CC745 /* EnjoyRoomVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 262E1C3B1EB1CD30007CC745 /* EnjoyRoomVC.swift */; };
 		263D7F6E1EB1BA770064D1C5 /* BtnWithLongPress.swift in Sources */ = {isa = PBXBuildFile; fileRef = 263D7F6D1EB1BA770064D1C5 /* BtnWithLongPress.swift */; };
 		263D7F701EB1C5C70064D1C5 /* CaptureScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 263D7F6F1EB1C5C70064D1C5 /* CaptureScreen.swift */; };
 		263D7F721EB1C8610064D1C5 /* scree.png in Resources */ = {isa = PBXBuildFile; fileRef = 263D7F711EB1C8610064D1C5 /* scree.png */; };
+		2657FD951EB851EC00B92648 /* VoicieControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2657FD941EB851EC00B92648 /* VoicieControl.swift */; };
+		2657FD971EB860F900B92648 /* ControlVoice.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2657FD961EB860F900B92648 /* ControlVoice.swift */; };
 		265B852A1EB20CC20080AC62 /* TimerTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 265B85291EB20CC20080AC62 /* TimerTest.swift */; };
 		26BC61301EB2EB6C00AE9BE1 /* CountDownBtn.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26BC612F1EB2EB6C00AE9BE1 /* CountDownBtn.swift */; };
 		26BC613A1EB4250600AE9BE1 /* CollectVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26BC61391EB4250600AE9BE1 /* CollectVC.swift */; };
 		26BC613C1EB4253B00AE9BE1 /* CollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26BC613B1EB4253B00AE9BE1 /* CollectionViewCell.swift */; };
 		26BC613E1EB4425700AE9BE1 /* InputChangeVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26BC613D1EB4425700AE9BE1 /* InputChangeVC.swift */; };
+		26CAF9B81EB4BF82003065B8 /* JoinRoomView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26CAF9B71EB4BF82003065B8 /* JoinRoomView.swift */; };
+		26CAF9BD1EB4C219003065B8 /* LabelRepeat.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26CAF9BC1EB4C219003065B8 /* LabelRepeat.swift */; };
 		26F41BEF1EB09B4100F4A929 /* amrFileCodec.mm in Sources */ = {isa = PBXBuildFile; fileRef = 26F41BE31EB09B4100F4A929 /* amrFileCodec.mm */; };
 		26F41BF01EB09B4100F4A929 /* libopencore-amrnb.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 26F41BE51EB09B4100F4A929 /* libopencore-amrnb.a */; };
 		26F41BF11EB09B4100F4A929 /* libopencore-amrwb.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 26F41BE61EB09B4100F4A929 /* libopencore-amrwb.a */; };
@@ -154,17 +157,20 @@
 		260C665E1EB23415006C119E /* TransformationMatrix.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = TransformationMatrix.cpp; sourceTree = "<group>"; };
 		260C665F1EB23415006C119E /* TransformationMatrix.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TransformationMatrix.h; sourceTree = "<group>"; };
 		260C66601EB23415006C119E /* UnitBezier.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UnitBezier.h; sourceTree = "<group>"; };
-		260C66DD1EB23831006C119E /* PopViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PopViewController.swift; sourceTree = "<group>"; };
+		260C66DD1EB23831006C119E /* PopViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PopViewController.swift; path = ../PopViewController.swift; sourceTree = "<group>"; };
 		262E1C391EB1CBDE007CC745 /* CaptureScreenTool.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CaptureScreenTool.swift; sourceTree = "<group>"; };
-		262E1C3B1EB1CD30007CC745 /* EnjoyRoomVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EnjoyRoomVC.swift; sourceTree = "<group>"; };
 		263D7F6D1EB1BA770064D1C5 /* BtnWithLongPress.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BtnWithLongPress.swift; sourceTree = "<group>"; };
 		263D7F6F1EB1C5C70064D1C5 /* CaptureScreen.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CaptureScreen.swift; sourceTree = "<group>"; };
 		263D7F711EB1C8610064D1C5 /* scree.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = scree.png; sourceTree = "<group>"; };
+		2657FD941EB851EC00B92648 /* VoicieControl.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VoicieControl.swift; sourceTree = "<group>"; };
+		2657FD961EB860F900B92648 /* ControlVoice.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ControlVoice.swift; sourceTree = "<group>"; };
 		265B85291EB20CC20080AC62 /* TimerTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TimerTest.swift; sourceTree = "<group>"; };
 		26BC612F1EB2EB6C00AE9BE1 /* CountDownBtn.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CountDownBtn.swift; sourceTree = "<group>"; };
 		26BC61391EB4250600AE9BE1 /* CollectVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CollectVC.swift; sourceTree = "<group>"; };
 		26BC613B1EB4253B00AE9BE1 /* CollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CollectionViewCell.swift; sourceTree = "<group>"; };
 		26BC613D1EB4425700AE9BE1 /* InputChangeVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InputChangeVC.swift; sourceTree = "<group>"; };
+		26CAF9B71EB4BF82003065B8 /* JoinRoomView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JoinRoomView.swift; sourceTree = "<group>"; };
+		26CAF9BC1EB4C219003065B8 /* LabelRepeat.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LabelRepeat.swift; sourceTree = "<group>"; };
 		26F41BE21EB09B4100F4A929 /* amrFileCodec.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = amrFileCodec.h; sourceTree = "<group>"; };
 		26F41BE31EB09B4100F4A929 /* amrFileCodec.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = amrFileCodec.mm; sourceTree = "<group>"; };
 		26F41BE51EB09B4100F4A929 /* libopencore-amrnb.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = "libopencore-amrnb.a"; sourceTree = "<group>"; };
@@ -209,7 +215,6 @@
 				2603D9391EADC8D20069B132 /* NN */,
 				2603D9381EADC8D20069B132 /* Products */,
 				2603D94C1EADCA160069B132 /* NN-Bridging-Header.h */,
-				260C66DD1EB23831006C119E /* PopViewController.swift */,
 				2603D95D1EADCAF30069B132 /* Frameworks */,
 			);
 			sourceTree = "<group>";
@@ -227,12 +232,14 @@
 			children = (
 				260C662C1EB23415006C119E /* pop */,
 				262E1C391EB1CBDE007CC745 /* CaptureScreenTool.swift */,
-				262E1C3B1EB1CD30007CC745 /* EnjoyRoomVC.swift */,
 				260AFF351EAF67AC0032F0BC /* recorder */,
 				2603D9741EADD32B0069B132 /* mainG */,
 				2603D9501EADCA3B0069B132 /* Weixin */,
 				2603D9581EADCA3B0069B132 /* WXTool.swift */,
+				2657FD941EB851EC00B92648 /* VoicieControl.swift */,
+				2657FD961EB860F900B92648 /* ControlVoice.swift */,
 				26BC61391EB4250600AE9BE1 /* CollectVC.swift */,
+				26CAF9B71EB4BF82003065B8 /* JoinRoomView.swift */,
 				26BC613B1EB4253B00AE9BE1 /* CollectionViewCell.swift */,
 				2603D9C01EADF1A60069B132 /* AbortVC.swift */,
 				2603D96E1EADCD440069B132 /* CustomAlertView.swift */,
@@ -246,6 +253,7 @@
 				2603D9411EADC8D20069B132 /* Assets.xcassets */,
 				2603D9431EADC8D20069B132 /* LaunchScreen.storyboard */,
 				2603D9461EADC8D20069B132 /* Info.plist */,
+				260C66DD1EB23831006C119E /* PopViewController.swift */,
 			);
 			path = NN;
 			sourceTree = "<group>";
@@ -286,6 +294,7 @@
 				2603D9771EADD34D0069B132 /* model */,
 				2603D9761EADD3460069B132 /* view */,
 				2603D9751EADD33B0069B132 /* controller */,
+				26CAF9BC1EB4C219003065B8 /* LabelRepeat.swift */,
 			);
 			name = mainG;
 			sourceTree = "<group>";
@@ -524,18 +533,20 @@
 				260C66711EB23415006C119E /* POPVector.mm in Sources */,
 				2603D9711EADCD830069B132 /* ViewController.swift in Sources */,
 				260C66641EB23415006C119E /* POPAnimationExtras.mm in Sources */,
+				26CAF9B81EB4BF82003065B8 /* JoinRoomView.swift in Sources */,
 				260C66721EB23415006C119E /* TransformationMatrix.cpp in Sources */,
 				260C66691EB23415006C119E /* POPCGUtils.mm in Sources */,
 				260C666A1EB23415006C119E /* POPCustomAnimation.mm in Sources */,
 				260C66DE1EB23831006C119E /* PopViewController.swift in Sources */,
 				26BC613A1EB4250600AE9BE1 /* CollectVC.swift in Sources */,
-				262E1C3C1EB1CD30007CC745 /* EnjoyRoomVC.swift in Sources */,
 				2603D9C11EADF1A60069B132 /* AbortVC.swift in Sources */,
 				2603D96F1EADCD440069B132 /* CustomAlertView.swift in Sources */,
 				260C66651EB23415006C119E /* POPAnimationRuntime.mm in Sources */,
+				2657FD971EB860F900B92648 /* ControlVoice.swift in Sources */,
 				2603D9BD1EADE7E20069B132 /* ScrollLabel.swift in Sources */,
 				260C66701EB23415006C119E /* POPSpringAnimation.mm in Sources */,
 				260C66681EB23415006C119E /* POPBasicAnimation.mm in Sources */,
+				26CAF9BD1EB4C219003065B8 /* LabelRepeat.swift in Sources */,
 				260C666F1EB23415006C119E /* POPPropertyAnimation.mm in Sources */,
 				262E1C3A1EB1CBDE007CC745 /* CaptureScreenTool.swift in Sources */,
 				260C66611EB23415006C119E /* POPAnimatableProperty.mm in Sources */,
@@ -558,6 +569,7 @@
 				26BC61301EB2EB6C00AE9BE1 /* CountDownBtn.swift in Sources */,
 				2603D93B1EADC8D20069B132 /* AppDelegate.swift in Sources */,
 				26F41BF51EB0B28A00F4A929 /* WavConvert.m in Sources */,
+				2657FD951EB851EC00B92648 /* VoicieControl.swift in Sources */,
 				26BC613C1EB4253B00AE9BE1 /* CollectionViewCell.swift in Sources */,
 				263D7F6E1EB1BA770064D1C5 /* BtnWithLongPress.swift in Sources */,
 				260C66621EB23415006C119E /* POPAnimation.mm in Sources */,

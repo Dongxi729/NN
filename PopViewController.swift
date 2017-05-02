@@ -31,26 +31,5 @@ class PopViewController: UIViewController {
         // Do any additional setup after loading the view.
     
     }
-    
-    
-    func addTarget(_ ios: UIView) {
-        // 执行动画 改变透明度
-        let alpha = POPBasicAnimation(propertyNamed: kPOPViewAlpha)
-        alpha?.toValue = (1.0)
-        alpha?.duration = 0.3
-//        UIImageView.pop_add(alpha, forKey: nil)
-        // 缩放回弹
-        let scale = POPSpringAnimation(propertyNamed: kPOPLayerScaleXY)
-        scale?.fromValue = NSValue(cgSize: CGSize(width: CGFloat(1.75), height: CGFloat(1.75)))
-        scale?.toValue = NSValue(cgSize: CGSize(width: CGFloat(1.0), height: CGFloat(1.0)))
-        scale?.dynamicsTension = 1000
-        scale?.dynamicsMass = 1.3
-        scale?.dynamicsFriction = 10.3
-        scale?.springSpeed = 20
-        scale?.springBounciness = 15.64
-        scale?.delegate = self
-        ios.layer.pop_add(scale, forKey: nil)
-    }
-
 }
 
