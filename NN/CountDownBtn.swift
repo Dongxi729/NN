@@ -31,7 +31,7 @@ class CountDownBtn: UIButton {
     var canContinue = false
     
     
-    static let shared = CountDownBtn()
+//    static let shared = CountDownBtn()
     
     //初始化控件
     func initwith(color : UIColor,title:String,superView:UIView,ddd : Int) ->
@@ -49,9 +49,6 @@ class CountDownBtn: UIButton {
             self.isEnabled=false
             timer = Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(tiemrBengin), userInfo: self, repeats: true)
             
-            timer?.fire()
-            
-            RunLoop.main.add(timer!, forMode: RunLoopMode.commonModes)
             superView.addSubview(self)
             
             self.isUserInteractionEnabled = true
@@ -68,20 +65,19 @@ class CountDownBtn: UIButton {
             self.isEnabled = true
             self.backgroundColor = self.currentColor
             return
-        
+            
         }
         
-        DispatchQueue.main.async {
-            if self.i != 0 && self.i > 0 && self.canContinue == true {
-                self.i -= 1
-                
-                
-                self.setTitle(String(format: "重发(%d)s",self.i), for: UIControlState.disabled)
-                self.backgroundColor=UIColor.lightGray
-                
-                print("i = :",self.i)
-                
-            }
+        
+        if self.i != 0 && self.i > 0 && self.canContinue == true {
+            self.i -= 1
+            
+            
+            self.setTitle(String(format: "重发(%d)s",self.i), for: UIControlState.disabled)
+            self.backgroundColor=UIColor.lightGray
+            
+            print("i = :",self.i)
+            
         }
         
         

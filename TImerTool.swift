@@ -13,9 +13,7 @@ fileprivate var timer : Timer?
 
 class TImerTool: NSObject {
     
-    
-    
-    
+
     static let shared = TImerTool.init()
     
     func timerCount(seconds : Int) -> Void {

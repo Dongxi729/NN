@@ -71,11 +71,8 @@ extension TimerLabel : UITableViewDelegate,UITableViewDataSource {
         NUMSS = timerArray[indexPath.row]
         
         
-        if CountDownBtn.shared.isvalidate() == true {
-            
-            CountDownBtn.shared.timer?.invalidate()
-//
-//            CountDownBtn.shared.canContinue = false
+        if yzmBtn.isvalidate() == true {
+            yzmBtn.canContinue = false
             
             yzmBtn.timer?.invalidate()
             
