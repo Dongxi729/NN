@@ -126,6 +126,9 @@ func getWithPath(path: String,paras: Dictionary<String,Any>?,success: @escaping 
 }
 
 
+/// 控制器上添加视图
+///
+/// - Parameter ios: 添加的子视图
 func addTarget(_ ios: UIView) {
     // 执行动画 改变透明度
     let alpha = POPBasicAnimation(propertyNamed: kPOPViewAlpha)
@@ -143,4 +146,49 @@ func addTarget(_ ios: UIView) {
     scale?.springBounciness = 15.64
     scale?.delegate = UIApplication.shared.keyWindow?.rootViewController
     ios.layer.pop_add(scale, forKey: nil)
+}
+
+
+
+/// 添加到主控制器(附带动画效果)
+///
+/// - Parameter ios: 添加的子视图
+func addToRootView(_ ios: UIView) {
+    // 执行动画 改变透明度
+    let alpha = POPBasicAnimation(propertyNamed: kPOPViewAlpha)
+    alpha?.toValue = (1.0)
+    alpha?.duration = 0.3
+    //        UIImageView.pop_add(alpha, forKey: nil)
+    // 缩放回弹
+    let scale = POPSpringAnimation(propertyNamed: kPOPLayerScaleXY)
+    scale?.fromValue = NSValue(cgSize: CGSize(width: CGFloat(1.75), height: CGFloat(1.75)))
+    scale?.toValue = NSValue(cgSize: CGSize(width: CGFloat(1.0), height: CGFloat(1.0)))
+    scale?.dynamicsTension = 1000
+    scale?.dynamicsMass = 1.3
+    scale?.dynamicsFriction = 10.3
+    scale?.springSpeed = 20
+    scale?.springBounciness = 15.64
+    scale?.delegate = UIApplication.shared.keyWindow?.rootViewController
+    ios.layer.pop_add(scale, forKey: nil)
+    
+    UIApplication.shared.keyWindow?.rootViewController?.view.addSubview(ios)
+}
+
+
+/// 弹簧效果
+///
+/// - Parameters:
+///   - addToV: 添加的视图
+///   - tovalue: 结束的点坐标
+func spring(addToV : UIView,tovalue : CGPoint) -> Void {
+    let anim = POPSpringAnimation(propertyNamed: kPOPViewCenter)
+    
+    let centerX: CGFloat = UIScreen.main.bounds.width * 0.5
+    let centerY: CGFloat = UIScreen.main.bounds.height * 0.5
+    anim?.fromValue = CGPoint.init(x: centerX, y: centerY)
+    anim?.toValue = NSValue(cgPoint: tovalue)
+    anim?.springBounciness = 16
+    anim?.springSpeed = 6
+    
+    addToV.pop_add(anim, forKey: "center")
 }

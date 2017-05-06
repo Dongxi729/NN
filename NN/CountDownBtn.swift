@@ -8,52 +8,109 @@
 
 import UIKit
 //发送几秒
-var  NUMSS = 60
+var  NUMSS : Int = 30
 
 class CountDownBtn: UIButton {
     
     
-
+    
     //触发倒计时事件
     var countYES = ""
     
     //秒数
-    var  i = NUMSS
+    var i = 0
     
     //定时器
-    var myTimer:Timer?
+    var timer:Timer?
     
     //当前按钮背景颜色
     var  currentColor:UIColor?
     
+    
+    /// 是否继续
+    var canContinue = false
+    
+    
+    static let shared = CountDownBtn()
+    
     //初始化控件
-    func initwith(color : UIColor,title:String,superView:UIView) -> Void {
-        self.setTitle(title, for: UIControlState.normal)
-        
-        self.setTitle("重发(\(NUMSS))s", for: UIControlState.disabled)
-        self.titleLabel?.adjustsFontSizeToFitWidth = true
-        self.backgroundColor=UIColor.lightGray
-        self.isEnabled=false
-        myTimer = Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(tiemrBengin), userInfo: self, repeats: true)
-        
-        
-        superView.addSubview(self)
-        
-        self.isUserInteractionEnabled = true
-        self.currentColor = color
+    func initwith(color : UIColor,title:String,superView:UIView,ddd : Int) ->
+        Void {
+            
+            canContinue = true
+            
+            i = ddd
+            
+            self.setTitle(title, for: UIControlState.normal)
+            
+            self.setTitle("重发(\(ddd))s", for: UIControlState.disabled)
+            self.titleLabel?.adjustsFontSizeToFitWidth = true
+            self.backgroundColor=UIColor.lightGray
+            self.isEnabled=false
+            timer = Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(tiemrBengin), userInfo: self, repeats: true)
+            
+            timer?.fire()
+            
+            RunLoop.main.add(timer!, forMode: RunLoopMode.commonModes)
+            superView.addSubview(self)
+            
+            self.isUserInteractionEnabled = true
+            self.currentColor = color
     }
     
-    func  tiemrBengin(timer:Timer) {
-        i -= 1
-        let  button = timer.userInfo as! CountDownBtn
-        button.setTitle(String(format: "重发(%d)s",i), for: UIControlState.disabled)
-        button.backgroundColor=UIColor.lightGray
-        if i == 0 {
-            timer.invalidate()
-            button.isEnabled = true
-            button.backgroundColor = self.currentColor
+    
+    
+    func  tiemrBengin() {
+        
+        if canContinue == false {
+            
+            timer?.invalidate()
+            self.isEnabled = true
+            self.backgroundColor = self.currentColor
+            return
+        
+        }
+        
+        DispatchQueue.main.async {
+            if self.i != 0 && self.i > 0 && self.canContinue == true {
+                self.i -= 1
+                
+                
+                self.setTitle(String(format: "重发(%d)s",self.i), for: UIControlState.disabled)
+                self.backgroundColor=UIColor.lightGray
+                
+                print("i = :",self.i)
+                
+            }
+        }
+        
+        
+        
+        if i == 0 || canContinue == false {
+            
+            canContinue = false
+            
+            self.timer?.invalidate()
+            self.isEnabled = true
+            self.backgroundColor = self.currentColor
             i = NUMSS
             
         }
+    }
+    
+    func isvalidate() -> Bool {
+        print(NUMSS)
+        
+        if NUMSS > 0 {
+            return true
+        } else {
+            return false
+        }
+    }
+    
+    func terminate() -> Void {
+        self.timer?.invalidate()
+        self.isEnabled = true
+        self.backgroundColor = self.currentColor
     }
 }

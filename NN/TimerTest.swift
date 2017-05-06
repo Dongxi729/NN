@@ -17,7 +17,6 @@ class TimerTest: UIViewController {
     var userArray : [Int : Timer] = [:]
     
     
-    
     override func viewDidLoad() {
         super.viewDidLoad()
 

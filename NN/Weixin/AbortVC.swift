@@ -4,7 +4,7 @@
 //
 //  Created by 郑东喜 on 2017/4/24.
 //  Copyright © 2017年 郑东喜. All rights reserved.
-//
+//  退出当前APP方法
 
 import UIKit
 
