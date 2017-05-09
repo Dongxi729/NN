@@ -72,15 +72,6 @@ class ViewController: UIViewController {
     /// 登陆
     func wxLoginSEL() -> Void {
         
-        if WXApi.isWXAppInstalled() == false {
-            CustomAlertView.shared.alertWithTitle(strTitle: "未安装微信或版本不支持")
-        } else {
-            wxTool.clickAuto()
-            
-            sleep(1)
-            
-            
-        }
     }
     
     
@@ -96,7 +87,9 @@ class ViewController: UIViewController {
 
     func wxShareSEL() -> Void {
         
-        print("\((#file as NSString).lastPathComponent):(\(#line))\n",thirdNickName)
+        
+        
+        print("\((#file as NSString).lastPathComponent):(\(#line))\n",thirdHeadImgURL,thirdNickName,thirdOpenID)
         
         if WXApi.isWXAppInstalled() == false {
             CustomAlertView.shared.alertWithTitle(strTitle: "未安装微信或版本不支持")

@@ -33,17 +33,24 @@ class CountDownBtn: UIButton {
     
 //    static let shared = CountDownBtn()
     
-    //初始化控件
-    func initwith(color : UIColor,title:String,superView:UIView,ddd : Int) ->
+    
+    /// 调用倒计时
+    ///
+    /// - Parameters:
+    ///   - color: 颜色
+    ///   - title: 标题
+    ///   - superView: 添加到的视图
+    ///   - descc: 描述
+    func initwith(color : UIColor,title:String,superView:UIView,descc : Int) ->
         Void {
             
             canContinue = true
             
-            i = ddd
+            i = descc
             
             self.setTitle(title, for: UIControlState.normal)
             
-            self.setTitle("重发(\(ddd))s", for: UIControlState.disabled)
+            self.setTitle("重发(\(descc))s", for: UIControlState.disabled)
             self.titleLabel?.adjustsFontSizeToFitWidth = true
             self.backgroundColor=UIColor.lightGray
             self.isEnabled=false

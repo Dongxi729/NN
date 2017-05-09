@@ -76,10 +76,7 @@ extension TimerLabel : UITableViewDelegate,UITableViewDataSource {
             
             yzmBtn.timer?.invalidate()
             
-            yzmBtn.initwith(color: .red, title: "qwqwqe", superView: self.view, ddd: NUMSS)
+            yzmBtn.initwith(color: .red, title: "qwqwqe", superView: self.view, descc: NUMSS)
         }
-        
-        
-        
     }
 }

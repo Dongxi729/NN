@@ -16,7 +16,7 @@ class PersonMsgView: UIView {
     
     /// 个人头像
     lazy var personImgView: UIImageView = {
-        let d : UIImageView = UIImageView.init(frame: CGRect.init(x: commonMargin, y: commonMargin, width: 40 * screenScale, height: 40 * screenScale))
+        let d : UIImageView = UIImageView.init(frame: CGRect.init(x: commonMargin, y: commonMargin, width: 30 * screenScale, height: 30 * screenScale))
         d.backgroundColor = UIColor.gray
         return d
     }()
@@ -56,9 +56,17 @@ class PersonMsgView: UIView {
         return d
     }()
     
+    /// 玩法
+    lazy var playStyle: UIButton = {
+        let d : UIButton = UIButton.init(frame: CGRect.init(x: self.setBtn.LeftX + commonMargin, y: commonMargin, width: 40, height: 40))
+        d.backgroundColor = UIColor.gray
+//        d.
+        return d
+    }()
+    
     /// 加入房间
     lazy var joinRoom: UIButton = {
-        let d : UIButton = UIButton.init(frame: CGRect.init(x: UIScreen.main.bounds.width * 0.5 + UIScreen.main.bounds.width * 0.05, y: 100, width: UIScreen.main.bounds.width * 0.35, height: UIScreen.main.bounds.width * 0.35))
+        let d : UIButton = UIButton.init(frame: CGRect.init(x: UIScreen.main.bounds.width * 0.5 + UIScreen.main.bounds.width * 0.05, y: SH - SH * 0.65, width: UIScreen.main.bounds.width * 0.35, height: UIScreen.main.bounds.width * 0.35))
         
         d.setTitle("创建房间", for: .normal)
         d.backgroundColor = UIColor.gray
@@ -67,17 +75,23 @@ class PersonMsgView: UIView {
     
     /// 创建房间
     lazy var makeRoom: UIButton = {
-        let d : UIButton = UIButton.init(frame: CGRect.init(x: UIScreen.main.bounds.width * 0.1, y: 100, width: UIScreen.main.bounds.width * 0.35, height: UIScreen.main.bounds.width * 0.35))
+        let d : UIButton = UIButton.init(frame: CGRect.init(x: UIScreen.main.bounds.width * 0.1, y: SH - SH * 0.65, width: UIScreen.main.bounds.width * 0.35, height: UIScreen.main.bounds.width * 0.35))
         d.setTitle("创建房间", for: .normal)
         d.backgroundColor = UIColor.gray
         return d
     }()
     
-    /// 按钮数量
-    let btnNum : Int = 4
+    lazy var bgViewImg: UIImageView = {
+        let d : UIImageView = UIImageView.init(frame: self.frame)
+        d.image = UIImage.init(named: "mainScreenBg")
+        
+        return d
+    }()
 
     override init(frame: CGRect) {
         super.init(frame: frame)
+        
+        addSubview(bgViewImg)
         
         addSubview(personImgView)
         
@@ -92,6 +106,8 @@ class PersonMsgView: UIView {
         addSubview(joinRoom)
         
         addSubview(makeRoom)
+        
+        
     }
 
     
@@ -101,3 +117,5 @@ class PersonMsgView: UIView {
         fatalError("init(coder:) has not been implemented")
     }
 }
+
+

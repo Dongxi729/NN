@@ -4,7 +4,7 @@
 //
 //  Created by 郑东喜 on 2017/4/24.
 //  Copyright © 2017年 郑东喜. All rights reserved.
-//
+//  游戏主界面
 
 import UIKit
 
@@ -34,9 +34,7 @@ class MainGameViewController: UIViewController {
         add.backgroundColor = UIColor.red
         
         add.addTarget(self, action: #selector(presenrView), for: .touchUpInside)
-//        view.addSubview(add)
-        
-        
+
         view.addSubview(mainView)
         print("\((#file as NSString).lastPathComponent):(\(#line))\n",UIScreen.main.bounds.height)
         print("\((#file as NSString).lastPathComponent):(\(#line))\n",UIScreen.main.bounds.width)
@@ -47,28 +45,5 @@ class MainGameViewController: UIViewController {
         
         presentView.center = view.center
     }
-    
-    override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
-        coordinator.animate(alongsideTransition: { (UIViewControllerTransitionCoordinatorContext) -> Void in
-            
-            let orient = UIApplication.shared.statusBarOrientation
-            
-            switch orient {
-            case .portrait:
-                print("Portrait")
-                
-                break
-            // Do something
-            default:
-                print("LandScape")
-                // Do something else
-                
-                break
-            }
-        }, completion: { (UIViewControllerTransitionCoordinatorContext) -> Void in
-            print("rotation completed")
-        })
-//        super.viewWillTransitionToSize(size, withTransitionCoordinator: coordinator)
-        super.viewWillTransition(to: size, with: coordinator)
-    }
+
 }

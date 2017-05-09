@@ -9,13 +9,23 @@
 import UIKit
 
 
+//第三方openID
+var thirdOpenID : String = ""
+//第三方昵称
+var thirdNickName : String = ""
+//第三方头像地址
+var thirdHeadImgURL : String = ""
+// 微信accesstoken
+var wxAccessToken : String = ""
+
+/// 请求获取参数
+typealias WXAuthBack = (_ openID : String,_ nickName : String,_ accessToken : String) ->()
+
 /// 微信支付回调
 var pay:((_ _data:String)->Void)?
 
 ///微信验证结果回调
 var comfun:((_ _data : String) -> Void)?
-
-//typealias WXAuthBackInfo = (_ openID: String, _ headImg: String, _ userName : String) -> ()
 
 protocol WXToolDelegate {
     
@@ -139,29 +149,49 @@ class WXTool : UIView,WXApiDelegate,NSURLConnectionDelegate {
                     
                     print("微信个人信息",wxInfoData)
                     
+                    
+                    
                     let accessDict = responseObject as! NSDictionary
                     
-                    let accessToken = accessDict[WX_ACCESS_TOKEN] as! String
-                    var openID = accessDict[WX_OPEN_ID] as! String
-                    let refreshToken = accessDict[WX_REFRESH_TOKEN] as! String
-                    
-                    
-                    print("\((#file as NSString).lastPathComponent):(\(#line))\n",accessDict)
-                    
-                    // 本地持久化，以便access_token的使用、刷新或者持续
-                    
-                    if (accessToken.characters.count != 0) && !(accessToken == "") && (openID.characters.count != 0) && !(openID == "") {
-                        UserDefaults.standard.set(accessToken, forKey: WX_ACCESS_TOKEN)
-                        UserDefaults.standard.set(openID, forKey: WX_OPEN_ID)
-                        UserDefaults.standard.set(refreshToken, forKey: WX_REFRESH_TOKEN)
-                        UserDefaults.standard.synchronize()
-                    }
-                    self.wechatLoginByRequestForUserInfo()
-                    
-                    DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 0.5, execute: {
-                        self.payBackMsg(msg: "授权成功")
+                    /// 鉴别是否鉴权成功
+                    let isValueCorrect = accessDict.allKeys.contains(where: { (value) -> Bool in
+                        let vvv = value
+                        if (vvv as AnyObject).contains(WX_ACCESS_TOKEN) {
+                            return true
+                        } else {
+                            return false
+                        }
+                        
                     })
                     
+                    
+                    if isValueCorrect {
+                        print("----",isValueCorrect)
+                        
+                        let accessToken = accessDict[WX_ACCESS_TOKEN] as! String
+                        var openID = accessDict[WX_OPEN_ID] as! String
+                        let refreshToken = accessDict[WX_REFRESH_TOKEN] as! String
+                        
+                        
+                        // 本地持久化，以便access_token的使用、刷新或者持续
+                        
+                        if (accessToken.characters.count != 0) && !(accessToken == "") && (openID.characters.count != 0) && !(openID == "") {
+                            UserDefaults.standard.set(accessToken, forKey: WX_ACCESS_TOKEN)
+                            UserDefaults.standard.set(openID, forKey: WX_OPEN_ID)
+                            UserDefaults.standard.set(refreshToken, forKey: WX_REFRESH_TOKEN)
+                            UserDefaults.standard.synchronize()
+                        }
+                        self.wechatLoginByRequestForUserInfo()
+                        
+                        DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 0.5, execute: {
+                            self.payBackMsg(msg: "授权成功")
+                        })
+                        
+                    } else {
+                        print("授权s失败")
+                    }
+                    
+  
                 }, failure: { (error) in
                     print("获取access_token时出错 = \(error)")
                 })
@@ -233,14 +263,16 @@ class WXTool : UIView,WXApiDelegate,NSURLConnectionDelegate {
                 //微信昵称
                 let wxNickName = wxInfoData["nickname"] as! String
                 
+                
                 //写入运行内存中
                 
                 thirdHeadImgURL = wxHeadImgURL
                 thirdOpenID = wxOPENID
                 thirdNickName = wxNickName
                 
+                
                 //写入缓存，方便下次同步信息的时候用
-                localSave.set(wxOPENID, forKey: wid)
+                localSave.set(wxOPENID, forKey: wx_openID)
                 localSave.set(wxHeadImgURL, forKey: wHUrl)
                 localSave.set(wxNickName, forKey: wNickName)
                 localSave.synchronize()
@@ -275,49 +307,6 @@ class WXTool : UIView,WXApiDelegate,NSURLConnectionDelegate {
 
 // MARK:- 微信分享，
 extension WXTool {
-    
-    /// 测试分享
-    func shareText() -> Void {
-        let message =  WXMediaMessage()
-        //标题
-        message.title = "欢迎访问 hangge.com"
-        
-        //描述
-        message.description = "做最好的开发者知识平台。分享各种编程开发经验。"
-        
-        DispatchQueue.main.async {
-            do {
-                let img = try UIImage.init(data: Data.init(contentsOf: URL.init(string:"http://yungou.ie1e.com/UploadFile/image/20161202035232.png")!))
-                
-                let compresImage = UIImageJPEGRepresentation(img!, 0.1) as Data!
-                
-                localSave.set(compresImage, forKey: "wxImg")
-                localSave.synchronize()
-                
-            } catch {
-                
-            }
-        }
-        
-        guard let imgData = localSave.object(forKey: "wxImg") as? Data else {
-            return
-        }
-        
-        message.setThumbImage(UIImage(data: imgData))
-        
-        let ext =  WXWebpageObject()
-        ext.webpageUrl = "http://hangge.com"
-        
-        
-        message.mediaObject = ext
-        
-        let req =  SendMessageToWXReq()
-        req.bText = false
-        req.message = message
-        req.scene = Int32(WXScene(rawValue: UInt32(0)).rawValue)
-        WXApi.send(req)
-        
-    }
     
     
     /// 自定义微信分享
@@ -404,22 +393,43 @@ extension WXTool {
                 print(refreshDict)
                 
                 
-                
-                let reAccessToken = refreshDict[WX_ACCESS_TOKEN] as! String
-                
-                // 如果reAccessToken为空,说明reAccessToken也过期了,反之则没有过期
-                if (reAccessToken.characters.count == 0) {
+                /// 鉴别是否鉴权成功
+                let isValueCorrect = refreshDict.allKeys.contains(where: { (value) -> Bool in
+                    let vvv = value
+                    if (vvv as AnyObject).contains(WX_ACCESS_TOKEN) {
+                        return true
+                    } else {
+                        return false
+                    }
                     
-                    UserDefaults.standard.set(refreshToken, forKey: WX_ACCESS_TOKEN)
-                    UserDefaults.standard.set(refreshDict[WX_OPEN_ID], forKey: WX_OPEN_ID)
-                    UserDefaults.standard.set(refreshDict[WX_REFRESH_TOKEN], forKey: WX_REFRESH_TOKEN)
-                    UserDefaults.standard.synchronize()
-                    // 当存在reAccessToken不为空时直接执行AppDelegate中的
+                })
+                
+                /// 返回信息正确进行下一步操作
+                if isValueCorrect {
+                    let reAccessToken = refreshDict[WX_ACCESS_TOKEN] as! String
+                    
+                    wxAccessToken = refreshDict["access_token"] as! String
+                
+                    
+                    print("wxAccessToken:",wxAccessToken)
+
+                    
+                    // 如果reAccessToken为空,说明reAccessToken也过期了,反之则没有过期
+                    if (reAccessToken.characters.count == 0) {
+                        
+                        UserDefaults.standard.set(refreshToken, forKey: WX_ACCESS_TOKEN)
+                        UserDefaults.standard.set(refreshDict[WX_OPEN_ID], forKey: WX_OPEN_ID)
+                        UserDefaults.standard.set(refreshDict[WX_REFRESH_TOKEN], forKey: WX_REFRESH_TOKEN)
+                        UserDefaults.standard.synchronize()
+                        // 当存在reAccessToken不为空时直接执行AppDelegate中的
+                    } else {
+                        //没获取相关微信授权信息，则进行获取
+                        self.wechatLogin()
+                    }
                     
                     
                 } else {
-                    //没获取相关微信授权信息，则进行获取
-                    self.wechatLogin()
+                    print("请求鉴权信息出错")
                 }
                 
             }, failure: { (error) in
@@ -501,8 +511,6 @@ extension WXTool {
         
         let temInt : Int = Int(temp as String)!
         
-        //        let result = UInt32(String(temp.characters.dropFirst(2)), radix: 16)
-        
         req.timeStamp = UInt32(temInt)
         
         req.nonceStr = wxDict["noncestr"] as! String
@@ -510,8 +518,6 @@ extension WXTool {
         req.sign = wxDict["sign"] as! String
         
         WXApi.send(req) //调起微信
-        
-        
     }
     
 }
@@ -526,6 +532,22 @@ extension WXTool {
         
         alertVC.addAction(UIAlertAction.init(title: "好的", style: .default, handler: nil))
         nav?.present(alertVC, animated: true, completion: nil)
+    }
+}
+
+extension WXTool {
+    /// 登陆
+    func wxLoginSEL(autoCallback : WXAuthBack) -> Void {
+        
+        if WXApi.isWXAppInstalled() == false {
+            CustomAlertView.shared.alertWithTitle(strTitle: "未安装微信或版本不支持")
+        } else {
+            self.clickAuto()
+            
+            if thirdNickName.characters.count == 0 {
+                print(":还没执行到这呢")
+            }
+        }
     }
 }
 
