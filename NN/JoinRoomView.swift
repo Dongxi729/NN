@@ -4,22 +4,30 @@
 //
 //  Created by 郑东喜 on 2017/5/9.
 //  Copyright © 2017年 郑东喜. All rights reserved.
-//
+//  加入房间
 
 import UIKit
 
-
-let gridWidth = (UIScreen.main.bounds.width / 375) * 54
-
 class JoinRoomView: UIView {
-
+    
     override init(frame: CGRect) {
         super.init(frame: frame)
         
         self.addSubview(collV)
+        
+        /// 加入房间
+        addSubview(titleLabel)
     }
     
+    /// 标题
+    lazy var titleLabel: UILabel = {
+        let d : UILabel = UILabel.init(frame: CGRect.init(x: 0, y: 0, width: self.frame.width, height: 30))
+        d.textAlignment = .center
+        d.text = "加入房间"
+        return d
+    }()
     
+    /// 九宫格
     lazy var collV: UICollectionView = {
         
         let layout = UICollectionViewFlowLayout.init()
@@ -30,7 +38,7 @@ class JoinRoomView: UIView {
         layout.minimumInteritemSpacing = 10
         
         /// 设置大小出错///
-        let d : UICollectionView = UICollectionView.init(frame: CGRect.init(x: 0, y: 0, width: self.frame.width, height: self.frame.width), collectionViewLayout: layout)
+        let d : UICollectionView = UICollectionView.init(frame: CGRect.init(x: 0, y: 64, width: self.frame.width, height: self.frame.width), collectionViewLayout: layout)
         
         d.backgroundColor = UIColor.white
         
@@ -45,7 +53,7 @@ class JoinRoomView: UIView {
     
     var dataSource : [String] = ["1","2","3","4","5","6","7","8","9","充数","0","删除"]
     
-    var filltext : [Int:String] = [:]
+    
     
     var dddd :[UIView] = []
     
@@ -57,7 +65,7 @@ class JoinRoomView: UIView {
         fatalError("init(coder:) has not been implemented")
     }
     
-
+    
 }
 
 
@@ -88,7 +96,9 @@ extension JoinRoomView : UICollectionViewDataSource,UICollectionViewDelegateFlow
         
         /// 添加数据
         
-        let d = addLabelView.init(frame: CGRect.init(x: CGFloat(64 * texIndex), y: 0, width: UIScreen.main.bounds.width / 6, height: 64))
+        let d = addLabelView.init(frame: CGRect.init(x: CGFloat(self.Width / 4 * CGFloat(texIndex)), y: 0, width: self.frame.width / 4, height: 64))
+        
+        
         
         if selecttext == "删除" {
             print("\((#file as NSString).lastPathComponent):(\(#line))\n",dddd.count)
@@ -98,27 +108,29 @@ extension JoinRoomView : UICollectionViewDataSource,UICollectionViewDelegateFlow
                 
                 dddd.removeLast()
                 
-                texIndex -= 1
+                if texIndex > 0 {
+                    texIndex -= 1
+                }
+
             }
             
             return
         } else {
-            
-            //            if selecttext == "充数" {
-            //
-            //            } else {
-            //
             /// 索引
             texIndex += 1
             
-            d.labelText(dd: selecttext)
-            self.addSubview(d)
-            dddd.append(d)
+            if texIndex <= 4 && dddd.count < 4 {
+                d.labelText(dd: selecttext)
+                
+                
+                self.addSubview(d)
+                dddd.append(d)
+            }
             
-            if texIndex > 5 {
+            if texIndex >= 4 {
+                texIndex = 0
                 return
             }
-            //            }
         }
         
         if selecttext == "充数" {

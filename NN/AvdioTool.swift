@@ -14,12 +14,22 @@ class AvdioTool: NSObject {
     var audioPlayer: AVAudioPlayer? // 播放
     
     
+    /// MP3路径
     fileprivate var mp3Path: String?
+    
+    /// caf路径
     fileprivate var cafPath: String?
+    
+    /// amr路径
     fileprivate var amrPath: String?
+    
+    /// amr传回的数据转换
+    var amrconvertBackWav: String?
 
     fileprivate var player: AVAudioPlayer?
     
+    /// 存放二进制字节流
+    var voiceData : Data?
     
     static let shared = AvdioTool()
     
@@ -38,10 +48,13 @@ class AvdioTool: NSObject {
         cafPath = NSSearchPathForDirectoriesInDomains(FileManager.SearchPathDirectory.documentDirectory, FileManager.SearchPathDomainMask.userDomainMask, true).first
         mp3Path = NSSearchPathForDirectoriesInDomains(FileManager.SearchPathDirectory.documentDirectory, FileManager.SearchPathDomainMask.userDomainMask, true).first
         amrPath = NSSearchPathForDirectoriesInDomains(FileManager.SearchPathDirectory.documentDirectory, FileManager.SearchPathDomainMask.userDomainMask, true).first
+        
+        amrconvertBackWav = NSSearchPathForDirectoriesInDomains(FileManager.SearchPathDirectory.documentDirectory, FileManager.SearchPathDomainMask.userDomainMask, true).first
 //        mp3Path?.append("/temp.mp3")
         mp3Path?.append("/temp.wav")
         cafPath?.append("/temp.wav")
         amrPath?.append("/temp.amr")
+        amrconvertBackWav?.append("/amrconvertBackWav.wav")
         
         return URL(fileURLWithPath: cafPath!)
     }
@@ -72,7 +85,6 @@ class AvdioTool: NSObject {
                 do {
                     if let url = audioRecorder?.url {
                         try audioPlayer = AVAudioPlayer(contentsOf: url)
-                    
                     }
                     audioPlayer?.play()
                     print("playCaf!")
@@ -87,25 +99,15 @@ class AvdioTool: NSObject {
     /// 转换wav
     func convertWavToAmr() -> Void {
         
-        print("\((#file as NSString).lastPathComponent):(\(#line))\n",cafPath as Any)
-        
-        print("\((#file as NSString).lastPathComponent):(\(#line))\n",amrPath as Any)
-        
+        /// 转换wav 到 amr
         VoiceConverter.convertWav(toAmr: cafPath, amrSavePath: amrPath)
 
-        let amrData = WavConvert.readSoundFileSamples(cafPath)
-        
-        let backToString = String.init(data: amrData!, encoding: .utf8)
-        
-        
-        print("\((#file as NSString).lastPathComponent):(\(#line))\n",backToString as Any)
-        
+
+        /// 将本地压缩好的文件amr文件上传
+        voiceData = FileManager.default.contents(atPath: amrPath!)
 
         
-        print("\((#file as NSString).lastPathComponent):(\(#line))\n",amrData as Any)
-    
-        print(cafPath!)
-        print(mp3Path!)
+        print("\((#file as NSString).lastPathComponent):(\(#line))\n",amrPath as Any)
     }
 
     /// 开始录音
@@ -124,6 +126,7 @@ class AvdioTool: NSObject {
         }
     }
     
+    /// 停止录音
     func stopRecord() -> Void {
         audioRecorder?.stop()
         let audioSession = AVAudioSession.sharedInstance()
@@ -143,6 +146,8 @@ class AvdioTool: NSObject {
                 do {
                     if let url = audioRecorder?.url {
                         try audioPlayer = AVAudioPlayer(contentsOf: url)
+                        
+                        
                     }
                     audioPlayer?.play()
                     print("playCaf!")
@@ -186,7 +191,7 @@ class AvdioTool: NSObject {
     func playMp3()
     {
         do {
-            self.player = try AVAudioPlayer(contentsOf: URL(fileURLWithPath: self.mp3Path!), fileTypeHint: "mp3")
+            self.player = try AVAudioPlayer(contentsOf: URL(fileURLWithPath: amrconvertBackWav!), fileTypeHint: "wav")
         } catch {
             print("出现异常")
         }

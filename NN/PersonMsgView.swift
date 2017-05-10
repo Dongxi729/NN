@@ -19,7 +19,10 @@ class PersonMsgView: UIView {
         let d : UIImageView = UIImageView.init(frame: CGRect.init(x: commonMargin, y: commonMargin, width: 30 * screenScale, height: 30 * screenScale))
         d.backgroundColor = UIColor.gray
         
-        downImgWith(url: LoginModel.shared.headImgURL!, toView: d)
+        if !(LoginModel.shared.headImgURL != nil) {
+            downImgWith(url: LoginModel.shared.headImgURL!, toView: d)
+        }
+        
         return d
     }()
     
@@ -76,7 +79,8 @@ class PersonMsgView: UIView {
     lazy var joinRoom: UIButton = {
         let d : UIButton = UIButton.init(frame: CGRect.init(x: UIScreen.main.bounds.width * 0.5 + UIScreen.main.bounds.width * 0.05, y: SH - SH * 0.65, width: UIScreen.main.bounds.width * 0.35, height: UIScreen.main.bounds.width * 0.35))
         d.setTitle("加入房间", for: .normal)
-        
+        d.addTarget(self, action: #selector(addJoinRoom), for: .touchUpInside)
+
         d.backgroundColor = UIColor.gray
         return d
     }()
@@ -85,7 +89,8 @@ class PersonMsgView: UIView {
     lazy var makeRoom: UIButton = {
         let d : UIButton = UIButton.init(frame: CGRect.init(x: UIScreen.main.bounds.width * 0.1, y: SH - SH * 0.65, width: UIScreen.main.bounds.width * 0.35, height: UIScreen.main.bounds.width * 0.35))
         d.setTitle("创建房间", for: .normal)
-        d.addTarget(self, action: #selector(addJosinView), for: .touchUpInside)
+        d.addTarget(self, action: #selector(createRoom), for: .touchUpInside)
+
         d.backgroundColor = UIColor.gray
         return d
     }()
@@ -117,14 +122,27 @@ class PersonMsgView: UIView {
         addSubview(makeRoom)
     }
 
-    
-    func addJosinView() -> Void {
+    /// 加入房间
+    @objc fileprivate func addJoinRoom() -> Void {
         
         let f : JoinRoomView = JoinRoomView.init(frame: CGRect.init(x: 100, y: SH * 0.2, width: 300, height: 300))
         f.backgroundColor = UIColor.gray
+        f.center = self.center
         
-        addToView(customView: f)
+        
+        
+        if isJoinViewExist.count < 1 {
+            addToView(customView: f)
+            isJoinViewExist.append(f)
+        }
+        
     }
+    
+    /// 创建房间
+    @objc fileprivate func createRoom() -> Void {
+        
+    }
+    
     
     func addToView(customView : UIView) -> Void {
         // 执行动画 改变透明度
@@ -142,14 +160,35 @@ class PersonMsgView: UIView {
         scale?.springSpeed = 20
         scale?.springBounciness = 15.64
         scale?.delegate = UIApplication.shared.keyWindow?.rootViewController
+        self.backgroundColor = UIColor.init(colorLiteralRed: 122, green: 122, blue: 122, alpha: 0.3)
         customView.layer.pop_add(scale, forKey: nil)
         
         addSubview(customView)
+        
+        
     }
     
     
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
+    }
+    
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        if isJoinViewExist.count > 0  {
+            print("\((#file as NSString).lastPathComponent):(\(#line))\n")
+            
+            print("\((#file as NSString).lastPathComponent):(\(#line))\n",self.subviews.last as Any)
+
+            
+            //购物断网刷新
+            if NSStringFromClass((self.subviews.last?.classForCoder)!).contains("JoinRoomView") {
+                
+                self.subviews.last?.removeFromSuperview()
+                
+                /// 清空记录数组
+                isJoinViewExist.removeAll()
+            }
+        }
     }
 }
 

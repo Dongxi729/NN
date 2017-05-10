@@ -7,12 +7,14 @@
 
 #import "WXApi.h"
 
+#import "POP.h"
+
+/// 文字滚动
+#import "ScrollText.h"
 
 #import "VoiceConverter.h"
 
 #import "WavConvert.h"
 
-#import "POP.h"
-
-/// 文字滚动
-#import "ScrollText.h"
+#import "DDXML.h"
+#import "DDXMLElementAdditions.h"
