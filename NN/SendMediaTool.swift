@@ -47,12 +47,7 @@ class SendMediaTool: NSObject {
             
         case .success:
             
-            /// <M><Nn id="123456" tk="asldkfjwieoskldfksdhf"/></M>
-            let sendXMLDATA = "<M><Nn id=" + LoginModel.shared.uid! + "tk=" + LoginModel.shared.token! + "/></M>"
-            
-            
-            let xmlData = sendXMLDATA.data(using: .utf8)
-            client.send(data: xmlData!)
+            reportUID(serverClient: client)
             
             while true {
                 
@@ -73,7 +68,19 @@ class SendMediaTool: NSObject {
             
             print("\((#file as NSString).lastPathComponent):(\(#line))\n","服务器状态不好或连接不上")
         }
+    }
+    
+    /// 上报用户信息
+    func reportUID(serverClient : TCPClient) -> Void {
+        /// 上报用户信息
+        let sendXMLDATA = "<M><Nn id=" + LoginModel.shared.uid! + "tk=" + LoginModel.shared.token! + "/></M>"
         
+        let xmlData = sendXMLDATA.data(using: .utf8)
+        serverClient.send(data: xmlData!)
+    }
+    
+    func reportCreateRoomType(serverClient : TCPClient) -> Void {
+        let sendXMLDATA = "<M><ty gt =" + CreateRoomModel.shared.roomType + "ii=" + CreateRoomModel.shared.rounds + "rn=" + CreateRoomModel.shared.players + "py=" + CreateRoomModel.shared.players + "/></M>"
     }
     
     /// 读取信息
@@ -88,7 +95,7 @@ class SendMediaTool: NSObject {
             byteAnalyse(ddd: d!)
         }
         
-        print("d = :",String.init(bytes: d!, encoding: String.Encoding.utf8))
+        print("d = :",String.init(bytes: d!, encoding: String.Encoding.utf8) as Any)
         
         
         

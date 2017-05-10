@@ -97,6 +97,9 @@
 		26D54B3A1EC2C71800119FAA /* SwiftSocket.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 26D54B341EC2C55F00119FAA /* SwiftSocket.framework */; };
 		26D54B3B1EC2C71800119FAA /* SwiftSocket.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 26D54B341EC2C55F00119FAA /* SwiftSocket.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		26D54B3E1EC2C7D000119FAA /* cccc.png in Resources */ = {isa = PBXBuildFile; fileRef = 26D54B3D1EC2C7D000119FAA /* cccc.png */; };
+		26D54B401EC2ED2C00119FAA /* CreateRoomVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26D54B3F1EC2ED2C00119FAA /* CreateRoomVC.swift */; };
+		26D54B421EC2EF8F00119FAA /* SocketSendTool.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26D54B411EC2EF8F00119FAA /* SocketSendTool.swift */; };
+		26D54B441EC2F0B500119FAA /* CreateRoomModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26D54B431EC2F0B500119FAA /* CreateRoomModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -258,6 +261,10 @@
 		26D54B361EC2C5F800119FAA /* SocketVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SocketVC.swift; path = ../SocketVC.swift; sourceTree = "<group>"; };
 		26D54B381EC2C66200119FAA /* SyncTimerVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SyncTimerVC.swift; sourceTree = "<group>"; };
 		26D54B3D1EC2C7D000119FAA /* cccc.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = cccc.png; sourceTree = "<group>"; };
+		26D54B3F1EC2ED2C00119FAA /* CreateRoomVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreateRoomVC.swift; sourceTree = "<group>"; };
+		26D54B411EC2EF8F00119FAA /* SocketSendTool.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SocketSendTool.swift; sourceTree = "<group>"; };
+		26D54B431EC2F0B500119FAA /* CreateRoomModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreateRoomModel.swift; sourceTree = "<group>"; };
+		26D54B451EC2F21700119FAA /* MyPlayground.playground */ = {isa = PBXFileReference; lastKnownFileType = file.playground; path = MyPlayground.playground; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -561,6 +568,9 @@
 			isa = PBXGroup;
 			children = (
 				26D54ACE1EC2BAF000119FAA /* CreateCollectionViewCell.swift */,
+				26D54B3F1EC2ED2C00119FAA /* CreateRoomVC.swift */,
+				26D54B431EC2F0B500119FAA /* CreateRoomModel.swift */,
+				26D54B451EC2F21700119FAA /* MyPlayground.playground */,
 			);
 			name = createRoom;
 			sourceTree = "<group>";
@@ -576,6 +586,7 @@
 				26D54B301EC2C42800119FAA /* ServerSendMsg.swift */,
 				26D54B2D1EC2C36900119FAA /* SendMediaTool.swift */,
 				26D54B3D1EC2C7D000119FAA /* cccc.png */,
+				26D54B411EC2EF8F00119FAA /* SocketSendTool.swift */,
 			);
 			name = socketCommu;
 			sourceTree = "<group>";
@@ -773,6 +784,7 @@
 				260C66651EB23415006C119E /* POPAnimationRuntime.mm in Sources */,
 				26836AFB1EC1E2DB00061069 /* JoinRoomView.swift in Sources */,
 				2657FD971EB860F900B92648 /* ControlVoice.swift in Sources */,
+				26D54B441EC2F0B500119FAA /* CreateRoomModel.swift in Sources */,
 				2603D9BD1EADE7E20069B132 /* ScrollLabel.swift in Sources */,
 				260C66701EB23415006C119E /* POPSpringAnimation.mm in Sources */,
 				26D54AE31EC2BD6D00119FAA /* DDXMLElementAdditions.m in Sources */,
@@ -796,6 +808,7 @@
 				26D54ACC1EC2A93B00119FAA /* AddViewWithPop.swift in Sources */,
 				260C666C1EB23415006C119E /* POPGeometry.mm in Sources */,
 				2657FD9D1EB8809100B92648 /* DelayTimerTool.swift in Sources */,
+				26D54B421EC2EF8F00119FAA /* SocketSendTool.swift in Sources */,
 				260C666B1EB23415006C119E /* POPDecayAnimation.mm in Sources */,
 				26D54B2E1EC2C36900119FAA /* TImerTool.swift in Sources */,
 				2657FD991EB8642C00B92648 /* ViewAnimation.swift in Sources */,
@@ -822,6 +835,7 @@
 				26D54B2A1EC2C11B00119FAA /* VoiceConverter.mm in Sources */,
 				260C66621EB23415006C119E /* POPAnimation.mm in Sources */,
 				2603D9791EADD3AA0069B132 /* PersonMsgView.swift in Sources */,
+				26D54B401EC2ED2C00119FAA /* CreateRoomVC.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
