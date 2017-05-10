@@ -88,7 +88,7 @@ extension DeskCards {
         if isExist.count > 0  {
             print("\((#file as NSString).lastPathComponent):(\(#line))\n")
             
-            print("\((#file as NSString).lastPathComponent):(\(#line))\n",view.subviews.last)
+            print("\((#file as NSString).lastPathComponent):(\(#line))\n",view.subviews.last as Any)
             
             
             

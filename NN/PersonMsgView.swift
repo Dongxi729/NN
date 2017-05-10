@@ -19,9 +19,9 @@ class PersonMsgView: UIView {
         let d : UIImageView = UIImageView.init(frame: CGRect.init(x: commonMargin, y: commonMargin, width: 30 * screenScale, height: 30 * screenScale))
         d.backgroundColor = UIColor.gray
         
-        if !(LoginModel.shared.headImgURL != nil) {
+        if (LoginModel.shared.headImgURL != nil) {
             downImgWith(url: LoginModel.shared.headImgURL!, toView: d)
-        }
+        }  
         
         return d
     }()
@@ -30,9 +30,12 @@ class PersonMsgView: UIView {
     /// ID
     lazy var IDLabel: CommonLabel = {
         let d : CommonLabel = CommonLabel.init(frame: CGRect.init(x: self.nameLabel.RightX + commonMargin, y:commonMargin, width: 37, height: 20))
-        d.text = "ID:" + LoginModel.shared.uid!
         
-//        d.text = "ID:" + "123232"
+        if LoginModel.shared.uid != nil {
+            d.text = "ID:" + LoginModel.shared.uid!
+        } else {
+            d.text = "123456"
+        }
         
         d.sizeToFit()
         return d
@@ -44,17 +47,23 @@ class PersonMsgView: UIView {
         d.backgroundColor = UIColor.gray
         d.textAlignment = .center
         
-        
-        d.text = LoginModel.shared.wealth
-//        d.text = "6"
+        if LoginModel.shared.wealth != nil {
+            d.text = LoginModel.shared.wealth
+        } else{
+            d.text = "2000"
+        }
         return d
     }()
     
     /// 昵称
     lazy var nameLabel: CommonLabel = {
         let d : CommonLabel = CommonLabel.init(frame: CGRect.init(x: self.personImgView.RightX + commonMargin, y: commonMargin, width: 37, height: 20))
-        d.text = LoginModel.shared.nickname
-//        d.text = "sdassadasd"
+        if LoginModel.shared.nickname != nil {
+            d.text = LoginModel.shared.nickname
+        } else {
+            d.text = "sdassadasd"
+        }
+    
         d.sizeToFit()
         return d
     }()
@@ -82,6 +91,13 @@ class PersonMsgView: UIView {
         d.addTarget(self, action: #selector(addJoinRoom), for: .touchUpInside)
 
         d.backgroundColor = UIColor.gray
+        return d
+    }()
+    
+    /// 背景图片
+    lazy var bgImgVIew: UIImageView = {
+        let d : UIImageView = UIImageView.init(frame: self.frame)
+        
         return d
     }()
     
@@ -128,9 +144,7 @@ class PersonMsgView: UIView {
         let f : JoinRoomView = JoinRoomView.init(frame: CGRect.init(x: 100, y: SH * 0.2, width: 300, height: 300))
         f.backgroundColor = UIColor.gray
         f.center = self.center
-        
-        
-        
+
         if isJoinViewExist.count < 1 {
             addToView(customView: f)
             isJoinViewExist.append(f)
@@ -140,6 +154,14 @@ class PersonMsgView: UIView {
     
     /// 创建房间
     @objc fileprivate func createRoom() -> Void {
+        let f : CreateV = CreateV.init(frame: CGRect.init(x: 100, y: SH * 0.2, width: SW * 0.4, height: SW * 0.4))
+        f.backgroundColor = UIColor.gray
+        f.center = self.center
+        
+        if createRoomIsExist.count < 1 {
+            addToView(customView: f)
+            createRoomIsExist.append(f)
+        }
         
     }
     
@@ -187,6 +209,19 @@ class PersonMsgView: UIView {
                 
                 /// 清空记录数组
                 isJoinViewExist.removeAll()
+            }
+        
+        }
+        
+        if createRoomIsExist.count > 0  {
+            
+            //购物断网刷新
+            if NSStringFromClass((self.subviews.last?.classForCoder)!).contains("CreateV") {
+                
+                self.subviews.last?.removeFromSuperview()
+                
+                /// 清空记录数组
+                createRoomIsExist.removeAll()
             }
         }
     }

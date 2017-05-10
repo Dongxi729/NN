@@ -78,78 +78,78 @@ class SocketVC: UIViewController {
         DispatchQueue.main.async {
             
             /// 接收通知、获取传来的值
-            NotificationCenter.default.addObserver(self, selector: #selector(self.showDataToController(sender:)), name: NSNotification.Name(rawValue: "receiveData"), object: nil)
+//            NotificationCenter.default.addObserver(self, selector: #selector(self.showDataToController(sender:)), name: NSNotification.Name(rawValue: "receiveData"), object: nil)
         }
         
     }
     
-    @objc fileprivate func showDataToController(sender : NSNotification) -> Void {
-        print(sender.userInfo!["send"] ?? "")
-        
-        
-        var showMediaData : [UInt8] = sender.userInfo!["send"] as! [UInt8]
-        /// 添加类型后总长度增加了1，要减去1
-        for i in 0..<1 {
-            
-            /// 取出第五个UInt8字节、确定发送的类型
-            /// 1为文字
-            /// 2为图片
-            /// 3为语音
-            let receiveType = showMediaData.remove(at: 0)
-            print(receiveType)
-            
-            
-            /// 剪完1次后为我们要得到的真正数据
-            if i == 0 {
-                DispatchQueue.main.async {
-                    switch receiveType {
-                    case 1:
-                        
-                        let imfDara = NSData.init(bytes: showMediaData, length: showMediaData.count)
-                        
-                        let sss = String.init(data: imfDara as Data, encoding: .utf8)
-                        print("字符串",sss as Any)
-                        
-                        break
-                    case 2:
-                        
-                        
-                        /// 图片
-                        let ddd = UIImageView.init(frame: CGRect.init(x: 0, y: self.index, width: 100, height: 100))
-                        
-                        ddd.backgroundColor = UIColor.blue
-                        
-                        let imfDara = NSData.init(bytes: showMediaData, length: showMediaData.count)
-                        
-                        ddd.image = UIImage.init(data: imfDara as Data)
-                        
-                        self.view.addSubview(ddd)
-                        
-                        self.index += 100
-                        
-                        
-                        break
-                    case 3:
-                        
-                        
-                        let imfDara = NSData.init(bytes: showMediaData, length: showMediaData.count)
-                        
-                        let savePath = AvdioTool.shared.amrconvertBackWav
-                        
-                        
-                        let dataAsNSData = imfDara
-                        dataAsNSData.write(toFile: savePath!, atomically: true)
-                        
-                        AvdioTool.shared.playMp3()
-                        
-                        break
-                    default:
-                        break
-                    }
-                }
-            }
-        }
-    }
+//    @objc fileprivate func showDataToController(sender : NSNotification) -> Void {
+//        print(sender.userInfo!["send"] ?? "")
+//        
+//        
+//        var showMediaData : [UInt8] = sender.userInfo!["send"] as! [UInt8]
+//        /// 添加类型后总长度增加了1，要减去1
+//        for i in 0..<1 {
+//            
+//            /// 取出第五个UInt8字节、确定发送的类型
+//            /// 1为文字
+//            /// 2为图片
+//            /// 3为语音
+//            let receiveType = showMediaData.remove(at: 0)
+//            print(receiveType)
+//            
+//            
+//            /// 剪完1次后为我们要得到的真正数据
+//            if i == 0 {
+//                DispatchQueue.main.async {
+//                    switch receiveType {
+//                    case 1:
+//                        
+//                        let imfDara = NSData.init(bytes: showMediaData, length: showMediaData.count)
+//                        
+//                        let sss = String.init(data: imfDara as Data, encoding: .utf8)
+//                        print("字符串",sss as Any)
+//                        
+//                        break
+//                    case 2:
+//                        
+//                        
+//                        /// 图片
+//                        let ddd = UIImageView.init(frame: CGRect.init(x: 0, y: self.index, width: 100, height: 100))
+//                        
+//                        ddd.backgroundColor = UIColor.blue
+//                        
+//                        let imfDara = NSData.init(bytes: showMediaData, length: showMediaData.count)
+//                        
+//                        ddd.image = UIImage.init(data: imfDara as Data)
+//                        
+//                        self.view.addSubview(ddd)
+//                        
+//                        self.index += 100
+//                        
+//                        
+//                        break
+//                    case 3:
+//                        
+//                        
+//                        let imfDara = NSData.init(bytes: showMediaData, length: showMediaData.count)
+//                        
+//                        let savePath = AvdioTool.shared.amrconvertBackWav
+//                        
+//                        
+//                        let dataAsNSData = imfDara
+//                        dataAsNSData.write(toFile: savePath!, atomically: true)
+//                        
+//                        AvdioTool.shared.playMp3()
+//                        
+//                        break
+//                    default:
+//                        break
+//                    }
+//                }
+//            }
+//        }
+//    }
 }
 
 
@@ -205,17 +205,17 @@ extension SocketVC : UITableViewDataSource,UITableViewDelegate {
             break
         ///文字
         case 4:
-            SendMediaTool.shared.sendTextFunc(sendText: "asdsadsadsadsadasdsadsad")
+            sendTextFunc(sendText: "asdsadsadsadsadasdsadsad")
             break
             
         ///语音
         case 5:
-            SendMediaTool.shared.sendVoice()
+            sendVoice()
             break
             
         ///图片
         case 6:
-            SendMediaTool.shared.sendImg(imageName: "cccc")
+            sendImg(imageName: "cccc")
             break
         default:
             break

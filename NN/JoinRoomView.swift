@@ -50,22 +50,22 @@ class JoinRoomView: UIView {
         return d
     }()
     
-    
+    /// 文字
     var dataSource : [String] = ["1","2","3","4","5","6","7","8","9","充数","0","删除"]
     
+    /// 图片
+    var imgName : [String] = ["1","2","3","4","5","6","7","8","9","delLastWord","0","clear"]
     
     
     var dddd :[UIView] = []
     
     var texIndex : Int = 0
-    
-    
+
     
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-    
-    
+
 }
 
 
@@ -74,6 +74,7 @@ extension JoinRoomView : UICollectionViewDataSource,UICollectionViewDelegateFlow
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cellID", for: indexPath) as! CollectionViewCell
         
         cell.labelll.text = dataSource[indexPath.row]
+        cell.bgImg.image = UIImage.init(named: imgName[indexPath.row])
         return cell
     }
     

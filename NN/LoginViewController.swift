@@ -15,17 +15,20 @@ class LoginViewController: UIViewController {
     /// 背景图片
     lazy var bgImg: UIImageView = {
         let d : UIImageView = UIImageView.init(frame: self.view.bounds)
-        d.image = UIImage.init(named: "LoginBG")
-
+        d.image = UIImage.init(named: "login")
+        d.contentMode = UIViewContentMode.scaleAspectFill
         return d
     }()
     
     /// 微信登陆按钮
-    lazy var wxloginBtn: UIButton = {
-        let d : UIButton = UIButton.init(frame: CGRect.init(x: SW * 0.5 - (100 * screenScale) * 0.5, y: SH * 0.7, width: 100, height: 100))
-        d.addTarget(self, action: #selector(wxloginSEL(sender:)), for: .touchUpInside)
-        d.backgroundColor = UIColor.blue
-        d.setTitle("微信登陆", for: .normal)
+    lazy var wxloginBtn: UIImageView = {
+        let d : UIImageView = UIImageView.init(frame: CGRect.init(x: SW * 0.5 - 50, y: SH * 0.7, width: 190, height: 56))
+        d.isUserInteractionEnabled = true
+        
+        let getTure = UITapGestureRecognizer.init(target: self, action: #selector(wxloginSEL(sender:)))
+        d.addGestureRecognizer(getTure)
+        
+        d.image = UIImage.init(named: "login_wx")
         return d
     }()
 
@@ -70,7 +73,7 @@ class LoginViewController: UIViewController {
             LoginRequestTool.shared.getUserInfo(woid, waccess, finished: { (userDta) in
                 print("userData",userDta)
                 
-                let userDic : NSDictionary = (userDta as? NSDictionary)!
+                let userDic : NSDictionary = (userDta as NSDictionary)
                 
                 let d = userDic.allKeys.contains(where: { (value) -> Bool in
                     let vv = value

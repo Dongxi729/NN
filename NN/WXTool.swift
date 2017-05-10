@@ -59,7 +59,7 @@ class WXTool : UIView,WXApiDelegate,NSURLConnectionDelegate {
     
     //收到回应信息
     func onResp(_ resp: BaseResp!) {
-        let strTitle = "支付结果"
+        _ = "支付结果"
         var strMsg = "\(resp.errCode)"
         
         if resp.isKind(of: PayResp.self) {
@@ -214,7 +214,6 @@ class WXTool : UIView,WXApiDelegate,NSURLConnectionDelegate {
         
         //支付
         if resp.isKind(of: PayResp.self) {
-            let strTitle = "支付结果"
             
             var strMsg = "支付结果"
             

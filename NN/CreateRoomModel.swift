@@ -18,11 +18,11 @@ import UIKit
 ///
 /// - share: 房费平摊
 /// - ownerTake: 房主结算
-enum PaymentType: Int {
-    
-    case share = 0
-    case ownerTake = 1
-}
+//enum PaymentType: Int {
+//    
+//    case share = 0
+//    case ownerTake = 1
+//}
 
 class CreateRoomModel: NSObject {
     
@@ -34,12 +34,12 @@ class CreateRoomModel: NSObject {
     var roomType : String = "1"
     
     /// 局数(10、20、30)
-    var rounds : Int = 10
+    var rounds : String = "10"
     
     /// 局数玩法人数(2/3/4/5/6)
-    var players : Int = 2
+    var players : String = "2"
     
     /// 结算方式
-    var payType : PaymentType = PaymentType(rawValue: 0)!
+    var payType : String = "1"
     
 }

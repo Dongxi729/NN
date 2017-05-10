@@ -17,3 +17,6 @@ var isJoinViewExist : [JoinRoomView] = []
 /// 记录房间号
 var recordJoinRoomNum : [Int] = []
 
+/// 创建房间
+var createRoomIsExist : [CreateV] = []
+
