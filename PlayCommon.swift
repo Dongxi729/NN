@@ -18,5 +18,5 @@ var isJoinViewExist : [JoinRoomView] = []
 var recordJoinRoomNum : [Int] = []
 
 /// 创建房间
-var createRoomIsExist : [CreateV] = []
+var createRoomIsExist : [CreateRoomBasic] = []
 

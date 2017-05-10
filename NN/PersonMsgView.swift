@@ -154,7 +154,7 @@ class PersonMsgView: UIView {
     
     /// 创建房间
     @objc fileprivate func createRoom() -> Void {
-        let f : CreateV = CreateV.init(frame: CGRect.init(x: 100, y: SH * 0.2, width: SW * 0.4, height: SW * 0.4))
+        let f : CreateRoomBasic = CreateRoomBasic.init(frame: CGRect.init(x: 100, y: SH * 0.2, width: SW * 0.7, height: SH * 0.8))
         f.backgroundColor = UIColor.gray
         f.center = self.center
         
