@@ -14,7 +14,8 @@ struct ConnectConfig {
     var port : Int32 = 8888
 }
 
-let d = ConnectConfig.init(host: "127.0.0.1", port: 8888)
+//let d = ConnectConfig.init(host: "127.0.0.1", port: 8888)
+let d = ConnectConfig.init(host: LoginModel.shared.serviceip!, port: Int32(LoginModel.shared.serviceport!)!)
 
 class SendMediaTool: NSObject {
     static let shared = SendMediaTool()
@@ -34,14 +35,24 @@ class SendMediaTool: NSObject {
     
     /// 测试服务器
     func testServer() {
+
         
-        //        client = TCPClient(address: host, port: Int32(port))
+        print("d.host",LoginModel.shared.serviceip as Any)
+        print("d.port",LoginModel.shared.serviceport as Any)
         
-        client = TCPClient.init(address: d.host, port: d.port)
+        client = TCPClient.init(address: d.host, port: 2048)
+
         
         switch client.connect(timeout: 1) {
             
         case .success:
+            
+            /// <M><Nn id="123456" tk="asldkfjwieoskldfksdhf"/></M>
+            let sendXMLDATA = "<M><Nn id=" + LoginModel.shared.uid! + "tk=" + LoginModel.shared.token! + "/></M>"
+            
+            
+            let xmlData = sendXMLDATA.data(using: .utf8)
+            client.send(data: xmlData!)
             
             while true {
                 
@@ -77,7 +88,13 @@ class SendMediaTool: NSObject {
             byteAnalyse(ddd: d!)
         }
         
-        return "test"
+        print("d = :",String.init(bytes: d!, encoding: String.Encoding.utf8))
+        
+        
+        
+        return String.init(bytes: d!, encoding: String.Encoding.utf8)
+        
+//        return "test"
     }
     
     /// 数据解析

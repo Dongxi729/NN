@@ -142,10 +142,18 @@ class LoginViewController: UIViewController {
                 if d {
                     
                     print("ddd")
+            
+                    
                     self.present(MainGameViewController(), animated: true, completion: nil)
+                    
+                    
                 }
                 
             })
+            
+            
         }
     }
+    
+    
 }

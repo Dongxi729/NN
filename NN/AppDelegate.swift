@@ -19,18 +19,20 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
         
-        window?.rootViewController = SocketVC()
+        window?.rootViewController = LoginViewController()
         window?.makeKeyAndVisible()
         window?.backgroundColor = UIColor.white
         
         WXApi.registerApp(WXPatient_App_ID)
         
-//        createSocket()
+       
         
 //        createHeart()
 
         return true
     }
+    
+
   
     func application(_ application: UIApplication, open url: URL, sourceApplication: String?, annotation: Any) -> Bool {
         let wxUrl = String(format: "%@", arguments: [WXPatient_App_ID])

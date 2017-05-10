@@ -81,14 +81,6 @@ class SocketVC: UIViewController {
             NotificationCenter.default.addObserver(self, selector: #selector(self.showDataToController(sender:)), name: NSNotification.Name(rawValue: "receiveData"), object: nil)
         }
         
-        
-        AvdioTool.shared.creatSession()
-        
-        /// 开启链接服务器
-        DispatchQueue.global(qos: .default).async {
-            
-            SendMediaTool.shared.testServer()
-        }
     }
     
     @objc fileprivate func showDataToController(sender : NSNotification) -> Void {
