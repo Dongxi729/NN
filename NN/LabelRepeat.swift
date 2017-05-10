@@ -10,20 +10,19 @@ import UIKit
 
 class LabelRepeat: UIViewController {
 
-    lazy var repeatLbl: UILabel = {
-        let d : UILabel = UILabel.init(frame: CGRect.init(x: UIScreen.main.bounds.width, y: 64, width: UIScreen.main.bounds.width, height: 30))
-        d.text = "傻了都快结束了的控件撒考虑到就死啦的萨拉肯德基拉萨肯德基啦开始了"
-        return d
-    }()
+/**
+     ScrollText *scrolltext = [[ScrollText alloc] initWithFrame:CGRectMake(0, 100, [UIScreen mainScreen].bounds.size.width * 0.5, 50) withBackGroundColor:[UIColor grayColor] withTitleColor:[UIColor purpleColor]];
+     [self.view addSubview:scrolltext];
+     NSArray *ss = @[@"年hi奥赛的流口水了看记录看距离控件可累坏控件"];
+     scrolltext.titleArray = ss;
+     */
     
     override func viewDidLoad() {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
-        UIView.animate(withDuration: 6.0) {
-            self.repeatLbl.frame = CGRect.init(x: 0, y: 64, width: 2 * UIScreen.main.bounds.width, height: 30)
-        }
         
-        view.addSubview(repeatLbl)
+
+        
     }
 }

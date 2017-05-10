@@ -41,6 +41,76 @@ let screenScale = UIScreen.main.bounds.width / 320
 // MARK:- 通用边距
 let commonMargin : CGFloat = 10
 
+
+//POST请求
+func postWithPath(path: String,paras: Dictionary<String,Any>?,success: @escaping ((_ result: Any) -> ()),failure: @escaping ((_ error: NSError) -> ())) {
+    
+    //(1）设置请求路径
+    let url:NSURL = NSURL(string:path)!//不需要传递参数
+    
+    //(2) 创建请求对象
+    let request:NSMutableURLRequest = NSMutableURLRequest(url: url as URL) //默认为get请求
+    request.timeoutInterval = 5.0 //设置请求超时为5秒
+    
+    request.httpMethod = "POST"  //设置请求方法
+    
+    //设置请求体
+    //拼接URL
+    var i = 0
+    var address: String = ""
+    
+    if let paras = paras {
+        
+        for (key,value) in paras {
+            
+            if i == 0 {
+                
+                address += "\(key)=\(value)"
+            }else {
+                
+                address += "&\(key)=\(value)"
+            }
+            
+            i += 1
+        }
+    }
+    
+    //把拼接后的字符串转换为data，设置请求体
+    request.httpBody = address.data(using: String.Encoding(rawValue: String.Encoding.utf8.rawValue))
+    
+    //(3) 发送请求
+    NSURLConnection.sendAsynchronousRequest(request as URLRequest, queue:OperationQueue()) { (res, data, error)in
+
+        
+        if let resDic : [AnyHashable : Any] = ((res as? HTTPURLResponse)?.allHeaderFields) {
+            
+            if let _ = resDic["Expires"] as? String {
+                
+            } else {
+                
+            }
+        }
+        
+        //返回主线程执行
+        DispatchQueue.main.sync {
+            
+            if let data = data {
+                
+                if let result = try? JSONSerialization.jsonObject(with: data, options: .allowFragments) {
+                    
+                    success(result)
+                }
+                
+            } else {
+                
+                failure(error! as NSError)
+            }
+            
+        }
+    }
+    
+}
+
 // MARK:- get请求
 func getWithPath(path: String,paras: Dictionary<String,Any>?,success: @escaping ((_ result: Any) -> ()),failure: @escaping ((_ error: Error) -> ())) {
     
@@ -133,6 +203,31 @@ func addToRootView(_ ios: UIView) {
 }
 
 
+/// 添加到主控制器(附带动画效果)
+///
+/// - Parameter ios: 添加的子视图
+func addToView(_ ios: UIView) {
+    // 执行动画 改变透明度
+    let alpha = POPBasicAnimation(propertyNamed: kPOPViewAlpha)
+    alpha?.toValue = (1.0)
+    alpha?.duration = 0.3
+    //        UIImageView.pop_add(alpha, forKey: nil)
+    // 缩放回弹
+    let scale = POPSpringAnimation(propertyNamed: kPOPLayerScaleXY)
+    scale?.fromValue = NSValue(cgSize: CGSize(width: CGFloat(1.75), height: CGFloat(1.75)))
+    scale?.toValue = NSValue(cgSize: CGSize(width: CGFloat(1.0), height: CGFloat(1.0)))
+    scale?.dynamicsTension = 1000
+    scale?.dynamicsMass = 1.3
+    scale?.dynamicsFriction = 10.3
+    scale?.springSpeed = 20
+    scale?.springBounciness = 15.64
+    scale?.delegate = UIApplication.shared.keyWindow?.rootViewController
+    ios.layer.pop_add(scale, forKey: nil)
+    
+    UIApplication.shared.keyWindow?.rootViewController?.view.addSubview(ios)
+}
+
+
 /// 弹簧效果
 ///
 /// - Parameters:
@@ -149,4 +244,36 @@ func spring(addToV : UIView,tovalue : CGPoint) -> Void {
     anim?.springSpeed = 6
     
     addToV.pop_add(anim, forKey: "center")
+}
+
+
+
+/// 异步下载图片
+///
+/// - Parameters:
+///   - url: 链接
+///   - toView: 添加到的视图
+func downImgWith(url : String,toView : UIImageView) {
+    //创建URL对象
+    let url = URL(string:url)!
+    //创建请求对象
+    let request = URLRequest(url: url)
+    
+    let session = URLSession.shared
+    let dataTask = session.dataTask(with: request, completionHandler: {
+        (data, response, error) -> Void in
+        if error != nil{
+            print(error.debugDescription)
+        }else{
+            //将图片数据赋予UIImage
+            let img = UIImage(data:data!)
+            
+            DispatchQueue.main.async {
+                toView.image = img
+            }
+        }
+    }) as URLSessionTask
+    
+    //使用resume方法启动任务
+    dataTask.resume()
 }

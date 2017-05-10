@@ -38,12 +38,29 @@ class MainGameViewController: UIViewController {
         view.addSubview(mainView)
         print("\((#file as NSString).lastPathComponent):(\(#line))\n",UIScreen.main.bounds.height)
         print("\((#file as NSString).lastPathComponent):(\(#line))\n",UIScreen.main.bounds.width)
+        
+//        addScrollText()
+    }
+    
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        print("----",LoginModel.shared.headImgURL)
     }
     
     func presenrView() -> Void {
         view.addSubview(presentView)
         
         presentView.center = view.center
+    }
+
+    /// 添加滚动文字
+    func addScrollText() -> Void {
+        let scText = ScrollText.init(frame: CGRect.init(x: 0, y: 100, width: SW * 0.5, height: 50), withBackGroundColor: UIColor.gray, withTitleColor: UIColor.purple)
+        
+        let dd = ["撒旦立刻精神看到就撒大声地就拉上记录数卡机的"]
+        
+        scText?.titleArray = dd
+        
+        view.addSubview(scText!)
     }
 
 }

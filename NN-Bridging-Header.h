@@ -13,3 +13,6 @@
 #import "WavConvert.h"
 
 #import "POP.h"
+
+/// 文字滚动
+#import "ScrollText.h"

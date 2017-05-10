@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		26013DAF1EC1D20F00ACA99D /* ScrollText.m in Sources */ = {isa = PBXBuildFile; fileRef = 26013DAE1EC1D20F00ACA99D /* ScrollText.m */; };
 		2603D93B1EADC8D20069B132 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2603D93A1EADC8D20069B132 /* AppDelegate.swift */; };
 		2603D9401EADC8D20069B132 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2603D93E1EADC8D20069B132 /* Main.storyboard */; };
 		2603D9421EADC8D20069B132 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2603D9411EADC8D20069B132 /* Assets.xcassets */; };
@@ -50,6 +51,7 @@
 		260C66701EB23415006C119E /* POPSpringAnimation.mm in Sources */ = {isa = PBXBuildFile; fileRef = 260C66571EB23415006C119E /* POPSpringAnimation.mm */; };
 		260C66711EB23415006C119E /* POPVector.mm in Sources */ = {isa = PBXBuildFile; fileRef = 260C665B1EB23415006C119E /* POPVector.mm */; };
 		260C66721EB23415006C119E /* TransformationMatrix.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 260C665E1EB23415006C119E /* TransformationMatrix.cpp */; };
+		260ECA821EC1AF1F00058649 /* LoginModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 260ECA811EC1AF1F00058649 /* LoginModel.swift */; };
 		262E1C3A1EB1CBDE007CC745 /* CaptureScreenTool.swift in Sources */ = {isa = PBXBuildFile; fileRef = 262E1C391EB1CBDE007CC745 /* CaptureScreenTool.swift */; };
 		263D7F6E1EB1BA770064D1C5 /* BtnWithLongPress.swift in Sources */ = {isa = PBXBuildFile; fileRef = 263D7F6D1EB1BA770064D1C5 /* BtnWithLongPress.swift */; };
 		263D7F701EB1C5C70064D1C5 /* CaptureScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 263D7F6F1EB1C5C70064D1C5 /* CaptureScreen.swift */; };
@@ -59,10 +61,7 @@
 		2657FD991EB8642C00B92648 /* ViewAnimation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2657FD981EB8642C00B92648 /* ViewAnimation.swift */; };
 		2657FD9B1EB872C300B92648 /* ScaleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2657FD9A1EB872C300B92648 /* ScaleView.swift */; };
 		2657FD9D1EB8809100B92648 /* DelayTimerTool.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2657FD9C1EB8809100B92648 /* DelayTimerTool.swift */; };
-		2657FD9F1EB96F6700B92648 /* Zapfino.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 2657FD9E1EB96F6700B92648 /* Zapfino.ttf */; };
 		2657FDA11EB96F9300B92648 /* FontVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2657FDA01EB96F9300B92648 /* FontVC.swift */; };
-		2657FDAD1EB97CD700B92648 /* Libian.ttc in Resources */ = {isa = PBXBuildFile; fileRef = 2657FDAC1EB97CD700B92648 /* Libian.ttc */; };
-		2657FDB51EB97F7200B92648 /* Xingkai.ttc in Resources */ = {isa = PBXBuildFile; fileRef = 2657FDB41EB97F7200B92648 /* Xingkai.ttc */; };
 		2657FDBA1EB982E100B92648 /* DeskCards.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2657FDB91EB982E100B92648 /* DeskCards.swift */; };
 		2657FDBC1EB984FE00B92648 /* sss.png in Resources */ = {isa = PBXBuildFile; fileRef = 2657FDBB1EB984FE00B92648 /* sss.png */; };
 		2657FDBE1EB9B95400B92648 /* PlayCommon.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2657FDBD1EB9B95400B92648 /* PlayCommon.swift */; };
@@ -71,6 +70,7 @@
 		268255891EC194480080CCCD /* ImplementsLinkTool.swift in Sources */ = {isa = PBXBuildFile; fileRef = 268255881EC194480080CCCD /* ImplementsLinkTool.swift */; };
 		2682558B1EC196C30080CCCD /* LoginRequestTool.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2682558A1EC196C30080CCCD /* LoginRequestTool.swift */; };
 		2682558D1EC19ECC0080CCCD /* LoginInfoLocal.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2682558C1EC19ECC0080CCCD /* LoginInfoLocal.swift */; };
+		26836AFB1EC1E2DB00061069 /* JoinRoomView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26836AFA1EC1E2DB00061069 /* JoinRoomView.swift */; };
 		26A487271EC0049E00E9A091 /* UIColor+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26A487261EC0049E00E9A091 /* UIColor+Extension.swift */; };
 		26A487291EC004F400E9A091 /* UIView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26A487281EC004F400E9A091 /* UIView+Extension.swift */; };
 		26A4872C1EC0060F00E9A091 /* AbortTool.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26A4872B1EC0060F00E9A091 /* AbortTool.swift */; };
@@ -79,6 +79,7 @@
 		26BC613A1EB4250600AE9BE1 /* CollectVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26BC61391EB4250600AE9BE1 /* CollectVC.swift */; };
 		26BC613C1EB4253B00AE9BE1 /* CollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26BC613B1EB4253B00AE9BE1 /* CollectionViewCell.swift */; };
 		26CAF9BD1EB4C219003065B8 /* LabelRepeat.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26CAF9BC1EB4C219003065B8 /* LabelRepeat.swift */; };
+		26D54ACC1EC2A93B00119FAA /* AddViewWithPop.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26D54ACB1EC2A93B00119FAA /* AddViewWithPop.swift */; };
 		26F41BEF1EB09B4100F4A929 /* amrFileCodec.mm in Sources */ = {isa = PBXBuildFile; fileRef = 26F41BE31EB09B4100F4A929 /* amrFileCodec.mm */; };
 		26F41BF01EB09B4100F4A929 /* libopencore-amrnb.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 26F41BE51EB09B4100F4A929 /* libopencore-amrnb.a */; };
 		26F41BF11EB09B4100F4A929 /* libopencore-amrwb.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 26F41BE61EB09B4100F4A929 /* libopencore-amrwb.a */; };
@@ -87,6 +88,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		26013DAD1EC1D20F00ACA99D /* ScrollText.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ScrollText.h; sourceTree = "<group>"; };
+		26013DAE1EC1D20F00ACA99D /* ScrollText.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ScrollText.m; sourceTree = "<group>"; };
 		2603D9371EADC8D20069B132 /* NN.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = NN.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2603D93A1EADC8D20069B132 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		2603D93F1EADC8D20069B132 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -170,6 +173,7 @@
 		260C665E1EB23415006C119E /* TransformationMatrix.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = TransformationMatrix.cpp; sourceTree = "<group>"; };
 		260C665F1EB23415006C119E /* TransformationMatrix.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TransformationMatrix.h; sourceTree = "<group>"; };
 		260C66601EB23415006C119E /* UnitBezier.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UnitBezier.h; sourceTree = "<group>"; };
+		260ECA811EC1AF1F00058649 /* LoginModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginModel.swift; sourceTree = "<group>"; };
 		262E1C391EB1CBDE007CC745 /* CaptureScreenTool.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CaptureScreenTool.swift; sourceTree = "<group>"; };
 		263D7F6D1EB1BA770064D1C5 /* BtnWithLongPress.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BtnWithLongPress.swift; sourceTree = "<group>"; };
 		263D7F6F1EB1C5C70064D1C5 /* CaptureScreen.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CaptureScreen.swift; sourceTree = "<group>"; };
@@ -179,10 +183,7 @@
 		2657FD981EB8642C00B92648 /* ViewAnimation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewAnimation.swift; sourceTree = "<group>"; };
 		2657FD9A1EB872C300B92648 /* ScaleView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScaleView.swift; sourceTree = "<group>"; };
 		2657FD9C1EB8809100B92648 /* DelayTimerTool.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DelayTimerTool.swift; sourceTree = "<group>"; };
-		2657FD9E1EB96F6700B92648 /* Zapfino.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = Zapfino.ttf; sourceTree = "<group>"; };
 		2657FDA01EB96F9300B92648 /* FontVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FontVC.swift; sourceTree = "<group>"; };
-		2657FDAC1EB97CD700B92648 /* Libian.ttc */ = {isa = PBXFileReference; lastKnownFileType = file; path = Libian.ttc; sourceTree = "<group>"; };
-		2657FDB41EB97F7200B92648 /* Xingkai.ttc */ = {isa = PBXFileReference; lastKnownFileType = file; path = Xingkai.ttc; sourceTree = "<group>"; };
 		2657FDB91EB982E100B92648 /* DeskCards.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DeskCards.swift; sourceTree = "<group>"; };
 		2657FDBB1EB984FE00B92648 /* sss.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = sss.png; sourceTree = "<group>"; };
 		2657FDBD1EB9B95400B92648 /* PlayCommon.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlayCommon.swift; sourceTree = "<group>"; };
@@ -191,6 +192,7 @@
 		268255881EC194480080CCCD /* ImplementsLinkTool.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImplementsLinkTool.swift; sourceTree = "<group>"; };
 		2682558A1EC196C30080CCCD /* LoginRequestTool.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginRequestTool.swift; sourceTree = "<group>"; };
 		2682558C1EC19ECC0080CCCD /* LoginInfoLocal.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginInfoLocal.swift; sourceTree = "<group>"; };
+		26836AFA1EC1E2DB00061069 /* JoinRoomView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JoinRoomView.swift; sourceTree = "<group>"; };
 		26A487261EC0049E00E9A091 /* UIColor+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIColor+Extension.swift"; sourceTree = "<group>"; };
 		26A487281EC004F400E9A091 /* UIView+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIView+Extension.swift"; sourceTree = "<group>"; };
 		26A4872B1EC0060F00E9A091 /* AbortTool.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AbortTool.swift; sourceTree = "<group>"; };
@@ -199,6 +201,7 @@
 		26BC61391EB4250600AE9BE1 /* CollectVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CollectVC.swift; sourceTree = "<group>"; };
 		26BC613B1EB4253B00AE9BE1 /* CollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CollectionViewCell.swift; sourceTree = "<group>"; };
 		26CAF9BC1EB4C219003065B8 /* LabelRepeat.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LabelRepeat.swift; sourceTree = "<group>"; };
+		26D54ACB1EC2A93B00119FAA /* AddViewWithPop.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddViewWithPop.swift; sourceTree = "<group>"; };
 		26F41BE21EB09B4100F4A929 /* amrFileCodec.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = amrFileCodec.h; sourceTree = "<group>"; };
 		26F41BE31EB09B4100F4A929 /* amrFileCodec.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = amrFileCodec.mm; sourceTree = "<group>"; };
 		26F41BE51EB09B4100F4A929 /* libopencore-amrnb.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = "libopencore-amrnb.a"; sourceTree = "<group>"; };
@@ -236,6 +239,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		26013DB01EC1D21400ACA99D /* labelScroll */ = {
+			isa = PBXGroup;
+			children = (
+				26013DAD1EC1D20F00ACA99D /* ScrollText.h */,
+				26013DAE1EC1D20F00ACA99D /* ScrollText.m */,
+			);
+			name = labelScroll;
+			sourceTree = "<group>";
+		};
 		2603D92E1EADC8D20069B132 = {
 			isa = PBXGroup;
 			children = (
@@ -267,9 +279,8 @@
 				2657FD9C1EB8809100B92648 /* DelayTimerTool.swift */,
 				2657FD941EB851EC00B92648 /* VoicieControl.swift */,
 				2657FD961EB860F900B92648 /* ControlVoice.swift */,
-				26BC61391EB4250600AE9BE1 /* CollectVC.swift */,
+				26836AF91EC1E2CB00061069 /* joinRoom */,
 				2657FDB81EB982B900B92648 /* 字体 */,
-				26BC613B1EB4253B00AE9BE1 /* CollectionViewCell.swift */,
 				2657FD981EB8642C00B92648 /* ViewAnimation.swift */,
 				2657FD9A1EB872C300B92648 /* ScaleView.swift */,
 				2657FDBB1EB984FE00B92648 /* sss.png */,
@@ -338,6 +349,7 @@
 			isa = PBXGroup;
 			children = (
 				2603D9781EADD3AA0069B132 /* PersonMsgView.swift */,
+				26D54ACB1EC2A93B00119FAA /* AddViewWithPop.swift */,
 			);
 			name = view;
 			sourceTree = "<group>";
@@ -427,9 +439,6 @@
 			isa = PBXGroup;
 			children = (
 				2657FDA01EB96F9300B92648 /* FontVC.swift */,
-				2657FDB41EB97F7200B92648 /* Xingkai.ttc */,
-				2657FD9E1EB96F6700B92648 /* Zapfino.ttf */,
-				2657FDAC1EB97CD700B92648 /* Libian.ttc */,
 			);
 			name = "字体";
 			sourceTree = "<group>";
@@ -440,6 +449,7 @@
 				268255801EC190550080CCCD /* LoginViewController.swift */,
 				2682558A1EC196C30080CCCD /* LoginRequestTool.swift */,
 				2682558C1EC19ECC0080CCCD /* LoginInfoLocal.swift */,
+				260ECA811EC1AF1F00058649 /* LoginModel.swift */,
 			);
 			name = loginVC;
 			sourceTree = "<group>";
@@ -489,9 +499,20 @@
 			name = implements;
 			sourceTree = "<group>";
 		};
+		26836AF91EC1E2CB00061069 /* joinRoom */ = {
+			isa = PBXGroup;
+			children = (
+				26BC61391EB4250600AE9BE1 /* CollectVC.swift */,
+				26BC613B1EB4253B00AE9BE1 /* CollectionViewCell.swift */,
+				26836AFA1EC1E2DB00061069 /* JoinRoomView.swift */,
+			);
+			name = joinRoom;
+			sourceTree = "<group>";
+		};
 		26A4872A1EC0050700E9A091 /* tool */ = {
 			isa = PBXGroup;
 			children = (
+				26013DB01EC1D21400ACA99D /* labelScroll */,
 				26A4872B1EC0060F00E9A091 /* AbortTool.swift */,
 				266EC2021EBC854000AEA31C /* TimerLabel.swift */,
 				26BC612F1EB2EB6C00AE9BE1 /* CountDownBtn.swift */,
@@ -613,13 +634,10 @@
 			files = (
 				2603D9451EADC8D20069B132 /* LaunchScreen.storyboard in Resources */,
 				2603D9421EADC8D20069B132 /* Assets.xcassets in Resources */,
-				2657FDAD1EB97CD700B92648 /* Libian.ttc in Resources */,
 				263D7F721EB1C8610064D1C5 /* scree.png in Resources */,
 				2603D95A1EADCA3C0069B132 /* README.txt in Resources */,
-				2657FD9F1EB96F6700B92648 /* Zapfino.ttf in Resources */,
 				2657FDBC1EB984FE00B92648 /* sss.png in Resources */,
 				2603D9401EADC8D20069B132 /* Main.storyboard in Resources */,
-				2657FDB51EB97F7200B92648 /* Xingkai.ttc in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -635,6 +653,7 @@
 				260AFF441EAF6B130032F0BC /* AvdioTool.swift in Sources */,
 				260C66711EB23415006C119E /* POPVector.mm in Sources */,
 				2603D9711EADCD830069B132 /* ViewController.swift in Sources */,
+				26013DAF1EC1D20F00ACA99D /* ScrollText.m in Sources */,
 				260C66641EB23415006C119E /* POPAnimationExtras.mm in Sources */,
 				260C66721EB23415006C119E /* TransformationMatrix.cpp in Sources */,
 				2657FDBE1EB9B95400B92648 /* PlayCommon.swift in Sources */,
@@ -645,10 +664,12 @@
 				2682558B1EC196C30080CCCD /* LoginRequestTool.swift in Sources */,
 				2603D96F1EADCD440069B132 /* CustomAlertView.swift in Sources */,
 				260C66651EB23415006C119E /* POPAnimationRuntime.mm in Sources */,
+				26836AFB1EC1E2DB00061069 /* JoinRoomView.swift in Sources */,
 				2657FD971EB860F900B92648 /* ControlVoice.swift in Sources */,
 				2603D9BD1EADE7E20069B132 /* ScrollLabel.swift in Sources */,
 				260C66701EB23415006C119E /* POPSpringAnimation.mm in Sources */,
 				260C66681EB23415006C119E /* POPBasicAnimation.mm in Sources */,
+				260ECA821EC1AF1F00058649 /* LoginModel.swift in Sources */,
 				2657FDBA1EB982E100B92648 /* DeskCards.swift in Sources */,
 				26CAF9BD1EB4C219003065B8 /* LabelRepeat.swift in Sources */,
 				26A4872C1EC0060F00E9A091 /* AbortTool.swift in Sources */,
@@ -661,6 +682,7 @@
 				2603D95C1EADCA3C0069B132 /* WXTool.swift in Sources */,
 				260C666D1EB23415006C119E /* POPLayerExtras.mm in Sources */,
 				260C66671EB23415006C119E /* POPAnimator.mm in Sources */,
+				26D54ACC1EC2A93B00119FAA /* AddViewWithPop.swift in Sources */,
 				260C666C1EB23415006C119E /* POPGeometry.mm in Sources */,
 				26F41BEF1EB09B4100F4A929 /* amrFileCodec.mm in Sources */,
 				2657FD9D1EB8809100B92648 /* DelayTimerTool.swift in Sources */,
