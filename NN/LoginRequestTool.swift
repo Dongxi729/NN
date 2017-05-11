@@ -18,8 +18,6 @@ class LoginRequestTool: NSObject {
     func getUserInfo(_ wxopenid : String,_ wxtoken : String,finished : @escaping UserInfo) -> Void {
         
         
-        print(wxopenid,wxtoken)
-        
         let contactStr = loginURL + "?wxid=\(wxopenid)" + "&accesstoken=\(wxtoken)"
         
         /**

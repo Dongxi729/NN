@@ -67,10 +67,8 @@ class LoginViewController: UIViewController {
         
         
         if woid.isEmpty == false && waccess.isEmpty == false {
-            print("===")
-            
+
             LoginRequestTool.shared.getUserInfo(woid, waccess, finished: { (userDta) in
-                print("userData",userDta)
                 
                 let userDic : NSDictionary = (userDta as NSDictionary)
                 

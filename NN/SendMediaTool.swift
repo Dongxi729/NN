@@ -78,31 +78,6 @@ func reportUID() -> Void {
     /// 上报用户信息
     
     print("balabala")
-//
-//    let sendXMLDATA = "<M><Nn id=\"\(LoginModel.shared.uid!)\" tk=\"\(LoginModel.shared.token!)\"/></M>"
-//    
-//    /// 文字转Data
-//    let datacc : NSMutableData = NSMutableData()
-//    
-//    let ddd = sendXMLDATA.data(using: String.Encoding.utf8)
-//    
-//    var it1  = ddd?.count;
-//    
-//    /// 添加发送的文字
-//    datacc.append(&it1, length: 4)
-//    
-//    datacc.append(ddd!)
-//    
-//    /// 转为Data进行添加类型
-//    var sendData : Data = datacc as Data
-//    
-//    sendData.insert(254, at: 4)
-//    
-//    guard let socket = client else {
-//        return
-//    }
-//    
-//    socket.send(data: sendData)
     
     let str = "<M><Nn id=\"\(LoginModel.shared.uid!)\" tk=\"\(LoginModel.shared.token!)\"/></M>"
     
@@ -115,9 +90,13 @@ func reportUID() -> Void {
     var it1  = (dataStr?.count)! + 1
     var type:Int = 254
     datacc.append(&it1, length: 4)
+    
+    /// 类型
     datacc.append(&type,length: 1)
     
     let adata:NSMutableData = NSMutableData()
+    
+    /// 包体
     adata.append(datacc as Data)
     adata.append(dataStr!)
     
@@ -201,6 +180,11 @@ func readmsg(clientSercer : TCPClient)->String? {
         getReceiveStr = String.init(bytes: d!, encoding: String.Encoding.utf8)
         
         print(getReceiveStr as Any)
+        
+        /// 发送心跳包
+        if (String.init(bytes: d!, encoding: String.Encoding.utf8)?.contains("信息正常"))! {
+            TImerTool.shared.timerCount(seconds: 15)
+        }
         
         return String.init(bytes: d!, encoding: String.Encoding.utf8)
     } else {
