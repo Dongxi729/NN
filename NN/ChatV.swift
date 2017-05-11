@@ -15,7 +15,22 @@ class ChatV: UIView {
     /// emoji
     var dataSource : [String] = ["E0","E1","E2","E3","E4","E5","E6","E7","E8","E9","E10","E11","E12","E13"]
     /// 文字
-    var secSource : [String] = ["0","1","2","3"]
+    var secSource : [String] = ["大家好，很高兴见到各位","快点吧，等到花儿都谢了！","打枪，打枪，打枪","哈哈，全垒打"]
+    
+    lazy var label: UITextField = {
+        let d : UITextField = UITextField.init(frame: CGRect.init(x: commonMargin, y: commonMargin, width: self.frame.width * 0.6, height: 30))
+        d.placeholder = "sdasd"
+        return d
+    }()
+    
+    
+    /// 发送按钮
+    lazy var sendBtn: UIButton = {
+        let d : UIButton = UIButton.init(frame: CGRect.init(x: self.label.RightX + commonMargin, y: commonMargin, width: self.frame.width - self.label.Width - 2 * commonMargin, height: 30))
+        d.setTitle("发送", for: .normal)
+        d.backgroundColor = UIColor.randomColor()
+        return d
+    }()
     
     /// 九宫格
     lazy var collV: UICollectionView = {
@@ -26,7 +41,7 @@ class ChatV: UIView {
         layout.minimumInteritemSpacing = 5
         
         /// 设置大小出错///
-        let d : UICollectionView = UICollectionView.init(frame: CGRect.init(x: commonMargin, y: commonMargin, width: self.frame.width - 2 * commonMargin, height: self.frame.height), collectionViewLayout: layout)
+        let d : UICollectionView = UICollectionView.init(frame: CGRect.init(x: commonMargin, y: self.frame.height * 0.3, width: self.frame.width - 2 * commonMargin, height: self.frame.height), collectionViewLayout: layout)
         
         d.backgroundColor = UIColor.white
         
@@ -43,7 +58,10 @@ class ChatV: UIView {
         super.init(frame: frame)
         
         self.addSubview(collV)
+     
+        self.addSubview(label)
         
+        self.addSubview(sendBtn)
     }
     
     
@@ -59,12 +77,16 @@ extension ChatV : UICollectionViewDataSource,UICollectionViewDelegateFlowLayout 
         
         if indexPath.section == 0  {
             cell.labelll.image = UIImage.init(named: dataSource[indexPath.row])
+        } else {
+            cell.sec.text = secSource[indexPath.row]
         }
         
         if indexPath.section == 0 {
             cell.secImg.isHidden = true
+            
         } else {
             cell.labelll.isHidden = true
+            
         }
         
         return cell
@@ -96,7 +118,17 @@ extension ChatV : UICollectionViewDataSource,UICollectionViewDelegateFlowLayout 
             let itemWidth = (collectionViewWidth - commonMargin * CGFloat(columnsNum-1))
                 / CGFloat(columnsNum)
             //设置单元格宽度和高度
-            return CGSize(width:itemWidth, height:itemWidth * 0.2)
+            return CGSize(width:itemWidth - commonMargin , height:itemWidth * 0.25)
+        }
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
+        if section == 1 {
+            return UIEdgeInsets.init(top: 10, left: 10, bottom: 20, right: 10)
+            
+        } else {
+            return UIEdgeInsets()
+            
         }
     }
     
@@ -130,10 +162,22 @@ class ChatVCollectCell: UICollectionViewCell {
     }()
     
     lazy var secImg: UIImageView = {
-        let d : UIImageView = UIImageView.init(frame: CGRect(x: 0, y: 0, width: self.frame.width, height: self.Height))
-        d.backgroundColor = UIColor.randomColor()
+        let d : UIImageView = UIImageView.init(frame: CGRect(x: 0, y: 0, width: self.frame.width, height: 1.3 * self.Height))
+        
+        d.image = UIImage.init(named: "msgBg")
         return d
     }()
+    
+    
+    /// 文字
+    lazy var sec: UILabel = {
+        let d : UILabel = UILabel.init(frame: CGRect(x: 0, y: 0, width: self.frame.width, height: 1.3 * self.Height))
+        d.textColor = UIColor.white
+        d.font = UIFont.systemFont(ofSize: 12)
+        d.numberOfLines = 0
+        return d
+    }()
+
     
     
     override init(frame: CGRect) {
@@ -148,8 +192,13 @@ class ChatVCollectCell: UICollectionViewCell {
     func prepareUI() -> Void {
         
 //        addSubview(bgImg)
-        addSubview(labelll)
+        
         addSubview(secImg)
+        
+        addSubview(labelll)
+        
+        addSubview(sec)
+        
     }
     
 }
