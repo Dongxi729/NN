@@ -281,3 +281,18 @@ func downImgWith(url : String,toView : UIImageView) {
     //使用resume方法启动任务
     dataTask.resume()
 }
+
+
+/// 获取时间
+///
+/// - Returns: 返回时间
+func getTime() -> String {
+    
+    //获取当前时间
+    let now = Date()
+    
+    // 创建一个日期格式器
+    let dformatter = DateFormatter()
+    dformatter.dateFormat = "HH:mm"
+    return dformatter.string(from: now)
+}

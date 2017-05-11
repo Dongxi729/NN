@@ -25,13 +25,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         window?.backgroundColor = UIColor.white
         
         WXApi.registerApp(WXPatient_App_ID)
-        
-       
-        
-//        createHeart()
 
+        print(getTime())
+        
         return true
     }
+
+    
     
 
   

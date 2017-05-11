@@ -240,7 +240,7 @@ class PersonMsgView: UIView {
         if createRoomIsExist.count > 0  {
             
             //购物断网刷新
-            if NSStringFromClass((self.subviews.last?.classForCoder)!).contains("CreateV") {
+            if NSStringFromClass((self.subviews.last?.classForCoder)!).contains("CreateRoomBasic") {
                 
                 self.subviews.last?.removeFromSuperview()
                 
@@ -259,6 +259,19 @@ class PersonMsgView: UIView {
                 
                 /// 清空记录数组
                 marketVISExist.removeAll()
+            }
+        }
+        
+        /// 创建房间
+        if CreateRoomBasicISExist.count > 0  {
+            
+            //购物断网刷新
+            if NSStringFromClass((self.subviews.last?.classForCoder)!).contains("CreateRoomBasic") {
+                
+                self.subviews.last?.removeFromSuperview()
+                
+                /// 清空记录数组
+                CreateRoomBasicISExist.removeAll()
             }
         }
     }
