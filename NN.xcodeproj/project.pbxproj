@@ -51,6 +51,9 @@
 		260C66721EB23415006C119E /* TransformationMatrix.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 260C665E1EB23415006C119E /* TransformationMatrix.cpp */; };
 		260ECA821EC1AF1F00058649 /* LoginModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 260ECA811EC1AF1F00058649 /* LoginModel.swift */; };
 		262E1C3A1EB1CBDE007CC745 /* CaptureScreenTool.swift in Sources */ = {isa = PBXBuildFile; fileRef = 262E1C391EB1CBDE007CC745 /* CaptureScreenTool.swift */; };
+		264A2CDF1EC44CB0001B7F0E /* CommonCowUpV.swift in Sources */ = {isa = PBXBuildFile; fileRef = 264A2CDE1EC44CB0001B7F0E /* CommonCowUpV.swift */; };
+		264A2CE11EC44DE5001B7F0E /* CommCowDownV.swift in Sources */ = {isa = PBXBuildFile; fileRef = 264A2CE01EC44DE5001B7F0E /* CommCowDownV.swift */; };
+		264A2CE41EC4565A001B7F0E /* MarketV.swift in Sources */ = {isa = PBXBuildFile; fileRef = 264A2CE31EC4565A001B7F0E /* MarketV.swift */; };
 		2657FD971EB860F900B92648 /* ControlVoice.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2657FD961EB860F900B92648 /* ControlVoice.swift */; };
 		2657FD991EB8642C00B92648 /* ViewAnimation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2657FD981EB8642C00B92648 /* ViewAnimation.swift */; };
 		2657FD9B1EB872C300B92648 /* ScaleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2657FD9A1EB872C300B92648 /* ScaleView.swift */; };
@@ -206,6 +209,9 @@
 		260C66601EB23415006C119E /* UnitBezier.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UnitBezier.h; sourceTree = "<group>"; };
 		260ECA811EC1AF1F00058649 /* LoginModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginModel.swift; sourceTree = "<group>"; };
 		262E1C391EB1CBDE007CC745 /* CaptureScreenTool.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CaptureScreenTool.swift; sourceTree = "<group>"; };
+		264A2CDE1EC44CB0001B7F0E /* CommonCowUpV.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CommonCowUpV.swift; sourceTree = "<group>"; };
+		264A2CE01EC44DE5001B7F0E /* CommCowDownV.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CommCowDownV.swift; sourceTree = "<group>"; };
+		264A2CE31EC4565A001B7F0E /* MarketV.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MarketV.swift; sourceTree = "<group>"; };
 		2657FD961EB860F900B92648 /* ControlVoice.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ControlVoice.swift; sourceTree = "<group>"; };
 		2657FD981EB8642C00B92648 /* ViewAnimation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewAnimation.swift; sourceTree = "<group>"; };
 		2657FD9A1EB872C300B92648 /* ScaleView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScaleView.swift; sourceTree = "<group>"; };
@@ -399,6 +405,7 @@
 		2603D9751EADD33B0069B132 /* controller */ = {
 			isa = PBXGroup;
 			children = (
+				264A2CE21EC4564F001B7F0E /* market */,
 				26D54ACD1EC2B92E00119FAA /* createRoom */,
 				26836AF91EC1E2CB00061069 /* joinRoom */,
 				2603D9721EADD1BB0069B132 /* MainGameViewController.swift */,
@@ -479,6 +486,14 @@
 				260C66601EB23415006C119E /* UnitBezier.h */,
 			);
 			path = WebCore;
+			sourceTree = "<group>";
+		};
+		264A2CE21EC4564F001B7F0E /* market */ = {
+			isa = PBXGroup;
+			children = (
+				264A2CE31EC4565A001B7F0E /* MarketV.swift */,
+			);
+			name = market;
 			sourceTree = "<group>";
 		};
 		2657FDB81EB982B900B92648 /* 字体 */ = {
@@ -583,6 +598,8 @@
 				26BDD6C71EC3660C00F1C478 /* CreateRoomBasic.swift */,
 				26BDD6CB1EC3722D00F1C478 /* SixCowDownV.swift */,
 				26BDD6C91EC368AF00F1C478 /* SixCowV.swift */,
+				264A2CDE1EC44CB0001B7F0E /* CommonCowUpV.swift */,
+				264A2CE01EC44DE5001B7F0E /* CommCowDownV.swift */,
 			);
 			name = createRoom;
 			sourceTree = "<group>";
@@ -805,6 +822,7 @@
 				26D54B2B1EC2C11B00119FAA /* WavConvert.m in Sources */,
 				260C66681EB23415006C119E /* POPBasicAnimation.mm in Sources */,
 				260ECA821EC1AF1F00058649 /* LoginModel.swift in Sources */,
+				264A2CE41EC4565A001B7F0E /* MarketV.swift in Sources */,
 				2657FDBA1EB982E100B92648 /* DeskCards.swift in Sources */,
 				26CAF9BD1EB4C219003065B8 /* LabelRepeat.swift in Sources */,
 				26A4872C1EC0060F00E9A091 /* AbortTool.swift in Sources */,
@@ -823,6 +841,7 @@
 				260C66671EB23415006C119E /* POPAnimator.mm in Sources */,
 				26D54ACC1EC2A93B00119FAA /* AddViewWithPop.swift in Sources */,
 				260C666C1EB23415006C119E /* POPGeometry.mm in Sources */,
+				264A2CDF1EC44CB0001B7F0E /* CommonCowUpV.swift in Sources */,
 				2657FD9D1EB8809100B92648 /* DelayTimerTool.swift in Sources */,
 				26D54B421EC2EF8F00119FAA /* SocketSendTool.swift in Sources */,
 				260C666B1EB23415006C119E /* POPDecayAnimation.mm in Sources */,
@@ -846,6 +865,7 @@
 				26D54AE81EC2BD6D00119FAA /* DDXMLNode.m in Sources */,
 				26D54ACF1EC2BAF000119FAA /* CreateCollectionViewCell.swift in Sources */,
 				2657FD9B1EB872C300B92648 /* ScaleView.swift in Sources */,
+				264A2CE11EC44DE5001B7F0E /* CommCowDownV.swift in Sources */,
 				2657FDA11EB96F9300B92648 /* FontVC.swift in Sources */,
 				26BC613C1EB4253B00AE9BE1 /* CollectionViewCell.swift in Sources */,
 				26D54B2A1EC2C11B00119FAA /* VoiceConverter.mm in Sources */,
@@ -996,7 +1016,7 @@
 					"-all_load",
 					"-Objc",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "com.-";
+				PRODUCT_BUNDLE_IDENTIFIER = com.rgame.warniuniu;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "NN-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
@@ -1028,7 +1048,7 @@
 					"-all_load",
 					"-Objc",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "com.-";
+				PRODUCT_BUNDLE_IDENTIFIER = com.rgame.warniuniu;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "NN-Bridging-Header.h";
 				SWIFT_VERSION = 3.0;

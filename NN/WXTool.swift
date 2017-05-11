@@ -147,7 +147,7 @@ class WXTool : UIView,WXApiDelegate,NSURLConnectionDelegate {
                         return
                     }
                     
-                    print("微信个人信息",wxInfoData)
+//                    print("微信个人信息",wxInfoData)
                     
                     
                     

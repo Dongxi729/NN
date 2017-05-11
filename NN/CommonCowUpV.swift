@@ -1,15 +1,15 @@
 //
-//  SixCowV.swift
+//  CommonCowUpV.swift
 //  NN
 //
-//  Created by 郑东喜 on 2017/5/10.
+//  Created by 郑东喜 on 2017/5/11.
 //  Copyright © 2017年 郑东喜. All rights reserved.
-//  六人牛牛视图
+//  通比牛牛视图
 
 import UIKit
 
-class SixCowV: UIView {
-
+class CommonCowUpV: UIView {
+    
     
     /// 文字
     var dataSource : [String] = ["10局","20局","30局","2人","3人","4人","5人","6人"]
@@ -33,7 +33,7 @@ class SixCowV: UIView {
         d.dataSource = self
         d.delegate = self
         
-        d.register(SixCollectionViewCell.self, forCellWithReuseIdentifier: "six")
+        d.register(CommonSixCollectionViewCell.self, forCellWithReuseIdentifier: "six")
         
         return d
     }()
@@ -45,22 +45,22 @@ class SixCowV: UIView {
         self.addSubview(collV)
         
     }
-
+    
     
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
 }
 
-extension SixCowV : UICollectionViewDataSource,UICollectionViewDelegateFlowLayout {
+extension CommonCowUpV : UICollectionViewDataSource,UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "six", for: indexPath) as! SixCollectionViewCell
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "six", for: indexPath) as! CommonSixCollectionViewCell
         
         cell.labelll.text = dataSource[indexPath.row]
         
         return cell
     }
-
+    
     
     func numberOfSections(in collectionView: UICollectionView) -> Int {
         
@@ -79,7 +79,7 @@ extension SixCowV : UICollectionViewDataSource,UICollectionViewDelegateFlowLayou
     
 }
 
-class SixCollectionViewCell: UICollectionViewCell {
+class CommonSixCollectionViewCell: UICollectionViewCell {
     
     lazy var labelll: CommonLabell = {
         let d : CommonLabell = CommonLabell.init(frame: CGRect.init(x: 0, y: 0, width: SW * 0.05, height: SW * 0.05))
@@ -107,5 +107,5 @@ class SixCollectionViewCell: UICollectionViewCell {
         addSubview(labelll)
         addSubview(bgImg)
     }
-
+    
 }

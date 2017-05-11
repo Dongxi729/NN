@@ -20,3 +20,9 @@ var recordJoinRoomNum : [Int] = []
 /// 创建房间
 var createRoomIsExist : [CreateRoomBasic] = []
 
+/// 商城
+var marketVISExist : [MarketV] = []
+
+
+/// 创建房间
+var CreateRoomBasicISExist : [CreateRoomBasic] = []

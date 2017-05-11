@@ -47,7 +47,7 @@ class LoginViewController: UIViewController {
         
         /// 取出本地的微信授权信息opendi、accesstoken
         guard let woid = localSave.object(forKey: wx_openID) as? String else {
-            print("撒大声地")
+            
             /// 获取微信的openid、accesstoken
             if WXApi.isWXAppInstalled() == false {
                 CustomAlertView.shared.alertWithTitle(strTitle: "未安装微信或版本不支持")
@@ -61,7 +61,6 @@ class LoginViewController: UIViewController {
         
         guard let waccess = localSave.object(forKey: WX_ACCESS_TOKEN) as? String else {
             
-            print("wacess")
             return
         }
         
@@ -89,7 +88,6 @@ class LoginViewController: UIViewController {
                 
                 if d {
                     
-                    print("ddd")
                     self.present(MainGameViewController(), animated: true, completion: nil)
                 }
                 
@@ -102,7 +100,7 @@ class LoginViewController: UIViewController {
         
         /// 取出本地的微信授权信息opendi、accesstoken
         guard let woid = localSave.object(forKey: wx_openID) as? String else {
-            print("撒大声地")
+            
             /// 获取微信的openid、accesstoken
             if WXApi.isWXAppInstalled() == false {
                 CustomAlertView.shared.alertWithTitle(strTitle: "未安装微信或版本不支持")
@@ -116,17 +114,12 @@ class LoginViewController: UIViewController {
         
         guard let waccess = localSave.object(forKey: WX_ACCESS_TOKEN) as? String else {
             
-            print("wacess")
             return
         }
         
-
-        
         if woid.isEmpty == false && waccess.isEmpty == false {
-            print("===")
             
             LoginRequestTool.shared.getUserInfo(woid, waccess, finished: { (userDta) in
-                print("userData",userDta)
                 
                 let userDic : NSDictionary = (userDta as? NSDictionary)!
                 
@@ -143,20 +136,11 @@ class LoginViewController: UIViewController {
                 /// 若包含指定的健民，则说明请求到的信息成功，跳转主界面
                 
                 if d {
-                    
-                    print("ddd")
-            
-                    
                     self.present(MainGameViewController(), animated: true, completion: nil)
-                    
-                    
                 }
-                
             })
-            
-            
+
         }
     }
-    
     
 }

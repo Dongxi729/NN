@@ -9,6 +9,17 @@
 import UIKit
 import SwiftSocket
 
+/// 收到服务器发来的字符串
+var getReceiveStr : String? {
+    didSet {
+        if getReceiveStr == "\0用户连接成功" {
+            print("okay")
+            
+            reportUID()
+        }
+    }
+}
+
 struct ConnectConfig {
     var host : String = ""
     var port : Int32 = 8888
@@ -37,11 +48,13 @@ func testServer() {
         
     case .success:
         
-        print("success")
+//        TImerTool.shared.timerCount(seconds: 1)
         
-        reportUID()
+        
         
         while true {
+            
+            
             
             if readmsg(clientSercer: client) != nil {
                 
@@ -66,41 +79,95 @@ func testServer() {
 func reportUID() -> Void {
     /// 上报用户信息
     
-    var sendXMLDATA = "<M><Nn id=\"\(LoginModel.shared.uid!)\" tk=\"\(LoginModel.shared.token!)\"/></M>"
+//    print("balabala")
+//
+//    let sendXMLDATA = "<M><Nn id=\"\(LoginModel.shared.uid!)\" tk=\"\(LoginModel.shared.token!)\"/></M>"
+//    
+//    /// 文字转Data
+//    let datacc : NSMutableData = NSMutableData()
+//    
+//    let ddd = sendXMLDATA.data(using: String.Encoding.utf8)
+//    
+//    var it1  = ddd?.count;
+//    
+//    /// 添加发送的文字
+//    datacc.append(&it1, length: 4)
+//    
+//    datacc.append(ddd!)
+//    
+//    /// 转为Data进行添加类型
+//    var sendData : Data = datacc as Data
+//    
+//    sendData.insert(254, at: 4)
+//    
+//    guard let socket = client else {
+//        return
+//    }
+//    
+//    socket.send(data: sendData)
     
-    /// 取出斜杠
-    if sendXMLDATA.contains("\\") {
-        let ddStr : NSString = sendXMLDATA.replacingOccurrences(of: "\\", with: "") as NSString
-        print(ddStr)
-        
-        sendXMLDATA = ddStr as String
-    }
+    let str = "<M><Nn id=\"\(LoginModel.shared.uid!)\" tk=\"\(LoginModel.shared.token!)\"/></M>"
     
-    /// 文字转Data
     let datacc : NSMutableData = NSMutableData()
     
-    let ddd = sendXMLDATA.data(using: String.Encoding.utf8)
     
-    var it1  = ddd?.count;
+    var dataStr  = str.data(using: String.Encoding.utf8)
     
+    /// 包头
+    var it1  = dataStr?.count
     
-    
-    /// 添加发送的文字
     datacc.append(&it1, length: 4)
     
-    datacc.append(ddd!)
+    let adata:NSMutableData = NSMutableData()
     
-    /// 转为Data进行添加类型
-    var sendData : Data = datacc as Data
+    adata.append(datacc as Data)
     
-    sendData.insert(254, at: 0)
+    adata.append(dataStr!)
+    
+    //读取每一个字节数据 放入数组中
+    var barr = [UInt8]()
+    
+    for i in 0..<(adata.length)
+    {
+        if i == 4 {
+            barr.append(254)
+        }
+        
+        var tt:UInt8 = 0
+        adata.getBytes(&tt, range: NSRange(location: i,length: 1))
+        barr.append(tt)
+    }
+    
+    print(barr)
     
     guard let socket = client else {
         
         return
     }
     
-    socket.send(data: sendData)
+    socket.send(data: barr)
+}
+
+
+
+/// 发送心跳包
+func sendHeart() {
+    var heaerByte : [Byte] = [Byte]()
+    heaerByte.append(1)
+    heaerByte.append(0)
+    heaerByte.append(0)
+    heaerByte.append(0)
+    heaerByte.append(4)
+    
+    guard let socket = client else {
+        return
+    }
+    
+    print(heaerByte)
+    
+    socket.send(data: heaerByte)
+    
+
 }
 
 func reportCreateRoomType() -> Void {
@@ -114,17 +181,32 @@ func readmsg(clientSercer : TCPClient)->String? {
     //read 4 byte int as type
     
     /// 缓存池数据
-    let d = clientSercer.read(1024 * 10)
+    var d = clientSercer.read(1024 * 10)
+    
+    print(d as Any)
     
     /// 绩溪县
     if d != nil {
         byteAnalyse(ddd: d!)
     }
     
-    print("d = :",d!)
-    print(String.init(bytes: d!, encoding: String.Encoding.utf8) as Any)
-    
-    return String.init(bytes: d!, encoding: String.Encoding.utf8)
+    /// 只是为了取值方便
+    d?.remove(at: 4)
+
+    if d != nil {
+        
+        print("d = :",d as Any)
+        
+        /// 赋值接收到的字符串
+        getReceiveStr = String.init(bytes: d!, encoding: String.Encoding.utf8)
+        
+        print(getReceiveStr as Any)
+        
+        return String.init(bytes: d!, encoding: String.Encoding.utf8)
+    } else {
+        
+        return "test"
+    }
 }
 
 /// 数据解析
@@ -189,8 +271,6 @@ func bodyfun() {
         /// 复制一份数据出来拿出来操作(显示操作)
         bytesShwoFunc(_over: bodyData)
         
-        
-        
         /// 清空操作
         leng = 0
         
@@ -211,6 +291,10 @@ func bodyfun() {
 
 /// 赋值显示操作
 func bytesShwoFunc(_over : [Byte]) -> Void {
+    
+    getReceiveStr = String.init(bytes: _over, encoding: String.Encoding.utf8)
+    
+    print("----",String.init(bytes: _over, encoding: String.Encoding.utf8) as Any)
     
     /// 通知传值
     NotificationCenter.default.post(name: NSNotification.Name(rawValue: "receiveData"), object: nil, userInfo: ["send" : _over])

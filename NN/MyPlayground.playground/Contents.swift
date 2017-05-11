@@ -14,28 +14,44 @@ class Test : NSObject {
     
     static let shared = Test()
     
-    var aaa : String = "sss"
-    var ccc : String = "sss123"
-    
-    
-    
+    var aaa : String = "57049219"
+    var ccc : String = "da5945f432b741c0ad4880c488fd9a0f"
 }
 
 let a11 = "<M><Nn id=\"\(Test.shared.aaa)\" tk=\"\(Test.shared.ccc)\"/></M>"
 
-var dd = "<M><Nn id=\"47607836\" tk=\"9e75b9842c2240b0896cd0b15b87640a\"/></M>"
+var sendXMLDATA = "<M><Nn id=\"\(Test.shared.aaa)\" tk=\"\(Test.shared.ccc)\"/></M>"
 
-if dd.contains("\\") {
-    let ddStr : NSString = dd.replacingOccurrences(of: "\\", with: "") as NSString
-    print(ddStr)
-    
-    dd = ddStr as String
+
+
+/// 文字转Data
+let datacc : NSMutableData = NSMutableData()
+
+let dddd = sendXMLDATA.data(using: String.Encoding.utf8)
+
+var it1 = dddd?.count;
+
+/// 添加发送的文字
+datacc.append(&it1, length: 4)
+
+datacc.append(dddd!)
+
+/// 转为Data进行添加类型
+var sendData : Data = datacc as Data
+
+sendData.insert(254, at: 4)
+
+print("sendData :",sendData)
+
+for byte in sendData {
+    print(byte)
 }
 
-print(dd)
+//for i in 0..<5 {
+//    sendData.remove(at: 0)
+//}
+//
 
-let testStr = "dasdd"
+let dataStr = String.init(data: sendData, encoding: String.Encoding.utf8)
 
-let data = testStr.data(using: String.Encoding.utf8)
-
-let strdata = String.init(data: data!, encoding: String.Encoding.utf8)
+print(dataStr)

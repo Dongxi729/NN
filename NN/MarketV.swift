@@ -1,25 +1,25 @@
 //
-//  SixCowV.swift
+//  MarketV.swift
 //  NN
 //
-//  Created by 郑东喜 on 2017/5/10.
+//  Created by 郑东喜 on 2017/5/11.
 //  Copyright © 2017年 郑东喜. All rights reserved.
-//  六人牛牛视图
+//  商城
 
 import UIKit
 
-class SixCowV: UIView {
-
+class MarketV: UIView {
+    
     
     /// 文字
-    var dataSource : [String] = ["10局","20局","30局","2人","3人","4人","5人","6人"]
+    var dataSource : [String] = ["60","210","330","550","1150"]
     
     
     /// 九宫格
     lazy var collV: UICollectionView = {
         
         let layout = UICollectionViewFlowLayout.init()
-        layout.itemSize = CGSize.init(width: (self.frame.width - 30) / 3, height: 40)
+        layout.itemSize = CGSize.init(width: (self.frame.width - 30) / 2, height: 40)
         
         
         layout.minimumLineSpacing = 10
@@ -33,7 +33,7 @@ class SixCowV: UIView {
         d.dataSource = self
         d.delegate = self
         
-        d.register(SixCollectionViewCell.self, forCellWithReuseIdentifier: "six")
+        d.register(MarketCollectCell.self, forCellWithReuseIdentifier: "MarketCollectCell")
         
         return d
     }()
@@ -45,22 +45,22 @@ class SixCowV: UIView {
         self.addSubview(collV)
         
     }
-
+    
     
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
 }
 
-extension SixCowV : UICollectionViewDataSource,UICollectionViewDelegateFlowLayout {
+extension MarketV : UICollectionViewDataSource,UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "six", for: indexPath) as! SixCollectionViewCell
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "MarketCollectCell", for: indexPath) as! MarketCollectCell
         
         cell.labelll.text = dataSource[indexPath.row]
         
         return cell
     }
-
+    
     
     func numberOfSections(in collectionView: UICollectionView) -> Int {
         
@@ -79,7 +79,7 @@ extension SixCowV : UICollectionViewDataSource,UICollectionViewDelegateFlowLayou
     
 }
 
-class SixCollectionViewCell: UICollectionViewCell {
+class MarketCollectCell: UICollectionViewCell {
     
     lazy var labelll: CommonLabell = {
         let d : CommonLabell = CommonLabell.init(frame: CGRect.init(x: 0, y: 0, width: SW * 0.05, height: SW * 0.05))
@@ -107,5 +107,5 @@ class SixCollectionViewCell: UICollectionViewCell {
         addSubview(labelll)
         addSubview(bgImg)
     }
-
+    
 }

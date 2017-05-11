@@ -19,13 +19,22 @@ class PersonMsgView: UIView {
         let d : UIImageView = UIImageView.init(frame: CGRect.init(x: commonMargin, y: commonMargin, width: 30 * screenScale, height: 30 * screenScale))
         d.backgroundColor = UIColor.gray
         
-        if (LoginModel.shared.headImgURL != nil) {
-            downImgWith(url: LoginModel.shared.headImgURL!, toView: d)
-        }  
+//        if !(LoginModel.shared.headImgURL != nil) {
+//            downImgWith(url: LoginModel.shared.headImgURL!, toView: d)
+//        }  
         
         return d
     }()
     
+    
+    /// 商城按钮
+    lazy var marketBtn: UIButton = {
+        let d : UIButton = UIButton.init(frame: CGRect(x: self.IDLabel.RightX + commonMargin, y: self.IDLabel.BottomY + commonMargin, width: 60, height: 30))
+        d.backgroundColor = UIColor.randomColor()
+        d.addTarget(self, action: #selector(jumpToShop), for: .touchUpInside)
+        d.setTitle("商城", for: .normal)
+        return d
+    }()
     
     /// ID
     lazy var IDLabel: CommonLabel = {
@@ -136,6 +145,22 @@ class PersonMsgView: UIView {
         addSubview(joinRoom)
         
         addSubview(makeRoom)
+        
+        addSubview(marketBtn)
+    }
+    
+    
+    /// 商城
+    @objc fileprivate func jumpToShop() -> Void {
+        let f : MarketV = MarketV.init(frame: CGRect.init(x: 100, y: SH * 0.2, width: 300, height: 300))
+        f.backgroundColor = UIColor.randomColor()
+        f.center = self.center
+        
+        if marketVISExist.count < 1 {
+            addToView(customView: f)
+            marketVISExist.append(f)
+        }
+        
     }
 
     /// 加入房间
@@ -186,8 +211,6 @@ class PersonMsgView: UIView {
         customView.layer.pop_add(scale, forKey: nil)
         
         addSubview(customView)
-        
-        
     }
     
     
@@ -213,6 +236,7 @@ class PersonMsgView: UIView {
         
         }
         
+        /// 创建房间清除
         if createRoomIsExist.count > 0  {
             
             //购物断网刷新
@@ -222,6 +246,19 @@ class PersonMsgView: UIView {
                 
                 /// 清空记录数组
                 createRoomIsExist.removeAll()
+            }
+        }
+        
+        /// 商城清除
+        if marketVISExist.count > 0  {
+            
+            //购物断网刷新
+            if NSStringFromClass((self.subviews.last?.classForCoder)!).contains("MarketV") {
+                
+                self.subviews.last?.removeFromSuperview()
+                
+                /// 清空记录数组
+                marketVISExist.removeAll()
             }
         }
     }

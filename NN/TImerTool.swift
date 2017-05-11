@@ -19,17 +19,19 @@ class TImerTool: NSObject {
     
     static let shared = TImerTool.init()
     
-//    func timerCount(seconds : Int) -> Void {
-//        timer = Timer.init(timeInterval: TimeInterval(seconds), target: self, selector: #selector(timerFunc), userInfo: nil, repeats: true)
-//        
-//        timer?.fire()
-//        
-//        RunLoop.main.add(timer!, forMode: RunLoopMode.commonModes)
-//    }
+    func timerCount(seconds : Int) -> Void {
+        timer = Timer.init(timeInterval: TimeInterval(seconds), target: self, selector: #selector(timerFunc), userInfo: nil, repeats: true)
+        
+        timer?.fire()
+        
+        RunLoop.main.add(timer!, forMode: RunLoopMode.commonModes)
+    }
     
-//    func timerFunc() -> Void {
-//        SendMediaTool.shared.sendHart()
-//    }
+    func timerFunc() -> Void {
+        
+        print("dida")
+        sendHeart()
+    }
     
     func invalidTimer() -> Void {
         timer?.invalidate()

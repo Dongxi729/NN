@@ -1,25 +1,25 @@
 //
-//  SixCowV.swift
+//  CommCowDownV.swift
 //  NN
 //
-//  Created by 郑东喜 on 2017/5/10.
+//  Created by 郑东喜 on 2017/5/11.
 //  Copyright © 2017年 郑东喜. All rights reserved.
-//  六人牛牛视图
+//
 
 import UIKit
 
-class SixCowV: UIView {
-
+class CommCowDownV: UIView {
+    
     
     /// 文字
-    var dataSource : [String] = ["10局","20局","30局","2人","3人","4人","5人","6人"]
-    
+    var dataSource : [String] = ["房费平摊","房主结算"]
+    var secSource : [String] = ["25分","20分","15分","10分","5分"]
     
     /// 九宫格
     lazy var collV: UICollectionView = {
         
         let layout = UICollectionViewFlowLayout.init()
-        layout.itemSize = CGSize.init(width: (self.frame.width - 30) / 3, height: 40)
+        layout.itemSize = CGSize.init(width: (self.frame.width - 30) / 2, height: 40)
         
         
         layout.minimumLineSpacing = 10
@@ -33,7 +33,7 @@ class SixCowV: UIView {
         d.dataSource = self
         d.delegate = self
         
-        d.register(SixCollectionViewCell.self, forCellWithReuseIdentifier: "six")
+        d.register(CommonSixCowDownVCollectCell.self, forCellWithReuseIdentifier: "commonsixDown")
         
         return d
     }()
@@ -45,32 +45,49 @@ class SixCowV: UIView {
         self.addSubview(collV)
         
     }
-
+    
     
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
 }
 
-extension SixCowV : UICollectionViewDataSource,UICollectionViewDelegateFlowLayout {
+extension CommCowDownV : UICollectionViewDataSource,UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "six", for: indexPath) as! SixCollectionViewCell
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "commonsixDown", for: indexPath) as! CommonSixCowDownVCollectCell
         
-        cell.labelll.text = dataSource[indexPath.row]
+        
+        
+        if indexPath.section == 0 {
+            cell.labelll.text = dataSource[indexPath.row]
+        } else {
+            cell.labelll.text = secSource[indexPath.row]
+        }
         
         return cell
     }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        if indexPath.section == 0 {
+            return CGSize.init(width: (self.frame.width - 30) / 2, height: 40)
+        } else {
+            return CGSize.init(width: (self.frame.width - 30) / 3, height: 40)
 
+        }
+    }
     
     func numberOfSections(in collectionView: UICollectionView) -> Int {
         
-        return 1
+        return 2
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         
-        return dataSource.count
-        
+        if section == 0 {
+            return dataSource.count
+        } else {
+            return secSource.count
+        }
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
@@ -79,7 +96,7 @@ extension SixCowV : UICollectionViewDataSource,UICollectionViewDelegateFlowLayou
     
 }
 
-class SixCollectionViewCell: UICollectionViewCell {
+class CommonSixCowDownVCollectCell: UICollectionViewCell {
     
     lazy var labelll: CommonLabell = {
         let d : CommonLabell = CommonLabell.init(frame: CGRect.init(x: 0, y: 0, width: SW * 0.05, height: SW * 0.05))
@@ -107,5 +124,5 @@ class SixCollectionViewCell: UICollectionViewCell {
         addSubview(labelll)
         addSubview(bgImg)
     }
-
+    
 }

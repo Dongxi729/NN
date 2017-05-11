@@ -17,10 +17,14 @@ let localSave = UserDefaults.standard
 let nav = UIApplication.shared.keyWindow?.rootViewController
 
 //微信应用app iD
-//wxb4ba3c02aa476ea1
-//let WXPatient_App_ID = "wxb4ba3c02aa476ea1"
-let WXPatient_App_ID = "wx72ef50bd213b7232"
-let WXPatient_App_Secret = "fca39841591b0823da05b59bfb77f0a1"
+
+//let WXPatient_App_ID = "wx72ef50bd213b7232"
+//let WXPatient_App_Secret = "fca39841591b0823da05b59bfb77f0a1"
+
+let WXPatient_App_ID = "wxd6870b76bf49dd4c"
+let WXPatient_App_Secret = "f12aff3e2c7b83c848b81ae79f54595c"
+
+
 let WX_ACCESS_TOKEN = "access_token"
 let WX_OPEN_ID = "openid"
 let WX_REFRESH_TOKEN = "refresh_token"

@@ -81,15 +81,15 @@ extension SixCowDownV : UICollectionViewDataSource,UICollectionViewDelegateFlowL
 
 class SixCowDownVCollectCell: UICollectionViewCell {
     
-    lazy var labelll: UILabel = {
-        let d : UILabel = UILabel.init(frame: CGRect.init(x: 0, y: 0, width: self.frame.width / 2, height: 30))
+    lazy var labelll: CommonLabell = {
+        let d : CommonLabell = CommonLabell.init(frame: CGRect.init(x: 0, y: 0, width: SW * 0.05, height: SW * 0.05))
         //        d.backgroundColor = UIColor.randomColor()
         return d
     }()
     
     /// 文本
     lazy var bgImg: UIImageView = {
-        let bgImg : UIImageView = UIImageView.init(frame: CGRect.init(x: 50, y: commonMargin, width: 50, height: 50))
+        let bgImg : UIImageView = UIImageView.init(frame: CGRect.init(x: 50, y: commonMargin, width: SW * 0.05, height: SW * 0.05))
         bgImg.backgroundColor = UIColor.randomColor()
         return bgImg
     }()

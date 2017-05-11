@@ -9,7 +9,7 @@
 import UIKit
 
 class MainGameViewController: UIViewController {
-
+    
     lazy var mainView: PersonMsgView = {
         let d : PersonMsgView = PersonMsgView.init(frame: self.view.bounds)
         
@@ -29,38 +29,36 @@ class MainGameViewController: UIViewController {
 //        
 //        /// 开始上报用户信息,传socket
 //        
-//            
-//            print("连接服务器")
-//            AvdioTool.shared.creatSession()
-//            
-//            /// 开启链接服务器
-//            DispatchQueue.global(qos: .default).async {
-//                
-//                testServer()
-//            }
+//        AvdioTool.shared.creatSession()
 //        
+//        /// 开启链接服务器
+//        DispatchQueue.global(qos: .default).async {
+//            
+//            testServer()
+//
+//        }
 //    }
+    
+
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
         // Do any additional setup after loading the view.
-  
+        
         
         let add = UIButton.init(frame: CGRect.init(x: 30, y: 30, width: 100, height: 100))
         add.backgroundColor = UIColor.red
         
         add.addTarget(self, action: #selector(presenrView), for: .touchUpInside)
-
-        view.addSubview(mainView)
-        print("\((#file as NSString).lastPathComponent):(\(#line))\n",UIScreen.main.bounds.height)
-        print("\((#file as NSString).lastPathComponent):(\(#line))\n",UIScreen.main.bounds.width)
         
-//        addScrollText()
+        view.addSubview(mainView)
+        
+        //        addScrollText()
     }
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
-        print("----",LoginModel.shared.headImgURL as Any)   
+        print("----",LoginModel.shared.headImgURL as Any)
     }
     
     func presenrView() -> Void {
@@ -68,7 +66,7 @@ class MainGameViewController: UIViewController {
         
         presentView.center = view.center
     }
-
+    
     /// 添加滚动文字
     func addScrollText() -> Void {
         let scText = ScrollText.init(frame: CGRect.init(x: 0, y: 100, width: SW * 0.5, height: 50), withBackGroundColor: UIColor.gray, withTitleColor: UIColor.purple)
@@ -79,5 +77,5 @@ class MainGameViewController: UIViewController {
         
         view.addSubview(scText!)
     }
-
+    
 }
