@@ -24,6 +24,14 @@ class MainGameViewController: UIViewController {
         return d
     }()
     
+    
+    lazy var sendRoomType: UIButton = {
+        let d : UIButton = UIButton(frame: CGRect(x: 100, y: 100, width: 100, height: 100))
+        d.backgroundColor = UIColor.randomColor()
+        d.addTarget(self, action: #selector(sendRoomTypeSEL), for: .touchUpInside)
+        return d
+    }()
+    
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
@@ -38,7 +46,10 @@ class MainGameViewController: UIViewController {
         }
     }
     
-
+    /// 发送房间类型
+    @objc fileprivate func sendRoomTypeSEL() -> Void {
+        reportCreateRoomType()
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -52,6 +63,9 @@ class MainGameViewController: UIViewController {
         add.addTarget(self, action: #selector(presenrView), for: .touchUpInside)
         
         view.addSubview(mainView)
+        
+        /// 发送房间类型
+        view.addSubview(sendRoomType)
         
         //        addScrollText()
     }

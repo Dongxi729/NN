@@ -49,9 +49,7 @@ func testServer() {
     case .success:
         
 //        TImerTool.shared.timerCount(seconds: 1)
-        
-        
-        
+
         while true {
             
             if readmsg(clientSercer: client) != nil {
@@ -78,8 +76,41 @@ func reportUID() -> Void {
     /// 上报用户信息
     
     print("balabala")
+//    
+//    let str = "<M><Nn id=\"\(LoginModel.shared.uid!)\" tk=\"\(LoginModel.shared.token!)\"/></M>"
+//    
+//    let datacc : NSMutableData = NSMutableData()
+//    
+//    
+//    var dataStr  = str.data(using: String.Encoding.utf8)
+//    
+//    /// 包头
+//    var it1  = (dataStr?.count)! + 1
+//    var type:Int = 254
+//    datacc.append(&it1, length: 4)
+//    
+//    /// 类型
+//    datacc.append(&type,length: 1)
+//    
+//    let adata:NSMutableData = NSMutableData()
+//    
+//    /// 包体
+//    adata.append(datacc as Data)
+//    adata.append(dataStr!)
+//    
+//    guard let socket = client else {
+//        
+//        return
+//    }
+//    
+//    socket.send(data: adata as Data)
     
-    let str = "<M><Nn id=\"\(LoginModel.shared.uid!)\" tk=\"\(LoginModel.shared.token!)\"/></M>"
+    reportTypeWithData(typeInt: 254, str: "<M><Nn id=\"\(LoginModel.shared.uid!)\" tk=\"\(LoginModel.shared.token!)\"/></M>")
+}
+
+func reportTypeWithData(typeInt : Int,str : String) {
+    
+    let str = str
     
     let datacc : NSMutableData = NSMutableData()
     
@@ -88,7 +119,7 @@ func reportUID() -> Void {
     
     /// 包头
     var it1  = (dataStr?.count)! + 1
-    var type:Int = 254
+    var type:Int = typeInt
     datacc.append(&it1, length: 4)
     
     /// 类型
@@ -100,27 +131,6 @@ func reportUID() -> Void {
     adata.append(datacc as Data)
     adata.append(dataStr!)
     
-    //读取每一个字节数据 放入数组中
-//    var barr = [UInt8]()
-//    
-//    for i in 0..<(adata.length)
-//    {
-//        
-//        var tt:UInt8 = 0
-//        adata.getBytes(&tt, range: NSRange(location: i,length: 1))
-//        barr.append(tt)
-//    }
-//    
-//    print("sendByte",barr)
-//    
-//    for i in 0..<5 {
-//        barr.remove(at: 0)
-//        
-//        if i == 4 {
-//            print("convertStr:",String.init(bytes: barr, encoding: String.Encoding.utf8) as Any)
-//        }
-//    }
-
     guard let socket = client else {
         
         return
@@ -128,8 +138,6 @@ func reportUID() -> Void {
     
     socket.send(data: adata as Data)
 }
-
-
 
 /// 发送心跳包
 func sendHeart() {
@@ -150,10 +158,13 @@ func sendHeart() {
 }
 
 func reportCreateRoomType() -> Void {
-    let _ = "<M><ty gt=" + CreateRoomModel.shared.roomType + "ii=" + CreateRoomModel.shared.rounds + "rn=" + CreateRoomModel.shared.players + "py=" + CreateRoomModel.shared.payType + "/></M>"
+    let roomType = "<M><ty gt=\"\(CreateRoomModel.shared.roomType)\" ii=\"\(CreateRoomModel.shared.rounds)\" rn=\"\(CreateRoomModel.shared.players)\" py=\"\(CreateRoomModel.shared.payType)\"/></M>"
     
     /// 添加发送的文字
+    reportTypeWithData(typeInt: 6, str: roomType)
 }
+
+
 
 /// 读取信息
 func readmsg(clientSercer : TCPClient)->String? {

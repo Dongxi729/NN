@@ -36,8 +36,8 @@ class CreateRoomModel: NSObject {
     /// 局数(10、20、30)
     var rounds : String = "10"
     
-    /// 局数玩法人数(2/3/4/5/6)
-    var players : String = "2"
+    /// 局数玩法人数(3/6)
+    var players : String = "3"
     
     /// 结算方式
     var payType : String = "1"
