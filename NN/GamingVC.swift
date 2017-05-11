@@ -20,7 +20,7 @@ class GamingVC: UIViewController {
    
     @objc fileprivate func addChartV() -> Void {
         let f : ChatV = ChatV.init(frame: CGRect.init(x: 100, y: SH * 0.2, width: SW * 0.5, height: SH * 0.8))
-        f.backgroundColor = UIColor.randomColor()
+        f.backgroundColor = UIColor.gray
         f.center = view.center
         
         

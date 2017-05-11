@@ -26,7 +26,7 @@ class ChatV: UIView {
         layout.minimumInteritemSpacing = 5
         
         /// 设置大小出错///
-        let d : UICollectionView = UICollectionView.init(frame: self.bounds, collectionViewLayout: layout)
+        let d : UICollectionView = UICollectionView.init(frame: CGRect.init(x: commonMargin, y: commonMargin, width: self.frame.width - 2 * commonMargin, height: self.frame.height), collectionViewLayout: layout)
         
         d.backgroundColor = UIColor.white
         
@@ -72,7 +72,20 @@ extension ChatV : UICollectionViewDataSource,UICollectionViewDelegateFlowLayout 
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         if indexPath.section == 0 {
-            return CGSize.init(width: (self.frame.width) / 9, height: 30)
+//            return CGSize.init(width: (self.frame.width - 2 * commonMargin) / 9, height: 30)
+            
+            
+            //列数
+            let columnsNum = 7
+            //整个view的宽度
+            let collectionViewWidth = collectionView.bounds.width
+            //计算单元格的宽度
+            let itemWidth = (collectionViewWidth - commonMargin * CGFloat(columnsNum-1))
+                / CGFloat(columnsNum)
+            
+            
+            //设置单元格宽度和高度
+            return CGSize(width:itemWidth, height:itemWidth)
         } else {
             
             //列数
@@ -105,9 +118,6 @@ extension ChatV : UICollectionViewDataSource,UICollectionViewDelegateFlowLayout 
         
     }
     
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
-        return 10
-    }
     
 }
 
@@ -120,7 +130,7 @@ class ChatVCollectCell: UICollectionViewCell {
     }()
     
     lazy var secImg: UIImageView = {
-        let d : UIImageView = UIImageView.init(frame: CGRect(x: commonMargin, y: commonMargin, width: self.frame.width, height: 30))
+        let d : UIImageView = UIImageView.init(frame: CGRect(x: 0, y: 0, width: self.frame.width, height: self.Height))
         d.backgroundColor = UIColor.randomColor()
         return d
     }()
