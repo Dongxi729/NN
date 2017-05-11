@@ -24,20 +24,19 @@ class MainGameViewController: UIViewController {
         return d
     }()
     
-//    override func viewWillAppear(_ animated: Bool) {
-//        super.viewWillAppear(animated)
-//        
-//        /// 开始上报用户信息,传socket
-//        
-//        AvdioTool.shared.creatSession()
-//        
-//        /// 开启链接服务器
-//        DispatchQueue.global(qos: .default).async {
-//            
-//            testServer()
-//
-//        }
-//    }
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        /// 开始上报用户信息,传socket
+        
+        AvdioTool.shared.creatSession()
+        
+        /// 开启链接服务器
+        DispatchQueue.global(qos: .default).async {
+            
+            testServer()
+        }
+    }
     
 
     

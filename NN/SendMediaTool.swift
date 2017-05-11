@@ -54,8 +54,6 @@ func testServer() {
         
         while true {
             
-            
-            
             if readmsg(clientSercer: client) != nil {
                 
             } else {
@@ -79,7 +77,7 @@ func testServer() {
 func reportUID() -> Void {
     /// 上报用户信息
     
-//    print("balabala")
+    print("balabala")
 //
 //    let sendXMLDATA = "<M><Nn id=\"\(LoginModel.shared.uid!)\" tk=\"\(LoginModel.shared.token!)\"/></M>"
 //    
@@ -114,38 +112,42 @@ func reportUID() -> Void {
     var dataStr  = str.data(using: String.Encoding.utf8)
     
     /// 包头
-    var it1  = dataStr?.count
-    
+    var it1  = (dataStr?.count)! + 1
+    var type:Int = 254
     datacc.append(&it1, length: 4)
+    datacc.append(&type,length: 1)
     
     let adata:NSMutableData = NSMutableData()
-    
     adata.append(datacc as Data)
-    
     adata.append(dataStr!)
     
     //读取每一个字节数据 放入数组中
-    var barr = [UInt8]()
-    
-    for i in 0..<(adata.length)
-    {
-        if i == 4 {
-            barr.append(254)
-        }
-        
-        var tt:UInt8 = 0
-        adata.getBytes(&tt, range: NSRange(location: i,length: 1))
-        barr.append(tt)
-    }
-    
-    print(barr)
-    
+//    var barr = [UInt8]()
+//    
+//    for i in 0..<(adata.length)
+//    {
+//        
+//        var tt:UInt8 = 0
+//        adata.getBytes(&tt, range: NSRange(location: i,length: 1))
+//        barr.append(tt)
+//    }
+//    
+//    print("sendByte",barr)
+//    
+//    for i in 0..<5 {
+//        barr.remove(at: 0)
+//        
+//        if i == 4 {
+//            print("convertStr:",String.init(bytes: barr, encoding: String.Encoding.utf8) as Any)
+//        }
+//    }
+
     guard let socket = client else {
         
         return
     }
     
-    socket.send(data: barr)
+    socket.send(data: adata as Data)
 }
 
 
@@ -166,8 +168,6 @@ func sendHeart() {
     print(heaerByte)
     
     socket.send(data: heaerByte)
-    
-
 }
 
 func reportCreateRoomType() -> Void {
@@ -183,7 +183,7 @@ func readmsg(clientSercer : TCPClient)->String? {
     /// 缓存池数据
     var d = clientSercer.read(1024 * 10)
     
-    print(d as Any)
+//    print("readMsg:",d as Any)
     
     /// 绩溪县
     if d != nil {
@@ -260,7 +260,6 @@ func bodyfun() {
         
         /// 记录字节流数据
         var bodyData = [Byte]()
-        
         
         //可以解析
         for _ in 0..<leng {
