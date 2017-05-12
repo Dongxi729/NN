@@ -47,6 +47,7 @@ class CreateRoomBasic: UIView {
     /// 创建房间
     lazy var createRoomBtn: UIButton = {
         let d : UIButton = UIButton.init(frame: CGRect.init(x:self.Width * 0.5 - 25 , y: self.Height * 0.8, width: 100, height: 50))
+        d.addTarget(self, action: #selector(createWithInfo), for: .touchUpInside)
         d.setTitle("创建房间", for: .normal)
         return d
     }()
@@ -105,6 +106,19 @@ class CreateRoomBasic: UIView {
         
         addSubview(liubtnChange)
         addSubview(commBtn)
+    }
+    
+    /// 六人牛牛
+    @objc fileprivate func createWithInfo() -> Void {
+
+        reportCreateRoomType()
+        
+        var dd : String? {
+            didSet {
+                print("撒旦撒旦撒")
+            }
+        }
+        
     }
     
     /// 六人牛牛

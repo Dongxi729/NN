@@ -205,7 +205,7 @@ extension SocketVC : UITableViewDataSource,UITableViewDelegate {
             break
         ///文字
         case 4:
-            sendTextFunc(sendText: "asdsadsadsadsadasdsadsad")
+//            sendTextFunc(sendText: "asdsadsadsadsadasdsadsad")
             break
             
         ///语音

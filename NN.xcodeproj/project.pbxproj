@@ -56,6 +56,7 @@
 		264A2CE41EC4565A001B7F0E /* MarketV.swift in Sources */ = {isa = PBXBuildFile; fileRef = 264A2CE31EC4565A001B7F0E /* MarketV.swift */; };
 		264A2CE61EC45D21001B7F0E /* ChatV.swift in Sources */ = {isa = PBXBuildFile; fileRef = 264A2CE51EC45D21001B7F0E /* ChatV.swift */; };
 		264A2CE91EC45F1F001B7F0E /* GamingVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 264A2CE81EC45F1F001B7F0E /* GamingVC.swift */; };
+		264A32CF1EC58485001405C4 /* XMLTool.swift in Sources */ = {isa = PBXBuildFile; fileRef = 264A32CE1EC58485001405C4 /* XMLTool.swift */; };
 		2657FD971EB860F900B92648 /* ControlVoice.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2657FD961EB860F900B92648 /* ControlVoice.swift */; };
 		2657FD991EB8642C00B92648 /* ViewAnimation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2657FD981EB8642C00B92648 /* ViewAnimation.swift */; };
 		2657FD9B1EB872C300B92648 /* ScaleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2657FD9A1EB872C300B92648 /* ScaleView.swift */; };
@@ -65,6 +66,7 @@
 		2657FDBC1EB984FE00B92648 /* sss.png in Resources */ = {isa = PBXBuildFile; fileRef = 2657FDBB1EB984FE00B92648 /* sss.png */; };
 		2657FDBE1EB9B95400B92648 /* PlayCommon.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2657FDBD1EB9B95400B92648 /* PlayCommon.swift */; };
 		266EC2031EBC854000AEA31C /* TimerLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 266EC2021EBC854000AEA31C /* TimerLabel.swift */; };
+		26771ED01EC54DE300B61DBC /* TestMediaVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26771ECF1EC54DE300B61DBC /* TestMediaVC.swift */; };
 		268255811EC190550080CCCD /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 268255801EC190550080CCCD /* LoginViewController.swift */; };
 		268255891EC194480080CCCD /* ImplementsLinkTool.swift in Sources */ = {isa = PBXBuildFile; fileRef = 268255881EC194480080CCCD /* ImplementsLinkTool.swift */; };
 		2682558B1EC196C30080CCCD /* LoginRequestTool.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2682558A1EC196C30080CCCD /* LoginRequestTool.swift */; };
@@ -107,7 +109,6 @@
 		26D54B3B1EC2C71800119FAA /* SwiftSocket.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 26D54B341EC2C55F00119FAA /* SwiftSocket.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		26D54B3E1EC2C7D000119FAA /* cccc.png in Resources */ = {isa = PBXBuildFile; fileRef = 26D54B3D1EC2C7D000119FAA /* cccc.png */; };
 		26D54B401EC2ED2C00119FAA /* CreateRoomVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26D54B3F1EC2ED2C00119FAA /* CreateRoomVC.swift */; };
-		26D54B421EC2EF8F00119FAA /* SocketSendTool.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26D54B411EC2EF8F00119FAA /* SocketSendTool.swift */; };
 		26D54B441EC2F0B500119FAA /* CreateRoomModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26D54B431EC2F0B500119FAA /* CreateRoomModel.swift */; };
 /* End PBXBuildFile section */
 
@@ -216,6 +217,7 @@
 		264A2CE31EC4565A001B7F0E /* MarketV.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MarketV.swift; sourceTree = "<group>"; };
 		264A2CE51EC45D21001B7F0E /* ChatV.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChatV.swift; sourceTree = "<group>"; };
 		264A2CE81EC45F1F001B7F0E /* GamingVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GamingVC.swift; sourceTree = "<group>"; };
+		264A32CE1EC58485001405C4 /* XMLTool.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = XMLTool.swift; sourceTree = "<group>"; };
 		2657FD961EB860F900B92648 /* ControlVoice.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ControlVoice.swift; sourceTree = "<group>"; };
 		2657FD981EB8642C00B92648 /* ViewAnimation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewAnimation.swift; sourceTree = "<group>"; };
 		2657FD9A1EB872C300B92648 /* ScaleView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScaleView.swift; sourceTree = "<group>"; };
@@ -225,6 +227,7 @@
 		2657FDBB1EB984FE00B92648 /* sss.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = sss.png; sourceTree = "<group>"; };
 		2657FDBD1EB9B95400B92648 /* PlayCommon.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlayCommon.swift; sourceTree = "<group>"; };
 		266EC2021EBC854000AEA31C /* TimerLabel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TimerLabel.swift; sourceTree = "<group>"; };
+		26771ECF1EC54DE300B61DBC /* TestMediaVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TestMediaVC.swift; sourceTree = "<group>"; };
 		268255801EC190550080CCCD /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		268255881EC194480080CCCD /* ImplementsLinkTool.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImplementsLinkTool.swift; sourceTree = "<group>"; };
 		2682558A1EC196C30080CCCD /* LoginRequestTool.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginRequestTool.swift; sourceTree = "<group>"; };
@@ -281,7 +284,6 @@
 		26D54B381EC2C66200119FAA /* SyncTimerVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SyncTimerVC.swift; sourceTree = "<group>"; };
 		26D54B3D1EC2C7D000119FAA /* cccc.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = cccc.png; sourceTree = "<group>"; };
 		26D54B3F1EC2ED2C00119FAA /* CreateRoomVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreateRoomVC.swift; sourceTree = "<group>"; };
-		26D54B411EC2EF8F00119FAA /* SocketSendTool.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SocketSendTool.swift; sourceTree = "<group>"; };
 		26D54B431EC2F0B500119FAA /* CreateRoomModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreateRoomModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -342,6 +344,7 @@
 		2603D9391EADC8D20069B132 /* NN */ = {
 			isa = PBXGroup;
 			children = (
+				26771ECF1EC54DE300B61DBC /* TestMediaVC.swift */,
 				26D54AD01EC2BD5000119FAA /* socketCommu */,
 				268255851EC1917E0080CCCD /* thirdSDK */,
 				268255841EC1914E0080CCCD /* delegate */,
@@ -525,6 +528,18 @@
 			name = controller;
 			sourceTree = "<group>";
 		};
+		264A32D01EC58B37001405C4 /* view */ = {
+			isa = PBXGroup;
+			children = (
+				26BDD6C71EC3660C00F1C478 /* CreateRoomBasic.swift */,
+				26BDD6CB1EC3722D00F1C478 /* SixCowDownV.swift */,
+				26BDD6C91EC368AF00F1C478 /* SixCowV.swift */,
+				264A2CDE1EC44CB0001B7F0E /* CommonCowUpV.swift */,
+				264A2CE01EC44DE5001B7F0E /* CommCowDownV.swift */,
+			);
+			name = view;
+			sourceTree = "<group>";
+		};
 		2657FDB81EB982B900B92648 /* 字体 */ = {
 			isa = PBXGroup;
 			children = (
@@ -613,6 +628,7 @@
 				262E1C391EB1CBDE007CC745 /* CaptureScreenTool.swift */,
 				2657FD9C1EB8809100B92648 /* DelayTimerTool.swift */,
 				2657FD961EB860F900B92648 /* ControlVoice.swift */,
+				264A32CE1EC58485001405C4 /* XMLTool.swift */,
 			);
 			name = tool;
 			sourceTree = "<group>";
@@ -625,11 +641,7 @@
 				26D54B431EC2F0B500119FAA /* CreateRoomModel.swift */,
 				26CFB6E01EC2FC2E00327748 /* CreateV.swift */,
 				26CFB6E21EC3099200327748 /* MyPlayground.playground */,
-				26BDD6C71EC3660C00F1C478 /* CreateRoomBasic.swift */,
-				26BDD6CB1EC3722D00F1C478 /* SixCowDownV.swift */,
-				26BDD6C91EC368AF00F1C478 /* SixCowV.swift */,
-				264A2CDE1EC44CB0001B7F0E /* CommonCowUpV.swift */,
-				264A2CE01EC44DE5001B7F0E /* CommCowDownV.swift */,
+				264A32D01EC58B37001405C4 /* view */,
 			);
 			name = createRoom;
 			sourceTree = "<group>";
@@ -645,7 +657,6 @@
 				26D54B301EC2C42800119FAA /* ServerSendMsg.swift */,
 				26D54B2D1EC2C36900119FAA /* SendMediaTool.swift */,
 				26D54B3D1EC2C7D000119FAA /* cccc.png */,
-				26D54B411EC2EF8F00119FAA /* SocketSendTool.swift */,
 			);
 			name = socketCommu;
 			sourceTree = "<group>";
@@ -867,6 +878,7 @@
 				260C666E1EB23415006C119E /* POPMath.mm in Sources */,
 				2603D95C1EADCA3C0069B132 /* WXTool.swift in Sources */,
 				26BDD6C81EC3660C00F1C478 /* CreateRoomBasic.swift in Sources */,
+				264A32CF1EC58485001405C4 /* XMLTool.swift in Sources */,
 				26D54B311EC2C42800119FAA /* ServerSendMsg.swift in Sources */,
 				260C666D1EB23415006C119E /* POPLayerExtras.mm in Sources */,
 				26BDD6CA1EC368AF00F1C478 /* SixCowV.swift in Sources */,
@@ -875,7 +887,6 @@
 				260C666C1EB23415006C119E /* POPGeometry.mm in Sources */,
 				264A2CDF1EC44CB0001B7F0E /* CommonCowUpV.swift in Sources */,
 				2657FD9D1EB8809100B92648 /* DelayTimerTool.swift in Sources */,
-				26D54B421EC2EF8F00119FAA /* SocketSendTool.swift in Sources */,
 				260C666B1EB23415006C119E /* POPDecayAnimation.mm in Sources */,
 				26D54B2E1EC2C36900119FAA /* TImerTool.swift in Sources */,
 				2657FD991EB8642C00B92648 /* ViewAnimation.swift in Sources */,
@@ -901,6 +912,7 @@
 				2657FDA11EB96F9300B92648 /* FontVC.swift in Sources */,
 				26BC613C1EB4253B00AE9BE1 /* CollectionViewCell.swift in Sources */,
 				26D54B2A1EC2C11B00119FAA /* VoiceConverter.mm in Sources */,
+				26771ED01EC54DE300B61DBC /* TestMediaVC.swift in Sources */,
 				260C66621EB23415006C119E /* POPAnimation.mm in Sources */,
 				2603D9791EADD3AA0069B132 /* PersonMsgView.swift in Sources */,
 				26D54B401EC2ED2C00119FAA /* CreateRoomVC.swift in Sources */,

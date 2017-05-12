@@ -19,8 +19,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
         
-//        window?.rootViewController = LoginViewController()
-        window?.rootViewController = GamingVC()
+        window?.rootViewController = LoginViewController()
+//        window?.rootViewController = GamingVC()
         window?.makeKeyAndVisible()
         window?.backgroundColor = UIColor.white
         
@@ -29,7 +29,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         return true
     }
 
-    
+    func applicationDidBecomeActive(_ application: UIApplication) {
+        print("applicationDidBecomeActive")
+    }
     
 
   

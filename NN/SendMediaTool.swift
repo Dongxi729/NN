@@ -25,8 +25,8 @@ struct ConnectConfig {
     var port : Int32 = 8888
 }
 
-//let d = ConnectConfig.init(host: "127.0.0.1", port: 8888)
-let d = ConnectConfig.init(host: LoginModel.shared.serviceip!, port: Int32(LoginModel.shared.serviceport!)!)
+let d = ConnectConfig.init(host: "192.168.2.11", port: 8887)
+//let d = ConnectConfig.init(host: LoginModel.shared.serviceip!, port: Int32(LoginModel.shared.serviceport!)!)
 
 
 /// 包体长度
@@ -42,17 +42,16 @@ fileprivate var bodyBytesAny:[Byte] = [Byte]()
 /// 测试服务器
 func testServer() {
     
-    client = TCPClient.init(address: d.host, port: 2048)
+    client = TCPClient.init(address: "192.168.2.11", port: 8888)
+//    client = TCPClient.init(address: "192.168.1.10", port: 2048)
     
     switch client.connect(timeout: 1) {
         
     case .success:
-        
-//        TImerTool.shared.timerCount(seconds: 1)
 
         while true {
             
-            if readmsg(clientSercer: client) != nil {
+            if readmsg() != nil {
                 
             } else {
                 print("\((#file as NSString).lastPathComponent):(\(#line))\n","连接失败")
@@ -75,7 +74,6 @@ func testServer() {
 func reportUID() -> Void {
     /// 上报用户信息
     
-    print("balabala")
 //    
 //    let str = "<M><Nn id=\"\(LoginModel.shared.uid!)\" tk=\"\(LoginModel.shared.token!)\"/></M>"
 //    
@@ -137,6 +135,7 @@ func reportTypeWithData(typeInt : Int,str : String) {
     }
     
     socket.send(data: adata as Data)
+
 }
 
 /// 发送心跳包
@@ -151,12 +150,26 @@ func sendHeart() {
     guard let socket = client else {
         return
     }
-    
-    print(heaerByte)
-    
+
     socket.send(data: heaerByte)
+
 }
 
+
+/// 发送文字
+func sendText(sendStr : String) {
+    reportTypeWithData(typeInt: 0, str: sendStr)
+}
+
+
+
+/// 解散房间
+func dismissRoomSocketEvent() -> Void {
+    reportTypeWithData(typeInt: 90, str: "<M><ty ms=\"解散房间\"/></M>")
+}
+
+
+/// 上报房间类型
 func reportCreateRoomType() -> Void {
     let roomType = "<M><ty gt=\"\(CreateRoomModel.shared.roomType)\" ii=\"\(CreateRoomModel.shared.rounds)\" rn=\"\(CreateRoomModel.shared.players)\" py=\"\(CreateRoomModel.shared.payType)\"/></M>"
     
@@ -167,35 +180,49 @@ func reportCreateRoomType() -> Void {
 
 
 /// 读取信息
-func readmsg(clientSercer : TCPClient)->String? {
+func readmsg()->String? {
     //read 4 byte int as type
     
     /// 缓存池数据
-    var d = clientSercer.read(1024 * 10)
-    
-//    print("readMsg:",d as Any)
+    var d = client.read(1024 * 10)
     
     /// 绩溪县
     if d != nil {
         byteAnalyse(ddd: d!)
     }
-    
-    /// 只是为了取值方便
-    d?.remove(at: 4)
 
     if d != nil {
         
-        print("d = :",d as Any)
         
+        print("d原始数据",d!)
         /// 赋值接收到的字符串
         getReceiveStr = String.init(bytes: d!, encoding: String.Encoding.utf8)
         
-        print(getReceiveStr as Any)
-        
+        for index in 0..<5 {
+            let delIndexByte = d?.remove(at: 0)
+            
+            if index == 4 {
+                print("successMsg",String.init(bytes: d!, encoding: String.Encoding.utf8) as Any)
+                
+                print("删除第五个",delIndexByte)
+                
+                /// 接收类型传值
+                /// 创建房间传回的
+                if delIndexByte == 6 {
+                    CreateRoomModel.shared.getServerCreateInfo = String.init(bytes: d!, encoding: String.Encoding.utf8)!
+                }
+            }
+        }
+    
         /// 发送心跳包
         if (String.init(bytes: d!, encoding: String.Encoding.utf8)?.contains("信息正常"))! {
             TImerTool.shared.timerCount(seconds: 15)
         }
+        
+        if (String.init(bytes: d!, encoding: String.Encoding.utf8)?.contains("你的帐号关闭"))! {
+            print("掉线了~~~")
+        }
+        
         
         return String.init(bytes: d!, encoding: String.Encoding.utf8)
     } else {
@@ -288,8 +315,6 @@ func bytesShwoFunc(_over : [Byte]) -> Void {
     
     getReceiveStr = String.init(bytes: _over, encoding: String.Encoding.utf8)
     
-    print("----",String.init(bytes: _over, encoding: String.Encoding.utf8) as Any)
-    
     /// 通知传值
     NotificationCenter.default.post(name: NSNotification.Name(rawValue: "receiveData"), object: nil, userInfo: ["send" : _over])
 }
@@ -320,39 +345,8 @@ func sendVoice() -> Void {
         
         socket.send(data: sendData)
     }
-}
 
-/// 发送文字
-func sendTextFunc(sendText : String) -> Void {
-    
-    /// 发送文字
-    let datacc : NSMutableData = NSMutableData()
-    
-    let stta = sendText
-    let d1 = stta.data(using: String.Encoding.utf8)
-    var it1  = d1?.count;
-    
-    /// 添加发送的文字
-    datacc.append(&it1, length: 4)
-    
-    /// 添加发送的类型
-    datacc.append(d1!)
-    
-    /// 转Data
-    var sendData : Data = datacc as Data
-    
-    //        /// 模拟类型为1
-    //        sendData.insert(1, at: 4)
-    
-    guard let socket = client else {
-        return
-    }
-    
-    
-    socket.send(data: sendData)
-    
 }
-
 
 
 /// 发送图片

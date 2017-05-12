@@ -42,4 +42,11 @@ class CreateRoomModel: NSObject {
     /// 结算方式
     var payType : String = "1"
     
+    /// 接收服务器传回的字符串
+    var getServerCreateInfo : String = "" {
+        didSet {
+            print("收到创建房间",getServerCreateInfo)
+        }
+    }
+    
 }

@@ -29,7 +29,6 @@ class TImerTool: NSObject {
     
     func timerFunc() -> Void {
         
-        print("dida")
         sendHeart()
     }
     

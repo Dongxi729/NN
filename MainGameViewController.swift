@@ -10,6 +10,19 @@ import UIKit
 
 class MainGameViewController: UIViewController {
     
+    /// 解散房间
+    lazy var dismissRoom: UIButton = {
+        let d : UIButton = UIButton.init(frame: CGRect.init(x: 200, y: 100, width: 100, height: 100))
+        d.backgroundColor = UIColor.randomColor()
+        d.addTarget(self, action: #selector(dismissRoomSEL), for: .touchUpInside)
+        d.setTitle("解散房间", for: .normal)
+        return d
+    }()
+    
+
+    
+    
+    
     lazy var mainView: PersonMsgView = {
         let d : PersonMsgView = PersonMsgView.init(frame: self.view.bounds)
         
@@ -48,7 +61,7 @@ class MainGameViewController: UIViewController {
     
     /// 发送房间类型
     @objc fileprivate func sendRoomTypeSEL() -> Void {
-        reportCreateRoomType()
+
     }
     
     override func viewDidLoad() {
@@ -65,9 +78,16 @@ class MainGameViewController: UIViewController {
         view.addSubview(mainView)
         
         /// 发送房间类型
-        view.addSubview(sendRoomType)
+//        view.addSubview(sendRoomType)
         
+        /// 解散房间
+//        view.addSubview(dismissRoom)
+
         //        addScrollText()
+    }
+    
+    func dismissRoomSEL() -> Void {
+        dismissRoomSocketEvent()
     }
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {

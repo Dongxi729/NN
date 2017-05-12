@@ -81,6 +81,7 @@ class PersonMsgView: UIView {
     lazy var setBtn: UIButton = {
         let d : UIButton = UIButton.init(frame: CGRect.init(x: UIScreen.main.bounds.width - commonMargin - 40 * screenScale, y: commonMargin, width: 40, height: 40))
         d.backgroundColor = UIColor.gray
+        d.addTarget(self, action: #selector(sendMeee), for: .touchUpInside)
         d.setTitle("设置", for: .normal)
         return d
     }()
@@ -149,6 +150,14 @@ class PersonMsgView: UIView {
         addSubview(marketBtn)
     }
     
+    /// 测试发送媒体信息
+    @objc fileprivate func sendMeee() -> Void {
+        let f : TestMediaVC = TestMediaVC.init(frame: self.frame)
+        f.backgroundColor = UIColor.randomColor()
+        f.center = self.center
+        
+        addToView(customView: f)
+    }
     
     /// 商城
     @objc fileprivate func jumpToShop() -> Void {
