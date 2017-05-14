@@ -16,6 +16,7 @@ class SixCowV: UIView {
     
     var playersNum : [String] = ["2人","3人","4人","5人","6人"]
     
+    var dd = false
     
     /// 九宫格
     lazy var collV: UICollectionView = {
@@ -28,7 +29,7 @@ class SixCowV: UIView {
 //        layout.minimumInteritemSpacing = 10
         
         /// 设置大小出错///
-        let d : UICollectionView = UICollectionView.init(frame: CGRect.init(x: 0, y: 0, width: self.Width, height: 40 * 2), collectionViewLayout: layout)
+        let d : UICollectionView = UICollectionView.init(frame: self.bounds, collectionViewLayout: layout)
         
         d.backgroundColor = UIColor.white
         
@@ -56,8 +57,17 @@ extension SixCowV : UICollectionViewDataSource,UICollectionViewDelegateFlowLayou
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "six", for: indexPath) as! SixCollectionViewCell
         
-        cell.labelll.text = playRound[indexPath.row]
-        
+        switch indexPath.section {
+        case 0:
+            
+            cell.labelll.text = playRound[indexPath.row]
+            break
+        case 1:
+            cell.labelll.text = playersNum[indexPath.row]
+            break
+        default:
+            break
+        }
         
         return cell
     }
@@ -69,9 +79,11 @@ extension SixCowV : UICollectionViewDataSource,UICollectionViewDelegateFlowLayou
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         
-
+        if section == 0 {
             return playRound.count
-
+        } else {
+            return playersNum.count
+        }
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
@@ -79,9 +91,20 @@ extension SixCowV : UICollectionViewDataSource,UICollectionViewDelegateFlowLayou
         
         switch indexPath.section {
         case 0:
-            cell.bgImg.image = #imageLiteral(resourceName: "E8")
-            print(playRound[indexPath.row])
+            
+    
+            if dd == false {
+                cell.bgImg.image = #imageLiteral(resourceName: "send")
+                dd = true
+            } else {
+                cell.bgImg.image = #imageLiteral(resourceName: "E3")
+            }
+            
+            
+            
             break
+            
+
         default:
             break
         }
@@ -89,14 +112,22 @@ extension SixCowV : UICollectionViewDataSource,UICollectionViewDelegateFlowLayou
     
     func collectionView(_ collectionView: UICollectionView, didDeselectItemAt indexPath: IndexPath) {
         
-        print(indexPath.section)
-        
+        collectionView.deselectItem(at: indexPath, animated: true)
         
         let cell = collectionView.cellForItem(at: indexPath) as! SixCollectionViewCell
         switch indexPath.section {
         case 0:
-            cell.bgImg.image = #imageLiteral(resourceName: "E7")
+            
+            if dd {
+                cell.bgImg.image = #imageLiteral(resourceName: "send")
+                dd = false
+            } else {
+                cell.bgImg.image = #imageLiteral(resourceName: "E3")
+            }
+
             break
+            
+
         default:
             break
         }
@@ -117,7 +148,7 @@ class SixCollectionViewCell: UICollectionViewCell {
         let bgImg : UIImageView = UIImageView.init(frame: CGRect.init(x: commonMargin, y: commonMargin, width: SW / 30, height: SW / 30))
         bgImg.backgroundColor = UIColor.randomColor()
 //        bgImg.isUserInteractionEnabled = true
-
+        
         return bgImg
     }()
     
