@@ -45,19 +45,19 @@ class MainGameViewController: UIViewController {
         return d
     }()
     
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        
-        /// 开始上报用户信息,传socket
-        
-        AvdioTool.shared.creatSession()
-        
-        /// 开启链接服务器
-        DispatchQueue.global(qos: .default).async {
-            
-            testServer()
-        }
-    }
+//    override func viewWillAppear(_ animated: Bool) {
+//        super.viewWillAppear(animated)
+//        
+//        /// 开始上报用户信息,传socket
+//        
+//        AvdioTool.shared.creatSession()
+//        
+//        /// 开启链接服务器
+//        DispatchQueue.global(qos: .default).async {
+//            
+//            testServer()
+//        }
+//    }
     
     /// 发送房间类型
     @objc fileprivate func sendRoomTypeSEL() -> Void {
@@ -89,10 +89,7 @@ class MainGameViewController: UIViewController {
     func dismissRoomSEL() -> Void {
         dismissRoomSocketEvent()
     }
-    
-    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
-        print("----",LoginModel.shared.headImgURL as Any)
-    }
+
     
     func presenrView() -> Void {
         view.addSubview(presentView)

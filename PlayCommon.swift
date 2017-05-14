@@ -26,3 +26,4 @@ var marketVISExist : [MarketV] = []
 
 /// 创建房间
 var CreateRoomBasicISExist : [CreateRoomBasic] = []
+

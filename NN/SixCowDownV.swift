@@ -73,6 +73,11 @@ extension SixCowDownV : UICollectionViewDataSource,UICollectionViewDelegateFlowL
         
     }
     
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
+        return UIEdgeInsets.init(top: 0, left: 0, bottom: 0, right: 10)
+    }
+    
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         
     }
@@ -82,14 +87,13 @@ extension SixCowDownV : UICollectionViewDataSource,UICollectionViewDelegateFlowL
 class SixCowDownVCollectCell: UICollectionViewCell {
     
     lazy var labelll: CommonLabell = {
-        let d : CommonLabell = CommonLabell.init(frame: CGRect.init(x: 0, y: 0, width: SW * 0.05, height: SW * 0.05))
-        //        d.backgroundColor = UIColor.randomColor()
+        let d : CommonLabell = CommonLabell.init(frame: CGRect.init(x: self.bgImg.RightX + commonMargin, y: commonMargin, width: SW * 0.05, height: SW * 0.05))
         return d
     }()
     
     /// 文本
     lazy var bgImg: UIImageView = {
-        let bgImg : UIImageView = UIImageView.init(frame: CGRect.init(x: 50, y: commonMargin, width: SW * 0.05, height: SW * 0.05))
+        let bgImg : UIImageView = UIImageView.init(frame: CGRect.init(x: commonMargin, y: commonMargin, width: SW / 30, height: SW / 30))
         bgImg.backgroundColor = UIColor.randomColor()
         return bgImg
     }()

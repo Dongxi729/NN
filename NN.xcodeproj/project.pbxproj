@@ -57,6 +57,7 @@
 		264A2CE61EC45D21001B7F0E /* ChatV.swift in Sources */ = {isa = PBXBuildFile; fileRef = 264A2CE51EC45D21001B7F0E /* ChatV.swift */; };
 		264A2CE91EC45F1F001B7F0E /* GamingVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 264A2CE81EC45F1F001B7F0E /* GamingVC.swift */; };
 		264A32CF1EC58485001405C4 /* XMLTool.swift in Sources */ = {isa = PBXBuildFile; fileRef = 264A32CE1EC58485001405C4 /* XMLTool.swift */; };
+		264A32D21EC598C7001405C4 /* RoomModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 264A32D11EC598C7001405C4 /* RoomModel.swift */; };
 		2657FD971EB860F900B92648 /* ControlVoice.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2657FD961EB860F900B92648 /* ControlVoice.swift */; };
 		2657FD991EB8642C00B92648 /* ViewAnimation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2657FD981EB8642C00B92648 /* ViewAnimation.swift */; };
 		2657FD9B1EB872C300B92648 /* ScaleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2657FD9A1EB872C300B92648 /* ScaleView.swift */; };
@@ -110,6 +111,8 @@
 		26D54B3E1EC2C7D000119FAA /* cccc.png in Resources */ = {isa = PBXBuildFile; fileRef = 26D54B3D1EC2C7D000119FAA /* cccc.png */; };
 		26D54B401EC2ED2C00119FAA /* CreateRoomVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26D54B3F1EC2ED2C00119FAA /* CreateRoomVC.swift */; };
 		26D54B441EC2F0B500119FAA /* CreateRoomModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26D54B431EC2F0B500119FAA /* CreateRoomModel.swift */; };
+		26F25C731EC83B4D006951E6 /* SixCowLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26F25C721EC83B4D006951E6 /* SixCowLayout.swift */; };
+		26F25C751EC83B64006951E6 /* SixCommonLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26F25C741EC83B64006951E6 /* SixCommonLayout.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -218,6 +221,7 @@
 		264A2CE51EC45D21001B7F0E /* ChatV.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChatV.swift; sourceTree = "<group>"; };
 		264A2CE81EC45F1F001B7F0E /* GamingVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GamingVC.swift; sourceTree = "<group>"; };
 		264A32CE1EC58485001405C4 /* XMLTool.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = XMLTool.swift; sourceTree = "<group>"; };
+		264A32D11EC598C7001405C4 /* RoomModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RoomModel.swift; sourceTree = "<group>"; };
 		2657FD961EB860F900B92648 /* ControlVoice.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ControlVoice.swift; sourceTree = "<group>"; };
 		2657FD981EB8642C00B92648 /* ViewAnimation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewAnimation.swift; sourceTree = "<group>"; };
 		2657FD9A1EB872C300B92648 /* ScaleView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScaleView.swift; sourceTree = "<group>"; };
@@ -225,7 +229,7 @@
 		2657FDA01EB96F9300B92648 /* FontVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FontVC.swift; sourceTree = "<group>"; };
 		2657FDB91EB982E100B92648 /* DeskCards.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DeskCards.swift; sourceTree = "<group>"; };
 		2657FDBB1EB984FE00B92648 /* sss.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = sss.png; sourceTree = "<group>"; };
-		2657FDBD1EB9B95400B92648 /* PlayCommon.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlayCommon.swift; sourceTree = "<group>"; };
+		2657FDBD1EB9B95400B92648 /* PlayCommon.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PlayCommon.swift; path = ../PlayCommon.swift; sourceTree = "<group>"; };
 		266EC2021EBC854000AEA31C /* TimerLabel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TimerLabel.swift; sourceTree = "<group>"; };
 		26771ECF1EC54DE300B61DBC /* TestMediaVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TestMediaVC.swift; sourceTree = "<group>"; };
 		268255801EC190550080CCCD /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
@@ -285,6 +289,8 @@
 		26D54B3D1EC2C7D000119FAA /* cccc.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = cccc.png; sourceTree = "<group>"; };
 		26D54B3F1EC2ED2C00119FAA /* CreateRoomVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreateRoomVC.swift; sourceTree = "<group>"; };
 		26D54B431EC2F0B500119FAA /* CreateRoomModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreateRoomModel.swift; sourceTree = "<group>"; };
+		26F25C721EC83B4D006951E6 /* SixCowLayout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SixCowLayout.swift; sourceTree = "<group>"; };
+		26F25C741EC83B64006951E6 /* SixCommonLayout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SixCommonLayout.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -325,7 +331,6 @@
 		2603D92E1EADC8D20069B132 = {
 			isa = PBXGroup;
 			children = (
-				2657FDBD1EB9B95400B92648 /* PlayCommon.swift */,
 				2603D9391EADC8D20069B132 /* NN */,
 				2603D9381EADC8D20069B132 /* Products */,
 				2603D94C1EADCA160069B132 /* NN-Bridging-Header.h */,
@@ -508,6 +513,7 @@
 			children = (
 				264A2CEA1EC45F3D001B7F0E /* view */,
 				264A2CEB1EC45F49001B7F0E /* controller */,
+				264A32D31EC59937001405C4 /* model */,
 			);
 			name = Gaming;
 			sourceTree = "<group>";
@@ -536,8 +542,18 @@
 				26BDD6C91EC368AF00F1C478 /* SixCowV.swift */,
 				264A2CDE1EC44CB0001B7F0E /* CommonCowUpV.swift */,
 				264A2CE01EC44DE5001B7F0E /* CommCowDownV.swift */,
+				26F25C721EC83B4D006951E6 /* SixCowLayout.swift */,
+				26F25C741EC83B64006951E6 /* SixCommonLayout.swift */,
 			);
 			name = view;
+			sourceTree = "<group>";
+		};
+		264A32D31EC59937001405C4 /* model */ = {
+			isa = PBXGroup;
+			children = (
+				264A32D11EC598C7001405C4 /* RoomModel.swift */,
+			);
+			name = model;
 			sourceTree = "<group>";
 		};
 		2657FDB81EB982B900B92648 /* 字体 */ = {
@@ -618,6 +634,7 @@
 		26A4872A1EC0050700E9A091 /* tool */ = {
 			isa = PBXGroup;
 			children = (
+				2657FDBD1EB9B95400B92648 /* PlayCommon.swift */,
 				26013DB01EC1D21400ACA99D /* labelScroll */,
 				26A4872B1EC0060F00E9A091 /* AbortTool.swift */,
 				266EC2021EBC854000AEA31C /* TimerLabel.swift */,
@@ -846,6 +863,7 @@
 				260C66691EB23415006C119E /* POPCGUtils.mm in Sources */,
 				260C666A1EB23415006C119E /* POPCustomAnimation.mm in Sources */,
 				26D54B331EC2C50500119FAA /* AvdioTool.swift in Sources */,
+				264A32D21EC598C7001405C4 /* RoomModel.swift in Sources */,
 				26CFB6E11EC2FC2E00327748 /* CreateV.swift in Sources */,
 				26D54B151EC2C0E700119FAA /* VoicieControl.swift in Sources */,
 				26BC613A1EB4250600AE9BE1 /* CollectVC.swift in Sources */,
@@ -853,6 +871,7 @@
 				26BDD6CC1EC3722D00F1C478 /* SixCowDownV.swift in Sources */,
 				26D54AE71EC2BD6D00119FAA /* DDXMLElement.m in Sources */,
 				2682558B1EC196C30080CCCD /* LoginRequestTool.swift in Sources */,
+				26F25C731EC83B4D006951E6 /* SixCowLayout.swift in Sources */,
 				2603D96F1EADCD440069B132 /* CustomAlertView.swift in Sources */,
 				260C66651EB23415006C119E /* POPAnimationRuntime.mm in Sources */,
 				26836AFB1EC1E2DB00061069 /* JoinRoomView.swift in Sources */,
@@ -864,6 +883,7 @@
 				26D54B2B1EC2C11B00119FAA /* WavConvert.m in Sources */,
 				260C66681EB23415006C119E /* POPBasicAnimation.mm in Sources */,
 				260ECA821EC1AF1F00058649 /* LoginModel.swift in Sources */,
+				26F25C751EC83B64006951E6 /* SixCommonLayout.swift in Sources */,
 				264A2CE41EC4565A001B7F0E /* MarketV.swift in Sources */,
 				2657FDBA1EB982E100B92648 /* DeskCards.swift in Sources */,
 				26CAF9BD1EB4C219003065B8 /* LabelRepeat.swift in Sources */,

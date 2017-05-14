@@ -42,7 +42,7 @@ fileprivate var bodyBytesAny:[Byte] = [Byte]()
 /// 测试服务器
 func testServer() {
     
-    client = TCPClient.init(address: "192.168.2.11", port: 8888)
+    client = TCPClient.init(address: "192.168.2.11", port: 8887)
 //    client = TCPClient.init(address: "192.168.1.10", port: 2048)
     
     switch client.connect(timeout: 1) {
@@ -207,9 +207,14 @@ func readmsg()->String? {
                 print("删除第五个",delIndexByte)
                 
                 /// 接收类型传值
-                /// 创建房间传回的
+                /// 创建房间成功传回的
                 if delIndexByte == 6 {
                     CreateRoomModel.shared.getServerCreateInfo = String.init(bytes: d!, encoding: String.Encoding.utf8)!
+                }
+                
+                /// 当前在场游戏人员信息
+                if delIndexByte == 8 {
+                    RoomModel.shared.currentRoomPlayInfo = String.init(bytes: d!, encoding: String.Encoding.utf8)!
                 }
             }
         }
