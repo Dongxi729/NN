@@ -210,12 +210,12 @@ extension SocketVC : UITableViewDataSource,UITableViewDelegate {
             
         ///语音
         case 5:
-            sendVoice()
+            
             break
             
         ///图片
         case 6:
-            sendImg(imageName: "cccc")
+            
             break
         default:
             break

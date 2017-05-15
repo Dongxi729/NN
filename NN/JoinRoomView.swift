@@ -11,13 +11,35 @@ import UIKit
 class JoinRoomView: UIView {
     
     
+    
     override init(frame: CGRect) {
         super.init(frame: frame)
         
-        self.addSubview(collV)
+//        self.addSubview(collV)
         
         /// 加入房间
-        addSubview(titleLabel)
+//        addSubview(titleLabel)
+        addSubview(tfPass)
+        addSubview(Test)
+    }
+    
+    lazy var tfPass: UITextField = {
+        let d : UITextField = UITextField.init(frame: CGRect.init(x: commonMargin, y: self.Test.BottomY + commonMargin, width: 100, height: 50))
+        d.backgroundColor = UIColor.white
+        return d
+    }()
+    
+    lazy var Test: UIButton = {
+        let d : UIButton = UIButton.init(frame: CGRect.init(x: 30, y: self.titleLabel.BottomY + commonMargin, width: 100, height: 30))
+        d.backgroundColor = UIColor.gray
+        d.addTarget(self, action: #selector(enjoyRoom), for: .touchUpInside)
+        d.setTitle("进入房间", for: .normal)
+        return d
+    }()
+    
+    @objc fileprivate func enjoyRoom() -> Void {
+
+        joinRoom(str: tfPass.text!)
     }
     
     /// 标题
@@ -57,8 +79,11 @@ class JoinRoomView: UIView {
     /// 图片
     var imgName : [String] = ["1","2","3","4","5","6","7","8","9","delLastWord","0","clear"]
     
-    
+    /// 密码输入视图控制
     var dddd :[UIView] = []
+    
+    /// 文字输入控制
+    var passInput : [Int] = []
     
     var texIndex : Int = 0
 
@@ -74,7 +99,6 @@ extension JoinRoomView : UICollectionViewDataSource,UICollectionViewDelegateFlow
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cellID", for: indexPath) as! CollectionViewCell
         
-        cell.labelll.text = dataSource[indexPath.row]
         cell.bgImg.image = UIImage.init(named: imgName[indexPath.row])
         return cell
     }
@@ -96,24 +120,34 @@ extension JoinRoomView : UICollectionViewDataSource,UICollectionViewDelegateFlow
         
         let selecttext = dataSource[indexPath.row]
         
+        print(selecttext)
+        
+        if passInput.count >= 1 {
+            for index in passInput {
+                print(index)
+            }
+            
+            print(passInput.count)
+        }
+        
         /// 添加数据
         
         let d = addLabelView.init(frame: CGRect.init(x: CGFloat(self.Width / 4 * CGFloat(texIndex)), y: 0, width: self.frame.width / 4, height: 64))
         
-        
-        
         if selecttext == "删除" {
-            print("\((#file as NSString).lastPathComponent):(\(#line))\n",dddd.count)
-            
+           
             if dddd.count > 0 {
                 self.subviews.last?.removeFromSuperview()
                 
+                passInput.removeLast()
+                
                 dddd.removeLast()
+                
+                passInput.removeLast()
                 
                 if texIndex > 0 {
                     texIndex -= 1
                 }
-
             }
             
             return
@@ -123,10 +157,13 @@ extension JoinRoomView : UICollectionViewDataSource,UICollectionViewDelegateFlow
             
             if texIndex <= 4 && dddd.count < 4 {
                 d.labelText(dd: selecttext)
-                
-                
+
                 self.addSubview(d)
                 dddd.append(d)
+                
+                if !selecttext.contains("充数") {
+                    passInput.append(Int(selecttext)!)
+                }
             }
             
             if texIndex >= 4 {
@@ -140,13 +177,20 @@ extension JoinRoomView : UICollectionViewDataSource,UICollectionViewDelegateFlow
                 
                 index.removeFromSuperview()
                 
+                passInput.removeAll()
                 dddd.removeAll()
                 
                 /// 重新计数
                 texIndex = 0
                 
+                if passInput.count > 1 {
+                    passInput.removeAll()
+                }
             }
-            
+        }
+        
+        if passInput.count > 3 {
+            return
         }
         
     }
@@ -164,7 +208,6 @@ class addLabelView: UIView {
     
     func labelText(dd : String) -> Void {
         la.text = dd
-        
     }
     
     override init(frame: CGRect) {

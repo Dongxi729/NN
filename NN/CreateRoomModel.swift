@@ -63,23 +63,28 @@ class CreateRoomModel: NSObject {
         let data = xmlStr.data(using: String.Encoding.utf8)
         
         //构造XML文档
-        let doc = try! DDXMLDocument(data: data!, options:0)
         
-        //利用XPath来定位节点（XPath是XML语言中的定位语法，类似于数据库中的SQL功能）
-        let users = try! doc.nodes(forXPath: "//M/ty") as! [DDXMLElement]
-        for user in users {
+        
+        do {
+            let doc = try DDXMLDocument(data: data!, options:0)
             
-            /// 是否创建成功
-            self.createSucess = user.attribute(forName: "u")!.stringValue!
-            
-            /// 房间号
-            self.roomNo = user.attribute(forName: "n")!.stringValue!
-            
-            print("======是否创建成功",self.createSucess)
-            
-            print("======房间号",self.roomNo)
-            
+            //利用XPath来定位节点（XPath是XML语言中的定位语法，类似于数据库中的SQL功能）
+            let users = try! doc.nodes(forXPath: "//M/ty") as! [DDXMLElement]
+            for user in users {
+                
+                /// 是否创建成功
+                self.createSucess = user.attribute(forName: "u")!.stringValue!
+                
+                /// 房间号
+                self.roomNo = user.attribute(forName: "n")!.stringValue!
+                
+                print("======是否创建成功",self.createSucess)
+                
+                print("======房间号",self.roomNo)
+                
+            }
+        } catch {
+            print("\((#file as NSString).lastPathComponent):(\(#line))\n","解析错误")
         }
-        
     }
 }

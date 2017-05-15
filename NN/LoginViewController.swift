@@ -64,8 +64,6 @@ class LoginViewController: UIViewController {
             return
         }
         
-        
-        
         if woid.isEmpty == false && waccess.isEmpty == false {
 
             LoginRequestTool.shared.getUserInfo(woid, waccess, finished: { (userDta) in

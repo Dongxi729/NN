@@ -9,6 +9,8 @@
 
 import UIKit
 
+typealias RoomDis = (_ sss : String) -> ()
+
 class RoomModel: NSObject {
     
     static let shared = RoomModel()
@@ -19,8 +21,24 @@ class RoomModel: NSObject {
     /// 游戏局数 10 、 20 、 30
     var gameRounds : String = "10"
     
+    /// 当前局数
+    var currentRounds : String = "0"
+    
     /// 游戏人数 3/6人
-    var playersNum : String = "3"
+    /// 开始规定的游戏人数
+    var limitedPlayersNum : Int = 3 {
+        didSet {
+            
+            print("\((#file as NSString).lastPathComponent):(\(#line))\n")
+            DispatchQueue.main.async {
+                UIApplication.shared.keyWindow?.rootViewController = GamingVC()
+            }
+            
+        }
+    }
+    
+    /// 当前房间所在人数
+    var currentPersonInRoom : Int = 0
     
     /// 积分
     var wantCoins : String = "5"
@@ -48,7 +66,6 @@ class RoomModel: NSObject {
         }
     }
     
-    
     /// 解析的xml字符串
     fileprivate func xmlAnalyse(xmlStr : String) -> Void {
         //获取xml文件内容
@@ -56,6 +73,7 @@ class RoomModel: NSObject {
         
         //构造XML文档
         let doc = try! DDXMLDocument(data: data!, options:0)
+        
         //<M>
         //<tg gt="1" ii="10" tii="0" rn="3" py="1" pyn="25" rnw="1"/>
         //<t>
@@ -70,7 +88,13 @@ class RoomModel: NSObject {
         for user in users {
             
             /// 游戏类型
-            self.gameType = user.attribute(forName: "gt")!.stringValue!
+            let gameType = user.attribute(forName: "gt")!.stringValue!
+            
+            if gameType == "1" {
+                self.gameType = "六人牛牛"
+            } else {
+                self.gameType = "通比牛牛"
+            }
             
             /// 拟定积分
             self.wantCoins = user.attribute(forName: "pyn")!.stringValue!
@@ -78,11 +102,31 @@ class RoomModel: NSObject {
             /// 支付方式
             self.payType = user.attribute(forName: "py")!.stringValue!
             
+            /// 总局数
+            self.gameRounds = user.attribute(forName: "ii")!.stringValue!
+            
+            /// 当前局数
+            self.currentRounds = user.attribute(forName: "tii")!.stringValue!
+            
+            /// 当前游戏人数
+            self.currentPersonInRoom = Int(user.attribute(forName: "rnw")!.stringValue!)!
+            
+            /// 拟定开好房间的总人数
+            self.limitedPlayersNum = Int(user.attribute(forName: "rn")!.stringValue!)!
+            
             print("=====self.gameType",self.gameType)
             
             print("=====self.wantCoins",self.wantCoins)
             
             print("====== 支付方式",self.payType)
+            
+            print("====== 总局数",self.gameRounds)
+            
+            print("====== 当前局数",self.currentRounds)
+            
+            print("====== 当前房间在线人数",self.currentPersonInRoom)
+            
+            print("====== 拟定创建好房间的总人数",self.limitedPlayersNum)
             
         }
         
@@ -114,5 +158,4 @@ class RoomModel: NSObject {
             }
         }
     }
-
 }

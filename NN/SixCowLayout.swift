@@ -56,12 +56,28 @@ class SixCowLayout: UIView {
         return  d
     }()
     
+    /// 左上角信息视图
+    lazy var leftInfoV: GameLeftCornerMsg = {
+        let d : GameLeftCornerMsg = GameLeftCornerMsg.init(frame: CGRect.init(x: 0, y: 0, width: SW / 5, height: SH * 0.3))
+        
+        return d
+    }()
+    
     // MARK: - 创建房间请求
     /// 创建六人牛牛房间请求
     @objc private func createSixRequest() -> Void {
         
         reportCreateRoomType()
+        
+        print("\((#file as NSString).lastPathComponent):(\(#line))\n",RoomModel.shared.currentRoomPlayInfo)
+        
+        if RoomModel.shared.currentRoomPlayInfo.isEmpty {
+            print("\((#file as NSString).lastPathComponent):(\(#line))\n")
+        }
+        
     }
+
+    
     
     override init(frame: CGRect) {
         super.init(frame: frame)

@@ -113,6 +113,7 @@
 		26D54B441EC2F0B500119FAA /* CreateRoomModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26D54B431EC2F0B500119FAA /* CreateRoomModel.swift */; };
 		26F25C731EC83B4D006951E6 /* SixCowLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26F25C721EC83B4D006951E6 /* SixCowLayout.swift */; };
 		26F25C751EC83B64006951E6 /* SixCommonLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26F25C741EC83B64006951E6 /* SixCommonLayout.swift */; };
+		26F9FA9E1EC9407100DF4A64 /* GamingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26F9FA9D1EC9407100DF4A64 /* GamingView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -291,6 +292,7 @@
 		26D54B431EC2F0B500119FAA /* CreateRoomModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreateRoomModel.swift; sourceTree = "<group>"; };
 		26F25C721EC83B4D006951E6 /* SixCowLayout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SixCowLayout.swift; sourceTree = "<group>"; };
 		26F25C741EC83B64006951E6 /* SixCommonLayout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SixCommonLayout.swift; sourceTree = "<group>"; };
+		26F9FA9D1EC9407100DF4A64 /* GamingView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GamingView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -522,6 +524,7 @@
 			isa = PBXGroup;
 			children = (
 				264A2CE51EC45D21001B7F0E /* ChatV.swift */,
+				26F9FA9D1EC9407100DF4A64 /* GamingView.swift */,
 			);
 			name = view;
 			sourceTree = "<group>";
@@ -878,6 +881,7 @@
 				2657FD971EB860F900B92648 /* ControlVoice.swift in Sources */,
 				26D54B441EC2F0B500119FAA /* CreateRoomModel.swift in Sources */,
 				2603D9BD1EADE7E20069B132 /* ScrollLabel.swift in Sources */,
+				26F9FA9E1EC9407100DF4A64 /* GamingView.swift in Sources */,
 				260C66701EB23415006C119E /* POPSpringAnimation.mm in Sources */,
 				26D54AE31EC2BD6D00119FAA /* DDXMLElementAdditions.m in Sources */,
 				26D54B2B1EC2C11B00119FAA /* WavConvert.m in Sources */,
