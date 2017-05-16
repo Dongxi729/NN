@@ -19,12 +19,22 @@ class MarketV: UIView {
     lazy var collV: UICollectionView = {
         
         let layout = UICollectionViewFlowLayout.init()
-        layout.itemSize = CGSize.init(width: (self.frame.width - 30) / 2, height: 40)
+//        layout.itemSize = CGSize.init(width: (self.frame.width - 30) / 2, height: 40)
         
+        let spacing:CGFloat = commonMargin
         
-        layout.minimumLineSpacing = 10
-        layout.minimumInteritemSpacing = 10
+        //列数
+        let columnsNum = 3
+        //整个view的宽度
+        let collectionViewWidth = self.bounds.width
+        //计算单元格的宽度
+//        let itemWidth = (collectionViewWidth - spacing * CGFloat(columnsNum-1))
+//            / CGFloat(columnsNum)
         
+        let itemWidth = self.bounds.width / 3 - 2 * commonMargin
+        //设置单元格宽度和高度
+        layout.itemSize = CGSize(width:itemWidth, height:itemWidth * 1.2)
+    
         /// 设置大小出错///
         let d : UICollectionView = UICollectionView.init(frame: self.bounds, collectionViewLayout: layout)
         
@@ -68,13 +78,15 @@ extension MarketV : UICollectionViewDataSource,UICollectionViewDelegateFlowLayou
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        
         return dataSource.count
-        
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
+        return UIEdgeInsets.init(top: 2 * commonMargin, left: commonMargin + commonMargin * 0.8, bottom: commonMargin * 2, right: 2 * commonMargin)
     }
     
 }
@@ -82,8 +94,8 @@ extension MarketV : UICollectionViewDataSource,UICollectionViewDelegateFlowLayou
 class MarketCollectCell: UICollectionViewCell {
     
     lazy var labelll: CommonLabell = {
-        let d : CommonLabell = CommonLabell.init(frame: CGRect.init(x: 0, y: 0, width: SW * 0.05, height: SW * 0.05))
-        //        d.backgroundColor = UIColor.randomColor()
+        let d : CommonLabell = CommonLabell.init(frame: CGRect.init(x: 0, y: 0, width: self.Width * 0.3, height: self.Width * 0.3))
+        d.backgroundColor = UIColor.randomColor()
         return d
     }()
     
@@ -96,6 +108,8 @@ class MarketCollectCell: UICollectionViewCell {
     
     override init(frame: CGRect) {
         super.init(frame: frame)
+        
+        self.layer.borderWidth = 1
         prepareUI()
     }
     
@@ -104,7 +118,6 @@ class MarketCollectCell: UICollectionViewCell {
     }
     
     func prepareUI() -> Void {
-        addSubview(labelll)
         addSubview(bgImg)
     }
     

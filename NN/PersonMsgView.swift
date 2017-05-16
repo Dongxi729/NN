@@ -205,7 +205,7 @@ class PersonMsgView: UIView {
     
     /// 商城
     @objc fileprivate func jumpToShop() -> Void {
-        let f : MarketV = MarketV.init(frame: CGRect.init(x: 100, y: SH * 0.2, width: 300, height: 300))
+        let f : MarketV = MarketV.init(frame: CGRect.init(x: 100, y: SH * 0.2, width: SW * 0.5, height: SW * 0.5))
         f.backgroundColor = UIColor.randomColor()
         f.center = self.center
         
@@ -329,7 +329,7 @@ class PersonMsgView: UIView {
         
         
         /// 创建房间
-        if shareViewISExist.count > 0  {
+        if shareViewISExist.count > 0 {
             
             //购物断网刷新
             if NSStringFromClass((self.subviews.last?.classForCoder)!).contains("ShareView") {
@@ -340,6 +340,7 @@ class PersonMsgView: UIView {
                 shareViewISExist.removeAll()
             }
         }
+        
         
         /// 创建房间
         if howPlayISExist.count > 0  {
@@ -357,7 +358,7 @@ class PersonMsgView: UIView {
     
     
     /// 分享视图
-    lazy var shareV: ShareView = {
+    fileprivate lazy var shareV: ShareView = {
         let v : ShareView = ShareView.init(frame: CGRect.init(x: 0, y: 0, width: SW * 0.45, height: SH * 0.45))
         v.backgroundColor = UIColor.clear
         v.delegate = self
@@ -365,23 +366,48 @@ class PersonMsgView: UIView {
     }()
     
     /// 玩法视图
-    lazy var playTyV: HowToPlayV = {
+    fileprivate lazy var playTyV: HowToPlayV = {
         let v : HowToPlayV = HowToPlayV.init(frame: CGRect.init(x: 0, y: 0, width: SW * 0.8, height: SH * 0.8))
         
         return v
     }()
     
-    lazy var scoreTableView: ScoreView = {
+    /// 分数视图
+    fileprivate lazy var scoreTableView: ScoreView = {
         let d : ScoreView = ScoreView.init(frame: CGRect.init(x: 5, y: 5, width: SW - commonMargin, height: SH - commonMargin))
         
         return d
     }()
+    
+    /// 设置视图
+    fileprivate lazy var setView: SettingV = {
+        let d : SettingV = SettingV.init(frame: CGRect.init(x: 0, y: 0, width: SW * 0.45, height: SH * 0.45))
+        
+        return d
+    }()
+    
+    fileprivate lazy var dismissSetV: UIButton = {
+        let d : UIButton = UIButton.init(frame: self.bounds)
+        d.addTarget(self, action: #selector(dismissSEL), for: .touchUpInside)
+        return d
+    }()
+    
+    func dismissSEL() -> Void {
+        self.dismissSetV.removeFromSuperview()
+        self.setView.removeFromSuperview()
+    }
 }
 
 // MARK: - 右上角按钮代理方法
 extension PersonMsgView : HoolRightBtnsDelegate {
     func setFunc(sender: UIButton) {
         print("\((#file as NSString).lastPathComponent):(\(#line))\n",sender.currentTitle as Any)
+        
+        addSubview(dismissSetV)
+        
+        setView.center = self.center
+        addToView(customView: setView)
+        setViewISExist.append(setView)
     }
     
     func playTypeFunc(sender: UIButton) {

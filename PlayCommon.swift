@@ -33,3 +33,5 @@ var shareViewISExist : [ShareView] = []
 /// 玩法
 var howPlayISExist : [HowToPlayV] = []
 
+/// 设置视图
+var setViewISExist : [SettingV] = []
