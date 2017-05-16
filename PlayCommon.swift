@@ -30,3 +30,6 @@ var CreateRoomBasicISExist : [CreateRoomBasic] = []
 /// 分享视图
 var shareViewISExist : [ShareView] = []
 
+/// 玩法
+var howPlayISExist : [HowToPlayV] = []
+

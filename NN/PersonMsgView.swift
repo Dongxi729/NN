@@ -340,6 +340,19 @@ class PersonMsgView: UIView {
                 shareViewISExist.removeAll()
             }
         }
+        
+        /// 创建房间
+        if howPlayISExist.count > 0  {
+            
+            //购物断网刷新
+            if NSStringFromClass((self.subviews.last?.classForCoder)!).contains("HowToPlayV") {
+                
+                self.subviews.last?.removeFromSuperview()
+                
+                /// 清空记录数组
+                howPlayISExist.removeAll()
+            }
+        }
     }
     
     
@@ -355,8 +368,13 @@ class PersonMsgView: UIView {
     lazy var playTyV: HowToPlayV = {
         let v : HowToPlayV = HowToPlayV.init(frame: CGRect.init(x: 0, y: 0, width: SW * 0.8, height: SH * 0.8))
         
-//        v.delegate = self
         return v
+    }()
+    
+    lazy var scoreTableView: ScoreView = {
+        let d : ScoreView = ScoreView.init(frame: CGRect.init(x: 5, y: 5, width: SW - commonMargin, height: SH - commonMargin))
+        
+        return d
     }()
 }
 
@@ -371,6 +389,7 @@ extension PersonMsgView : HoolRightBtnsDelegate {
         
         playTyV.center = self.center
         addToView(customView: playTyV)
+        howPlayISExist.append(playTyV)
     }
     
     func shareFunc(sender: UIButton) {
@@ -390,7 +409,8 @@ extension PersonMsgView : HoolRightBtnsDelegate {
     
     func scoreFunc(sender: UIButton) {
         print("\((#file as NSString).lastPathComponent):(\(#line))\n",sender.currentTitle as Any)
-
+        scoreTableView.center = self.center
+        addToView(customView: scoreTableView)
     }
 }
 

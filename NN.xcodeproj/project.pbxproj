@@ -118,6 +118,7 @@
 		26F14F9B1ECAA2A7006844C9 /* FTProgressIndicator.m in Sources */ = {isa = PBXBuildFile; fileRef = 26F14F941ECAA2A7006844C9 /* FTProgressIndicator.m */; };
 		26F14F9C1ECAA2A7006844C9 /* FTToastIndicator.m in Sources */ = {isa = PBXBuildFile; fileRef = 26F14F971ECAA2A7006844C9 /* FTToastIndicator.m */; };
 		26F14F9E1ECAA785006844C9 /* HowToPlayV.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26F14F9D1ECAA785006844C9 /* HowToPlayV.swift */; };
+		26F14FA01ECAC785006844C9 /* ScoreView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26F14F9F1ECAC785006844C9 /* ScoreView.swift */; };
 		26F25C731EC83B4D006951E6 /* SixCowLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26F25C721EC83B4D006951E6 /* SixCowLayout.swift */; };
 		26F25C751EC83B64006951E6 /* SixCommonLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26F25C741EC83B64006951E6 /* SixCommonLayout.swift */; };
 		26F9FA9E1EC9407100DF4A64 /* GamingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26F9FA9D1EC9407100DF4A64 /* GamingView.swift */; };
@@ -307,6 +308,7 @@
 		26F14F961ECAA2A7006844C9 /* FTToastIndicator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FTToastIndicator.h; sourceTree = "<group>"; };
 		26F14F971ECAA2A7006844C9 /* FTToastIndicator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FTToastIndicator.m; sourceTree = "<group>"; };
 		26F14F9D1ECAA785006844C9 /* HowToPlayV.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HowToPlayV.swift; sourceTree = "<group>"; };
+		26F14F9F1ECAC785006844C9 /* ScoreView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScoreView.swift; sourceTree = "<group>"; };
 		26F25C721EC83B4D006951E6 /* SixCowLayout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SixCowLayout.swift; sourceTree = "<group>"; };
 		26F25C741EC83B64006951E6 /* SixCommonLayout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SixCommonLayout.swift; sourceTree = "<group>"; };
 		26F9FA9D1EC9407100DF4A64 /* GamingView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GamingView.swift; sourceTree = "<group>"; };
@@ -447,9 +449,11 @@
 		2603D9761EADD3460069B132 /* view */ = {
 			isa = PBXGroup;
 			children = (
-				26F14F881ECA95BC006844C9 /* shareV */,
+				26F14F891ECA95EE006844C9 /* ShareView.swift */,
+				26F14F9D1ECAA785006844C9 /* HowToPlayV.swift */,
 				2603D9781EADD3AA0069B132 /* PersonMsgView.swift */,
 				26D54ACB1EC2A93B00119FAA /* AddViewWithPop.swift */,
+				26F14F9F1ECAC785006844C9 /* ScoreView.swift */,
 			);
 			name = view;
 			sourceTree = "<group>";
@@ -795,15 +799,6 @@
 			path = "opencore-amrwb";
 			sourceTree = "<group>";
 		};
-		26F14F881ECA95BC006844C9 /* shareV */ = {
-			isa = PBXGroup;
-			children = (
-				26F14F891ECA95EE006844C9 /* ShareView.swift */,
-				26F14F9D1ECAA785006844C9 /* HowToPlayV.swift */,
-			);
-			name = shareV;
-			sourceTree = "<group>";
-		};
 		26F14F8B1ECAA2A7006844C9 /* FTIndicator */ = {
 			isa = PBXGroup;
 			children = (
@@ -992,6 +987,7 @@
 				2603D9731EADD1BB0069B132 /* MainGameViewController.swift in Sources */,
 				2682558D1EC19ECC0080CCCD /* LoginInfoLocal.swift in Sources */,
 				26D54B371EC2C5F800119FAA /* SocketVC.swift in Sources */,
+				26F14FA01ECAC785006844C9 /* ScoreView.swift in Sources */,
 				2603D95B1EADCA3C0069B132 /* WXApiManager.m in Sources */,
 				26D54B391EC2C66200119FAA /* SyncTimerVC.swift in Sources */,
 				266EC2031EBC854000AEA31C /* TimerLabel.swift in Sources */,
