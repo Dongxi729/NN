@@ -10,6 +10,18 @@ import UIKit
 
 class ScoreView: UIView {
     
+    
+    /// 退出按钮
+    lazy var exitBtn: CommonBtn = {
+        let d :CommonBtn = CommonBtn.init(frame: CGRect.init(x: self.Width - 15 * screenScale - 2 * commonMargin, y: commonMargin, width: 15 * screenScale, height: 15 * screenScale))
+        d.setImage(#imageLiteral(resourceName: "exitNormal"), for: .normal)
+        d.setImage(#imageLiteral(resourceName: "exitSelected"), for: .highlighted)
+        d.contentMode = .scaleAspectFit
+        d.addTarget(self, action: #selector(exitCurrentView), for: .touchUpInside)
+        return d
+    }()
+    
+    
     /// 标题图片
     lazy var titleImg: UIImageView = {
         let d : UIImageView = UIImageView.init(frame: CGRect.init(x: 0, y: -5, width: SW, height: SH * 0.15))
@@ -20,9 +32,6 @@ class ScoreView: UIView {
     }()
     
     fileprivate var ddd : [String] = ["asds","asdsad","asdsadsad","asdsaddsad","asds","asdsad","asdsadsad","asdsaddsad","asds","asdsad","asdsadsad","asdsaddsad"]
-    
-    
-    
     
     /// 背景图片
     lazy var tbBgV: UIImageView = {
@@ -49,13 +58,19 @@ class ScoreView: UIView {
         
         tbV.backgroundColor = UIColor.clear
         
- 
+        
         
         addSubview(tbBgV)
         
         addSubview(tbV)
         
-               addSubview(titleImg)
+        addSubview(titleImg)
+        addSubview(exitBtn)
+        
+    }
+    
+    @objc fileprivate func exitCurrentView() -> Void {
+        self.removeFromSuperview()
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -87,6 +102,26 @@ extension ScoreView : UITableViewDelegate,UITableViewDataSource {
 
 class ScoreCell: UITableViewCell {
     
+    /// 房间IDlabel
+    lazy var roomIDLabel: UILabel = {
+        let d : UILabel = UILabel.init(frame: CGRect.init(x: SW / 11.5, y: 0, width: 50 * screenScale, height: SH / 15))
+        d.text = "21212"
+        d.font = UIFont.systemFont(ofSize: 8 * screenScale)
+        d.textColor = UIColor.brown
+        return d
+    }()
+    
+    /// 时间label
+    lazy var timeLabel: UILabel = {
+        let d : UILabel = UILabel.init(frame: CGRect.init(x: SW * 0.75, y: 0, width: SW / 5 , height: SH / 15))
+        d.text = "时间: " + "2017-3-16"
+        d.textColor = UIColor.brown
+        d.font = UIFont.systemFont(ofSize: 8 * screenScale)
+        
+        return d
+    }()
+    
+    /// 名字label
     lazy var nameLabel: UILabel = {
         let d : UILabel = UILabel.init(frame: CGRect.init(x: commonMargin * screenScale, y: self.Height * 0.42, width: self.Width / 4, height: SH / 10))
         d.font = UIFont.systemFont(ofSize: 10 * screenScale)
@@ -94,6 +129,7 @@ class ScoreCell: UITableViewCell {
         return d
     }()
     
+    /// cell 的背景图片
     lazy var scoreCell: UIImageView = {
         let d : UIImageView = UIImageView.init(frame: CGRect.init(x: 5, y: 0, width: SW - 3 * commonMargin, height: SH / 5.5))
         d.image = #imageLiteral(resourceName: "roomBV")
@@ -107,6 +143,8 @@ class ScoreCell: UITableViewCell {
         
         addSubview(scoreCell)
         addSubview(nameLabel)
+        addSubview(roomIDLabel)
+        addSubview(timeLabel)
     }
     
     required init?(coder aDecoder: NSCoder) {
