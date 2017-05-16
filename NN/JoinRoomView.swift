@@ -16,12 +16,12 @@ class JoinRoomView: UIView {
         super.init(frame: frame)
         
         self.layer.borderWidth = 1
-
+        
         
         
         addSubview(bgImgV)
         self.addSubview(collV)
-
+        
         
         /// 加入房间
         addSubview(titleLabel)
@@ -48,7 +48,7 @@ class JoinRoomView: UIView {
         d.setTitle("进入房间", for: .normal)
         return d
     }()
-
+    
     
     fileprivate lazy var bgImgV: UIImageView = {
         let d : UIImageView = UIImageView.init(frame: self.frame)
@@ -83,7 +83,7 @@ class JoinRoomView: UIView {
         
         //设置单元格宽度和高度
         layout.itemSize = CGSize(width:itemWidth * 0.77, height:itemWidth * 0.55)
-
+        
         
         layout.minimumLineSpacing = 10
         layout.minimumInteritemSpacing = 10
@@ -110,16 +110,21 @@ class JoinRoomView: UIView {
     /// 密码输入视图控制
     var dddd :[UIView] = []
     
-    /// 文字输入控制
-    var passInput : [Int] = []
     
     var texIndex : Int = 0
-
+    
+    
+    /// 记录密码
+    var valueRecord : [String] = [] {
+        didSet {
+            
+        }
+    }
     
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-
+    
 }
 
 
@@ -150,34 +155,28 @@ extension JoinRoomView : UICollectionViewDataSource,UICollectionViewDelegateFlow
         
         let selecttext = dataSource[indexPath.row]
         
-        print(selecttext)
-        
-        if passInput.count >= 1 {
-            for index in passInput {
-                print(index)
-            }
-            
-            print(passInput.count)
-        }
-        
         /// 添加数据
         
-        let d = addLabelView.init(frame: CGRect.init(x: CGFloat(self.Width / 4.5 * CGFloat(texIndex)), y: 5, width: self.frame.width / 3.05, height: self.Height * 0.4))
+        let d = addLabelView.init(frame: CGRect.init(x: CGFloat(self.Width / 4 * CGFloat(texIndex)), y: 0, width: self.frame.width / 4, height: 64))
+        
+        
         
         if selecttext == "删除" {
-           
+            self.texIndex = dddd.count
+            
+            print("\((#file as NSString).lastPathComponent):(\(#line))\n",texIndex)
+            
             if dddd.count > 0 {
                 self.subviews.last?.removeFromSuperview()
                 
-                passInput.removeLast()
-                
                 dddd.removeLast()
+                valueRecord.removeLast()
                 
-                passInput.removeLast()
                 
                 if texIndex > 0 {
                     texIndex -= 1
                 }
+                
             }
             
             return
@@ -185,20 +184,34 @@ extension JoinRoomView : UICollectionViewDataSource,UICollectionViewDelegateFlow
             /// 索引
             texIndex += 1
             
-            if texIndex <= 4 && dddd.count < 4 {
-                d.labelText(dd: selecttext)
-
-                self.addSubview(d)
-                dddd.append(d)
-                
-                if !selecttext.contains("充数") {
-                    passInput.append(Int(selecttext)!)
-                }
-            }
             
-            if texIndex >= 4 {
-                texIndex = 0
-                return
+            if texIndex <= 4 && dddd.count < 4 {
+                
+                if selecttext != "充数" {
+                    d.labelText(dd: selecttext)
+                    
+                    self.addSubview(d)
+                    dddd.append(d)
+                    valueRecord.append(selecttext)
+                    
+                    if valueRecord.count == 4{
+                        
+                        for ddd in valueRecord {
+                            print("\((#file as NSString).lastPathComponent):(\(#line))\n",ddd)
+                        }
+                    }
+                } else {
+                    for index : UIView in dddd {
+                        
+                        index.removeFromSuperview()
+                        
+                        dddd.removeAll()
+                        valueRecord.removeAll()
+                        
+                        /// 重新计数
+                        texIndex = 0
+                    }
+                }
             }
         }
         
@@ -207,21 +220,25 @@ extension JoinRoomView : UICollectionViewDataSource,UICollectionViewDelegateFlow
                 
                 index.removeFromSuperview()
                 
-                passInput.removeAll()
                 dddd.removeAll()
+                
+                valueRecord.removeAll()
                 
                 /// 重新计数
                 texIndex = 0
                 
-                if passInput.count > 1 {
-                    passInput.removeAll()
-                }
             }
+            
         }
         
-        if passInput.count > 3 {
+        
+        if texIndex >= 4 {
+            
+            texIndex = 0
             return
         }
+        
+        
         
     }
     

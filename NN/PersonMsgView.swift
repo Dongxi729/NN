@@ -271,22 +271,20 @@ class PersonMsgView: UIView {
     }
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
-        if isJoinViewExist.count > 0  {
-            print("\((#file as NSString).lastPathComponent):(\(#line))\n")
-            
-            print("\((#file as NSString).lastPathComponent):(\(#line))\n",self.subviews.last as Any)
+//        if isJoinViewExist.count > 0  {
+//            print("\((#file as NSString).lastPathComponent):(\(#line))\n")
 
             
             //购物断网刷新
-            if NSStringFromClass((self.subviews.last?.classForCoder)!).contains("JoinRoomView") {
-                
-                self.subviews.last?.removeFromSuperview()
-                
-                /// 清空记录数组
-                isJoinViewExist.removeAll()
-            }
+//            if NSStringFromClass((self.subviews.last?.classForCoder)!).contains("JoinRoomView") {
+            
+//                self.subviews.last?.removeFromSuperview()
+//                
+//                /// 清空记录数组
+//                isJoinViewExist.removeAll()
+//            }
         
-        }
+//        }
         
         /// 创建房间清除
         if createRoomIsExist.count > 0  {
