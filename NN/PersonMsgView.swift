@@ -219,9 +219,9 @@ class PersonMsgView: UIView {
     /// 加入房间
     @objc fileprivate func addJoinRoom() -> Void {
         
-        let f : JoinRoomView = JoinRoomView.init(frame: CGRect.init(x: 100, y: SH * 0.2, width: 300, height: 300))
-        f.backgroundColor = UIColor.gray
+        let f : JoinRoomView = JoinRoomView.init(frame: CGRect.init(x: 0, y: 0, width: SW * 0.42, height: SW * 0.42))
         f.center = self.center
+        f.backgroundColor = UIColor.red
 
         if isJoinViewExist.count < 1 {
             addToView(customView: f)

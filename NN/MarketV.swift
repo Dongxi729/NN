@@ -99,7 +99,7 @@ extension MarketV : UICollectionViewDataSource,UICollectionViewDelegateFlowLayou
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "MarketCollectCell", for: indexPath) as! MarketCollectCell
         
         cell.bgImg.setImage(tapName[indexPath.row], for: .normal)
-        cell.bgImg.setImage(tapSelectedName[indexPath.row], for: .selected)
+//        cell.bgImg.setImage(tapSelectedName[indexPath.row], for: .selected)
         
         return cell
     }

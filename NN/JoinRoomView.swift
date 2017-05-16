@@ -15,31 +15,48 @@ class JoinRoomView: UIView {
     override init(frame: CGRect) {
         super.init(frame: frame)
         
+        self.layer.borderWidth = 1
+
+        
+        
+        addSubview(bgImgV)
         self.addSubview(collV)
+
         
         /// 加入房间
         addSubview(titleLabel)
-//        addSubview(tfPass)
-//        addSubview(Test)
+        
+        addSubview(tfPassBgV)
     }
     
-    lazy var tfPass: UITextField = {
-        let d : UITextField = UITextField.init(frame: CGRect.init(x: commonMargin, y: self.Test.BottomY + commonMargin, width: 100, height: 50))
-        d.backgroundColor = UIColor.white
+    lazy var tfPassBgV: UIImageView = {
+        let d : UIImageView = UIImageView.init(frame: CGRect.init(x: commonMargin * 2, y: self.Height * 0.15, width: self.Width - 4 * commonMargin, height: self.Height * 0.15))
+        d.image = #imageLiteral(resourceName: "joinKey")
         return d
     }()
     
-    lazy var Test: UIButton = {
+    
+    fileprivate lazy var tfPass: UITextField = {
+        let d : UITextField = UITextField.init(frame: CGRect.init(x: commonMargin, y: self.Test.BottomY + commonMargin, width: 100, height: 50))
+        return d
+    }()
+    
+    fileprivate lazy var Test: UIButton = {
         let d : UIButton = UIButton.init(frame: CGRect.init(x: 30, y: self.titleLabel.BottomY + commonMargin, width: 100, height: 30))
         d.backgroundColor = UIColor.gray
         d.addTarget(self, action: #selector(enjoyRoom), for: .touchUpInside)
         d.setTitle("进入房间", for: .normal)
         return d
     }()
+
+    
+    fileprivate lazy var bgImgV: UIImageView = {
+        let d : UIImageView = UIImageView.init(frame: self.frame)
+        d.image = #imageLiteral(resourceName: "joinRoomBg")
+        return d
+    }()
     
     @objc fileprivate func enjoyRoom() -> Void {
-
-//        joinRoom(str: tfPass.text!)
     }
     
     /// 标题
@@ -54,16 +71,27 @@ class JoinRoomView: UIView {
     lazy var collV: UICollectionView = {
         
         let layout = UICollectionViewFlowLayout.init()
-        layout.itemSize = CGSize.init(width: (self.frame.width - 30) / 3, height: 40)
         
+        //列数
+        let columnsNum = 3
+        
+        //整个view的宽度
+        let collectionViewWidth = self.bounds.width
+        
+        //计算单元格的宽度
+        let itemWidth = self.bounds.width / 3 - 1.6 * commonMargin * screenScale
+        
+        //设置单元格宽度和高度
+        layout.itemSize = CGSize(width:itemWidth * 0.77, height:itemWidth * 0.55)
+
         
         layout.minimumLineSpacing = 10
         layout.minimumInteritemSpacing = 10
         
         /// 设置大小出错///
-        let d : UICollectionView = UICollectionView.init(frame: CGRect.init(x: 0, y: 64, width: self.frame.width, height: self.frame.width), collectionViewLayout: layout)
+        let d : UICollectionView = UICollectionView.init(frame: CGRect.init(x: 0, y: self.tfPassBgV.BottomY + commonMargin, width: self.frame.width, height: self.frame.width), collectionViewLayout: layout)
         
-        d.backgroundColor = UIColor.white
+        d.backgroundColor = UIColor.clear
         
         d.dataSource = self
         d.delegate = self
@@ -103,7 +131,9 @@ extension JoinRoomView : UICollectionViewDataSource,UICollectionViewDelegateFlow
         return cell
     }
     
-    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
+        return UIEdgeInsets.init(top:0, left: commonMargin * screenScale * 2, bottom: 0, right: 2 * commonMargin * screenScale)
+    }
     
     func numberOfSections(in collectionView: UICollectionView) -> Int {
         
@@ -132,7 +162,7 @@ extension JoinRoomView : UICollectionViewDataSource,UICollectionViewDelegateFlow
         
         /// 添加数据
         
-        let d = addLabelView.init(frame: CGRect.init(x: CGFloat(self.Width / 4 * CGFloat(texIndex)), y: 0, width: self.frame.width / 4, height: 64))
+        let d = addLabelView.init(frame: CGRect.init(x: CGFloat(self.Width / 4.5 * CGFloat(texIndex)), y: 5, width: self.frame.width / 3.05, height: self.Height * 0.4))
         
         if selecttext == "删除" {
            
@@ -203,6 +233,7 @@ class addLabelView: UIView {
     
     lazy var la: UILabel = {
         let d : UILabel = UILabel.init(frame: self.bounds)
+        d.textAlignment = .center
         return d
     }()
     
@@ -220,3 +251,6 @@ class addLabelView: UIView {
         fatalError("init(coder:) has not been implemented")
     }
 }
+
+
+    

@@ -296,3 +296,15 @@ func getTime() -> String {
     dformatter.dateFormat = "HH:mm"
     return dformatter.string(from: now)
 }
+
+
+func customLabel(label : UILabel,withSize : CGFloat) -> Void {
+    
+    let attributedString = NSMutableAttributedString(string: label.text!, attributes: [NSKernAttributeName: (withSize)])
+    let paragraphStyle = NSMutableParagraphStyle()
+    
+    attributedString.addAttribute(NSParagraphStyleAttributeName, value: paragraphStyle, range: NSRange(location: 0, length: (label.text?.characters.count)!))
+    label.attributedText = attributedString
+//    label.numberOfLines = 0
+//    label.sizeToFit()
+}
