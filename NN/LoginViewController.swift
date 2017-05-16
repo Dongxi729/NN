@@ -15,20 +15,21 @@ class LoginViewController: UIViewController {
     /// 背景图片
     lazy var bgImg: UIImageView = {
         let d : UIImageView = UIImageView.init(frame: self.view.bounds)
-        d.image = UIImage.init(named: "login")
+        d.image = #imageLiteral(resourceName: "login")
         d.contentMode = UIViewContentMode.scaleAspectFill
         return d
     }()
     
     /// 微信登陆按钮
     lazy var wxloginBtn: UIImageView = {
-        let d : UIImageView = UIImageView.init(frame: CGRect.init(x: SW * 0.5 - 50, y: SH * 0.7, width: 190, height: 56))
+        let d : UIImageView = UIImageView.init(frame: CGRect.init(x: SW * 0.5 - 80 * screenScale * 0.5, y: SH * 0.85, width: 80 * screenScale, height: 15 * screenScale))
+        d.contentMode = .scaleAspectFit
         d.isUserInteractionEnabled = true
         
         let getTure = UITapGestureRecognizer.init(target: self, action: #selector(wxloginSEL(sender:)))
         d.addGestureRecognizer(getTure)
         
-        d.image = UIImage.init(named: "login_wx")
+        d.image = #imageLiteral(resourceName: "login_wx")
         return d
     }()
 
@@ -54,7 +55,6 @@ class LoginViewController: UIViewController {
             } else {
                 wxTool.clickAuto()
             }
-            
             
             return
         }

@@ -29,6 +29,7 @@
         self.scrollEnabled = NO;
         self.backgroundColor = backColor;
         self.titleCoclor = titleColor;
+        
         //创建label
         [self creatLabelForScrollView];
         self.delegate = self;
@@ -56,13 +57,12 @@
             
             UILabel *autoScrollLabel = [[UILabel alloc]initWithFrame:CGRectMake(self.frame.size.width+2 * i * self.frame.size.width, 0, self.frame.size.width, self.frame.size.height)];
             autoScrollLabel.textAlignment = NSTextAlignmentLeft;
-            autoScrollLabel.textColor = [UIColor redColor];
+            autoScrollLabel.textColor = [UIColor whiteColor];
             autoScrollLabel.text = _titleArray[i];
-            autoScrollLabel.font = [UIFont systemFontOfSize:12];
+
+            autoScrollLabel.font = [UIFont systemFontOfSize:8 * ([UIScreen mainScreen].bounds.size.width / 320)];
             [self addSubview:autoScrollLabel];
         }
-        
-        
     }else{
         
         self.contentSize = CGSizeMake(0, 0);
@@ -128,15 +128,7 @@
         [self creatLabelForScrollView];
         
     }else if (_titleArray.count != titleArray.count){
-        
-//        for (UIView *view in self.subviews) {
-//            
-//            if ([view isKindOfClass:[UIButton class]]) {
-//                
-//                [view removeFromSuperview];
-//            }
-//            
-//        }
+
         _titleArray = titleArray;
         [self creatLabelForScrollView];
         

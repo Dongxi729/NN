@@ -27,3 +27,6 @@ var marketVISExist : [MarketV] = []
 /// 创建房间
 var CreateRoomBasicISExist : [CreateRoomBasic] = []
 
+/// 分享视图
+var shareViewISExist : [ShareView] = []
+

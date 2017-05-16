@@ -19,10 +19,13 @@ class MainGameViewController: UIViewController {
         return d
     }()
     
-
+    lazy var bgImg: UIImageView = {
+        let d : UIImageView = UIImageView.init(frame: self.view.bounds)
+        d.image = #imageLiteral(resourceName: "holl_bg")
+        return d
+    }()
     
-    
-    
+    /// 个人视图
     lazy var mainView: PersonMsgView = {
         let d : PersonMsgView = PersonMsgView.init(frame: self.view.bounds)
         
@@ -45,19 +48,18 @@ class MainGameViewController: UIViewController {
         return d
     }()
     
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        
-        /// 开始上报用户信息,传socket
-        
-        AvdioTool.shared.creatSession()
-        
-        /// 开启链接服务器
-        DispatchQueue.global(qos: .default).async {
-            
-            testServer()
-        }
-    }
+//    override func viewWillAppear(_ animated: Bool) {
+//        super.viewWillAppear(animated)
+//        
+//        /// 开始上报用户信息,传socket
+//        AvdioTool.shared.creatSession()
+//        
+//        /// 开启链接服务器
+//        DispatchQueue.global(qos: .default).async {
+//            
+//            testServer()
+//        }
+//    }
     
     /// 发送房间类型
     @objc fileprivate func sendRoomTypeSEL() -> Void {
@@ -73,17 +75,16 @@ class MainGameViewController: UIViewController {
         let add = UIButton.init(frame: CGRect.init(x: 30, y: 30, width: 100, height: 100))
         add.backgroundColor = UIColor.red
         
+       
         add.addTarget(self, action: #selector(presenrView), for: .touchUpInside)
+       
+        view.addSubview(bgImg)
         
         view.addSubview(mainView)
-        
-        /// 发送房间类型
-//        view.addSubview(sendRoomType)
-        
-        /// 解散房间
-//        view.addSubview(dismissRoom)
 
-        //        addScrollText()
+        
+        
+        addScrollText()
     }
     
     func dismissRoomSEL() -> Void {
@@ -97,15 +98,31 @@ class MainGameViewController: UIViewController {
         presentView.center = view.center
     }
     
+    lazy var ringTong: UIImageView = {
+        let d : UIImageView = UIImageView.init(frame: CGRect.init(x: SW * 0.24, y: SH * 0.18, width: 20 * screenScale, height: 20 * screenScale))
+        d.image = #imageLiteral(resourceName: "broadCastRingIcon")
+        return d
+    }()
+    
     /// 添加滚动文字
     func addScrollText() -> Void {
-        let scText = ScrollText.init(frame: CGRect.init(x: 0, y: 100, width: SW * 0.5, height: 50), withBackGroundColor: UIColor.gray, withTitleColor: UIColor.purple)
+        
+        
+        let scText = ScrollText.init(frame: CGRect.init(x: SW * 0.25, y: SH * 0.2, width: SW * 0.5, height: 15 * screenScale), withBackGroundColor: UIColor.clear, withTitleColor: UIColor.white)
+        
+        let scrolBgV = UIImageView.init(frame: CGRect.init(x: SW * 0.25, y: SH * 0.2, width: SW * 0.5, height: 12 * screenScale))
+        
+        scrolBgV.image = #imageLiteral(resourceName: "broadCastbg")
         
         let dd = ["撒旦立刻精神看到就撒大声地就拉上记录数卡机的"]
         
         scText?.titleArray = dd
         
+        view.addSubview(scrolBgV)
         view.addSubview(scText!)
+        
+        /// 添加铃铛
+        view.addSubview(ringTong)
     }
     
 }

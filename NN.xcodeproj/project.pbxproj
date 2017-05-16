@@ -111,6 +111,12 @@
 		26D54B3E1EC2C7D000119FAA /* cccc.png in Resources */ = {isa = PBXBuildFile; fileRef = 26D54B3D1EC2C7D000119FAA /* cccc.png */; };
 		26D54B401EC2ED2C00119FAA /* CreateRoomVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26D54B3F1EC2ED2C00119FAA /* CreateRoomVC.swift */; };
 		26D54B441EC2F0B500119FAA /* CreateRoomModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26D54B431EC2F0B500119FAA /* CreateRoomModel.swift */; };
+		26F14F8A1ECA95EE006844C9 /* ShareView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26F14F891ECA95EE006844C9 /* ShareView.swift */; };
+		26F14F981ECAA2A7006844C9 /* FTIndicator.m in Sources */ = {isa = PBXBuildFile; fileRef = 26F14F8D1ECAA2A7006844C9 /* FTIndicator.m */; };
+		26F14F991ECAA2A7006844C9 /* FTNotificationIndicator.m in Sources */ = {isa = PBXBuildFile; fileRef = 26F14F901ECAA2A7006844C9 /* FTNotificationIndicator.m */; };
+		26F14F9A1ECAA2A7006844C9 /* FTProgressIndicator.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 26F14F921ECAA2A7006844C9 /* FTProgressIndicator.bundle */; };
+		26F14F9B1ECAA2A7006844C9 /* FTProgressIndicator.m in Sources */ = {isa = PBXBuildFile; fileRef = 26F14F941ECAA2A7006844C9 /* FTProgressIndicator.m */; };
+		26F14F9C1ECAA2A7006844C9 /* FTToastIndicator.m in Sources */ = {isa = PBXBuildFile; fileRef = 26F14F971ECAA2A7006844C9 /* FTToastIndicator.m */; };
 		26F25C731EC83B4D006951E6 /* SixCowLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26F25C721EC83B4D006951E6 /* SixCowLayout.swift */; };
 		26F25C751EC83B64006951E6 /* SixCommonLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26F25C741EC83B64006951E6 /* SixCommonLayout.swift */; };
 		26F9FA9E1EC9407100DF4A64 /* GamingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26F9FA9D1EC9407100DF4A64 /* GamingView.swift */; };
@@ -249,7 +255,6 @@
 		26BDD6CB1EC3722D00F1C478 /* SixCowDownV.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SixCowDownV.swift; sourceTree = "<group>"; };
 		26CAF9BC1EB4C219003065B8 /* LabelRepeat.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LabelRepeat.swift; sourceTree = "<group>"; };
 		26CFB6E01EC2FC2E00327748 /* CreateV.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreateV.swift; sourceTree = "<group>"; };
-		26CFB6E21EC3099200327748 /* MyPlayground.playground */ = {isa = PBXFileReference; lastKnownFileType = file.playground; path = MyPlayground.playground; sourceTree = "<group>"; };
 		26D54ACB1EC2A93B00119FAA /* AddViewWithPop.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddViewWithPop.swift; sourceTree = "<group>"; };
 		26D54ACE1EC2BAF000119FAA /* CreateCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreateCollectionViewCell.swift; sourceTree = "<group>"; };
 		26D54AD31EC2BD6D00119FAA /* DDXMLElementAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DDXMLElementAdditions.h; sourceTree = "<group>"; };
@@ -290,6 +295,16 @@
 		26D54B3D1EC2C7D000119FAA /* cccc.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = cccc.png; sourceTree = "<group>"; };
 		26D54B3F1EC2ED2C00119FAA /* CreateRoomVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreateRoomVC.swift; sourceTree = "<group>"; };
 		26D54B431EC2F0B500119FAA /* CreateRoomModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreateRoomModel.swift; sourceTree = "<group>"; };
+		26F14F891ECA95EE006844C9 /* ShareView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShareView.swift; sourceTree = "<group>"; };
+		26F14F8C1ECAA2A7006844C9 /* FTIndicator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FTIndicator.h; sourceTree = "<group>"; };
+		26F14F8D1ECAA2A7006844C9 /* FTIndicator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FTIndicator.m; sourceTree = "<group>"; };
+		26F14F8F1ECAA2A7006844C9 /* FTNotificationIndicator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FTNotificationIndicator.h; sourceTree = "<group>"; };
+		26F14F901ECAA2A7006844C9 /* FTNotificationIndicator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FTNotificationIndicator.m; sourceTree = "<group>"; };
+		26F14F921ECAA2A7006844C9 /* FTProgressIndicator.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = FTProgressIndicator.bundle; sourceTree = "<group>"; };
+		26F14F931ECAA2A7006844C9 /* FTProgressIndicator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FTProgressIndicator.h; sourceTree = "<group>"; };
+		26F14F941ECAA2A7006844C9 /* FTProgressIndicator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FTProgressIndicator.m; sourceTree = "<group>"; };
+		26F14F961ECAA2A7006844C9 /* FTToastIndicator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FTToastIndicator.h; sourceTree = "<group>"; };
+		26F14F971ECAA2A7006844C9 /* FTToastIndicator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FTToastIndicator.m; sourceTree = "<group>"; };
 		26F25C721EC83B4D006951E6 /* SixCowLayout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SixCowLayout.swift; sourceTree = "<group>"; };
 		26F25C741EC83B64006951E6 /* SixCommonLayout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SixCommonLayout.swift; sourceTree = "<group>"; };
 		26F9FA9D1EC9407100DF4A64 /* GamingView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GamingView.swift; sourceTree = "<group>"; };
@@ -430,6 +445,7 @@
 		2603D9761EADD3460069B132 /* view */ = {
 			isa = PBXGroup;
 			children = (
+				26F14F881ECA95BC006844C9 /* shareV */,
 				2603D9781EADD3AA0069B132 /* PersonMsgView.swift */,
 				26D54ACB1EC2A93B00119FAA /* AddViewWithPop.swift */,
 			);
@@ -599,6 +615,7 @@
 		268255851EC1917E0080CCCD /* thirdSDK */ = {
 			isa = PBXGroup;
 			children = (
+				26F14F8B1ECAA2A7006844C9 /* FTIndicator */,
 				26D54B161EC2C11B00119FAA /* VoiceConvert */,
 				26D54AD11EC2BD6D00119FAA /* KissXML */,
 				2603D9501EADCA3B0069B132 /* Weixin */,
@@ -660,7 +677,6 @@
 				26D54B3F1EC2ED2C00119FAA /* CreateRoomVC.swift */,
 				26D54B431EC2F0B500119FAA /* CreateRoomModel.swift */,
 				26CFB6E01EC2FC2E00327748 /* CreateV.swift */,
-				26CFB6E21EC3099200327748 /* MyPlayground.playground */,
 				264A32D01EC58B37001405C4 /* view */,
 			);
 			name = createRoom;
@@ -777,6 +793,54 @@
 			path = "opencore-amrwb";
 			sourceTree = "<group>";
 		};
+		26F14F881ECA95BC006844C9 /* shareV */ = {
+			isa = PBXGroup;
+			children = (
+				26F14F891ECA95EE006844C9 /* ShareView.swift */,
+			);
+			name = shareV;
+			sourceTree = "<group>";
+		};
+		26F14F8B1ECAA2A7006844C9 /* FTIndicator */ = {
+			isa = PBXGroup;
+			children = (
+				26F14F8C1ECAA2A7006844C9 /* FTIndicator.h */,
+				26F14F8D1ECAA2A7006844C9 /* FTIndicator.m */,
+				26F14F8E1ECAA2A7006844C9 /* FTNotificationIndicator */,
+				26F14F911ECAA2A7006844C9 /* FTProgressIndicator */,
+				26F14F951ECAA2A7006844C9 /* FTToastIndicator */,
+			);
+			path = FTIndicator;
+			sourceTree = "<group>";
+		};
+		26F14F8E1ECAA2A7006844C9 /* FTNotificationIndicator */ = {
+			isa = PBXGroup;
+			children = (
+				26F14F8F1ECAA2A7006844C9 /* FTNotificationIndicator.h */,
+				26F14F901ECAA2A7006844C9 /* FTNotificationIndicator.m */,
+			);
+			path = FTNotificationIndicator;
+			sourceTree = "<group>";
+		};
+		26F14F911ECAA2A7006844C9 /* FTProgressIndicator */ = {
+			isa = PBXGroup;
+			children = (
+				26F14F921ECAA2A7006844C9 /* FTProgressIndicator.bundle */,
+				26F14F931ECAA2A7006844C9 /* FTProgressIndicator.h */,
+				26F14F941ECAA2A7006844C9 /* FTProgressIndicator.m */,
+			);
+			path = FTProgressIndicator;
+			sourceTree = "<group>";
+		};
+		26F14F951ECAA2A7006844C9 /* FTToastIndicator */ = {
+			isa = PBXGroup;
+			children = (
+				26F14F961ECAA2A7006844C9 /* FTToastIndicator.h */,
+				26F14F971ECAA2A7006844C9 /* FTToastIndicator.m */,
+			);
+			path = FTToastIndicator;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -841,6 +905,7 @@
 			files = (
 				2603D9451EADC8D20069B132 /* LaunchScreen.storyboard in Resources */,
 				2603D9421EADC8D20069B132 /* Assets.xcassets in Resources */,
+				26F14F9A1ECAA2A7006844C9 /* FTProgressIndicator.bundle in Resources */,
 				2603D95A1EADCA3C0069B132 /* README.txt in Resources */,
 				2657FDBC1EB984FE00B92648 /* sss.png in Resources */,
 				2603D9401EADC8D20069B132 /* Main.storyboard in Resources */,
@@ -873,6 +938,7 @@
 				26A487291EC004F400E9A091 /* UIView+Extension.swift in Sources */,
 				26BDD6CC1EC3722D00F1C478 /* SixCowDownV.swift in Sources */,
 				26D54AE71EC2BD6D00119FAA /* DDXMLElement.m in Sources */,
+				26F14F991ECAA2A7006844C9 /* FTNotificationIndicator.m in Sources */,
 				2682558B1EC196C30080CCCD /* LoginRequestTool.swift in Sources */,
 				26F25C731EC83B4D006951E6 /* SixCowLayout.swift in Sources */,
 				2603D96F1EADCD440069B132 /* CustomAlertView.swift in Sources */,
@@ -881,6 +947,7 @@
 				2657FD971EB860F900B92648 /* ControlVoice.swift in Sources */,
 				26D54B441EC2F0B500119FAA /* CreateRoomModel.swift in Sources */,
 				2603D9BD1EADE7E20069B132 /* ScrollLabel.swift in Sources */,
+				26F14F981ECAA2A7006844C9 /* FTIndicator.m in Sources */,
 				26F9FA9E1EC9407100DF4A64 /* GamingView.swift in Sources */,
 				260C66701EB23415006C119E /* POPSpringAnimation.mm in Sources */,
 				26D54AE31EC2BD6D00119FAA /* DDXMLElementAdditions.m in Sources */,
@@ -897,6 +964,7 @@
 				26A487271EC0049E00E9A091 /* UIColor+Extension.swift in Sources */,
 				262E1C3A1EB1CBDE007CC745 /* CaptureScreenTool.swift in Sources */,
 				260C66611EB23415006C119E /* POPAnimatableProperty.mm in Sources */,
+				26F14F8A1ECA95EE006844C9 /* ShareView.swift in Sources */,
 				264A2CE61EC45D21001B7F0E /* ChatV.swift in Sources */,
 				26D54AE51EC2BD6D00119FAA /* DDXML.swift in Sources */,
 				260C666E1EB23415006C119E /* POPMath.mm in Sources */,
@@ -907,6 +975,7 @@
 				260C666D1EB23415006C119E /* POPLayerExtras.mm in Sources */,
 				26BDD6CA1EC368AF00F1C478 /* SixCowV.swift in Sources */,
 				260C66671EB23415006C119E /* POPAnimator.mm in Sources */,
+				26F14F9C1ECAA2A7006844C9 /* FTToastIndicator.m in Sources */,
 				26D54ACC1EC2A93B00119FAA /* AddViewWithPop.swift in Sources */,
 				260C666C1EB23415006C119E /* POPGeometry.mm in Sources */,
 				264A2CDF1EC44CB0001B7F0E /* CommonCowUpV.swift in Sources */,
@@ -927,6 +996,7 @@
 				26D54B271EC2C11B00119FAA /* amrFileCodec.mm in Sources */,
 				268255811EC190550080CCCD /* LoginViewController.swift in Sources */,
 				2603D9691EADCB6F0069B132 /* Common.swift in Sources */,
+				26F14F9B1ECAA2A7006844C9 /* FTProgressIndicator.m in Sources */,
 				26BC61301EB2EB6C00AE9BE1 /* CountDownBtn.swift in Sources */,
 				2603D93B1EADC8D20069B132 /* AppDelegate.swift in Sources */,
 				26D54AE81EC2BD6D00119FAA /* DDXMLNode.m in Sources */,

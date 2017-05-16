@@ -25,7 +25,7 @@ struct ConnectConfig {
     var port : Int32 = 8888
 }
 
-let d = ConnectConfig.init(host: "192.168.2.11", port: 2050)
+let d = ConnectConfig.init(host: "192.168.2.11", port: 8887)
 //let d = ConnectConfig.init(host: LoginModel.shared.serviceip!, port: Int32(LoginModel.shared.serviceport!)!)
 
 
@@ -43,11 +43,12 @@ fileprivate var bodyBytesAny:[Byte] = [Byte]()
 func testServer() {
     
     client = TCPClient.init(address: "192.168.2.11", port: 8888)
+    //    client = TCPClient.init(address: "192.168.1.10", port: 2048)
     
     switch client.connect(timeout: 1) {
         
     case .success:
-
+        
         while true {
             
             if readmsg() != nil {
@@ -60,6 +61,9 @@ func testServer() {
                 break
             }
         }
+        
+        
+        
     case .failure( _):
         
         print("\((#file as NSString).lastPathComponent):(\(#line))\n","服务器状态不好或连接不上")
@@ -69,6 +73,7 @@ func testServer() {
 /// 上报用户信息
 func reportUID() -> Void {
     /// 上报用户信息
+
     reportTypeWithData(typeInt: 254, str: "<M><Nn id=\"\(LoginModel.shared.uid!)\" tk=\"\(LoginModel.shared.token!)\"/></M>")
 }
 
@@ -101,14 +106,7 @@ func reportTypeWithData(typeInt : Int,str : String) {
     }
     
     socket.send(data: adata as Data)
-
-}
-
-
-/// 加入房间
-///    <M><ty p="1020"/> </M>
-func joinRoom(str : String) {
-    reportTypeWithData(typeInt: 7, str: "<M><ty p=\"\(str)\"/> </M>")
+    
 }
 
 /// 发送心跳包
@@ -123,9 +121,9 @@ func sendHeart() {
     guard let socket = client else {
         return
     }
-
+    
     socket.send(data: heaerByte)
-
+    
 }
 
 
@@ -133,6 +131,7 @@ func sendHeart() {
 func sendText(sendStr : String) {
     reportTypeWithData(typeInt: 0, str: sendStr)
 }
+
 
 
 /// 解散房间
@@ -157,22 +156,55 @@ func readmsg()->String? {
     
     /// 缓存池数据
     var d = client.read(1024 * 10)
-
+    
+    /// 绩溪县
+    if d != nil {
+        byteAnalyse(ddd: d!)
+    }
+    
     if d != nil {
         
-        byteAnalyse(ddd: d!)
+        
+        print("d原始数据",d!)
+        /// 赋值接收到的字符串
+        getReceiveStr = String.init(bytes: d!, encoding: String.Encoding.utf8)
         
         for index in 0..<5 {
-            d?.remove(at: 0)
+            let delIndexByte = d?.remove(at: 0)
             
             if index == 4 {
-                print(String.init(bytes: d!, encoding: String.Encoding.utf8))
-                return String.init(bytes: d!, encoding: String.Encoding.utf8)
+                print("successMsg",String.init(bytes: d!, encoding: String.Encoding.utf8) as Any)
+                
+                print("删除第五个",delIndexByte)
+                
+                /// 接收类型传值
+                /// 创建房间成功传回的
+                if delIndexByte == 6 {
+                    CreateRoomModel.shared.getServerCreateInfo = String.init(bytes: d!, encoding: String.Encoding.utf8)!
+                }
+                
+                /// 当前在场游戏人员信息
+                if delIndexByte == 8 {
+                    RoomModel.shared.currentRoomPlayInfo = String.init(bytes: d!, encoding: String.Encoding.utf8)!
+                }
             }
         }
+        
+        /// 发送心跳包
+        if (String.init(bytes: d!, encoding: String.Encoding.utf8)?.contains("信息正常"))! {
+            TImerTool.shared.timerCount(seconds: 15)
+        }
+        
+        if (String.init(bytes: d!, encoding: String.Encoding.utf8)?.contains("你的帐号关闭"))! {
+            print("掉线了~~~")
+        }
+        
+        
+        return String.init(bytes: d!, encoding: String.Encoding.utf8)
+    } else {
+        
+        return "test"
     }
-    return "tese"
-    
 }
 
 /// 数据解析
@@ -205,6 +237,7 @@ func byteAnalyse(ddd : [Byte]) -> Void {
             /// 获取包头长度
             convertData.getBytes(&leng, length: convertData.length)
             
+            
             print("leng :",leng)
             bodyfun()
         } else {
@@ -215,8 +248,9 @@ func byteAnalyse(ddd : [Byte]) -> Void {
     else {
         bodyfun()
     }
-
 }
+
+
 
 func bodyfun() {
     //主体解析
@@ -243,6 +277,7 @@ func bodyfun() {
             /// 调用本身
             byteAnalyse(ddd: [])
         }
+        
     }
     else {
         //不能解析
@@ -250,12 +285,41 @@ func bodyfun() {
     }
 }
 
+
 /// 赋值显示操作
 func bytesShwoFunc(_over : [Byte]) -> Void {
     
     getReceiveStr = String.init(bytes: _over, encoding: String.Encoding.utf8)
     
-    if (getReceiveStr?.contains("\0用户连接成功"))! {
-        TImerTool.shared.timerCount(seconds: 15)
+    /// 通知传值
+    NotificationCenter.default.post(name: NSNotification.Name(rawValue: "receiveData"), object: nil, userInfo: ["send" : _over])
+}
+
+/// 发送语音
+func sendVoice() -> Void {
+    if var voiceData = AvdioTool.shared.voiceData {
+        
+        /// 发送文字
+        let datacc : NSMutableData = NSMutableData()
+        
+        var it1  = voiceData.count;
+        
+        /// 添加发送的文字
+        datacc.append(&it1, length: 4)
+        
+        datacc.append(voiceData)
+        
+        /// 转语音
+        var sendData : Data = datacc as Data
+        
+        //            /// 模拟类型为3
+        //            sendData.insert(3, at: 4)
+        
+        guard let socket = client else {
+            return
+        }
+        
+        socket.send(data: sendData)
     }
+    
 }

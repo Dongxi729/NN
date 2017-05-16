@@ -8,6 +8,7 @@
 
 import UIKit
 
+
 @IBDesignable
 
 class PersonMsgView: UIView {
@@ -16,23 +17,46 @@ class PersonMsgView: UIView {
     
     /// 个人头像
     lazy var personImgView: UIImageView = {
-        let d : UIImageView = UIImageView.init(frame: CGRect.init(x: commonMargin, y: commonMargin, width: 30 * screenScale, height: 30 * screenScale))
+        let d : UIImageView = UIImageView.init(frame: CGRect.init(x: commonMargin / 2, y: commonMargin / 2, width: 30 * screenScale, height: 30 * screenScale))
         d.backgroundColor = UIColor.gray
+        
+        d.layer.cornerRadius = 30 * screenScale / 2
+
+        d.image = #imageLiteral(resourceName: "presonHeadBg")
+        
+        
         
 //        if !(LoginModel.shared.headImgURL != nil) {
 //            downImgWith(url: LoginModel.shared.headImgURL!, toView: d)
 //        }  
-        
+
         return d
     }()
     
+    lazy var nameBgV: UIImageView = {
+        let d : UIImageView = UIImageView.init(frame: CGRect.init(x: self.personImgView.RightX + commonMargin, y: commonMargin / 2 , width: 70 * screenScale, height: 12 * screenScale))
+        d.image = #imageLiteral(resourceName: "suqareBgWithCir")
+
+        return d
+    }()
+    
+    /// 砖石背景
+    lazy var diaBgV: UIImageView = {
+        let d : UIImageView = UIImageView.init(frame: CGRect.init(x: self.personImgView.RightX + commonMargin, y: self.nameBgV.BottomY + commonMargin, width: 30 * screenScale, height: 12 * screenScale))
+        d.image = #imageLiteral(resourceName: "diammand")
+        return d
+    }()
     
     /// 商城按钮
-    lazy var marketBtn: UIButton = {
-        let d : UIButton = UIButton.init(frame: CGRect(x: self.IDLabel.RightX + commonMargin, y: self.IDLabel.BottomY + commonMargin, width: 60, height: 30))
-        d.backgroundColor = UIColor.randomColor()
-        d.addTarget(self, action: #selector(jumpToShop), for: .touchUpInside)
-        d.setTitle("商城", for: .normal)
+    lazy var marketBtn: UIImageView = {
+        let d : UIImageView = UIImageView.init(frame: CGRect(x: self.diaBgV.RightX + commonMargin * 0.65, y: self.nameBgV.BottomY + commonMargin * 0.65, width: 15 * screenScale, height: 15 * screenScale))
+
+        d.isUserInteractionEnabled = true
+        let getTure = UITapGestureRecognizer.init(target: self, action: #selector(jumpToShop))
+        d.image = #imageLiteral(resourceName: "addDiammand")
+        d.contentMode = .scaleAspectFit
+        d.addGestureRecognizer(getTure)
+        
         return d
     }()
     
@@ -50,6 +74,8 @@ class PersonMsgView: UIView {
         return d
     }()
     
+    
+    
     /// 砖石数量
     lazy var coinsLabel: CommonLabel = {
         let d :CommonLabel = CommonLabel.init(frame: CGRect.init(x: self.personImgView.RightX + commonMargin, y: self.nameLabel.BottomY + commonMargin * 0.5, width: 80, height: 20))
@@ -64,11 +90,16 @@ class PersonMsgView: UIView {
         return d
     }()
     
+
+    
     /// 昵称
     lazy var nameLabel: CommonLabel = {
         let d : CommonLabel = CommonLabel.init(frame: CGRect.init(x: self.personImgView.RightX + commonMargin, y: commonMargin, width: 37, height: 20))
+        
+        
         if LoginModel.shared.nickname != nil {
             d.text = LoginModel.shared.nickname
+            
         } else {
             d.text = "sdassadasd"
         }
@@ -77,30 +108,20 @@ class PersonMsgView: UIView {
         return d
     }()
     
-    /// 设置按钮
-    lazy var setBtn: UIButton = {
-        let d : UIButton = UIButton.init(frame: CGRect.init(x: UIScreen.main.bounds.width - commonMargin - 40 * screenScale, y: commonMargin, width: 40, height: 40))
-        d.backgroundColor = UIColor.gray
-        d.addTarget(self, action: #selector(sendMeee), for: .touchUpInside)
-        d.setTitle("设置", for: .normal)
-        return d
-    }()
-    
-    /// 玩法
-    lazy var playStyle: UIButton = {
-        let d : UIButton = UIButton.init(frame: CGRect.init(x: self.setBtn.LeftX + commonMargin, y: commonMargin, width: 40, height: 40))
-        d.backgroundColor = UIColor.gray
-
-        return d
-    }()
-    
     /// 加入房间
-    lazy var joinRoom: UIButton = {
-        let d : UIButton = UIButton.init(frame: CGRect.init(x: UIScreen.main.bounds.width * 0.5 + UIScreen.main.bounds.width * 0.05, y: SH - SH * 0.65, width: UIScreen.main.bounds.width * 0.35, height: UIScreen.main.bounds.width * 0.35))
-        d.setTitle("加入房间", for: .normal)
-        d.addTarget(self, action: #selector(addJoinRoom), for: .touchUpInside)
+    lazy var joinRoom: UIImageView = {
+        let d : UIImageView = UIImageView.init(frame: CGRect.init(x: SW * 0.5, y: SH * 0.25, width: SW * 0.5, height: SW * 0.4))
+        d.image = #imageLiteral(resourceName: "joinRoom")
+        d.contentMode = .scaleAspectFit
+        
+        return d
+    }()
 
-        d.backgroundColor = UIColor.gray
+    /// 加入房间遮罩按钮
+    lazy var joinMaskBtn: UIButton = {
+        let d : UIButton = UIButton.init(frame: CGRect.init(x: SW * 0.55, y: SH * 0.7, width: SW * 0.3, height: SW * 0.13))
+        d.addTarget(self, action: #selector(addJoinRoom), for: .touchUpInside)
+       
         return d
     }()
     
@@ -112,12 +133,21 @@ class PersonMsgView: UIView {
     }()
     
     /// 创建房间
-    lazy var makeRoom: UIButton = {
-        let d : UIButton = UIButton.init(frame: CGRect.init(x: UIScreen.main.bounds.width * 0.1, y: SH - SH * 0.65, width: UIScreen.main.bounds.width * 0.35, height: UIScreen.main.bounds.width * 0.35))
-        d.setTitle("创建房间", for: .normal)
-        d.addTarget(self, action: #selector(createRoom), for: .touchUpInside)
+    lazy var makeRoom: UIImageView = {
+        let d : UIImageView = UIImageView.init(frame: CGRect.init(x: 0, y: SH * 0.25, width: SW * 0.5, height: SW * 0.4))
 
-        d.backgroundColor = UIColor.gray
+        d.image = #imageLiteral(resourceName: "createRoom")
+        d.contentMode = .scaleAspectFit
+        
+        return d
+    }()
+    
+    
+    /// 创建房间遮罩按钮
+    lazy var createMaskBtn: UIButton = {
+        let d : UIButton = UIButton.init(frame: CGRect.init(x: SW * 0.15, y: SH * 0.7, width: SW * 0.3, height: SW * 0.13))
+        d.addTarget(self, action: #selector(createRoom), for: .touchUpInside)
+        
         return d
     }()
     
@@ -127,25 +157,39 @@ class PersonMsgView: UIView {
         
         return d
     }()
+    
+    /// 设置按钮
+    lazy var rightV: HoolRightBtns = {
+        let d : HoolRightBtns = HoolRightBtns.init(frame: CGRect.init(x: SW * 0.7, y: 0, width: SW - SW * 0.7 , height: 30 * screenScale))
+        d.delegate = self
+        return d
+    }()
 
     override init(frame: CGRect) {
         super.init(frame: frame)
+        
+        addSubview(rightV)
         
         addSubview(bgViewImg)
         
         addSubview(personImgView)
         
+        addSubview(coinsLabel)
+        
+        addSubview(nameBgV)
+        
+        addSubview(diaBgV)
+        
         addSubview(nameLabel)
         
         addSubview(IDLabel)
-        
-        addSubview(coinsLabel)
 
-        addSubview(setBtn)
         
         addSubview(joinRoom)
+        addSubview(self.joinMaskBtn)
         
         addSubview(makeRoom)
+        addSubview(self.createMaskBtn)
         
         addSubview(marketBtn)
     }
@@ -216,7 +260,6 @@ class PersonMsgView: UIView {
         scale?.springSpeed = 20
         scale?.springBounciness = 15.64
         scale?.delegate = UIApplication.shared.keyWindow?.rootViewController
-        self.backgroundColor = UIColor.init(colorLiteralRed: 122, green: 122, blue: 122, alpha: 0.3)
         customView.layer.pop_add(scale, forKey: nil)
         
         addSubview(customView)
@@ -283,9 +326,74 @@ class PersonMsgView: UIView {
                 CreateRoomBasicISExist.removeAll()
             }
         }
+        
+        
+        /// 创建房间
+        if shareViewISExist.count > 0  {
+            
+            //购物断网刷新
+            if NSStringFromClass((self.subviews.last?.classForCoder)!).contains("ShareView") {
+                
+                self.subviews.last?.removeFromSuperview()
+                
+                /// 清空记录数组
+                shareViewISExist.removeAll()
+            }
+        }
+    }
+    
+    
+    /// 分享视图
+    lazy var shareV: ShareView = {
+        let v : ShareView = ShareView.init(frame: CGRect.init(x: 0, y: 0, width: SW * 0.45, height: SH * 0.45))
+        v.backgroundColor = UIColor.clear
+        v.delegate = self
+        return v
+    }()
+}
+
+// MARK: - 右上角按钮代理方法
+extension PersonMsgView : HoolRightBtnsDelegate {
+    func setFunc(sender: UIButton) {
+        print("\((#file as NSString).lastPathComponent):(\(#line))\n",sender.currentTitle as Any)
+    }
+    
+    func playTypeFunc(sender: UIButton) {
+        print("\((#file as NSString).lastPathComponent):(\(#line))\n",sender.currentTitle as Any)
+    }
+    
+    func shareFunc(sender: UIButton) {
+        print("\((#file as NSString).lastPathComponent):(\(#line))\n",sender.currentTitle as Any)
+        
+//        if WXApi.isWXAppSupport() && WXApi.isWXAppInstalled() {
+            shareV.center = self.center
+            addToView(customView: shareV)
+            shareViewISExist.append(shareV)
+    
+//        } else {
+//            FTIndicator.showToastMessage("未安装微信")
+//        }
+        
+   
+    }
+    
+    func scoreFunc(sender: UIButton) {
+        print("\((#file as NSString).lastPathComponent):(\(#line))\n",sender.currentTitle as Any)
+
     }
 }
 
+
+// MARK: - 分享视图代理方法
+extension PersonMsgView : ShareViewDelegate {
+    func wxShar(sender: UIButton) {
+        print("\((#file as NSString).lastPathComponent):(\(#line))\n",sender.currentTitle)
+    }
+    
+    func wxSharFri(sender: UIButton) {
+        print("\((#file as NSString).lastPathComponent):(\(#line))\n",sender.currentTitle)
+    }
+}
 
 class CommonLabel: UILabel {
     override init(frame: CGRect) {
@@ -293,7 +401,112 @@ class CommonLabel: UILabel {
         
         self.textColor = .white
  
-        self.font = UIFont.systemFont(ofSize: 11)
+        self.font = UIFont.systemFont(ofSize: 10 * screenScale)
+    }
+    
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+}
+
+
+protocol HoolRightBtnsDelegate {
+    func setFunc(sender : UIButton)
+    func playTypeFunc(sender : UIButton)
+    func shareFunc(sender : UIButton)
+    func scoreFunc(sender : UIButton)
+}
+
+class HoolRightBtns: UIView {
+    
+    var delegate : HoolRightBtnsDelegate?
+    
+    
+    /// 玩法
+    lazy var playType: CommonBtn = {
+        let d : CommonBtn = CommonBtn.init(frame: CGRect.init(x: 0, y: 5, width: self.Width / 4, height: self.Width / 4))
+        d.setImage(#imageLiteral(resourceName: "play"), for: .normal)
+        d.setImage(#imageLiteral(resourceName: "playSelected"), for: .highlighted)
+        d.addTarget(self, action: #selector(playTypeFunction(sender:)), for: .touchUpInside)
+
+        d.setTitle("playType", for: .normal)
+
+        return d
+    }()
+    
+    /// 分享
+    lazy var shareBtn: CommonBtn = {
+        let d : CommonBtn = CommonBtn.init(frame: CGRect.init(x: self.playType.RightX, y: 5, width: self.Width / 4,height: self.Width / 4))
+        d.setImage(#imageLiteral(resourceName: "shareNormal"), for: .normal)
+        d.setImage(#imageLiteral(resourceName: "shareSelected"), for: .highlighted)
+        d.addTarget(self, action: #selector(shareFunction(sender:)), for: .touchUpInside)
+
+        d.setTitle("share", for: .normal)
+
+        return d
+    }()
+    
+    /// 分数
+    lazy var scoreBtn: CommonBtn = {
+        let d : CommonBtn = CommonBtn.init(frame: CGRect.init(x: self.shareBtn.RightX, y: 5, width: self.Width / 4, height: self.Width / 4))
+        d.setImage(#imageLiteral(resourceName: "scoreNormal"), for: .normal)
+        d.setImage(#imageLiteral(resourceName: "scoreSelected"), for: .highlighted)
+        d.addTarget(self, action: #selector(scoreFunction(sender:)), for: .touchUpInside)
+
+        d.setTitle("score", for: .normal)
+
+        return d
+    }()
+    
+    /// 设置
+    lazy var setBtn: CommonBtn = {
+        let d : CommonBtn = CommonBtn.init(frame: CGRect.init(x: self.scoreBtn.RightX, y: 5, width: self.Width / 4, height: self.Width / 4))
+        d.setImage(#imageLiteral(resourceName: "setBtnNormal"), for: .normal)
+        d.setImage(#imageLiteral(resourceName: "setNormalSelected"), for: .highlighted)
+        d.setTitle("set", for: .normal)
+        d.addTarget(self, action: #selector(setFunction(sender:)), for: .touchUpInside)
+        return d
+    }()
+    
+    @objc fileprivate func setFunction(sender : UIButton) {
+        self.delegate?.setFunc(sender: sender)
+    }
+    
+    @objc fileprivate func scoreFunction(sender : UIButton) {
+        self.delegate?.scoreFunc(sender: sender)
+    }
+    
+    @objc fileprivate func shareFunction(sender : UIButton) {
+        self.delegate?.shareFunc(sender: sender)
+    }
+    
+    @objc fileprivate func playTypeFunction(sender : UIButton) {
+        self.delegate?.setFunc(sender: sender)
+    }
+    
+    override init(frame: CGRect) {
+        super.init(frame: frame)
+        addSubview(playType)
+        addSubview(shareBtn)
+        addSubview(scoreBtn)
+        addSubview(setBtn)
+    }
+    
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+}
+
+
+class CommonBtn: UIButton {
+    
+    override func imageRect(forContentRect contentRect: CGRect) -> CGRect {
+        return CGRect.init(x: 0, y: 0, width: self.Width, height: self.Height)
+    }
+    
+    override init(frame: CGRect) {
+        super.init(frame: frame)
+        self.imageView?.contentMode = .scaleAspectFit
     }
     
     required init?(coder aDecoder: NSCoder) {

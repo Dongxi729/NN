@@ -15,12 +15,12 @@ class JoinRoomView: UIView {
     override init(frame: CGRect) {
         super.init(frame: frame)
         
-//        self.addSubview(collV)
+        self.addSubview(collV)
         
         /// 加入房间
-//        addSubview(titleLabel)
-        addSubview(tfPass)
-        addSubview(Test)
+        addSubview(titleLabel)
+//        addSubview(tfPass)
+//        addSubview(Test)
     }
     
     lazy var tfPass: UITextField = {
@@ -39,7 +39,7 @@ class JoinRoomView: UIView {
     
     @objc fileprivate func enjoyRoom() -> Void {
 
-        joinRoom(str: tfPass.text!)
+//        joinRoom(str: tfPass.text!)
     }
     
     /// 标题
