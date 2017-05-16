@@ -5,6 +5,20 @@
       "scale" : "1x"
     },
     {
+      "resizing" : {
+        "mode" : "9-part",
+        "center" : {
+          "mode" : "tile",
+          "width" : 1,
+          "height" : 1
+        },
+        "cap-insets" : {
+          "bottom" : 21,
+          "top" : 21,
+          "right" : 54,
+          "left" : 53
+        }
+      },
       "idiom" : "universal",
       "filename" : "bgV.png",
       "scale" : "2x"

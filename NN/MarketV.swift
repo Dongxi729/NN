@@ -11,12 +11,19 @@ import UIKit
 class MarketV: UIView {
     
     
-    /// 文字
-    var dataSource : [String] = ["60","210","330","550","1150"]
+    
+    /// 金额
+    var moneyCount : [Int] = [60,210,330,550,1150]
+    
+    /// 选中的图片
+//    var tapSelectedName : [UIImage] = [#imageLiteral(resourceName: "60DiaS"),#imageLiteral(resourceName: "210DiaS"),#imageLiteral(resourceName: "330DiaS"),#imageLiteral(resourceName: "550DiaS"),#imageLiteral(resourceName: "1150S")]
+    
+    /// 选择的图片
+    var tapName : [UIImage] = [#imageLiteral(resourceName: "60Dia"),#imageLiteral(resourceName: "210Dia"),#imageLiteral(resourceName: "330Dia"),#imageLiteral(resourceName: "550Dia"),#imageLiteral(resourceName: "1150Dia")]
     
     
     /// 九宫格
-    lazy var collV: UICollectionView = {
+    fileprivate lazy var collV: UICollectionView = {
         
         let layout = UICollectionViewFlowLayout.init()
 //        layout.itemSize = CGSize.init(width: (self.frame.width - 30) / 2, height: 40)
@@ -25,20 +32,20 @@ class MarketV: UIView {
         
         //列数
         let columnsNum = 3
+        
         //整个view的宽度
         let collectionViewWidth = self.bounds.width
-        //计算单元格的宽度
-//        let itemWidth = (collectionViewWidth - spacing * CGFloat(columnsNum-1))
-//            / CGFloat(columnsNum)
         
+        //计算单元格的宽度
         let itemWidth = self.bounds.width / 3 - 2 * commonMargin
+        
         //设置单元格宽度和高度
-        layout.itemSize = CGSize(width:itemWidth, height:itemWidth * 1.2)
+        layout.itemSize = CGSize(width:itemWidth * 0.75, height:itemWidth * 0.8)
     
         /// 设置大小出错///
-        let d : UICollectionView = UICollectionView.init(frame: self.bounds, collectionViewLayout: layout)
+        let d : UICollectionView = UICollectionView.init(frame: CGRect.init(x: 5, y: self.titleImg.BottomY + 5, width: self.Width - commonMargin, height: self.Height - self.titleImg.Height - 3 * commonMargin), collectionViewLayout: layout)
         
-        d.backgroundColor = UIColor.white
+        d.backgroundColor = UIColor.clear
         
         d.dataSource = self
         d.delegate = self
@@ -48,12 +55,37 @@ class MarketV: UIView {
         return d
     }()
     
+    /// 标题
+    lazy var titleImg: UIImageView = {
+        let d :UIImageView = UIImageView.init(frame: CGRect.init(x: 0, y: 5, width: self.Width, height: 20 * screenScale))
+        d.image = #imageLiteral(resourceName: "marketImg")
+        d.contentMode = UIViewContentMode.scaleAspectFit
+        return d
+    }()
+    
+    /// 背景图片
+    lazy var bgImgV: UIImageView = {
+        let d : UIImageView = UIImageView.init(frame: self.bounds)
+        d.image = #imageLiteral(resourceName: "marketBgV")
+        return d
+    }()
+    
+    /// 中间视图
+    lazy var centerBgView: UIImageView = {
+        let d : UIImageView = UIImageView.init(frame: CGRect.init(x: commonMargin, y: self.titleImg.BottomY + 5, width: self.Width - 2 * commonMargin, height: self.Height - self.titleImg.Height - 2 * commonMargin))
+        d.image = #imageLiteral(resourceName: "centerBgV")
+        return d
+    }()
     
     override init(frame: CGRect) {
         super.init(frame: frame)
         
-        self.addSubview(collV)
         
+        addSubview(bgImgV)
+        addSubview(centerBgView)
+        addSubview(titleImg)
+        
+        self.addSubview(collV)
     }
     
     
@@ -66,7 +98,8 @@ extension MarketV : UICollectionViewDataSource,UICollectionViewDelegateFlowLayou
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "MarketCollectCell", for: indexPath) as! MarketCollectCell
         
-        cell.labelll.text = dataSource[indexPath.row]
+        cell.bgImg.setImage(tapName[indexPath.row], for: .normal)
+        cell.bgImg.setImage(tapSelectedName[indexPath.row], for: .selected)
         
         return cell
     }
@@ -78,38 +111,35 @@ extension MarketV : UICollectionViewDataSource,UICollectionViewDelegateFlowLayou
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return dataSource.count
+        return moneyCount.count
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        
+        print("\((#file as NSString).lastPathComponent):(\(#line))\n",moneyCount[indexPath.row])
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
+        return 10 * screenScale
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
-        return UIEdgeInsets.init(top: 2 * commonMargin, left: commonMargin + commonMargin * 0.8, bottom: commonMargin * 2, right: 2 * commonMargin)
+        return UIEdgeInsets.init(top: 25, left: commonMargin + commonMargin * 0.8, bottom: 0, right: 2 * commonMargin)
     }
     
 }
 
 class MarketCollectCell: UICollectionViewCell {
     
-    lazy var labelll: CommonLabell = {
-        let d : CommonLabell = CommonLabell.init(frame: CGRect.init(x: 0, y: 0, width: self.Width * 0.3, height: self.Width * 0.3))
-        d.backgroundColor = UIColor.randomColor()
-        return d
-    }()
-    
     /// 文本
-    lazy var bgImg: UIImageView = {
-        let bgImg : UIImageView = UIImageView.init(frame: CGRect.init(x: 50, y: commonMargin, width: SW * 0.05, height: SW * 0.05))
-        bgImg.backgroundColor = UIColor.randomColor()
+    lazy var bgImg: CommonBtn = {
+        let bgImg : CommonBtn = CommonBtn.init(frame: self.bounds)
+        bgImg.isUserInteractionEnabled = false
         return bgImg
     }()
     
     override init(frame: CGRect) {
         super.init(frame: frame)
         
-        self.layer.borderWidth = 1
         prepareUI()
     }
     

@@ -5,6 +5,20 @@
       "scale" : "1x"
     },
     {
+      "resizing" : {
+        "mode" : "9-part",
+        "center" : {
+          "mode" : "tile",
+          "width" : 1,
+          "height" : 1
+        },
+        "cap-insets" : {
+          "bottom" : 11,
+          "top" : 10,
+          "right" : 10,
+          "left" : 10
+        }
+      },
       "idiom" : "universal",
       "filename" : "centerBgV.png",
       "scale" : "2x"

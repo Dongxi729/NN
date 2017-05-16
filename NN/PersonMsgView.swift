@@ -205,8 +205,8 @@ class PersonMsgView: UIView {
     
     /// 商城
     @objc fileprivate func jumpToShop() -> Void {
-        let f : MarketV = MarketV.init(frame: CGRect.init(x: 100, y: SH * 0.2, width: SW * 0.5, height: SW * 0.5))
-        f.backgroundColor = UIColor.randomColor()
+        let f : MarketV = MarketV.init(frame: CGRect.init(x: 100, y: SH * 0.2, width: SW * 0.65, height: SW * 0.5))
+        
         f.center = self.center
         
         if marketVISExist.count < 1 {
