@@ -70,7 +70,7 @@ class MainGameViewController: UIViewController {
         super.viewDidLoad()
         
         // Do any additional setup after loading the view.
-        
+        addScrollText()
         
         let add = UIButton.init(frame: CGRect.init(x: 30, y: 30, width: 100, height: 100))
         add.backgroundColor = UIColor.red
@@ -84,7 +84,7 @@ class MainGameViewController: UIViewController {
 
         
         
-        addScrollText()
+
     }
     
     func dismissRoomSEL() -> Void {

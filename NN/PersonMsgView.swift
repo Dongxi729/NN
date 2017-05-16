@@ -350,6 +350,14 @@ class PersonMsgView: UIView {
         v.delegate = self
         return v
     }()
+    
+    /// 玩法视图
+    lazy var playTyV: HowToPlayV = {
+        let v : HowToPlayV = HowToPlayV.init(frame: CGRect.init(x: 0, y: 0, width: SW * 0.8, height: SH * 0.8))
+        
+//        v.delegate = self
+        return v
+    }()
 }
 
 // MARK: - 右上角按钮代理方法
@@ -360,6 +368,9 @@ extension PersonMsgView : HoolRightBtnsDelegate {
     
     func playTypeFunc(sender: UIButton) {
         print("\((#file as NSString).lastPathComponent):(\(#line))\n",sender.currentTitle as Any)
+        
+        playTyV.center = self.center
+        addToView(customView: playTyV)
     }
     
     func shareFunc(sender: UIButton) {
@@ -481,7 +492,7 @@ class HoolRightBtns: UIView {
     }
     
     @objc fileprivate func playTypeFunction(sender : UIButton) {
-        self.delegate?.setFunc(sender: sender)
+        self.delegate?.playTypeFunc(sender: sender)
     }
     
     override init(frame: CGRect) {
