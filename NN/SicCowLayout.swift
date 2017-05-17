@@ -4,12 +4,20 @@
 //
 //  Created by 郑东喜 on 2017/5/17.
 //  Copyright © 2017年 郑东喜. All rights reserved.
-//
+//  六人牛牛布局
 
 import UIKit
 
+
+protocol SicCowLayoutDelegate {
+    func creatRoomEvent(sender : UIButton)
+}
+
 // MARK:- 六人牛牛的布局
 class SicCowLayout: UIView {
+    
+    var delegate : SicCowLayoutDelegate?
+    
     /// 圆环按钮
     fileprivate var circleBtn : UIButton!
     
@@ -21,6 +29,28 @@ class SicCowLayout: UIView {
     
     /// 玩法选项按钮
     fileprivate var playTypeBtn : UIButton!
+    
+    
+    /// 创建按钮
+    fileprivate lazy var createBtn: UIButton = {
+        let d : UIButton = UIButton.init(frame: CGRect.init(x: self.Width * 0.126, y: self.Height * 0.82, width: self.Width * 0.35, height: self.Height * 0.13))
+        
+        
+        d.addTarget(self, action: #selector(creatRoomSEL(sender:)), for: .touchUpInside)
+        return d
+    }()
+    
+    
+    
+    
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        let touch: UITouch? = touches.first
+        let touchPoint: CGPoint? = touch?.location(in: self)
+        print("\((touchPoint?.x)! / self.Width)==\((touchPoint?.y)! / self.Height)")
+        let stringFloat = Int((touchPoint?.x)!)
+        let stringFloat1 = Int((touchPoint?.y)!)
+        print("\(stringFloat)\(stringFloat1)")
+    }
     
     /// 六人牛牛右边背景
     fileprivate lazy var bgV: UIImageView = {
@@ -83,19 +113,6 @@ class SicCowLayout: UIView {
     }()
     
     
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
     /// 玩法选项
     lazy var playTypeImgOne: UIImageView = {
         let f : UIImageView = UIImageView.init(frame: CGRect.init(x: self.Width * 0.24, y: self.Height * 0.43, width: 25 * screenScale, height: commonMargin * screenScale))
@@ -124,7 +141,7 @@ class SicCowLayout: UIView {
         f.contentMode = UIViewContentMode.scaleAspectFit
         return f
     }()
-    
+
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -142,6 +159,7 @@ class SicCowLayout: UIView {
         /// 玩法选项
         playType()
         
+        addSubview(createBtn)
     }
     
     /// 玩法选项
@@ -157,7 +175,6 @@ class SicCowLayout: UIView {
             
             if index == 1 || index == 3 {
                 posIndex = 0.28
-                
             }
             
             if index == 2 || index == 4 {
@@ -175,9 +192,7 @@ class SicCowLayout: UIView {
             
             playTypeBtn = UIButton.init(frame: CGRect.init(x: self.Width * posIndex, y: self.Height * YIndex, width: 40 * screenScale, height: commonMargin * screenScale))
             playTypeBtn.tag = index + tag
-            playTypeBtn.backgroundColor = UIColor.randomColor()
             playTypeBtn.addTarget(self, action: #selector(playTypeSEL(sender:)), for: .touchUpInside)
-            
             addSubview(playTypeBtn)
         }
         
@@ -193,28 +208,34 @@ class SicCowLayout: UIView {
         playTypeImgFour.isHidden = true
     }
     
+    
+    /// 玩法选项
     @objc fileprivate func playTypeSEL(sender :UIButton) {
         print(sender.tag)
         
         switch sender.tag {
+            /// 抢庄
         case 401:
             playTypeImgOne.isHidden = false
             playTypeImgTwo.isHidden = true
             playTypeImgThree.isHidden = true
             playTypeImgFour.isHidden = true
             break
+            /// 轮流
         case 402:
             playTypeImgOne.isHidden = true
             playTypeImgTwo.isHidden = false
             playTypeImgThree.isHidden = true
             playTypeImgFour.isHidden = true
             break
+            /// 房主做东
         case 403:
             playTypeImgOne.isHidden = true
             playTypeImgTwo.isHidden = true
             playTypeImgThree.isHidden = false
             playTypeImgFour.isHidden = true
             break
+            /// 谁大谁作者
         case 404:
             playTypeImgOne.isHidden = true
             playTypeImgTwo.isHidden = true
@@ -224,6 +245,7 @@ class SicCowLayout: UIView {
         default:
             break
         }
+    
     }
     
     /// 计算
@@ -255,18 +277,23 @@ class SicCowLayout: UIView {
         payImgOne.isHidden = false
         payImgTwo.isHidden = true
     }
-    
+   
+    /// 结算方式
     @objc fileprivate func payTypeSEL(sender : UIButton) -> Void {
         print(sender.tag)
         
         switch sender.tag {
+            /// 房主结算
         case 301:
             payImgOne.isHidden = false
             payImgTwo.isHidden = true
+            self.py = 6
             break
+            /// 房费平摊
         case 302:
             payImgOne.isHidden = true
             payImgTwo.isHidden = false
+            self.py = 1
             break
             
         default:
@@ -292,10 +319,12 @@ class SicCowLayout: UIView {
         /// 设置打钩显示隐藏
         correctImgOne.isHidden = false
         correctImgTwo.isHidden = true
+    
     }
     
     /// 局数选择
     private func roundsChoose() -> Void {
+        
         let tag :Int = 100
         
         /// 局数选择
@@ -315,46 +344,58 @@ class SicCowLayout: UIView {
         cirOne.isHidden = false
         cirTwo.isHidden = true
         cirThree.isHidden = true
-    }
     
+    
+    }
     
     /// 人数玩法切换图片
     func correctChangeImgSEL(sender : UIButton) -> Void {
         print(sender.tag)
         switch sender.tag {
+            /// 2~3人
         case 201:
             correctImgOne.isHidden = false
             correctImgTwo.isHidden = true
+            self.players = 3
             break
             
+            /// 4~6人
         case 202:
             correctImgOne.isHidden = true
             correctImgTwo.isHidden = false
+            self.players = 6
             break
         default:
             break
         }
+    
     }
     
-    /// 圆环选择切换图片事
+    /// 局数选择事件
     @objc fileprivate func btttn(sender : UIButton) -> Void {
         print(sender.tag)
         
         switch sender.tag {
+            /// 10局
         case 101:
             cirOne.isHidden = false
             cirTwo.isHidden = true
             cirThree.isHidden = true
+            self.rounds = 10
             break
+            /// 20局
         case 102:
             cirOne.isHidden = true
             cirTwo.isHidden = false
             cirThree.isHidden = true
+            self.rounds = 20
             break
+            /// 30局
         case 103:
             cirOne.isHidden = true
             cirTwo.isHidden = true
             cirThree.isHidden = false
+            self.rounds = 30
             break
         default:
             break
@@ -366,4 +407,101 @@ class SicCowLayout: UIView {
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
+    
+    /// 局数 默认是10局数
+    var rounds : Int = 10
+    
+    /// 人数 默认3人
+    var players : Int = 3
+    
+    /// 付费类型
+    /// 6为
+    var py : Int = 6
+    
+    /// 结算砖石
+    @objc fileprivate func creatRoomSEL(sender : UIButton) -> Void {
+        
+        print(setpayfun(_ii: self.rounds, _rn: self.players, _py: self.py))
+        addSubview(scoreImg)
+        self.scoreImg.text = String(setpayfun(_ii: self.rounds, _rn: self.players, _py: self.py))
+    }
+    
+    /// 分数
+    fileprivate lazy var scoreImg: UILabel = {
+        let d : UILabel = UILabel.init(frame: CGRect.init(x: self.Width * 0.5, y: 0.7 * self.Height, width: 12 * screenScale, height: commonMargin * screenScale))
+        d.font = UIFont(name: "SimHei", size: 9 * screenScale)
+        d.font = UIFont.boldSystemFont(ofSize: 9 * screenScale)
+//        d.backgroundColor = UIColor.red
+        d.textColor = UIColor.red
+        return d
+    }()
+}
+
+
+/// 结算砖石
+///
+/// - Parameters:
+///   - _ii: <#_ii description#>
+///   - _rn: 人数
+///   - _py: 付费方式
+func setpayfun(_ii:Int,_rn:Int,_py:Int) -> Int {
+    
+    if (_py == 6) {
+        //房主付费
+        switch _ii {
+        case 10:
+            //10 局
+            if(_rn == 3) {
+                //人数  2-3个人
+                return 25
+            } else if(_rn == 6) {
+                //人数  4-6个人
+                return 35
+            }
+            break
+        case 20:
+            //20 局
+            if(_rn == 3) {
+                //人数  2-3个人
+                return 45
+            } else if(_rn == 6) {
+                //人数  4-6个人
+                return 60
+            }
+            break
+        case 30:
+            //30 局
+            if(_rn == 3)
+            {
+                //人数  2-3个人
+                return 65
+            }
+            else if(_rn == 6)
+            {
+                //人数  4-6个人
+                return 80
+            }
+            break
+        default:
+            break
+        }
+    } else if(_py == 1) {
+        //平摊付费
+        switch _ii {
+        case 10:
+            //10 局
+            return 8
+            
+        case 20:
+            //20 局
+            return 15
+            
+        case 30:
+            break
+        default:
+            //30 局
+            return  25
+        }
+    }
+    return  -1
 }

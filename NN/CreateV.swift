@@ -47,7 +47,7 @@ class CreateV: UIView {
     /// 添加六人牛牛右边视图
     fileprivate lazy var sicRightLayout: SicCowLayout = {
         let d : SicCowLayout = SicCowLayout.init(frame: CGRect.init(x: self.sixCowBtn.RightX + commonMargin * screenScale, y: self.sixCowBtn.TopY, width: self.Width * 0.65, height: (438 / 350) * self.Width * 0.44))
-        
+        d.delegate = self
         return d
     }()
     
@@ -55,6 +55,7 @@ class CreateV: UIView {
     fileprivate lazy var sicCommonRightLayout: SicComonCowLayout = {
         let d : SicComonCowLayout = SicComonCowLayout.init(frame: CGRect.init(x: self.sixCowBtn.RightX + commonMargin * screenScale, y: self.sixCowBtn.TopY, width: self.Width * 0.65, height: (438 / 350) * self.Width * 0.44))
         
+        d.delegate = self
         return d
     }()
     
@@ -94,9 +95,17 @@ class CreateV: UIView {
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-
 }
 
+extension CreateV : SicCowLayoutDelegate {
+    func creatRoomEvent(sender: UIButton) {
+        print(sender.frame)
+    }
+}
 
-
+extension CreateV : SicComonCowLayoutDelegate {
+    func creatSixCowRoomEvent(sender: UIButton) {
+        print(sender.frame)
+    }
+}
 

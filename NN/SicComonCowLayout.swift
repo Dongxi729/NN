@@ -8,8 +8,14 @@
 
 import UIKit
 
+
+protocol SicComonCowLayoutDelegate {
+    func creatSixCowRoomEvent(sender : UIButton)
+}
+
 // MARK:- 通比牛牛的布局
 class SicComonCowLayout: UIView {
+    var delegate : SicComonCowLayoutDelegate?
     
     /// 圆环按钮
     fileprivate var circleBtn : UIButton!
@@ -23,6 +29,16 @@ class SicComonCowLayout: UIView {
     /// 玩法选项按钮
     fileprivate var counsss : UIButton!
     
+    /// 创建按钮
+   fileprivate lazy var createBtn: UIButton = {
+        let d : UIButton = UIButton.init(frame: CGRect.init(x: self.Width * 0.126, y: self.Height * 0.82, width: self.Width * 0.35, height: self.Height * 0.13))
+    
+        
+        d.addTarget(self, action: #selector(creatSixCommRoomSEL(sender:)), for: .touchUpInside)
+        return d
+    }()
+    
+
     
     /// 圆环显示
     lazy var cirOne: UIImageView = {
@@ -141,6 +157,8 @@ class SicComonCowLayout: UIView {
         
         /// 玩法选项
         playType()
+        
+        addSubview(createBtn)
     }
     
     
@@ -279,13 +297,17 @@ class SicComonCowLayout: UIView {
         print(sender.tag)
         
         switch sender.tag {
+            /// 房主结算
         case 301:
             payImgOne.isHidden = false
             payImgTwo.isHidden = true
+            self.py = 6
             break
+            /// 房费平摊
         case 302:
             payImgOne.isHidden = true
             payImgTwo.isHidden = false
+            self.py = 1
             break
             
         default:
@@ -341,11 +363,12 @@ class SicComonCowLayout: UIView {
     func correctChangeImgSEL(sender : UIButton) -> Void {
         print(sender.tag)
         switch sender.tag {
+            /// 3人
         case 201:
             correctImgOne.isHidden = false
             correctImgTwo.isHidden = true
             break
-            
+            /// 6人
         case 202:
             correctImgOne.isHidden = true
             correctImgTwo.isHidden = false
@@ -355,30 +378,67 @@ class SicComonCowLayout: UIView {
         }
     }
     
-    /// 圆环选择切换图片事
+    /// 局数选择
     @objc fileprivate func btttn(sender : UIButton) -> Void {
         print(sender.tag)
         
         switch sender.tag {
+            
+            /// 10
         case 101:
+            
             cirOne.isHidden = false
             cirTwo.isHidden = true
             cirThree.isHidden = true
+            self.rounds = 10
             break
+            /// 20
         case 102:
             cirOne.isHidden = true
             cirTwo.isHidden = false
             cirThree.isHidden = true
+            self.rounds = 20
             break
+            
+            /// 30
         case 103:
             cirOne.isHidden = true
             cirTwo.isHidden = true
             cirThree.isHidden = false
+            self.rounds = 30
             break
         default:
             break
         }
     }
+    
+    /// 分数
+    fileprivate lazy var scoreImg: UILabel = {
+        let d : UILabel = UILabel.init(frame: CGRect.init(x: self.Width * 0.5, y: 0.7 * self.Height, width: 12 * screenScale, height: commonMargin * screenScale))
+        d.font = UIFont(name: "SimHei", size: 9 * screenScale)
+        d.font = UIFont.boldSystemFont(ofSize: 9 * screenScale)
+        //        d.backgroundColor = UIColor.red
+        d.textColor = UIColor.red
+        return d
+    }()
+    
+    /// 局数 默认是10局数
+    var rounds : Int = 10
+    
+    /// 人数 默认3人
+    var players : Int = 3
+    
+    /// 付费类型
+    /// 6为
+    var py : Int = 6
+    
+    /// 结算砖石
+    @objc fileprivate func creatSixCommRoomSEL(sender : UIButton) -> Void {
+        print(setpayfun(_ii: self.rounds, _rn: self.players, _py: self.py))
+        addSubview(scoreImg)
+        self.scoreImg.text = String(setpayfun(_ii: self.rounds, _rn: self.players, _py: self.py))
+    }
+    
     
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
