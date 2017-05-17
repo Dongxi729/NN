@@ -69,8 +69,6 @@
 		2629EC041ECAFCA500616626 /* f0_nn8.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 2629EBF61ECAFCA500616626 /* f0_nn8.mp3 */; };
 		2629EC051ECAFCA500616626 /* f0_nn9.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 2629EBF71ECAFCA500616626 /* f0_nn9.mp3 */; };
 		262E1C3A1EB1CBDE007CC745 /* CaptureScreenTool.swift in Sources */ = {isa = PBXBuildFile; fileRef = 262E1C391EB1CBDE007CC745 /* CaptureScreenTool.swift */; };
-		264A2CDF1EC44CB0001B7F0E /* CommonCowUpV.swift in Sources */ = {isa = PBXBuildFile; fileRef = 264A2CDE1EC44CB0001B7F0E /* CommonCowUpV.swift */; };
-		264A2CE11EC44DE5001B7F0E /* CommCowDownV.swift in Sources */ = {isa = PBXBuildFile; fileRef = 264A2CE01EC44DE5001B7F0E /* CommCowDownV.swift */; };
 		264A2CE41EC4565A001B7F0E /* MarketV.swift in Sources */ = {isa = PBXBuildFile; fileRef = 264A2CE31EC4565A001B7F0E /* MarketV.swift */; };
 		264A2CE61EC45D21001B7F0E /* ChatV.swift in Sources */ = {isa = PBXBuildFile; fileRef = 264A2CE51EC45D21001B7F0E /* ChatV.swift */; };
 		264A2CE91EC45F1F001B7F0E /* GamingVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 264A2CE81EC45F1F001B7F0E /* GamingVC.swift */; };
@@ -97,13 +95,9 @@
 		26BC61301EB2EB6C00AE9BE1 /* CountDownBtn.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26BC612F1EB2EB6C00AE9BE1 /* CountDownBtn.swift */; };
 		26BC613A1EB4250600AE9BE1 /* CollectVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26BC61391EB4250600AE9BE1 /* CollectVC.swift */; };
 		26BC613C1EB4253B00AE9BE1 /* CollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26BC613B1EB4253B00AE9BE1 /* CollectionViewCell.swift */; };
-		26BDD6C81EC3660C00F1C478 /* CreateRoomBasic.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26BDD6C71EC3660C00F1C478 /* CreateRoomBasic.swift */; };
-		26BDD6CA1EC368AF00F1C478 /* SixCowV.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26BDD6C91EC368AF00F1C478 /* SixCowV.swift */; };
-		26BDD6CC1EC3722D00F1C478 /* SixCowDownV.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26BDD6CB1EC3722D00F1C478 /* SixCowDownV.swift */; };
 		26CAF9BD1EB4C219003065B8 /* LabelRepeat.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26CAF9BC1EB4C219003065B8 /* LabelRepeat.swift */; };
 		26CFB6E11EC2FC2E00327748 /* CreateV.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26CFB6E01EC2FC2E00327748 /* CreateV.swift */; };
 		26D54ACC1EC2A93B00119FAA /* AddViewWithPop.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26D54ACB1EC2A93B00119FAA /* AddViewWithPop.swift */; };
-		26D54ACF1EC2BAF000119FAA /* CreateCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26D54ACE1EC2BAF000119FAA /* CreateCollectionViewCell.swift */; };
 		26D54AE31EC2BD6D00119FAA /* DDXMLElementAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 26D54AD41EC2BD6D00119FAA /* DDXMLElementAdditions.m */; };
 		26D54AE41EC2BD6D00119FAA /* NSString+DDXML.m in Sources */ = {isa = PBXBuildFile; fileRef = 26D54AD71EC2BD6D00119FAA /* NSString+DDXML.m */; };
 		26D54AE51EC2BD6D00119FAA /* DDXML.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26D54AD91EC2BD6D00119FAA /* DDXML.swift */; };
@@ -127,7 +121,6 @@
 		26D54B3A1EC2C71800119FAA /* SwiftSocket.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 26D54B341EC2C55F00119FAA /* SwiftSocket.framework */; };
 		26D54B3B1EC2C71800119FAA /* SwiftSocket.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 26D54B341EC2C55F00119FAA /* SwiftSocket.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		26D54B3E1EC2C7D000119FAA /* cccc.png in Resources */ = {isa = PBXBuildFile; fileRef = 26D54B3D1EC2C7D000119FAA /* cccc.png */; };
-		26D54B401EC2ED2C00119FAA /* CreateRoomVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26D54B3F1EC2ED2C00119FAA /* CreateRoomVC.swift */; };
 		26D54B441EC2F0B500119FAA /* CreateRoomModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26D54B431EC2F0B500119FAA /* CreateRoomModel.swift */; };
 		26F14F8A1ECA95EE006844C9 /* ShareView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26F14F891ECA95EE006844C9 /* ShareView.swift */; };
 		26F14F981ECAA2A7006844C9 /* FTIndicator.m in Sources */ = {isa = PBXBuildFile; fileRef = 26F14F8D1ECAA2A7006844C9 /* FTIndicator.m */; };
@@ -137,8 +130,6 @@
 		26F14F9C1ECAA2A7006844C9 /* FTToastIndicator.m in Sources */ = {isa = PBXBuildFile; fileRef = 26F14F971ECAA2A7006844C9 /* FTToastIndicator.m */; };
 		26F14F9E1ECAA785006844C9 /* HowToPlayV.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26F14F9D1ECAA785006844C9 /* HowToPlayV.swift */; };
 		26F14FA01ECAC785006844C9 /* ScoreView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26F14F9F1ECAC785006844C9 /* ScoreView.swift */; };
-		26F25C731EC83B4D006951E6 /* SixCowLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26F25C721EC83B4D006951E6 /* SixCowLayout.swift */; };
-		26F25C751EC83B64006951E6 /* SixCommonLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26F25C741EC83B64006951E6 /* SixCommonLayout.swift */; };
 		26F9FA9E1EC9407100DF4A64 /* GamingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26F9FA9D1EC9407100DF4A64 /* GamingView.swift */; };
 /* End PBXBuildFile section */
 
@@ -260,8 +251,6 @@
 		2629EBF61ECAFCA500616626 /* f0_nn8.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = f0_nn8.mp3; path = "sound 2/f0_nn8.mp3"; sourceTree = "<group>"; };
 		2629EBF71ECAFCA500616626 /* f0_nn9.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = f0_nn9.mp3; path = "sound 2/f0_nn9.mp3"; sourceTree = "<group>"; };
 		262E1C391EB1CBDE007CC745 /* CaptureScreenTool.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CaptureScreenTool.swift; sourceTree = "<group>"; };
-		264A2CDE1EC44CB0001B7F0E /* CommonCowUpV.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CommonCowUpV.swift; sourceTree = "<group>"; };
-		264A2CE01EC44DE5001B7F0E /* CommCowDownV.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CommCowDownV.swift; sourceTree = "<group>"; };
 		264A2CE31EC4565A001B7F0E /* MarketV.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MarketV.swift; sourceTree = "<group>"; };
 		264A2CE51EC45D21001B7F0E /* ChatV.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChatV.swift; sourceTree = "<group>"; };
 		264A2CE81EC45F1F001B7F0E /* GamingVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GamingVC.swift; sourceTree = "<group>"; };
@@ -288,13 +277,9 @@
 		26BC612F1EB2EB6C00AE9BE1 /* CountDownBtn.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CountDownBtn.swift; sourceTree = "<group>"; };
 		26BC61391EB4250600AE9BE1 /* CollectVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CollectVC.swift; sourceTree = "<group>"; };
 		26BC613B1EB4253B00AE9BE1 /* CollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CollectionViewCell.swift; sourceTree = "<group>"; };
-		26BDD6C71EC3660C00F1C478 /* CreateRoomBasic.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreateRoomBasic.swift; sourceTree = "<group>"; };
-		26BDD6C91EC368AF00F1C478 /* SixCowV.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SixCowV.swift; sourceTree = "<group>"; };
-		26BDD6CB1EC3722D00F1C478 /* SixCowDownV.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SixCowDownV.swift; sourceTree = "<group>"; };
 		26CAF9BC1EB4C219003065B8 /* LabelRepeat.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LabelRepeat.swift; sourceTree = "<group>"; };
 		26CFB6E01EC2FC2E00327748 /* CreateV.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreateV.swift; sourceTree = "<group>"; };
 		26D54ACB1EC2A93B00119FAA /* AddViewWithPop.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddViewWithPop.swift; sourceTree = "<group>"; };
-		26D54ACE1EC2BAF000119FAA /* CreateCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreateCollectionViewCell.swift; sourceTree = "<group>"; };
 		26D54AD31EC2BD6D00119FAA /* DDXMLElementAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DDXMLElementAdditions.h; sourceTree = "<group>"; };
 		26D54AD41EC2BD6D00119FAA /* DDXMLElementAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DDXMLElementAdditions.m; sourceTree = "<group>"; };
 		26D54AD61EC2BD6D00119FAA /* NSString+DDXML.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+DDXML.h"; sourceTree = "<group>"; };
@@ -331,7 +316,6 @@
 		26D54B361EC2C5F800119FAA /* SocketVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SocketVC.swift; path = ../SocketVC.swift; sourceTree = "<group>"; };
 		26D54B381EC2C66200119FAA /* SyncTimerVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SyncTimerVC.swift; sourceTree = "<group>"; };
 		26D54B3D1EC2C7D000119FAA /* cccc.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = cccc.png; sourceTree = "<group>"; };
-		26D54B3F1EC2ED2C00119FAA /* CreateRoomVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreateRoomVC.swift; sourceTree = "<group>"; };
 		26D54B431EC2F0B500119FAA /* CreateRoomModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreateRoomModel.swift; sourceTree = "<group>"; };
 		26F14F891ECA95EE006844C9 /* ShareView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShareView.swift; sourceTree = "<group>"; };
 		26F14F8C1ECAA2A7006844C9 /* FTIndicator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FTIndicator.h; sourceTree = "<group>"; };
@@ -345,8 +329,6 @@
 		26F14F971ECAA2A7006844C9 /* FTToastIndicator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FTToastIndicator.m; sourceTree = "<group>"; };
 		26F14F9D1ECAA785006844C9 /* HowToPlayV.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HowToPlayV.swift; sourceTree = "<group>"; };
 		26F14F9F1ECAC785006844C9 /* ScoreView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScoreView.swift; sourceTree = "<group>"; };
-		26F25C721EC83B4D006951E6 /* SixCowLayout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SixCowLayout.swift; sourceTree = "<group>"; };
-		26F25C741EC83B64006951E6 /* SixCommonLayout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SixCommonLayout.swift; sourceTree = "<group>"; };
 		26F9FA9D1EC9407100DF4A64 /* GamingView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GamingView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -648,13 +630,6 @@
 		264A32D01EC58B37001405C4 /* view */ = {
 			isa = PBXGroup;
 			children = (
-				26BDD6C71EC3660C00F1C478 /* CreateRoomBasic.swift */,
-				26BDD6CB1EC3722D00F1C478 /* SixCowDownV.swift */,
-				26BDD6C91EC368AF00F1C478 /* SixCowV.swift */,
-				264A2CDE1EC44CB0001B7F0E /* CommonCowUpV.swift */,
-				264A2CE01EC44DE5001B7F0E /* CommCowDownV.swift */,
-				26F25C721EC83B4D006951E6 /* SixCowLayout.swift */,
-				26F25C741EC83B64006951E6 /* SixCommonLayout.swift */,
 			);
 			name = view;
 			sourceTree = "<group>";
@@ -765,8 +740,6 @@
 		26D54ACD1EC2B92E00119FAA /* createRoom */ = {
 			isa = PBXGroup;
 			children = (
-				26D54ACE1EC2BAF000119FAA /* CreateCollectionViewCell.swift */,
-				26D54B3F1EC2ED2C00119FAA /* CreateRoomVC.swift */,
 				26D54B431EC2F0B500119FAA /* CreateRoomModel.swift */,
 				26CFB6E01EC2FC2E00327748 /* CreateV.swift */,
 				264A32D01EC58B37001405C4 /* view */,
@@ -1037,12 +1010,10 @@
 				26D54B151EC2C0E700119FAA /* VoicieControl.swift in Sources */,
 				26BC613A1EB4250600AE9BE1 /* CollectVC.swift in Sources */,
 				26A487291EC004F400E9A091 /* UIView+Extension.swift in Sources */,
-				26BDD6CC1EC3722D00F1C478 /* SixCowDownV.swift in Sources */,
 				26D54AE71EC2BD6D00119FAA /* DDXMLElement.m in Sources */,
 				26F14F991ECAA2A7006844C9 /* FTNotificationIndicator.m in Sources */,
 				2682558B1EC196C30080CCCD /* LoginRequestTool.swift in Sources */,
 				26F14F9E1ECAA785006844C9 /* HowToPlayV.swift in Sources */,
-				26F25C731EC83B4D006951E6 /* SixCowLayout.swift in Sources */,
 				2603D96F1EADCD440069B132 /* CustomAlertView.swift in Sources */,
 				260C66651EB23415006C119E /* POPAnimationRuntime.mm in Sources */,
 				26836AFB1EC1E2DB00061069 /* JoinRoomView.swift in Sources */,
@@ -1056,7 +1027,6 @@
 				26D54B2B1EC2C11B00119FAA /* WavConvert.m in Sources */,
 				260C66681EB23415006C119E /* POPBasicAnimation.mm in Sources */,
 				260ECA821EC1AF1F00058649 /* LoginModel.swift in Sources */,
-				26F25C751EC83B64006951E6 /* SixCommonLayout.swift in Sources */,
 				264A2CE41EC4565A001B7F0E /* MarketV.swift in Sources */,
 				2657FDBA1EB982E100B92648 /* DeskCards.swift in Sources */,
 				26CAF9BD1EB4C219003065B8 /* LabelRepeat.swift in Sources */,
@@ -1071,16 +1041,13 @@
 				26D54AE51EC2BD6D00119FAA /* DDXML.swift in Sources */,
 				260C666E1EB23415006C119E /* POPMath.mm in Sources */,
 				2603D95C1EADCA3C0069B132 /* WXTool.swift in Sources */,
-				26BDD6C81EC3660C00F1C478 /* CreateRoomBasic.swift in Sources */,
 				264A32CF1EC58485001405C4 /* XMLTool.swift in Sources */,
 				26D54B311EC2C42800119FAA /* ServerSendMsg.swift in Sources */,
 				260C666D1EB23415006C119E /* POPLayerExtras.mm in Sources */,
-				26BDD6CA1EC368AF00F1C478 /* SixCowV.swift in Sources */,
 				260C66671EB23415006C119E /* POPAnimator.mm in Sources */,
 				26F14F9C1ECAA2A7006844C9 /* FTToastIndicator.m in Sources */,
 				26D54ACC1EC2A93B00119FAA /* AddViewWithPop.swift in Sources */,
 				260C666C1EB23415006C119E /* POPGeometry.mm in Sources */,
-				264A2CDF1EC44CB0001B7F0E /* CommonCowUpV.swift in Sources */,
 				2657FD9D1EB8809100B92648 /* DelayTimerTool.swift in Sources */,
 				260C666B1EB23415006C119E /* POPDecayAnimation.mm in Sources */,
 				26D54B2E1EC2C36900119FAA /* TImerTool.swift in Sources */,
@@ -1104,16 +1071,13 @@
 				26BC61301EB2EB6C00AE9BE1 /* CountDownBtn.swift in Sources */,
 				2603D93B1EADC8D20069B132 /* AppDelegate.swift in Sources */,
 				26D54AE81EC2BD6D00119FAA /* DDXMLNode.m in Sources */,
-				26D54ACF1EC2BAF000119FAA /* CreateCollectionViewCell.swift in Sources */,
 				2657FD9B1EB872C300B92648 /* ScaleView.swift in Sources */,
-				264A2CE11EC44DE5001B7F0E /* CommCowDownV.swift in Sources */,
 				2657FDA11EB96F9300B92648 /* FontVC.swift in Sources */,
 				26BC613C1EB4253B00AE9BE1 /* CollectionViewCell.swift in Sources */,
 				26D54B2A1EC2C11B00119FAA /* VoiceConverter.mm in Sources */,
 				26771ED01EC54DE300B61DBC /* TestMediaVC.swift in Sources */,
 				260C66621EB23415006C119E /* POPAnimation.mm in Sources */,
 				2603D9791EADD3AA0069B132 /* PersonMsgView.swift in Sources */,
-				26D54B401EC2ED2C00119FAA /* CreateRoomVC.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

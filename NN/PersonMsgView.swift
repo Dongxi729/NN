@@ -236,7 +236,6 @@ class PersonMsgView: UIView {
     
     /// 创建房间
     @objc fileprivate func createRoom() -> Void {
-//        let f : CreateRoomBasic = CreateRoomBasic.init(frame: CGRect.init(x: 100, y: SH * 0.2, width: SW * 0.7, height: SH * 0.8))
         
         let f : CreateV = CreateV.init(frame: CGRect.init(x: 100, y: SH * 0.2, width: (SH * 0.98) * (650 / 480), height: SH * 0.98))
         f.center = self.center
@@ -292,18 +291,7 @@ class PersonMsgView: UIView {
         
         //        }
         
-        /// 创建房间清除
-        if createRoomIsExist.count > 0  {
-            
-            //购物断网刷新
-            if NSStringFromClass((self.subviews.last?.classForCoder)!).contains("CreateRoomBasic") {
-                
-                self.subviews.last?.removeFromSuperview()
-                
-                /// 清空记录数组
-                createRoomIsExist.removeAll()
-            }
-        }
+
         
         /// 商城清除
         if marketVISExist.count > 0  {
@@ -318,18 +306,6 @@ class PersonMsgView: UIView {
             }
         }
         
-        /// 创建房间
-        if CreateRoomBasicISExist.count > 0  {
-            
-            //购物断网刷新
-            if NSStringFromClass((self.subviews.last?.classForCoder)!).contains("CreateRoomBasic") {
-                
-                self.subviews.last?.removeFromSuperview()
-                
-                /// 清空记录数组
-                CreateRoomBasicISExist.removeAll()
-            }
-        }
         
         
         /// 创建房间
