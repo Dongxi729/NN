@@ -12,6 +12,14 @@ import UIKit
 
 // MARK:- 颠三倒四
 class CreateV: UIView {
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        let touch: UITouch? = touches.first
+        let touchPoint: CGPoint? = touch?.location(in: self)
+        print("\((touchPoint?.x)! / self.Width)==\((touchPoint?.y)! / self.Height)")
+        let stringFloat = Int((touchPoint?.x)!)
+        let stringFloat1 = Int((touchPoint?.y)!)
+        print("\(stringFloat)\(stringFloat1)")
+    }
     
     /// 背景视图
     fileprivate lazy var bgV: UIImageView = {
@@ -23,7 +31,7 @@ class CreateV: UIView {
     
     /// 隐藏自身按钮
     fileprivate lazy var dismissSelf: UIButton = {
-        let d : UIButton = UIButton.init(frame: CGRect.init(x: self.Width - 15 * screenScale, y: 0, width: 15 * screenScale, height: 15 * screenScale))
+        let d : UIButton = UIButton.init(frame: CGRect.init(x: self.Width * 0.90, y: 0.01, width: 18 * screenScale, height: 18 * screenScale))
         d.backgroundColor = UIColor.red
         d.addTarget(self, action: #selector(dismissSEL), for: .touchUpInside)
         return d

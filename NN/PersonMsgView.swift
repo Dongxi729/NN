@@ -234,18 +234,30 @@ class PersonMsgView: UIView {
         addToView(customView: joinRooV)
     }
     
+    /// 创建房间视图
+    lazy var creatRoomV: CreateV = {
+        let d : CreateV = CreateV.init(frame: CGRect.init(x: 100, y: SH * 0.2, width: (SH * 0.98) * (650 / 480), height: SH * 0.98))
+        return d
+    }()
+    
+    /// 隐藏
+    lazy var dismissCreatV: UIButton = {
+        let d : UIButton = UIButton.init(frame: self.bounds)
+        d.addTarget(self, action: #selector(dismissCreatRommV), for: .touchUpInside)
+        return d
+    }()
+    
     /// 创建房间
     @objc fileprivate func createRoom() -> Void {
         
-        let f : CreateV = CreateV.init(frame: CGRect.init(x: 100, y: SH * 0.2, width: (SH * 0.98) * (650 / 480), height: SH * 0.98))
-        f.center = self.center
-        addToView(customView: f)
-        
-//        if createRoomIsExist.count < 1 {
-//            addToView(customView: f)
-//            createRoomIsExist.append(f)
-//        }
-//        
+        addSubview(self.dismissCreatV)
+        self.creatRoomV.center = self.center
+        addToView(customView: self.creatRoomV)
+    }
+    
+    @objc fileprivate func dismissCreatRommV() -> Void {
+        self.dismissCreatV.removeFromSuperview()
+        self.creatRoomV.removeFromSuperview()
     }
     
     
@@ -259,11 +271,11 @@ class PersonMsgView: UIView {
         let scale = POPSpringAnimation(propertyNamed: kPOPLayerScaleXY)
         scale?.fromValue = NSValue(cgSize: CGSize(width: CGFloat(1.75), height: CGFloat(1.75)))
         scale?.toValue = NSValue(cgSize: CGSize(width: CGFloat(1.0), height: CGFloat(1.0)))
-        scale?.dynamicsTension = 1000
+        scale?.dynamicsTension = 20
         scale?.dynamicsMass = 1.3
         scale?.dynamicsFriction = 10.3
         scale?.springSpeed = 20
-        scale?.springBounciness = 15.64
+        scale?.springBounciness = 2
         scale?.delegate = UIApplication.shared.keyWindow?.rootViewController
         customView.layer.pop_add(scale, forKey: nil)
         
@@ -376,7 +388,7 @@ class PersonMsgView: UIView {
     fileprivate lazy var dismissJoinRoom: UIButton = {
         let d : UIButton = UIButton.init(frame: self.bounds)
         d.addTarget(self, action: #selector(dismissJoinRoomSEL), for: .touchUpInside)
-        d.backgroundColor = UIColor.red
+        
         return d
     }()
     

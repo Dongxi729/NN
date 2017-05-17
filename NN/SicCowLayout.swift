@@ -401,7 +401,7 @@ class SicCowLayout: UIView {
             break
         }
     }
-    
+
     /// 玩法人数
     
     required init?(coder aDecoder: NSCoder) {
