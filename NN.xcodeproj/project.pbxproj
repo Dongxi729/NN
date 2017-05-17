@@ -52,6 +52,8 @@
 		260ECA821EC1AF1F00058649 /* LoginModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 260ECA811EC1AF1F00058649 /* LoginModel.swift */; };
 		262433601ECBF140003C41D1 /* simhei.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 2624335F1ECBF140003C41D1 /* simhei.ttf */; };
 		262433621ECBF46F003C41D1 /* InviteV.swift in Sources */ = {isa = PBXBuildFile; fileRef = 262433611ECBF46F003C41D1 /* InviteV.swift */; };
+		262433661ECC5244003C41D1 /* SicComonCowLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 262433651ECC5244003C41D1 /* SicComonCowLayout.swift */; };
+		262433681ECC527A003C41D1 /* SicCowLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 262433671ECC527A003C41D1 /* SicCowLayout.swift */; };
 		2629EBE31ECADE1D00616626 /* SettingV.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2629EBE21ECADE1D00616626 /* SettingV.swift */; };
 		2629EBE61ECAFC8000616626 /* nn_bg_music.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 2629EBE51ECAFC8000616626 /* nn_bg_music.mp3 */; };
 		2629EBF81ECAFCA500616626 /* f0_nn0.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 2629EBEA1ECAFCA500616626 /* f0_nn0.mp3 */; };
@@ -234,6 +236,8 @@
 		260ECA811EC1AF1F00058649 /* LoginModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginModel.swift; sourceTree = "<group>"; };
 		2624335F1ECBF140003C41D1 /* simhei.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = simhei.ttf; sourceTree = "<group>"; };
 		262433611ECBF46F003C41D1 /* InviteV.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InviteV.swift; sourceTree = "<group>"; };
+		262433651ECC5244003C41D1 /* SicComonCowLayout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SicComonCowLayout.swift; sourceTree = "<group>"; };
+		262433671ECC527A003C41D1 /* SicCowLayout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SicCowLayout.swift; sourceTree = "<group>"; };
 		2629EBE21ECADE1D00616626 /* SettingV.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingV.swift; sourceTree = "<group>"; };
 		2629EBE51ECAFC8000616626 /* nn_bg_music.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = nn_bg_music.mp3; sourceTree = "<group>"; };
 		2629EBEA1ECAFCA500616626 /* f0_nn0.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = f0_nn0.mp3; path = "sound 2/f0_nn0.mp3"; sourceTree = "<group>"; };
@@ -630,6 +634,8 @@
 		264A32D01EC58B37001405C4 /* view */ = {
 			isa = PBXGroup;
 			children = (
+				262433651ECC5244003C41D1 /* SicComonCowLayout.swift */,
+				262433671ECC527A003C41D1 /* SicCowLayout.swift */,
 			);
 			name = view;
 			sourceTree = "<group>";
@@ -1013,9 +1019,11 @@
 				26D54AE71EC2BD6D00119FAA /* DDXMLElement.m in Sources */,
 				26F14F991ECAA2A7006844C9 /* FTNotificationIndicator.m in Sources */,
 				2682558B1EC196C30080CCCD /* LoginRequestTool.swift in Sources */,
+				262433661ECC5244003C41D1 /* SicComonCowLayout.swift in Sources */,
 				26F14F9E1ECAA785006844C9 /* HowToPlayV.swift in Sources */,
 				2603D96F1EADCD440069B132 /* CustomAlertView.swift in Sources */,
 				260C66651EB23415006C119E /* POPAnimationRuntime.mm in Sources */,
+				262433681ECC527A003C41D1 /* SicCowLayout.swift in Sources */,
 				26836AFB1EC1E2DB00061069 /* JoinRoomView.swift in Sources */,
 				2657FD971EB860F900B92648 /* ControlVoice.swift in Sources */,
 				26D54B441EC2F0B500119FAA /* CreateRoomModel.swift in Sources */,
