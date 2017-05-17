@@ -27,7 +27,22 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         WXApi.registerApp(WXPatient_App_ID)
         
+        
+        playMusic()
         return true
+    }
+    
+    fileprivate var musicMark : Int = 1
+    
+    private func playMusic() -> Void {
+        if localSave.object(forKey: "musicOpen") != nil {
+            musicMark = localSave.object(forKey: "musicOpen") as! Int 
+        }
+        
+        if musicMark % 2 == 1 {
+
+            MusicVC.shared.backgroundMusic(soundName: "nn_bg_music", withType: "mp3")
+        }
     }
 
     func applicationDidBecomeActive(_ application: UIApplication) {
