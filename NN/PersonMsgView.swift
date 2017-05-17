@@ -232,20 +232,21 @@ class PersonMsgView: UIView {
         addSubview(dismissJoinRoom)
         
         addToView(customView: joinRooV)
-
     }
     
     /// 创建房间
     @objc fileprivate func createRoom() -> Void {
-        let f : CreateRoomBasic = CreateRoomBasic.init(frame: CGRect.init(x: 100, y: SH * 0.2, width: SW * 0.7, height: SH * 0.8))
-        f.backgroundColor = UIColor.gray
+//        let f : CreateRoomBasic = CreateRoomBasic.init(frame: CGRect.init(x: 100, y: SH * 0.2, width: SW * 0.7, height: SH * 0.8))
+        
+        let f : CreateV = CreateV.init(frame: CGRect.init(x: 100, y: SH * 0.2, width: (SH * 0.98) * (650 / 480), height: SH * 0.98))
         f.center = self.center
+        addToView(customView: f)
         
-        if createRoomIsExist.count < 1 {
-            addToView(customView: f)
-            createRoomIsExist.append(f)
-        }
-        
+//        if createRoomIsExist.count < 1 {
+//            addToView(customView: f)
+//            createRoomIsExist.append(f)
+//        }
+//        
     }
     
     
