@@ -8,9 +8,6 @@
 
 import UIKit
 
-
-@IBDesignable
-
 class PersonMsgView: UIView {
     
     
@@ -34,7 +31,7 @@ class PersonMsgView: UIView {
     }()
     
     lazy var nameBgV: UIImageView = {
-        let d : UIImageView = UIImageView.init(frame: CGRect.init(x: self.personImgView.RightX + commonMargin, y: commonMargin / 2 , width: 70 * screenScale, height: 12 * screenScale))
+        let d : UIImageView = UIImageView.init(frame: CGRect.init(x: self.personImgView.RightX + commonMargin, y: commonMargin / 2 , width: 75 * screenScale, height: 12 * screenScale))
         d.image = #imageLiteral(resourceName: "suqareBgWithCir")
 
         return d
@@ -42,7 +39,7 @@ class PersonMsgView: UIView {
     
     /// 砖石背景
     lazy var diaBgV: UIImageView = {
-        let d : UIImageView = UIImageView.init(frame: CGRect.init(x: self.personImgView.RightX + commonMargin, y: self.nameBgV.BottomY + commonMargin, width: 30 * screenScale, height: 12 * screenScale))
+        let d : UIImageView = UIImageView.init(frame: CGRect.init(x: self.personImgView.RightX + commonMargin, y: self.nameBgV.BottomY + commonMargin, width: 33 * screenScale, height: 12 * screenScale))
         d.image = #imageLiteral(resourceName: "diammand")
         return d
     }()
@@ -62,12 +59,13 @@ class PersonMsgView: UIView {
     
     /// ID
     lazy var IDLabel: CommonLabel = {
-        let d : CommonLabel = CommonLabel.init(frame: CGRect.init(x: self.nameLabel.RightX + commonMargin, y:commonMargin, width: 37, height: 20))
+        let d : CommonLabel = CommonLabel.init(frame: CGRect.init(x: self.nameBgV.RightX - self.nameBgV.Width * 0.6, y:5, width: 37, height: 15 * screenScale))
+        
         
         if LoginModel.shared.uid != nil {
             d.text = "ID:" + LoginModel.shared.uid!
         } else {
-            d.text = "123456"
+            d.text = "ID:123456"
         }
         
         d.sizeToFit()
@@ -78,8 +76,8 @@ class PersonMsgView: UIView {
     
     /// 砖石数量
     lazy var coinsLabel: CommonLabel = {
-        let d :CommonLabel = CommonLabel.init(frame: CGRect.init(x: self.personImgView.RightX + commonMargin, y: self.nameLabel.BottomY + commonMargin * 0.5, width: 80, height: 20))
-        d.backgroundColor = UIColor.gray
+        let d :CommonLabel = CommonLabel.init(frame: CGRect.init(x: self.personImgView.RightX + commonMargin, y: self.nameBgV.BottomY + commonMargin, width: self.Width * 0.15, height: 12 * screenScale))
+        
         d.textAlignment = .center
         
         if LoginModel.shared.wealth != nil {
@@ -94,17 +92,20 @@ class PersonMsgView: UIView {
     
     /// 昵称
     lazy var nameLabel: CommonLabel = {
-        let d : CommonLabel = CommonLabel.init(frame: CGRect.init(x: self.personImgView.RightX + commonMargin, y: commonMargin, width: 37, height: 20))
+        let d : CommonLabel = CommonLabel.init(frame: CGRect.init(x: self.personImgView.RightX + commonMargin, y: 5, width: self.nameBgV.Width * 0.3, height: 20))
         
-        
+
         if LoginModel.shared.nickname != nil {
             d.text = LoginModel.shared.nickname
             
         } else {
-            d.text = "sdassadasd"
+            d.text = "阿东"
         }
-    
-        d.sizeToFit()
+        d.textColor = UIColor.white
+        d.layer.borderColor = UIColor.red.cgColor
+
+        d.layer.borderWidth = 1
+        
         return d
     }()
     
@@ -174,7 +175,7 @@ class PersonMsgView: UIView {
         
         addSubview(personImgView)
         
-        addSubview(coinsLabel)
+       
         
         addSubview(nameBgV)
         
@@ -183,7 +184,7 @@ class PersonMsgView: UIView {
         addSubview(nameLabel)
         
         addSubview(IDLabel)
-
+         addSubview(coinsLabel)
         
         addSubview(joinRoom)
         addSubview(self.joinMaskBtn)
@@ -456,7 +457,7 @@ class CommonLabel: UILabel {
         
         self.textColor = .white
  
-        self.font = UIFont.systemFont(ofSize: 10 * screenScale)
+        self.font = UIFont(name: "SimHei", size: 9 * screenScale)
     }
     
     required init?(coder aDecoder: NSCoder) {

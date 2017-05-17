@@ -50,6 +50,7 @@
 		260C66711EB23415006C119E /* POPVector.mm in Sources */ = {isa = PBXBuildFile; fileRef = 260C665B1EB23415006C119E /* POPVector.mm */; };
 		260C66721EB23415006C119E /* TransformationMatrix.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 260C665E1EB23415006C119E /* TransformationMatrix.cpp */; };
 		260ECA821EC1AF1F00058649 /* LoginModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 260ECA811EC1AF1F00058649 /* LoginModel.swift */; };
+		262433601ECBF140003C41D1 /* simhei.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 2624335F1ECBF140003C41D1 /* simhei.ttf */; };
 		2629EBE31ECADE1D00616626 /* SettingV.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2629EBE21ECADE1D00616626 /* SettingV.swift */; };
 		2629EBE61ECAFC8000616626 /* nn_bg_music.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 2629EBE51ECAFC8000616626 /* nn_bg_music.mp3 */; };
 		2629EBF81ECAFCA500616626 /* f0_nn0.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 2629EBEA1ECAFCA500616626 /* f0_nn0.mp3 */; };
@@ -239,6 +240,7 @@
 		260C665F1EB23415006C119E /* TransformationMatrix.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TransformationMatrix.h; sourceTree = "<group>"; };
 		260C66601EB23415006C119E /* UnitBezier.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UnitBezier.h; sourceTree = "<group>"; };
 		260ECA811EC1AF1F00058649 /* LoginModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginModel.swift; sourceTree = "<group>"; };
+		2624335F1ECBF140003C41D1 /* simhei.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = simhei.ttf; sourceTree = "<group>"; };
 		2629EBE21ECADE1D00616626 /* SettingV.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingV.swift; sourceTree = "<group>"; };
 		2629EBE51ECAFC8000616626 /* nn_bg_music.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = nn_bg_music.mp3; sourceTree = "<group>"; };
 		2629EBEA1ECAFCA500616626 /* f0_nn0.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = f0_nn0.mp3; path = "sound 2/f0_nn0.mp3"; sourceTree = "<group>"; };
@@ -402,6 +404,7 @@
 		2603D9391EADC8D20069B132 /* NN */ = {
 			isa = PBXGroup;
 			children = (
+				2624335E1ECBF12C003C41D1 /* fontResource */,
 				2629EBE41ECAFC6D00616626 /* musicResource */,
 				26771ECF1EC54DE300B61DBC /* TestMediaVC.swift */,
 				26D54AD01EC2BD5000119FAA /* socketCommu */,
@@ -556,6 +559,14 @@
 				260C66601EB23415006C119E /* UnitBezier.h */,
 			);
 			path = WebCore;
+			sourceTree = "<group>";
+		};
+		2624335E1ECBF12C003C41D1 /* fontResource */ = {
+			isa = PBXGroup;
+			children = (
+				2624335F1ECBF140003C41D1 /* simhei.ttf */,
+			);
+			name = fontResource;
 			sourceTree = "<group>";
 		};
 		2629EBE41ECAFC6D00616626 /* musicResource */ = {
@@ -973,6 +984,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				262433601ECBF140003C41D1 /* simhei.ttf in Resources */,
 				2629EC031ECAFCA500616626 /* f0_nn7.mp3 in Resources */,
 				2629EBF91ECAFCA500616626 /* f0_nn1.mp3 in Resources */,
 				2629EBFA1ECAFCA500616626 /* f0_nn10.mp3 in Resources */,

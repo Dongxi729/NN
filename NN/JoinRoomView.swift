@@ -157,7 +157,7 @@ extension JoinRoomView : UICollectionViewDataSource,UICollectionViewDelegateFlow
         
         /// 添加数据
         
-        let d = addLabelView.init(frame: CGRect.init(x: CGFloat(self.Width / 4 * CGFloat(texIndex)), y: 0, width: self.frame.width / 4, height: 64))
+        let d = addLabelView.init(frame: CGRect.init(x: CGFloat(self.Width / 4 * CGFloat(texIndex)), y: self.Height * 0.12, width: self.frame.width / 4, height: 64))
         
         
         
