@@ -40,6 +40,13 @@ class MainGameViewController: UIViewController {
         return d
     }()
     
+    lazy var tetsInviteV: UIButton = {
+        let d : UIButton = UIButton.init(frame: CGRect.init(x: 0, y: SH - 50, width: 50, height: 50))
+        d.setTitle("测试邀请", for: .normal)
+        d.addTarget(self, action: #selector(inviteSEL), for: .touchUpInside)
+        return d
+    }()
+    
     
     lazy var sendRoomType: UIButton = {
         let d : UIButton = UIButton(frame: CGRect(x: 100, y: 100, width: 100, height: 100))
@@ -66,6 +73,15 @@ class MainGameViewController: UIViewController {
 
     }
     
+    
+    
+    @objc fileprivate func inviteSEL() -> Void {
+        let f : InviteV = InviteV.init(frame: CGRect.init(x: 0, y: 0, width: SW * 0.42, height: SW * 0.42))
+        f.center = self.view.center
+        
+        view.addSubview(f)
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -82,7 +98,7 @@ class MainGameViewController: UIViewController {
         
         view.addSubview(mainView)
 
-        
+        view.addSubview(tetsInviteV)
         
 
     }

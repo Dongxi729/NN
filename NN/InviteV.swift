@@ -1,20 +1,20 @@
 //
-//  JoinRoomView.swift
+//  InviteV.swift
 //  NN
 //
-//  Created by 郑东喜 on 2017/5/9.
+//  Created by 郑东喜 on 2017/5/17.
 //  Copyright © 2017年 郑东喜. All rights reserved.
-//  加入房间
+//  邀请码视图
 
 import UIKit
 
-class JoinRoomView: UIView {
+class InviteV: UIView {
     
     
     
     override init(frame: CGRect) {
         super.init(frame: frame)
-
+        
         
         addSubview(bgImgV)
         self.addSubview(collV)
@@ -26,6 +26,7 @@ class JoinRoomView: UIView {
         addSubview(tfPassBgV)
     }
     
+    /// 密码背景视图
     lazy var tfPassBgV: UIImageView = {
         let d : UIImageView = UIImageView.init(frame: CGRect.init(x: commonMargin * 2, y: self.Height * 0.15, width: self.Width - 4 * commonMargin, height: self.Height * 0.15))
         d.image = #imageLiteral(resourceName: "joinKey")
@@ -33,23 +34,11 @@ class JoinRoomView: UIView {
     }()
     
     
-    fileprivate lazy var tfPass: UITextField = {
-        let d : UITextField = UITextField.init(frame: CGRect.init(x: commonMargin, y: self.Test.BottomY + commonMargin, width: 100, height: 50))
-        return d
-    }()
     
-    fileprivate lazy var Test: UIButton = {
-        let d : UIButton = UIButton.init(frame: CGRect.init(x: 30, y: self.titleLabel.BottomY + commonMargin, width: 100, height: 30))
-        d.backgroundColor = UIColor.gray
-        d.addTarget(self, action: #selector(enjoyRoom), for: .touchUpInside)
-        d.setTitle("进入房间", for: .normal)
-        return d
-    }()
-    
-    
+    /// 背景视图
     fileprivate lazy var bgImgV: UIImageView = {
         let d : UIImageView = UIImageView.init(frame: self.frame)
-        d.image = #imageLiteral(resourceName: "joinRoomBg")
+        d.image = #imageLiteral(resourceName: "marketBgV")
         return d
     }()
     
@@ -57,10 +46,10 @@ class JoinRoomView: UIView {
     }
     
     /// 标题
-    lazy var titleLabel: UILabel = {
-        let d : UILabel = UILabel.init(frame: CGRect.init(x: 0, y: 0, width: self.frame.width, height: 30))
-        d.textAlignment = .center
-        d.text = "加入房间"
+    lazy var titleLabel: UIImageView = {
+        let d : UIImageView = UIImageView.init(frame: CGRect.init(x: 0, y: commonMargin, width: self.frame.width, height: 12 * screenScale))
+        d.image = #imageLiteral(resourceName: "inviteTitleImg")
+        d.contentMode = UIViewContentMode.scaleAspectFit
         return d
     }()
     
@@ -112,11 +101,8 @@ class JoinRoomView: UIView {
     
     
     /// 记录密码
-    var valueRecord : [String] = [] {
-        didSet {
-            
-        }
-    }
+    var valueRecord : [String] = []
+    
     
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
@@ -125,7 +111,7 @@ class JoinRoomView: UIView {
 }
 
 
-extension JoinRoomView : UICollectionViewDataSource,UICollectionViewDelegateFlowLayout {
+extension InviteV : UICollectionViewDataSource,UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cellID", for: indexPath) as! CollectionViewCell
         
@@ -240,31 +226,3 @@ extension JoinRoomView : UICollectionViewDataSource,UICollectionViewDelegateFlow
     }
     
 }
-
-
-
-class addLabelView: UIView {
-    
-    lazy var la: UILabel = {
-        let d : UILabel = UILabel.init(frame: self.bounds)
-        d.textAlignment = .center
-        return d
-    }()
-    
-    func labelText(dd : String) -> Void {
-        la.text = dd
-    }
-    
-    override init(frame: CGRect) {
-        super.init(frame: frame)
-        
-        addSubview(la)
-    }
-    
-    required init?(coder aDecoder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
-}
-
-
-    

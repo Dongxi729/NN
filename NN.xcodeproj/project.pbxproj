@@ -51,6 +51,7 @@
 		260C66721EB23415006C119E /* TransformationMatrix.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 260C665E1EB23415006C119E /* TransformationMatrix.cpp */; };
 		260ECA821EC1AF1F00058649 /* LoginModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 260ECA811EC1AF1F00058649 /* LoginModel.swift */; };
 		262433601ECBF140003C41D1 /* simhei.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 2624335F1ECBF140003C41D1 /* simhei.ttf */; };
+		262433621ECBF46F003C41D1 /* InviteV.swift in Sources */ = {isa = PBXBuildFile; fileRef = 262433611ECBF46F003C41D1 /* InviteV.swift */; };
 		2629EBE31ECADE1D00616626 /* SettingV.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2629EBE21ECADE1D00616626 /* SettingV.swift */; };
 		2629EBE61ECAFC8000616626 /* nn_bg_music.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 2629EBE51ECAFC8000616626 /* nn_bg_music.mp3 */; };
 		2629EBF81ECAFCA500616626 /* f0_nn0.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 2629EBEA1ECAFCA500616626 /* f0_nn0.mp3 */; };
@@ -241,6 +242,7 @@
 		260C66601EB23415006C119E /* UnitBezier.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UnitBezier.h; sourceTree = "<group>"; };
 		260ECA811EC1AF1F00058649 /* LoginModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginModel.swift; sourceTree = "<group>"; };
 		2624335F1ECBF140003C41D1 /* simhei.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = simhei.ttf; sourceTree = "<group>"; };
+		262433611ECBF46F003C41D1 /* InviteV.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InviteV.swift; sourceTree = "<group>"; };
 		2629EBE21ECADE1D00616626 /* SettingV.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingV.swift; sourceTree = "<group>"; };
 		2629EBE51ECAFC8000616626 /* nn_bg_music.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = nn_bg_music.mp3; sourceTree = "<group>"; };
 		2629EBEA1ECAFCA500616626 /* f0_nn0.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = f0_nn0.mp3; path = "sound 2/f0_nn0.mp3"; sourceTree = "<group>"; };
@@ -630,6 +632,7 @@
 			children = (
 				264A2CE51EC45D21001B7F0E /* ChatV.swift */,
 				26F9FA9D1EC9407100DF4A64 /* GamingView.swift */,
+				262433611ECBF46F003C41D1 /* InviteV.swift */,
 			);
 			name = view;
 			sourceTree = "<group>";
@@ -1092,6 +1095,7 @@
 				26D54B391EC2C66200119FAA /* SyncTimerVC.swift in Sources */,
 				266EC2031EBC854000AEA31C /* TimerLabel.swift in Sources */,
 				260C66631EB23415006C119E /* POPAnimationEvent.mm in Sources */,
+				262433621ECBF46F003C41D1 /* InviteV.swift in Sources */,
 				26D54AE41EC2BD6D00119FAA /* NSString+DDXML.m in Sources */,
 				26D54B271EC2C11B00119FAA /* amrFileCodec.mm in Sources */,
 				268255811EC190550080CCCD /* LoginViewController.swift in Sources */,
