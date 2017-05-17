@@ -19,8 +19,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
         
+//        window?.rootViewController = MusicVC()
         window?.rootViewController = MainGameViewController()
-//        window?.rootViewController = LoginViewController()
         
         window?.makeKeyAndVisible()
         window?.backgroundColor = UIColor.white
@@ -29,18 +29,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         return true
     }
-
-    
-//    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
-//        //  Converted with Swiftify v1.0.6341 - https://objectivec2swift.com/
-//        let touch: UITouch? = touches.first
-//        let touchPoint: CGPoint? = touch?.location(in: UIApplication.shared.keyWindow?.rootViewController?.view)
-//        print("\(String(describing: touchPoint?.x))==\(String(describing: touchPoint?.y))")
-//        let stringFloat = Int((touchPoint?.x)!)
-//        let stringFloat1 = Int((touchPoint?.y)!)
-//        print("\(stringFloat)\(stringFloat1)")
-//
-//    }
 
     func applicationDidBecomeActive(_ application: UIApplication) {
         print("applicationDidBecomeActive")

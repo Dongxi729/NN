@@ -54,6 +54,8 @@
 		262433621ECBF46F003C41D1 /* InviteV.swift in Sources */ = {isa = PBXBuildFile; fileRef = 262433611ECBF46F003C41D1 /* InviteV.swift */; };
 		262433661ECC5244003C41D1 /* SicComonCowLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 262433651ECC5244003C41D1 /* SicComonCowLayout.swift */; };
 		262433681ECC527A003C41D1 /* SicCowLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 262433671ECC527A003C41D1 /* SicCowLayout.swift */; };
+		2624336A1ECC89BD003C41D1 /* MusicVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 262433691ECC89BD003C41D1 /* MusicVC.swift */; };
+		2624336C1ECC9369003C41D1 /* MusicTool.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2624336B1ECC9369003C41D1 /* MusicTool.swift */; };
 		2629EBE31ECADE1D00616626 /* SettingV.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2629EBE21ECADE1D00616626 /* SettingV.swift */; };
 		2629EBE61ECAFC8000616626 /* nn_bg_music.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 2629EBE51ECAFC8000616626 /* nn_bg_music.mp3 */; };
 		2629EBF81ECAFCA500616626 /* f0_nn0.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 2629EBEA1ECAFCA500616626 /* f0_nn0.mp3 */; };
@@ -238,6 +240,8 @@
 		262433611ECBF46F003C41D1 /* InviteV.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InviteV.swift; sourceTree = "<group>"; };
 		262433651ECC5244003C41D1 /* SicComonCowLayout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SicComonCowLayout.swift; sourceTree = "<group>"; };
 		262433671ECC527A003C41D1 /* SicCowLayout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SicCowLayout.swift; sourceTree = "<group>"; };
+		262433691ECC89BD003C41D1 /* MusicVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MusicVC.swift; sourceTree = "<group>"; };
+		2624336B1ECC9369003C41D1 /* MusicTool.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MusicTool.swift; sourceTree = "<group>"; };
 		2629EBE21ECADE1D00616626 /* SettingV.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingV.swift; sourceTree = "<group>"; };
 		2629EBE51ECAFC8000616626 /* nn_bg_music.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = nn_bg_music.mp3; sourceTree = "<group>"; };
 		2629EBEA1ECAFCA500616626 /* f0_nn0.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = f0_nn0.mp3; path = "sound 2/f0_nn0.mp3"; sourceTree = "<group>"; };
@@ -562,6 +566,8 @@
 			children = (
 				2629EBE81ECAFC9700616626 /* playMusic */,
 				2629EBE71ECAFC8900616626 /* loopBgMusic */,
+				262433691ECC89BD003C41D1 /* MusicVC.swift */,
+				2624336B1ECC9369003C41D1 /* MusicTool.swift */,
 			);
 			name = musicResource;
 			sourceTree = "<group>";
@@ -940,6 +946,11 @@
 						DevelopmentTeam = 64S597X3R9;
 						LastSwiftMigration = 0830;
 						ProvisioningStyle = Automatic;
+						SystemCapabilities = {
+							com.apple.BackgroundModes = {
+								enabled = 1;
+							};
+						};
 					};
 				};
 			};
@@ -1002,6 +1013,7 @@
 				26D54AE61EC2BD6D00119FAA /* DDXMLDocument.m in Sources */,
 				260C66711EB23415006C119E /* POPVector.mm in Sources */,
 				2603D9711EADCD830069B132 /* ViewController.swift in Sources */,
+				2624336C1ECC9369003C41D1 /* MusicTool.swift in Sources */,
 				2629EBE31ECADE1D00616626 /* SettingV.swift in Sources */,
 				26013DAF1EC1D20F00ACA99D /* ScrollText.m in Sources */,
 				260C66641EB23415006C119E /* POPAnimationExtras.mm in Sources */,
@@ -1033,6 +1045,7 @@
 				260C66701EB23415006C119E /* POPSpringAnimation.mm in Sources */,
 				26D54AE31EC2BD6D00119FAA /* DDXMLElementAdditions.m in Sources */,
 				26D54B2B1EC2C11B00119FAA /* WavConvert.m in Sources */,
+				2624336A1ECC89BD003C41D1 /* MusicVC.swift in Sources */,
 				260C66681EB23415006C119E /* POPBasicAnimation.mm in Sources */,
 				260ECA821EC1AF1F00058649 /* LoginModel.swift in Sources */,
 				264A2CE41EC4565A001B7F0E /* MarketV.swift in Sources */,

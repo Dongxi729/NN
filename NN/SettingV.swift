@@ -24,13 +24,11 @@ class SettingV: UIView {
         return d
     }()
 
-    /// 开关按钮
+    /// 音乐开关按钮
     lazy var musicBtn: UIImageView = {
         var d : UIImageView = UIImageView.init(frame: CGRect.init(x: self.Width / 1.8, y: self.Height * 0.4 , width: self.Width * 0.3, height: 12 * screenScale))
         
         print("\((#file as NSString).lastPathComponent):(\(#line))\n",localSave.object(forKey: "musicOpen") as Any)
-        
-
         
         d.contentMode = UIViewContentMode.scaleAspectFit
         d.isUserInteractionEnabled = true
@@ -39,7 +37,7 @@ class SettingV: UIView {
         return d
     }()
     
-    /// 开关按钮
+    /// 音效开关按钮
     lazy var musicalBtn: UIImageView = {
         let d : UIImageView = UIImageView.init(frame: CGRect.init(x: self.Width / 1.8, y: self.musicImg.BottomY + commonMargin * screenScale , width: self.Width * 0.3, height: 12 * screenScale))
         d.contentMode = UIViewContentMode.scaleAspectFit
@@ -85,8 +83,13 @@ class SettingV: UIView {
         
         if musicMark % 2 == 1 {
             self.musicBtn.image = #imageLiteral(resourceName: "on")
+            
+            MusicVC.shared.backgroundMusic(soundName: "nn_bg_music", withType: "mp3")
         } else {
             self.musicBtn.image = #imageLiteral(resourceName: "off")
+            MusicVC.shared.pauseMusic(filename: "nn_bg_music", withType: "mp3")
+            
+        FTIndicator.showToastMessage("当前暂无音乐播放")
         }
         
         localSave.set(musicMark, forKey: "musicOpen")
