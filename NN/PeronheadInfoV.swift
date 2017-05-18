@@ -70,6 +70,18 @@ class PeronheadInfoV: UIView {
     }()
     
     
+    /// 波形图片
+    fileprivate lazy var showWave: UIImageView = {
+        let d : UIImageView = UIImageView.init(frame: CGRect.init(x: self.Width * 0.25, y: 0, width: self.Width * 0.25, height: self.Height * 0.5))
+        d.image = #imageLiteral(resourceName: "peopleTalk")
+        d.layer.borderWidth = 1
+        d.contentMode = UIViewContentMode.scaleAspectFit
+        return d
+    }()
+    
+    /// 显示波形的标识
+    var showPeopletTalkMark = false
+    
     /// 显示准备标识
     var showPrepareMark = false
     
@@ -82,6 +94,12 @@ class PeronheadInfoV: UIView {
         addSubview(hhhh)
         addSubview(nameLabel)
         addSubview(coinsLabel)
+        addSubview(showWave)
+    
+    }
+    
+    override func layoutSubviews() {
+        super.layoutSubviews()
         
         if showPrepareMark {
             addSubview(prepareImg)

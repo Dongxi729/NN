@@ -40,6 +40,13 @@ class GamingVC: UIViewController {
         return d
     }()
     
+    
+    fileprivate lazy var countDown: ClockCountDown = {
+        let d : ClockCountDown = ClockCountDown.init(frame: CGRect.init(x: 0, y: 0, width: SW * (0.531702891640041 - 0.46875), height: SW * (0.531702891640041 - 0.46875)))
+        
+        return d
+    }()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -48,6 +55,49 @@ class GamingVC: UIViewController {
         view.backgroundColor = UIColor.white
         
         view.addSubview(bgV)
+        bgV.showGameTypeMark = 1
+        
+        
+        bgV.showprepareBtnMark = false
+        
+        countDown.countDown = 60
+        countDown.center = view.center
+        
+        
+        view.addSubview(countDown)
     }
 }
 
+
+
+class ClockCountDown : UIView {
+    
+    var countDown : Int = 0
+    
+    lazy var clockV: CountDownBtn = {
+        let d : CountDownBtn = CountDownBtn.init(frame: self.bounds)
+
+        d.initwith(superView: self, descc: 33)
+        d.setImage(#imageLiteral(resourceName: "countDownImg"), for: .normal)
+        d.setTitleColor(UIColor.black, for: .normal)
+        return d
+    }()
+    
+    override func layoutSubviews() {
+        super.layoutSubviews()
+        
+        addSubview(clockV)
+    }
+    
+    override init(frame: CGRect) {
+        super.init(frame: frame)
+        
+        
+    }
+    
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
+    
+}

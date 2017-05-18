@@ -23,13 +23,11 @@ class CountDownBtn: UIButton {
     //定时器
     var timer:Timer?
     
-    //当前按钮背景颜色
-    var  currentColor:UIColor?
     
     
     /// 是否继续
     var canContinue = false
-
+    
     /// 调用倒计时
     ///
     /// - Parameters:
@@ -37,26 +35,25 @@ class CountDownBtn: UIButton {
     ///   - title: 标题
     ///   - superView: 添加到的视图
     ///   - descc: 描述
-    func initwith(color : UIColor,title:String,superView:UIView,descc : Int) ->
+    func initwith(superView:UIView,descc : Int) ->
         Void {
             
             canContinue = true
             
             i = descc
             
-            self.setTitle(title, for: UIControlState.normal)
-            
-            self.setTitle("重发(\(descc))s", for: UIControlState.disabled)
-            self.titleLabel?.adjustsFontSizeToFitWidth = true
-            self.backgroundColor=UIColor.lightGray
+            self.setTitle("\(descc)", for: UIControlState.normal)
+            //            self.titleLabel?.adjustsFontSizeToFitWidth = true
+            //            self.backgroundColor=UIColor.lightGray
             self.isEnabled=false
             timer = Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(tiemrBengin), userInfo: self, repeats: true)
             
             superView.addSubview(self)
             
             self.isUserInteractionEnabled = true
-            self.currentColor = color
+            
     }
+    
     
     
     
@@ -66,7 +63,7 @@ class CountDownBtn: UIButton {
             
             timer?.invalidate()
             self.isEnabled = true
-            self.backgroundColor = self.currentColor
+            
             return
             
         }
@@ -76,8 +73,7 @@ class CountDownBtn: UIButton {
             self.i -= 1
             
             
-            self.setTitle(String(format: "重发(%d)s",self.i), for: UIControlState.disabled)
-            self.backgroundColor=UIColor.lightGray
+            self.setTitle(String(format: "%d",self.i), for: UIControlState.normal)
             
             print("i = :",self.i)
             
@@ -90,8 +86,8 @@ class CountDownBtn: UIButton {
             canContinue = false
             
             self.timer?.invalidate()
-            self.isEnabled = true
-            self.backgroundColor = self.currentColor
+            //            self.isEnabled = true
+            
             i = NUMSS
             
         }
@@ -110,6 +106,28 @@ class CountDownBtn: UIButton {
     func terminate() -> Void {
         self.timer?.invalidate()
         self.isEnabled = true
-        self.backgroundColor = self.currentColor
+        
+    }
+    
+    
+    
+    override func titleRect(forContentRect contentRect: CGRect) -> CGRect {
+        
+        return CGRect.init(x: 0, y: -self.Height * 0.1, width: self.Width, height: self.Height)
+    }
+    
+    override func imageRect(forContentRect contentRect: CGRect) -> CGRect {
+        return CGRect.init(x: 0, y: 0, width: self.Width, height: self.Height)
+    }
+    
+    override init(frame: CGRect) {
+        super.init(frame: frame)
+        self.titleLabel?.font = UIFont(name: "SimHei", size: 12 * screenScale)
+        self.titleLabel?.textAlignment = .center
+        self.titleLabel?.textColor = UIColor.black
+    }
+    
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
     }
 }
