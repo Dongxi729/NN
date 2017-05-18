@@ -10,7 +10,7 @@ import UIKit
 
 // MARK: - 游戏控制器
 class GamingVC: UIViewController {
-
+    
     fileprivate lazy var addChartBtn: UIButton = {
         let d : UIButton = UIButton.init(frame: CGRect(x: 0, y: 0, width: 100, height: 100))
         d.backgroundColor = UIColor.randomColor()
@@ -24,7 +24,7 @@ class GamingVC: UIViewController {
         
         return d
     }()
-   
+    
     @objc fileprivate func addChartV() -> Void {
         let f : ChatV = ChatV.init(frame: CGRect.init(x: 100, y: SH * 0.2, width: SW * 0.5, height: SH * 0.8))
         f.backgroundColor = UIColor.gray
@@ -37,11 +37,10 @@ class GamingVC: UIViewController {
         let d : GameBgV = GameBgV.init(frame: self.view.bounds)
         return d
     }()
-
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
         // Do any additional setup after loading the view.
         
         view.backgroundColor = UIColor.white
@@ -87,7 +86,7 @@ class GameBgV: UIView {
     
     lazy var P1: PeronheadInfoV = {
         let d : PeronheadInfoV = PeronheadInfoV.init(frame: CGRect.init(x: self.Width * 0.45, y: self.Height * 0.8, width: self.Width * 0.18, height: self.Height * 0.15))
-
+        
         return d
     }()
     
@@ -150,6 +149,13 @@ class GameBgV: UIView {
         let stringFloat1 = Int((touchPoint?.y)!)
         print("\(stringFloat)\(stringFloat1)")
     }
+    
+    lazy var oBgV: UIImageView = {
+        let d : UIImageView = UIImageView.init(frame: CGRect.init(x: 0, y: 0, width: self.Width * 0.2, height: self.Width * 0.2))
+        d.image = #imageLiteral(resourceName: "pushToSend")
+        d.contentMode = UIViewContentMode.scaleAspectFit
+        return d
+    }()
 }
 
 
@@ -166,12 +172,35 @@ extension GameBgV : RightVDelegate {
 
 // MARK: - 左上角事件
 extension GameBgV : RightDownVDelegate {
+    
     func msgSEL(sender: UIButton) {
         print("\((#file as NSString).lastPathComponent):(\(#line))\n",sender.frame)
     }
     
-    func voiceSEL(sender: UIButton) {
-        print("\((#file as NSString).lastPathComponent):(\(#line))\n",sender.frame)
+    func voiceSEL(gesture: UILongPressGestureRecognizer) {
+        print("\((#file as NSString).lastPathComponent):(\(#line))\n")
+        if gesture.state == .began {
+            print("\((#file as NSString).lastPathComponent):(\(#line))\n","长按事件")
+            AvdioTool.shared.creatSession()
+            AvdioTool.shared.startRecord()
+            
+            oBgV.center = self.center
+            ///  创建录音视图
+            addSubview(oBgV)
+        } else {
+            
+            AvdioTool.shared.stopRecord()
+            
+            AvdioTool.shared.convertWavToAmr()
+            
+            print("\((#file as NSString).lastPathComponent):(\(#line))\n","结束")
+            /// 移除录音视图
+        }
+        
+        if gesture.state.rawValue == 3 {
+            oBgV.removeFromSuperview()
+        }
+        
     }
 }
 
@@ -234,7 +263,7 @@ class PeronheadInfoV: UIView {
         d.textAlignment = .center
         d.font = UIFont(name: "SimHei", size: 8 * screenScale)
         d.textColor = UIColor.white
-        d.layer.cornerRadius = 5
+
         return d
     }()
     
@@ -245,25 +274,34 @@ class PeronheadInfoV: UIView {
         d.textAlignment = .center
         d.font = UIFont(name: "SimHei", size: 8 * screenScale)
         d.textColor = UIColor.white
-//        d.layer.borderWidth = 1
-//        d.layer.cornerRadius = 5
-//        d.layer.borderColor = UIColor.orange.cgColor
+        return d
+    }()
+    
+    
+    /// 头像
+    lazy var headImg: UIImageView = {
+        let d : UIImageView = UIImageView.init(frame: CGRect.init(x: 3 * screenScale, y: 1 * screenScale, width: self.Width * 0.43, height: self.Width * 0.42))
+        d.backgroundColor = UIColor.gray
+        d.contentMode = UIViewContentMode.scaleAspectFit
         return d
     }()
     
     /// 整体背景
     lazy var hhhh: UIImageView = {
         let d : UIImageView = UIImageView.init(frame: self.bounds)
-        d.image = #imageLiteral(resourceName: "wait")
+        d.image = #imageLiteral(resourceName: "headInfoBgV")
         d.contentMode = UIViewContentMode.scaleAspectFit
         return d
     }()
     
     override init(frame: CGRect) {
         super.init(frame: frame)
+        addSubview(headImg)
         addSubview(hhhh)
         addSubview(nameLabel)
         addSubview(coinsLabel)
+        
+        
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -275,7 +313,7 @@ class PeronheadInfoV: UIView {
 // MARK: - 右下角事件
 protocol RightDownVDelegate {
     /// 声音
-    func voiceSEL(sender : UIButton)
+    func voiceSEL(gesture : UILongPressGestureRecognizer)
     
     /// 信息
     func msgSEL(sender : UIButton)
@@ -286,22 +324,30 @@ class RightDownV: UIView {
     /// 长按录音
     lazy var lpButton: UIButton = {
         let d : UIButton = UIButton.init(frame: CGRect.init(x: self.Width * 0.5, y: 0, width: self.Width * 0.5, height: self.Height * 0.5))
+        //
         let longTap = UILongPressGestureRecognizer.init(target: self, action: #selector(longSEL(gesture:)))
         
         d.addGestureRecognizer(longTap)
         
+        //        d.addTarget(self, action: #selector(voiceControl(sender:)), for: .touchUpInside)
         d.backgroundColor = UIColor.gray
-        
-        d.addTarget(self, action: #selector(sendVoice(sender:)), for: .touchUpInside)
         return d
     }()
+
+    
+    @objc fileprivate func longSEL(gesture : UILongPressGestureRecognizer) -> Void {
+        
+        self.delegate?.voiceSEL(gesture: gesture)
+        
+        
+    }
     
     /// 消息按钮
     fileprivate lazy var msgBtn: UIButton = {
         let d : UIButton = UIButton.init(frame: CGRect.init(x: 0, y: self.Height * 0.5, width: self.Width , height: self.Height * 0.5))
         d.backgroundColor = UIColor.randomColor()
         d.addTarget(self, action: #selector(sendMsg(sender:)), for: .touchUpInside)
-
+        
         return d
     }()
     
@@ -314,11 +360,6 @@ class RightDownV: UIView {
     
     var delegate : RightDownVDelegate?
     
-    /// 交互事件
-    /// 声音事件
-    @objc fileprivate func sendVoice(sender : UIButton) {
-        self.delegate?.voiceSEL(sender: sender)
-    }
     
     /// 消息事件
     @objc fileprivate func sendMsg(sender : UIButton) {
@@ -329,21 +370,6 @@ class RightDownV: UIView {
         fatalError("init(coder:) has not been implemented")
     }
     
-    func longSEL(gesture : UILongPressGestureRecognizer) -> Void {
-        print("\((#file as NSString).lastPathComponent):(\(#line))\n")
-        
-        if gesture.state == .began {
-            print("\((#file as NSString).lastPathComponent):(\(#line))\n","长按事件")
-            
-//            AvdioTool.shared.startRecord()
-        } else {
-            
-//            AvdioTool.shared.stopRecord()
-//            
-//            AvdioTool.shared.convertWavToAmr()
     
-            print("\((#file as NSString).lastPathComponent):(\(#line))\n","结束")
-            
-        }
-    }
+    
 }

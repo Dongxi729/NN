@@ -25,7 +25,7 @@ class AvdioTool: NSObject {
     
     /// amr传回的数据转换
     var amrconvertBackWav: String?
-
+    
     fileprivate var player: AVAudioPlayer?
     
     /// 存放二进制字节流
@@ -41,7 +41,7 @@ class AvdioTool: NSObject {
         AVEncoderAudioQualityKey :
             NSNumber(value: Int32(AVAudioQuality.medium.rawValue))]
     
-
+    
     
     func directoryURL() -> URL? {
         // 定义并构建一个url来保存音频
@@ -50,7 +50,7 @@ class AvdioTool: NSObject {
         amrPath = NSSearchPathForDirectoriesInDomains(FileManager.SearchPathDirectory.documentDirectory, FileManager.SearchPathDomainMask.userDomainMask, true).first
         
         amrconvertBackWav = NSSearchPathForDirectoriesInDomains(FileManager.SearchPathDirectory.documentDirectory, FileManager.SearchPathDomainMask.userDomainMask, true).first
-//        mp3Path?.append("/temp.mp3")
+        //        mp3Path?.append("/temp.mp3")
         mp3Path?.append("/temp.wav")
         cafPath?.append("/temp.wav")
         amrPath?.append("/temp.amr")
@@ -73,8 +73,8 @@ class AvdioTool: NSObject {
         } catch {
             
         }
-    
-    
+        
+        
     }
     
     /// playAudio
@@ -93,7 +93,7 @@ class AvdioTool: NSObject {
                 }
             }
         }
-    
+        
     }
     
     /// 转换wav
@@ -101,15 +101,15 @@ class AvdioTool: NSObject {
         
         /// 转换wav 到 amr
         VoiceConverter.convertWav(toAmr: cafPath, amrSavePath: amrPath)
-
-
+        
+        
         /// 将本地压缩好的文件amr文件上传
         voiceData = FileManager.default.contents(atPath: amrPath!)
-
+        
         
         print("\((#file as NSString).lastPathComponent):(\(#line))\n",amrPath as Any)
     }
-
+    
     /// 开始录音
     func startRecord() -> Void {
         if let isRecording: Bool = audioRecorder?.isRecording {
@@ -177,14 +177,14 @@ class AvdioTool: NSObject {
     
     /// 转换MP3
     func toMP3() {
-//        let audioWrapper: AudioWrapper = AudioWrapper()
-//        
-//        audioWrapper.convertSourcem4a(cafPath, outPutFilePath: mp3Path) { (a:String?) in
-//            print("end \(String(describing: a))");
-//        }
-//        print(cafPath!)
-//        print(mp3Path!)
-//        print("toMp3")
+        //        let audioWrapper: AudioWrapper = AudioWrapper()
+        //
+        //        audioWrapper.convertSourcem4a(cafPath, outPutFilePath: mp3Path) { (a:String?) in
+        //            print("end \(String(describing: a))");
+        //        }
+        //        print(cafPath!)
+        //        print(mp3Path!)
+        //        print("toMp3")
     }
     
     /// 播放MP3
