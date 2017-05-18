@@ -8,6 +8,7 @@
 
 import UIKit
 
+// MARK: - 游戏控制器
 class GamingVC: UIViewController {
 
     fileprivate lazy var addChartBtn: UIButton = {
@@ -32,12 +33,11 @@ class GamingVC: UIViewController {
         view.addSubview(f)
     }
     
-    
-    lazy var bgImgV: UIImageView = {
-        let d : UIImageView = UIImageView.init(frame: self.view.bounds)
-        d.image = #imageLiteral(resourceName: "gameVBg")
+    lazy var bgV: GameBgV = {
+        let d : GameBgV = GameBgV.init(frame: self.view.bounds)
         return d
     }()
+
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -46,11 +46,304 @@ class GamingVC: UIViewController {
         
         view.backgroundColor = UIColor.white
         
-        view.addSubview(bgImgV)
-        
-        view.addSubview(addChartBtn)
-        
-        view.addSubview(leftInfoV)
+        view.addSubview(bgV)
     }
+}
 
+// MARK: - 游戏背景图片
+class GameBgV: UIView {
+    
+    /// 准备按钮
+    lazy var prepareBtn: UIImageView = {
+        let d : UIImageView = UIImageView.init(frame: CGRect.init(x: self.Width * 0.42, y: self.Height * 0.55, width: self.Width * 0.15, height: self.Height * 0.15))
+        d.image = #imageLiteral(resourceName: "beginBtn")
+        d.contentMode = UIViewContentMode.scaleAspectFit
+        return d
+    }()
+    
+    /// 背景按钮
+    lazy var bgVImg: UIImageView = {
+        let d : UIImageView = UIImageView.init(frame: self.bounds)
+        d.image = #imageLiteral(resourceName: "gamePrepareBgV")
+        
+        return d
+    }()
+    
+    ///
+    lazy var P4: PeronheadInfoV = {
+        let d : PeronheadInfoV = PeronheadInfoV.init(frame: CGRect.init(x: 0.45 * self.Width, y: 0.13 * self.Height, width: self.Width * 0.18, height: self.Height * 0.15))
+        return d
+    }()
+    
+    lazy var P3: PeronheadInfoV = {
+        let d : PeronheadInfoV = PeronheadInfoV.init(frame: CGRect.init(x: self.Width * 0.06, y: self.Height * 0.35, width: self.Width * 0.18, height: self.Height * 0.15))
+        return d
+    }()
+    
+    lazy var P2: PeronheadInfoV = {
+        let d : PeronheadInfoV = PeronheadInfoV.init(frame: CGRect.init(x: self.Width * 0.06, y: self.Height * 0.56, width: self.Width * 0.18, height: self.Height * 0.15))
+        return d
+    }()
+    
+    lazy var P1: PeronheadInfoV = {
+        let d : PeronheadInfoV = PeronheadInfoV.init(frame: CGRect.init(x: self.Width * 0.45, y: self.Height * 0.8, width: self.Width * 0.18, height: self.Height * 0.15))
+
+        return d
+    }()
+    
+    lazy var P5: PeronheadInfoV = {
+        let d : PeronheadInfoV = PeronheadInfoV.init(frame: CGRect.init(x: self.Width * 0.8, y: self.Height * 0.35, width: self.Width * 0.18, height: self.Height * 0.15))
+        return d
+    }()
+    
+    lazy var P6: PeronheadInfoV = {
+        let d : PeronheadInfoV = PeronheadInfoV.init(frame: CGRect.init(x: self.Width * 0.8, y: self.Height * 0.55, width: self.Width * 0.18, height: self.Height * 0.15))
+        return d
+    }()
+    
+    /// 右上角按钮组
+    lazy var rightV: RightV = {
+        let d : RightV = RightV.init(frame: CGRect.init(x: self.Width * 0.9, y: 0, width: self.Width * 0.1, height: self.Height * 0.1))
+        d.delegate = self
+        return d
+    }()
+    
+    
+    
+    /// 右下角视图
+    fileprivate lazy var rightDownV: RightDownV = {
+        let d : RightDownV = RightDownV.init(frame: CGRect.init(x: self.Width * 0.87, y: self.Height * 0.788, width: self.Width - self.Width * 0.87, height: self.Height - self.Height * 0.794))
+        d.layer.borderWidth = 2
+        d.layer.borderColor = UIColor.red.cgColor
+        d.delegate = self
+        return d
+    }()
+    
+    override init(frame: CGRect) {
+        super.init(frame: frame)
+        addSubview(bgVImg)
+        addSubview(prepareBtn)
+        
+        /// 添加玩家位置
+        addSubview(P4)
+        addSubview(P3)
+        addSubview(P2)
+        addSubview(P1)
+        addSubview(P5)
+        addSubview(P6)
+        
+        /// 右上角按钮
+        addSubview(rightV)
+        
+        addSubview(rightDownV)
+    }
+    
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        let touch: UITouch? = touches.first
+        let touchPoint: CGPoint? = touch?.location(in: self)
+        print("\((touchPoint?.x)! / self.Width)==\((touchPoint?.y)! / self.Height)")
+        let stringFloat = Int((touchPoint?.x)!)
+        let stringFloat1 = Int((touchPoint?.y)!)
+        print("\(stringFloat)\(stringFloat1)")
+    }
+}
+
+
+// MARK: - 右上角事件
+extension GameBgV : RightVDelegate {
+    func righExitSEL(sender: UIButton) {
+        print("\((#file as NSString).lastPathComponent):(\(#line))\n",sender.frame)
+    }
+    
+    func rightSetSEL(sender: UIButton) {
+        print("\((#file as NSString).lastPathComponent):(\(#line))\n",sender.frame)
+    }
+}
+
+// MARK: - 左上角事件
+extension GameBgV : RightDownVDelegate {
+    func msgSEL(sender: UIButton) {
+        print("\((#file as NSString).lastPathComponent):(\(#line))\n",sender.frame)
+    }
+    
+    func voiceSEL(sender: UIButton) {
+        print("\((#file as NSString).lastPathComponent):(\(#line))\n",sender.frame)
+    }
+}
+
+
+
+// MARK: - 右上角视图绘制
+/// 右上角按钮代理方法
+protocol RightVDelegate {
+    /// 设置
+    func rightSetSEL(sender : UIButton)
+    
+    /// 退出
+    func righExitSEL(sender : UIButton)
+}
+
+/// 右上角视图
+class RightV: UIView {
+    
+    var delegate : RightVDelegate?
+    
+    fileprivate lazy var setBtn: UIButton = {
+        let d : UIButton = UIButton.init(frame: CGRect.init(x: 0, y: 0, width: self.Width * 0.5, height: self.Height))
+        d.addTarget(self, action: #selector(rightSetSEL(sender:)), for: .touchUpInside)
+        return d
+    }()
+    
+    fileprivate lazy var exitBtn: UIButton = {
+        let d : UIButton = UIButton.init(frame: CGRect.init(x: self.Width * 0.5, y: 0, width: self.Width * 0.5, height: self.Height))
+        d.addTarget(self, action: #selector(rightExitSEL(sender:)), for: .touchUpInside)
+        return d
+    }()
+    
+    @objc fileprivate func rightExitSEL(sender : UIButton) {
+        self.delegate?.righExitSEL(sender: sender)
+    }
+    
+    @objc fileprivate func rightSetSEL(sender : UIButton) {
+        self.delegate?.rightSetSEL(sender: sender)
+    }
+    
+    override init(frame: CGRect) {
+        super.init(frame: frame)
+        
+        addSubview(setBtn)
+        addSubview(exitBtn)
+    }
+    
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+}
+
+/// 个人信息
+class PeronheadInfoV: UIView {
+    
+    /// 名字
+    lazy var nameLabel: UILabel = {
+        let d : UILabel = UILabel.init(frame: CGRect.init(x: self.Width * 0.5, y: 2 * screenScale, width: self.Width * 0.5, height: self.Height * 0.4))
+        d.text = "AJJJJ"
+        d.textAlignment = .center
+        d.font = UIFont(name: "SimHei", size: 8 * screenScale)
+        d.textColor = UIColor.white
+        d.layer.cornerRadius = 5
+        return d
+    }()
+    
+    /// coinsLabel
+    lazy var coinsLabel: UILabel = {
+        let d : UILabel = UILabel.init(frame: CGRect.init(x: self.Width * 0.5, y: self.nameLabel.BottomY + 2 * screenScale, width: self.Width * 0.5, height: self.Height * 0.4))
+        d.text = "2000"
+        d.textAlignment = .center
+        d.font = UIFont(name: "SimHei", size: 8 * screenScale)
+        d.textColor = UIColor.white
+//        d.layer.borderWidth = 1
+//        d.layer.cornerRadius = 5
+//        d.layer.borderColor = UIColor.orange.cgColor
+        return d
+    }()
+    
+    /// 整体背景
+    lazy var hhhh: UIImageView = {
+        let d : UIImageView = UIImageView.init(frame: self.bounds)
+        d.image = #imageLiteral(resourceName: "wait")
+        d.contentMode = UIViewContentMode.scaleAspectFit
+        return d
+    }()
+    
+    override init(frame: CGRect) {
+        super.init(frame: frame)
+        addSubview(hhhh)
+        addSubview(nameLabel)
+        addSubview(coinsLabel)
+    }
+    
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+}
+
+
+// MARK: - 右下角事件
+protocol RightDownVDelegate {
+    /// 声音
+    func voiceSEL(sender : UIButton)
+    
+    /// 信息
+    func msgSEL(sender : UIButton)
+}
+
+/// 右下角视图
+class RightDownV: UIView {
+    /// 长按录音
+    lazy var lpButton: UIButton = {
+        let d : UIButton = UIButton.init(frame: CGRect.init(x: self.Width * 0.5, y: 0, width: self.Width * 0.5, height: self.Height * 0.5))
+        let longTap = UILongPressGestureRecognizer.init(target: self, action: #selector(longSEL(gesture:)))
+        
+        d.addGestureRecognizer(longTap)
+        
+        d.backgroundColor = UIColor.gray
+        
+        d.addTarget(self, action: #selector(sendVoice(sender:)), for: .touchUpInside)
+        return d
+    }()
+    
+    /// 消息按钮
+    fileprivate lazy var msgBtn: UIButton = {
+        let d : UIButton = UIButton.init(frame: CGRect.init(x: 0, y: self.Height * 0.5, width: self.Width , height: self.Height * 0.5))
+        d.backgroundColor = UIColor.randomColor()
+        d.addTarget(self, action: #selector(sendMsg(sender:)), for: .touchUpInside)
+
+        return d
+    }()
+    
+    override init(frame: CGRect) {
+        super.init(frame: frame)
+        
+        addSubview(lpButton)
+        addSubview(msgBtn)
+    }
+    
+    var delegate : RightDownVDelegate?
+    
+    /// 交互事件
+    /// 声音事件
+    @objc fileprivate func sendVoice(sender : UIButton) {
+        self.delegate?.voiceSEL(sender: sender)
+    }
+    
+    /// 消息事件
+    @objc fileprivate func sendMsg(sender : UIButton) {
+        self.delegate?.msgSEL(sender: sender)
+    }
+    
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
+    func longSEL(gesture : UILongPressGestureRecognizer) -> Void {
+        print("\((#file as NSString).lastPathComponent):(\(#line))\n")
+        
+        if gesture.state == .began {
+            print("\((#file as NSString).lastPathComponent):(\(#line))\n","长按事件")
+            
+//            AvdioTool.shared.startRecord()
+        } else {
+            
+//            AvdioTool.shared.stopRecord()
+//            
+//            AvdioTool.shared.convertWavToAmr()
+    
+            print("\((#file as NSString).lastPathComponent):(\(#line))\n","结束")
+            
+        }
+    }
 }

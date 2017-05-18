@@ -20,7 +20,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Override point for customization after application launch.
         
 //        window?.rootViewController = MusicVC()
-        window?.rootViewController = MainGameViewController()
+        window?.rootViewController = GamingVC()
         
         window?.makeKeyAndVisible()
         window?.backgroundColor = UIColor.white
@@ -28,7 +28,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         WXApi.registerApp(WXPatient_App_ID)
         
         
-        playMusic()
+//        playMusic()
         return true
     }
     
@@ -36,7 +36,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     private func playMusic() -> Void {
         if localSave.object(forKey: "musicOpen") != nil {
-            musicMark = localSave.object(forKey: "musicOpen") as! Int 
+            musicMark = localSave.object(forKey: "musicOpen") as! Int
         }
         
         if musicMark % 2 == 1 {
