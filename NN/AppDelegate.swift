@@ -27,7 +27,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         WXApi.registerApp(WXPatient_App_ID)
         
-        
 //        playMusic()
         return true
     }

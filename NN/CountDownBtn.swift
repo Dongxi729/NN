@@ -29,11 +29,7 @@ class CountDownBtn: UIButton {
     
     /// 是否继续
     var canContinue = false
-    
-    
-//    static let shared = CountDownBtn()
-    
-    
+
     /// 调用倒计时
     ///
     /// - Parameters:

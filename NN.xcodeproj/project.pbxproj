@@ -55,7 +55,6 @@
 		262433661ECC5244003C41D1 /* SicComonCowLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 262433651ECC5244003C41D1 /* SicComonCowLayout.swift */; };
 		262433681ECC527A003C41D1 /* SicCowLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 262433671ECC527A003C41D1 /* SicCowLayout.swift */; };
 		2624336A1ECC89BD003C41D1 /* MusicVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 262433691ECC89BD003C41D1 /* MusicVC.swift */; };
-		2624336C1ECC9369003C41D1 /* MusicTool.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2624336B1ECC9369003C41D1 /* MusicTool.swift */; };
 		2629EBE31ECADE1D00616626 /* SettingV.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2629EBE21ECADE1D00616626 /* SettingV.swift */; };
 		2629EBE61ECAFC8000616626 /* nn_bg_music.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 2629EBE51ECAFC8000616626 /* nn_bg_music.mp3 */; };
 		2629EBF81ECAFCA500616626 /* f0_nn0.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 2629EBEA1ECAFCA500616626 /* f0_nn0.mp3 */; };
@@ -100,6 +99,12 @@
 		26BC613A1EB4250600AE9BE1 /* CollectVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26BC61391EB4250600AE9BE1 /* CollectVC.swift */; };
 		26BC613C1EB4253B00AE9BE1 /* CollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26BC613B1EB4253B00AE9BE1 /* CollectionViewCell.swift */; };
 		26CAF9BD1EB4C219003065B8 /* LabelRepeat.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26CAF9BC1EB4C219003065B8 /* LabelRepeat.swift */; };
+		26CDFB4B1ECD972900EF3846 /* RightDownV.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26CDFB4A1ECD972900EF3846 /* RightDownV.swift */; };
+		26CDFB4D1ECD975F00EF3846 /* PeronheadInfoV.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26CDFB4C1ECD975F00EF3846 /* PeronheadInfoV.swift */; };
+		26CDFB4F1ECD977700EF3846 /* RightV.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26CDFB4E1ECD977700EF3846 /* RightV.swift */; };
+		26CDFB511ECD97BF00EF3846 /* GameBgV.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26CDFB501ECD97BF00EF3846 /* GameBgV.swift */; };
+		26CDFB561ECDB83700EF3846 /* TimeUpdateVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26CDFB551ECDB83700EF3846 /* TimeUpdateVC.swift */; };
+		26CDFB581ECDBBFC00EF3846 /* CurrentTimerTool.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26CDFB571ECDBBFC00EF3846 /* CurrentTimerTool.swift */; };
 		26CFB6E11EC2FC2E00327748 /* CreateV.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26CFB6E01EC2FC2E00327748 /* CreateV.swift */; };
 		26D54ACC1EC2A93B00119FAA /* AddViewWithPop.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26D54ACB1EC2A93B00119FAA /* AddViewWithPop.swift */; };
 		26D54AE31EC2BD6D00119FAA /* DDXMLElementAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 26D54AD41EC2BD6D00119FAA /* DDXMLElementAdditions.m */; };
@@ -241,7 +246,6 @@
 		262433651ECC5244003C41D1 /* SicComonCowLayout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SicComonCowLayout.swift; sourceTree = "<group>"; };
 		262433671ECC527A003C41D1 /* SicCowLayout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SicCowLayout.swift; sourceTree = "<group>"; };
 		262433691ECC89BD003C41D1 /* MusicVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MusicVC.swift; sourceTree = "<group>"; };
-		2624336B1ECC9369003C41D1 /* MusicTool.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MusicTool.swift; sourceTree = "<group>"; };
 		2629EBE21ECADE1D00616626 /* SettingV.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingV.swift; sourceTree = "<group>"; };
 		2629EBE51ECAFC8000616626 /* nn_bg_music.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = nn_bg_music.mp3; sourceTree = "<group>"; };
 		2629EBEA1ECAFCA500616626 /* f0_nn0.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = f0_nn0.mp3; path = "sound 2/f0_nn0.mp3"; sourceTree = "<group>"; };
@@ -286,6 +290,12 @@
 		26BC61391EB4250600AE9BE1 /* CollectVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CollectVC.swift; sourceTree = "<group>"; };
 		26BC613B1EB4253B00AE9BE1 /* CollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CollectionViewCell.swift; sourceTree = "<group>"; };
 		26CAF9BC1EB4C219003065B8 /* LabelRepeat.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LabelRepeat.swift; sourceTree = "<group>"; };
+		26CDFB4A1ECD972900EF3846 /* RightDownV.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RightDownV.swift; sourceTree = "<group>"; };
+		26CDFB4C1ECD975F00EF3846 /* PeronheadInfoV.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PeronheadInfoV.swift; sourceTree = "<group>"; };
+		26CDFB4E1ECD977700EF3846 /* RightV.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RightV.swift; sourceTree = "<group>"; };
+		26CDFB501ECD97BF00EF3846 /* GameBgV.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameBgV.swift; sourceTree = "<group>"; };
+		26CDFB551ECDB83700EF3846 /* TimeUpdateVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TimeUpdateVC.swift; sourceTree = "<group>"; };
+		26CDFB571ECDBBFC00EF3846 /* CurrentTimerTool.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CurrentTimerTool.swift; sourceTree = "<group>"; };
 		26CFB6E01EC2FC2E00327748 /* CreateV.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreateV.swift; sourceTree = "<group>"; };
 		26D54ACB1EC2A93B00119FAA /* AddViewWithPop.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddViewWithPop.swift; sourceTree = "<group>"; };
 		26D54AD31EC2BD6D00119FAA /* DDXMLElementAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DDXMLElementAdditions.h; sourceTree = "<group>"; };
@@ -567,7 +577,6 @@
 				2629EBE81ECAFC9700616626 /* playMusic */,
 				2629EBE71ECAFC8900616626 /* loopBgMusic */,
 				262433691ECC89BD003C41D1 /* MusicVC.swift */,
-				2624336B1ECC9369003C41D1 /* MusicTool.swift */,
 			);
 			name = musicResource;
 			sourceTree = "<group>";
@@ -625,6 +634,10 @@
 				264A2CE51EC45D21001B7F0E /* ChatV.swift */,
 				26F9FA9D1EC9407100DF4A64 /* GamingView.swift */,
 				262433611ECBF46F003C41D1 /* InviteV.swift */,
+				26CDFB4A1ECD972900EF3846 /* RightDownV.swift */,
+				26CDFB4C1ECD975F00EF3846 /* PeronheadInfoV.swift */,
+				26CDFB4E1ECD977700EF3846 /* RightV.swift */,
+				26CDFB501ECD97BF00EF3846 /* GameBgV.swift */,
 			);
 			name = view;
 			sourceTree = "<group>";
@@ -745,6 +758,8 @@
 				2657FD9C1EB8809100B92648 /* DelayTimerTool.swift */,
 				2657FD961EB860F900B92648 /* ControlVoice.swift */,
 				264A32CE1EC58485001405C4 /* XMLTool.swift */,
+				26CDFB551ECDB83700EF3846 /* TimeUpdateVC.swift */,
+				26CDFB571ECDBBFC00EF3846 /* CurrentTimerTool.swift */,
 			);
 			name = tool;
 			sourceTree = "<group>";
@@ -1013,7 +1028,6 @@
 				26D54AE61EC2BD6D00119FAA /* DDXMLDocument.m in Sources */,
 				260C66711EB23415006C119E /* POPVector.mm in Sources */,
 				2603D9711EADCD830069B132 /* ViewController.swift in Sources */,
-				2624336C1ECC9369003C41D1 /* MusicTool.swift in Sources */,
 				2629EBE31ECADE1D00616626 /* SettingV.swift in Sources */,
 				26013DAF1EC1D20F00ACA99D /* ScrollText.m in Sources */,
 				260C66641EB23415006C119E /* POPAnimationExtras.mm in Sources */,
@@ -1033,12 +1047,14 @@
 				2682558B1EC196C30080CCCD /* LoginRequestTool.swift in Sources */,
 				262433661ECC5244003C41D1 /* SicComonCowLayout.swift in Sources */,
 				26F14F9E1ECAA785006844C9 /* HowToPlayV.swift in Sources */,
+				26CDFB4F1ECD977700EF3846 /* RightV.swift in Sources */,
 				2603D96F1EADCD440069B132 /* CustomAlertView.swift in Sources */,
 				260C66651EB23415006C119E /* POPAnimationRuntime.mm in Sources */,
 				262433681ECC527A003C41D1 /* SicCowLayout.swift in Sources */,
 				26836AFB1EC1E2DB00061069 /* JoinRoomView.swift in Sources */,
 				2657FD971EB860F900B92648 /* ControlVoice.swift in Sources */,
 				26D54B441EC2F0B500119FAA /* CreateRoomModel.swift in Sources */,
+				26CDFB581ECDBBFC00EF3846 /* CurrentTimerTool.swift in Sources */,
 				2603D9BD1EADE7E20069B132 /* ScrollLabel.swift in Sources */,
 				26F14F981ECAA2A7006844C9 /* FTIndicator.m in Sources */,
 				26F9FA9E1EC9407100DF4A64 /* GamingView.swift in Sources */,
@@ -1049,7 +1065,9 @@
 				260C66681EB23415006C119E /* POPBasicAnimation.mm in Sources */,
 				260ECA821EC1AF1F00058649 /* LoginModel.swift in Sources */,
 				264A2CE41EC4565A001B7F0E /* MarketV.swift in Sources */,
+				26CDFB4D1ECD975F00EF3846 /* PeronheadInfoV.swift in Sources */,
 				2657FDBA1EB982E100B92648 /* DeskCards.swift in Sources */,
+				26CDFB561ECDB83700EF3846 /* TimeUpdateVC.swift in Sources */,
 				26CAF9BD1EB4C219003065B8 /* LabelRepeat.swift in Sources */,
 				26A4872C1EC0060F00E9A091 /* AbortTool.swift in Sources */,
 				26D54B2F1EC2C36900119FAA /* SendMediaTool.swift in Sources */,
@@ -1073,6 +1091,7 @@
 				260C666B1EB23415006C119E /* POPDecayAnimation.mm in Sources */,
 				26D54B2E1EC2C36900119FAA /* TImerTool.swift in Sources */,
 				2657FD991EB8642C00B92648 /* ViewAnimation.swift in Sources */,
+				26CDFB4B1ECD972900EF3846 /* RightDownV.swift in Sources */,
 				268255891EC194480080CCCD /* ImplementsLinkTool.swift in Sources */,
 				260C66661EB23415006C119E /* POPAnimationTracer.mm in Sources */,
 				2603D9731EADD1BB0069B132 /* MainGameViewController.swift in Sources */,
@@ -1099,6 +1118,7 @@
 				26771ED01EC54DE300B61DBC /* TestMediaVC.swift in Sources */,
 				260C66621EB23415006C119E /* POPAnimation.mm in Sources */,
 				2603D9791EADD3AA0069B132 /* PersonMsgView.swift in Sources */,
+				26CDFB511ECD97BF00EF3846 /* GameBgV.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

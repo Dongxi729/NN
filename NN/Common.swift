@@ -293,7 +293,7 @@ func getTime() -> String {
     
     // 创建一个日期格式器
     let dformatter = DateFormatter()
-    dformatter.dateFormat = "HH:mm"
+    dformatter.dateFormat = "HH:mm:ss"
     return dformatter.string(from: now)
 }
 
