@@ -109,16 +109,16 @@ class CardsLayout : CommonV {
 
         var index : Int = 0
         for aaa in contactName(prefix: "pa") {
-            index += 1
             print(index)
-            
             
             dixName.updateValue(aaa, forKey: index)
 
-            
             cardImgs = UIImageView.init(frame: CGRect.init(x: CGFloat(index) * self.Width * 0.15 + 2 * screenScale + CGFloat(index) * screenScale * 2 , y: 2 * screenScale, width: self.Width * 0.15, height: self.Height - screenScale * 3))
+
             cardImgs.backgroundColor = UIColor.randomColor()
             cardImgs.image = UIImage.init(named: dixName[index]!)
+            
+            index += 1
             addSubview(cardImgs)
             
             print(dixName[index] as Any)
