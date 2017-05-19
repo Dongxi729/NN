@@ -55,18 +55,18 @@ class MainGameViewController: UIViewController {
         return d
     }()
     
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        
-        /// 开始上报用户信息,传socket
-        AvdioTool.shared.creatSession()
-        
-        /// 开启链接服务器
-        DispatchQueue.global(qos: .default).async {
-            
-            testServer()
-        }
-    }
+//    override func viewWillAppear(_ animated: Bool) {
+//        super.viewWillAppear(animated)
+//        
+//        /// 开始上报用户信息,传socket
+//        AvdioTool.shared.creatSession()
+//        
+//        /// 开启链接服务器
+//        DispatchQueue.global(qos: .default).async {
+//            
+//            testServer()
+//        }
+//    }
     
     /// 发送房间类型
     @objc fileprivate func sendRoomTypeSEL() -> Void {
@@ -86,7 +86,7 @@ class MainGameViewController: UIViewController {
         super.viewDidLoad()
         
         // Do any additional setup after loading the view.
-        addScrollText()
+        
         
         let add = UIButton.init(frame: CGRect.init(x: 30, y: 30, width: 100, height: 100))
         add.backgroundColor = UIColor.red
@@ -100,13 +100,20 @@ class MainGameViewController: UIViewController {
 
         view.addSubview(tetsInviteV)
         
-
+//        addScrollText()
+        view.addSubview(boradCastBgV)
     }
+    
+    fileprivate lazy var boradCastBgV: BroadCastV = {
+        let d : BroadCastV = BroadCastV.init(frame: CGRect.init(x: SW * 0.25, y: SH * 0.2, width: SW * 0.5, height: 15 * screenScale))
+        return d
+    }()
     
     func dismissRoomSEL() -> Void {
         dismissRoomSocketEvent()
     }
 
+    
     
     func presenrView() -> Void {
         view.addSubview(presentView)
@@ -121,24 +128,57 @@ class MainGameViewController: UIViewController {
     }()
     
     /// 添加滚动文字
-    func addScrollText() -> Void {
+//    func addScrollText() -> Void {
+//        
+//        
+//        let scText = ScrollText.init(frame: CGRect.init(x: SW * 0.25, y: SH * 0.2, width: SW * 0.5, height: 15 * screenScale), withBackGroundColor: UIColor.clear, withTitleColor: UIColor.white)
+//        
+//        let scrolBgV = UIImageView.init(frame: CGRect.init(x: SW * 0.25, y: SH * 0.2, width: SW * 0.5, height: 12 * screenScale))
+//        
+//        scrolBgV.image = #imageLiteral(resourceName: "broadCastbg")
+//        
+//        let dd = ["撒旦立刻精神看到就撒大声地就拉上记录数卡机的"]
+//        
+//        scText?.titleArray = dd
+//        
+//        view.addSubview(scrolBgV)
+//        view.addSubview(scText!)
+//        
+//        /// 添加铃铛
+//        view.addSubview(ringTong)
+//    }
+    
+}
+
+
+class BroadCastV: UIView {
+    
+    lazy var bgV: UIImageView = {
+        let d : UIImageView = UIImageView.init(frame: self.bounds)
+        d.image = #imageLiteral(resourceName: "hall_03")
+        return d
+    }()
+    
+    /// 滚动文字
+    var showText : [String] = ["撒旦立刻精神看到就撒大声地就拉上记录数卡机的"]
+    
+    /// 文本label
+    lazy var broadCastText: ScrollText = {
+        let d : ScrollText = ScrollText.init(frame: CGRect.init(x: self.Width * 0.1, y: 0, width: self.Width, height: self.Height), withBackGroundColor: UIColor.clear, withTitleColor: UIColor.white)
+        d.titleArray = self.showText
+        d.sizeToFit()
+        return d
+    }()
+    
+    
+    override init(frame: CGRect) {
+        super.init(frame: frame)
         
-        
-        let scText = ScrollText.init(frame: CGRect.init(x: SW * 0.25, y: SH * 0.2, width: SW * 0.5, height: 15 * screenScale), withBackGroundColor: UIColor.clear, withTitleColor: UIColor.white)
-        
-        let scrolBgV = UIImageView.init(frame: CGRect.init(x: SW * 0.25, y: SH * 0.2, width: SW * 0.5, height: 12 * screenScale))
-        
-        scrolBgV.image = #imageLiteral(resourceName: "broadCastbg")
-        
-        let dd = ["撒旦立刻精神看到就撒大声地就拉上记录数卡机的"]
-        
-        scText?.titleArray = dd
-        
-        view.addSubview(scrolBgV)
-        view.addSubview(scText!)
-        
-        /// 添加铃铛
-        view.addSubview(ringTong)
+        addSubview(bgV)
+        addSubview(broadCastText)
     }
     
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
 }

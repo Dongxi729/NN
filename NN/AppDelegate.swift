@@ -20,7 +20,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Override point for customization after application launch.
         
 //        window?.rootViewController = MusicVC()
-        window?.rootViewController = GamingVC()
+        window?.rootViewController = MainGameViewController()
         
         window?.makeKeyAndVisible()
         window?.backgroundColor = UIColor.white

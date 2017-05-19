@@ -35,12 +35,14 @@ class GamingVC: UIViewController {
         view.addSubview(f)
     }
     
-    lazy var bgV: GameBgV = {
+    /// 背景视图
+    fileprivate lazy var bgV: GameBgV = {
         let d : GameBgV = GameBgV.init(frame: self.view.bounds)
         return d
     }()
     
     
+    /// 倒数计时视图
     fileprivate lazy var countDown: ClockCountDown = {
         let d : ClockCountDown = ClockCountDown.init(frame: CGRect.init(x: 0, y: 0, width: SW * (0.531702891640041 - 0.46875), height: SW * (0.531702891640041 - 0.46875)))
         
@@ -60,11 +62,12 @@ class GamingVC: UIViewController {
         
         bgV.showprepareBtnMark = true
         
-        countDown.countDown = 60
+        
         countDown.center = view.center
         
-        
-        view.addSubview(countDown)
+        /// 倒计时
+//        countDown.countDown = 60
+//        view.addSubview(countDown)
     }
 }
 

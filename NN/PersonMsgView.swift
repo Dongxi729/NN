@@ -59,9 +59,9 @@ class PersonMsgView: UIView {
     
     /// ID
     lazy var IDLabel: CommonLabel = {
-        let d : CommonLabel = CommonLabel.init(frame: CGRect.init(x: self.nameBgV.RightX - self.nameBgV.Width * 0.6, y:5, width: 37, height: 15 * screenScale))
+        let d : CommonLabel = CommonLabel.init(frame: CGRect.init(x: self.nameBgV.RightX - self.nameBgV.Width * 0.6, y:3 * screenScale, width: self.Width * 0.15, height: 15 * screenScale))
         
-        
+        d.layer.borderWidth = 1
         if LoginModel.shared.uid != nil {
             d.text = "ID:" + LoginModel.shared.uid!
         } else {
@@ -92,7 +92,7 @@ class PersonMsgView: UIView {
     
     /// 昵称
     lazy var nameLabel: CommonLabel = {
-        let d : CommonLabel = CommonLabel.init(frame: CGRect.init(x: self.personImgView.RightX + commonMargin, y: 5, width: self.nameBgV.Width * 0.3, height: 20))
+        let d : CommonLabel = CommonLabel.init(frame: CGRect.init(x: self.personImgView.RightX + commonMargin, y: 5, width: self.nameBgV.Width * 0.3, height: 12 * screenScale))
         
         
         if LoginModel.shared.nickname != nil {

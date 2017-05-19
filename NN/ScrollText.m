@@ -60,7 +60,10 @@
             autoScrollLabel.textColor = [UIColor whiteColor];
             autoScrollLabel.text = _titleArray[i];
 
-            autoScrollLabel.font = [UIFont systemFontOfSize:8 * ([UIScreen mainScreen].bounds.size.width / 320)];
+//            autoScrollLabel.font = [UIFont systemFontOfSize:8 * ([UIScreen mainScreen].bounds.size.width / 320)];
+            
+            autoScrollLabel.font = [UIFont fontWithName:@"SimHei" size:7 * ([UIScreen mainScreen].bounds.size.width / 320)];
+//            autoScrollLabel.sizeToFit;
             [self addSubview:autoScrollLabel];
         }
     }else{
