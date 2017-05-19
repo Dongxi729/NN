@@ -58,6 +58,9 @@ class RoomModel: NSObject {
     /// 准备人员数量
     var readPlayerCount : Int = 0
     
+    /// 游戏是否开始
+    var isGameBegin = false
+    
     /// xml 当前游戏(还未开始的游戏房间的数据)
     var currentRoomPlayInfo : String = "" {
         didSet {

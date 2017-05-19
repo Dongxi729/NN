@@ -61,11 +61,11 @@ class GamingVC: UIViewController {
         
         view.backgroundColor = UIColor.white
         
-        RoomModel.shared.currentPersonInRoom = 6
+        RoomModel.shared.currentPersonInRoom = 4
         view.addSubview(bgV)
         bgV.showGameTypeMark = 3
         
-        
+        bgV.isGaming = false
         bgV.showprepareBtnMark = false
         
         
@@ -76,11 +76,5 @@ class GamingVC: UIViewController {
 //        view.addSubview(countDown)
         
         
-//        view.addSubview(cardV)
     }
-    
-    fileprivate lazy var cardV: CardsLayout = {
-        let d : CardsLayout = CardsLayout.init(frame: CGRect.init(x: 0, y: SH * 0.8, width: SW * 0.5, height: SH * 0.2))
-        return d
-    }()
 }

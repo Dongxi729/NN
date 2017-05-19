@@ -40,12 +40,14 @@ class GameBgV: UIView {
     /// 显示创建按钮标识
     var showprepareBtnMark = false
     
-    /// 游戏人员位置
+    /// 是否游戏中
+    var isGaming = RoomModel.shared.isGameBegin
 
     
     /// 显示房间人员位置
     fileprivate lazy var P4: PeronheadInfoV = {
-        let d : PeronheadInfoV = PeronheadInfoV.init(frame: CGRect.init(x: 0.45 * self.Width, y: 0.13 * self.Height, width: self.Width * 0.18, height: self.Height * 0.15))
+        let d : PeronheadInfoV = PeronheadInfoV()
+//        let d : PeronheadInfoV = PeronheadInfoV.init(frame: CGRect.init(x: 0.45 * self.Width, y: 0.13 * self.Height, width: self.Width * 0.18, height: self.Height * 0.15))
         
         return d
     }()
@@ -61,8 +63,8 @@ class GameBgV: UIView {
     }()
     
     fileprivate lazy var P1: PeronheadInfoV = {
-        let d : PeronheadInfoV = PeronheadInfoV.init(frame: CGRect.init(x: self.Width * 0.45, y: self.Height * 0.8, width: self.Width * 0.18, height: self.Height * 0.15))
-        
+//        let d : PeronheadInfoV = PeronheadInfoV.init(frame: CGRect.init(x: self.Width * 0.45, y: self.Height * 0.8, width: self.Width * 0.18, height: self.Height * 0.15))
+        let d : PeronheadInfoV = PeronheadInfoV()
         return d
     }()
     
@@ -75,6 +77,8 @@ class GameBgV: UIView {
         let d : PeronheadInfoV = PeronheadInfoV.init(frame: CGRect.init(x: self.Width * 0.8, y: self.Height * 0.55, width: self.Width * 0.18, height: self.Height * 0.15))
         return d
     }()
+    
+    
     
     /// 右上角按钮组
     fileprivate lazy var rightV: RightV = {
@@ -151,6 +155,11 @@ class GameBgV: UIView {
     }()
     
     override func layoutSubviews() {
+        
+        
+        
+        print("\((#file as NSString).lastPathComponent):(\(#line))\n",RoomModel.shared.isGameBegin)
+        
         super.layoutSubviews()
         /// 根据状态显示六人牛牛还是通比牛牛
         if showGameTypeMark == 0 {
@@ -170,7 +179,7 @@ class GameBgV: UIView {
         switch RoomModel.shared.currentPersonInRoom {
         case 1:
             P1.samllCardsShowLeftOrRight = -1
-//            P1.isShowBottomCardLayout = false
+            
             addSubview(P1)
             break
         case 2:
@@ -250,6 +259,22 @@ class GameBgV: UIView {
         default:
             
             break
+        }
+        
+        /// 是否在游戏中
+        if RoomModel.shared.isGameBegin {
+            /// 改变游戏1、4玩家的位置
+            
+//            P1 = PeronheadInfoV.init(frame: CGRect.init(x: self.Width * 0.45, y: self.Height * 0.8, width: self.Width * 0.18, height: self.Height * 0.15))
+//            P4 = PeronheadInfoV.init(frame: CGRect.init(x: 0.45 * self.Width, y: 0.13 * self.Height, width: self.Width * 0.18, height: self.Height * 0.15))
+            
+            P1 = PeronheadInfoV.init(frame: CGRect.init(x: self.Width * 0.15, y: self.Height * 0.8, width: self.Width * 0.18, height: self.Height * 0.15))
+            P4 = PeronheadInfoV.init(frame: CGRect.init(x: 0.6 * self.Width, y: 0.13 * self.Height, width: self.Width * 0.18, height: self.Height * 0.15))
+
+        } else {
+            
+            P1 = PeronheadInfoV.init(frame: CGRect.init(x: self.Width * 0.45, y: self.Height * 0.8, width: self.Width * 0.18, height: self.Height * 0.15))
+            P4 = PeronheadInfoV.init(frame: CGRect.init(x: 0.45 * self.Width, y: 0.13 * self.Height, width: self.Width * 0.18, height: self.Height * 0.15))
         }
     }
     

@@ -169,13 +169,18 @@ class PeronheadInfoV: UIView {
             addSubview(finishImg)
         }
         
-        /// 尚需修改
-        addCards(cardsArray: contactName(prefix: "pa"))
 
-        
-        if !isShowBottomCardLayout {
-            addSubview(bigCardLayout)
+
+        /// 是否开始游戏
+        if RoomModel.shared.isGameBegin {
+            if !isShowBottomCardLayout {
+                addSubview(bigCardLayout)
+            }
+            /// 尚需修改
+            addCards(cardsArray: contactName(prefix: "pa"))
         }
+        
+        
     }
     
     required init?(coder aDecoder: NSCoder) {
