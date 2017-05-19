@@ -54,6 +54,13 @@ class GamingVC: UIViewController {
         
     }
     
+    ////////////
+    fileprivate lazy var robV: RobRoomOwner = {
+        let d : RobRoomOwner = RobRoomOwner.init(frame: CGRect.init(x: 0, y: 0, width: SW * 0.3, height: SH * 0.1))
+
+        return d
+    }()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -71,10 +78,53 @@ class GamingVC: UIViewController {
         
         countDown.center = view.center
         
+        robV.center = view.center
+        view.addSubview(robV)
+        
         /// 倒计时
 //        countDown.countDown = 60
 //        view.addSubview(countDown)
         
         
+    }
+}
+
+
+/// 抢装
+class RobRoomOwner: UIView {
+    
+    /// 抢装
+    lazy var robBtn: UIButton = {
+        let d : UIButton = UIButton.init(frame: CGRect.init(x: 0, y: 0, width: self.Width * 0.4, height: self.Height))
+        d.setImage(#imageLiteral(resourceName: "roomRob"), for: .normal)
+        return d
+    }()
+    
+    lazy var notRobV: UIButton = {
+        let d : UIButton = UIButton.init(frame: CGRect.init(x: self.robBtn.RightX + self.Width * 0.2, y: 0, width: self.Width * 0.4, height: self.Height))
+        d.setImage(#imageLiteral(resourceName: "roomNotRob"), for: .normal)
+        return d
+    }()
+    
+    override init(frame: CGRect) {
+        super.init(frame: frame)
+        
+        self.layer.borderWidth = 1
+        
+        addSubview(robBtn)
+        addSubview(notRobV)
+    }
+    
+    override func layoutSubviews() {
+        super.layoutSubviews()
+        
+        if RoomModel.shared.isGameBegin {
+            robBtn.isHidden = true
+            notRobV.isHidden = true
+        }
+    }
+    
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
     }
 }

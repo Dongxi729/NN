@@ -53,6 +53,15 @@ class CardsLayout : CommonV {
     }()
     
     
+    override func layoutSubviews() {
+        super.layoutSubviews()
+        /// 根据游戏状态隐藏提示、亮牌按钮
+        if RoomModel.shared.isGameBegin {
+            self.alertBtn.isHidden = true
+            self.showCardBtn.isHidden = true
+        }
+    }
+    
     ///////交互事件
     /// 提示
     @objc fileprivate func alertSEL(sender : UIButton) {
