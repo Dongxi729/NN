@@ -12,14 +12,22 @@ import UIKit
 class GameBgV: UIView {
     
     /// 准备按钮
-    fileprivate lazy var prepareBtn: UIImageView = {
-        let d : UIImageView = UIImageView.init(frame: CGRect.init(x: self.Width * 0.42, y: self.Height * 0.55, width: self.Width * 0.15, height: self.Height * 0.15))
-        d.image = #imageLiteral(resourceName: "beginBtn")
-        d.contentMode = UIViewContentMode.scaleAspectFit
+    fileprivate lazy var startGameBtn: CommonBtn = {
+        let d : CommonBtn = CommonBtn.init(frame: CGRect.init(x: self.Width * 0.42, y: self.Height * 0.55, width: self.Width * 0.15, height: self.Height * 0.15))
+        d.addTarget(self, action: #selector(beginGameSEL(sender:)), for: .touchUpInside)
+        d.setImage(#imageLiteral(resourceName: "beginBtn"), for: .normal)
+        
         return d
     }()
     
-
+    /// 作弊按钮
+    fileprivate lazy var cheatBtn: UIButton = {
+        let d : UIButton = UIButton.init(frame: CGRect.init(x: self.Width * 0.42, y: self.Height * 0.55, width: self.Width * (0.15 / 2), height: self.Height * 0.15))
+        d.addTarget(self, action: #selector(cheatSEL(sender:)), for: .touchUpInside)
+        d.setImage(#imageLiteral(resourceName: "cheatBtn"), for: .normal)
+        
+        return d
+    }()
     
     /// 背景按钮
     fileprivate lazy var bgVImg: UIImageView = {
@@ -150,9 +158,9 @@ class GameBgV: UIView {
         }
         
         if showprepareBtnMark {
-            self.prepareBtn.isHidden = false
+            self.startGameBtn.isHidden = false
         } else {
-            self.prepareBtn.isHidden = true
+            self.startGameBtn.isHidden = true
         }
     }
     
@@ -160,11 +168,10 @@ class GameBgV: UIView {
     override init(frame: CGRect) {
         super.init(frame: frame)
         addSubview(bgVImg)
-        addSubview(prepareBtn)
+        addSubview(startGameBtn)
         
         addSubview(roomNoImgV)
-        
-   
+        addSubview(cheatBtn)
         
         P4.showCompleteMark = true
         P3.showPrepareMark = true
@@ -223,6 +230,18 @@ class GameBgV: UIView {
         let displayLink = CADisplayLink.init(target: self, selector: #selector(updateTime))
         
         displayLink.add(to: RunLoop.main, forMode: RunLoopMode.defaultRunLoopMode)
+    }
+    
+    /// 开始游戏
+    @objc fileprivate func beginGameSEL(sender : UIButton) {
+        sender.isHidden = true
+        print("===")
+        self.cheatBtn.isHidden = true
+    }
+    
+    /// 作弊按钮事件
+    @objc fileprivate func cheatSEL(sender : UIButton) {
+        sender.isHidden = true
     }
     
     

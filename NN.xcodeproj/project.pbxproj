@@ -49,6 +49,7 @@
 		260C66701EB23415006C119E /* POPSpringAnimation.mm in Sources */ = {isa = PBXBuildFile; fileRef = 260C66571EB23415006C119E /* POPSpringAnimation.mm */; };
 		260C66711EB23415006C119E /* POPVector.mm in Sources */ = {isa = PBXBuildFile; fileRef = 260C665B1EB23415006C119E /* POPVector.mm */; };
 		260C66721EB23415006C119E /* TransformationMatrix.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 260C665E1EB23415006C119E /* TransformationMatrix.cpp */; };
+		260EBC201ECE87A9003DD5CA /* ClockCountDown.swift in Sources */ = {isa = PBXBuildFile; fileRef = 260EBC1F1ECE87A9003DD5CA /* ClockCountDown.swift */; };
 		260ECA821EC1AF1F00058649 /* LoginModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 260ECA811EC1AF1F00058649 /* LoginModel.swift */; };
 		262433601ECBF140003C41D1 /* simhei.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 2624335F1ECBF140003C41D1 /* simhei.ttf */; };
 		262433621ECBF46F003C41D1 /* InviteV.swift in Sources */ = {isa = PBXBuildFile; fileRef = 262433611ECBF46F003C41D1 /* InviteV.swift */; };
@@ -240,6 +241,7 @@
 		260C665E1EB23415006C119E /* TransformationMatrix.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = TransformationMatrix.cpp; sourceTree = "<group>"; };
 		260C665F1EB23415006C119E /* TransformationMatrix.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TransformationMatrix.h; sourceTree = "<group>"; };
 		260C66601EB23415006C119E /* UnitBezier.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UnitBezier.h; sourceTree = "<group>"; };
+		260EBC1F1ECE87A9003DD5CA /* ClockCountDown.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ClockCountDown.swift; sourceTree = "<group>"; };
 		260ECA811EC1AF1F00058649 /* LoginModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginModel.swift; sourceTree = "<group>"; };
 		2624335F1ECBF140003C41D1 /* simhei.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = simhei.ttf; sourceTree = "<group>"; };
 		262433611ECBF46F003C41D1 /* InviteV.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InviteV.swift; sourceTree = "<group>"; };
@@ -638,6 +640,7 @@
 				26CDFB4C1ECD975F00EF3846 /* PeronheadInfoV.swift */,
 				26CDFB4E1ECD977700EF3846 /* RightV.swift */,
 				26CDFB501ECD97BF00EF3846 /* GameBgV.swift */,
+				260EBC1F1ECE87A9003DD5CA /* ClockCountDown.swift */,
 			);
 			name = view;
 			sourceTree = "<group>";
@@ -1050,6 +1053,7 @@
 				26CDFB4F1ECD977700EF3846 /* RightV.swift in Sources */,
 				2603D96F1EADCD440069B132 /* CustomAlertView.swift in Sources */,
 				260C66651EB23415006C119E /* POPAnimationRuntime.mm in Sources */,
+				260EBC201ECE87A9003DD5CA /* ClockCountDown.swift in Sources */,
 				262433681ECC527A003C41D1 /* SicCowLayout.swift in Sources */,
 				26836AFB1EC1E2DB00061069 /* JoinRoomView.swift in Sources */,
 				2657FD971EB860F900B92648 /* ControlVoice.swift in Sources */,
