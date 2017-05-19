@@ -85,8 +85,8 @@ class GameBgV: UIView {
     
     /// 房间号
     fileprivate lazy var roomNoImgV: UIImageView = {
-        let d : UIImageView = UIImageView.init(frame: CGRect.init(x: 5, y: 5, width: self.Width * 0.065, height: self.Height * 0.045))
-        d.image = #imageLiteral(resourceName: "roomNo")
+        let d : UIImageView = UIImageView.init(frame: CGRect.init(x: 0, y: 0, width: self.Width * 0.08, height: self.Height * 0.065))
+        d.image = #imageLiteral(resourceName: "roomName")
         d.contentMode = UIViewContentMode.scaleAspectFit
         return d
     }()
@@ -103,8 +103,8 @@ class GameBgV: UIView {
     
     /// 房间号
     fileprivate lazy var rooID: UILabel = {
-        let d : UILabel = UILabel.init(frame: CGRect.init(x: self.roomNoImgV.RightX, y: 5, width: self.Width * 0.073, height: self.Height * 0.045))
-        d.font = UIFont(name: "SimHei", size: 9 * screenScale)
+        let d : UILabel = UILabel.init(frame: CGRect.init(x: self.roomNoImgV.RightX, y: 0, width: self.Width * 0.073, height: self.roomNoImgV.Height))
+        d.font = UIFont(name: "SimHei", size: 8 * screenScale)
         
         d.textAlignment = .left
         

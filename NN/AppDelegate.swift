@@ -20,7 +20,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Override point for customization after application launch.
         
 //        window?.rootViewController = MusicVC()
-        window?.rootViewController = MainGameViewController()
+        window?.rootViewController = GamingVC()
         
         window?.makeKeyAndVisible()
         window?.backgroundColor = UIColor.white
@@ -43,11 +43,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             MusicVC.shared.backgroundMusic(soundName: "nn_bg_music", withType: "mp3")
         }
     }
-
-    func applicationDidBecomeActive(_ application: UIApplication) {
-        print("applicationDidBecomeActive")
-    }
-    
 
   
     func application(_ application: UIApplication, open url: URL, sourceApplication: String?, annotation: Any) -> Bool {
