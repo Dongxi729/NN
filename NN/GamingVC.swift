@@ -75,73 +75,8 @@ class GamingVC: UIViewController {
     
     fileprivate lazy var cardV: CardsLayout = {
         let d : CardsLayout = CardsLayout.init(frame: CGRect.init(x: 0, y: SH * 0.8, width: SW * 0.5, height: SH * 0.2))
-        d.backgroundColor = UIColor.red
         return d
     }()
 }
-//
-class CardsLayout : CommonV {
-    
-    var cardImgs : UIImageView!
-    
-    var cardCards = [1,2,2,2,5]
-    
-    func contactName(prefix : String) -> [String] {
-         let names = cardCards.map {
-            prefix + String($0)
-        }
-        return names
-    }
-
-    
-    override init(frame: CGRect) {
-        super.init(frame: frame)
-        
-        let tags : Int = 666
-//        for nameStr in 0..<contactName(prefix: "pa").count {
-//            cardImgs = UIImageView.init(frame: CGRect.init(x: CGFloat(index) * self.Width * 0.15 + 2 * screenScale + CGFloat(index) * screenScale * 2 , y: 2 * screenScale, width: self.Width * 0.15, height: self.Height - screenScale * 3))
-//            cardImgs.backgroundColor = UIColor.randomColor()
-//            cardImgs.image = UIImage.init(named: imgName)
-//            addSubview(cardImgs)
-//        }
-        
-        var dixName = [Int : String]()
-
-        var index : Int = 0
-        for aaa in contactName(prefix: "pa") {
-            print(index)
-            
-            dixName.updateValue(aaa, forKey: index)
-
-            cardImgs = UIImageView.init(frame: CGRect.init(x: CGFloat(index) * self.Width * 0.15 + 2 * screenScale + CGFloat(index) * screenScale * 2 , y: 2 * screenScale, width: self.Width * 0.15, height: self.Height - screenScale * 3))
-
-            cardImgs.backgroundColor = UIColor.randomColor()
-            cardImgs.image = UIImage.init(named: dixName[index]!)
-            
-            index += 1
-            addSubview(cardImgs)
-            
-            print(dixName[index] as Any)
-        }
-        
-        print(dixName)
-    }
-    
-    required init?(coder aDecoder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
-}
 
 
-
-class CommonV: UIView {
-    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
-        let touch: UITouch? = touches.first
-        let touchPoint: CGPoint? = touch?.location(in: self)
-        print("\((touchPoint?.x)! / self.Width)==\((touchPoint?.y)! / self.Height)")
-        let stringFloat = Int((touchPoint?.x)!)
-        let stringFloat1 = Int((touchPoint?.y)!)
-        print("\(stringFloat)\(stringFloat1)")
-    }
-    
-}

@@ -88,6 +88,38 @@ class PeronheadInfoV: UIView {
     /// 显示完成标识
     var showCompleteMark = false
     
+    /// 小纸牌显示在左边还是右边 --- 默认在右边1
+    ////                             左边-1
+    var samllCardsShowLeftOrRight = 1
+    
+    /// 背面纸牌
+    var backCardsLayout : UIImageView!
+    
+    /// 纸牌
+    var cardCards = [0,0,0,0,0]
+    
+    /// 摆放纸牌
+    private func addCards(cardsArray : [String]) -> Void {
+        var dixName = [Int : String]()
+        
+        var index : Int = 0
+        
+        for aaa in cardsArray {
+            print(index)
+            
+            dixName.updateValue(aaa, forKey: index)
+            
+            backCardsLayout = UIImageView.init(frame: CGRect.init(x: self.Width * CGFloat(self.samllCardsShowLeftOrRight) + CGFloat(index) * self.Width * 0.15 , y: 2 * screenScale, width: self.Width * 0.3, height: self.Height - screenScale * 3))
+            print(dixName[index] as Any)
+            
+            backCardsLayout.image = UIImage.init(named: dixName[index]!)
+            
+            index += 1
+            addSubview(backCardsLayout)
+        }
+    }
+
+    
     override init(frame: CGRect) {
         super.init(frame: frame)
         addSubview(headImg)
@@ -95,8 +127,20 @@ class PeronheadInfoV: UIView {
         addSubview(nameLabel)
         addSubview(coinsLabel)
         addSubview(showWave)
+        
     
     }
+
+    /// 拼接
+    ///
+    /// - Parameter prefix: 图片前缀
+    private func contactName(prefix : String) -> [String] {
+        let names = cardCards.map {
+            prefix + String($0)
+        }
+        return names
+    }
+    
     
     override func layoutSubviews() {
         super.layoutSubviews()
@@ -108,6 +152,11 @@ class PeronheadInfoV: UIView {
         if showCompleteMark {
             addSubview(finishImg)
         }
+        
+        self.samllCardsShowLeftOrRight = -1
+        addCards(cardsArray: contactName(prefix: "pa"))
+
+        
     }
     
     required init?(coder aDecoder: NSCoder) {

@@ -16,7 +16,7 @@ class GameBgV: UIView {
         let d : CommonBtn = CommonBtn.init(frame: CGRect.init(x: self.Width * 0.42, y: self.Height * 0.55, width: self.Width * 0.15, height: self.Height * 0.15))
         d.addTarget(self, action: #selector(beginGameSEL(sender:)), for: .touchUpInside)
         d.setImage(#imageLiteral(resourceName: "beginBtn"), for: .normal)
-        
+        d.setImage(#imageLiteral(resourceName: "beingGameSelected"), for: .selected)
         return d
     }()
     
