@@ -69,6 +69,12 @@ class PeronheadInfoV: UIView {
         return d
     }()
     
+    /// 显示底部打纸牌
+    lazy var bigCardLayout: CardsLayout = {
+        let d : CardsLayout = CardsLayout.init(frame: CGRect.init(x: self.hhhh.RightX, y: -self.Height * 0.45, width: self.Width * 3, height: self.Height * 1.45))
+        return d
+    }()
+    
     
     /// 波形图片
     fileprivate lazy var showWave: UIImageView = {
@@ -98,6 +104,9 @@ class PeronheadInfoV: UIView {
     /// 纸牌
     var cardCards = [0,0,0,0,0]
     
+    /// 是否显示底部大纸牌
+    var isShowBottomCardLayout = false
+    
     /// 摆放纸牌
     private func addCards(cardsArray : [String]) -> Void {
         var dixName = [Int : String]()
@@ -109,16 +118,22 @@ class PeronheadInfoV: UIView {
             
             dixName.updateValue(aaa, forKey: index)
             
-            backCardsLayout = UIImageView.init(frame: CGRect.init(x: self.Width * CGFloat(self.samllCardsShowLeftOrRight) + CGFloat(index) * self.Width * 0.15 , y: 2 * screenScale, width: self.Width * 0.3, height: self.Height - screenScale * 3))
-            print(dixName[index] as Any)
-            
-            backCardsLayout.image = UIImage.init(named: dixName[index]!)
-            
-            index += 1
-            addSubview(backCardsLayout)
+            if isShowBottomCardLayout == false {
+                backCardsLayout = UIImageView.init(frame: CGRect.init(x: CGFloat(self.samllCardsShowLeftOrRight) + CGFloat(index) * self.Width * 0.15 , y: 2 * screenScale, width: self.Width * 0.3, height: self.Height - screenScale * 3))
+            } else {
+                backCardsLayout = UIImageView.init(frame: CGRect.init(x: self.Width * CGFloat(self.samllCardsShowLeftOrRight) + CGFloat(index) * self.Width * 0.15 , y: 2 * screenScale, width: self.Width * 0.3, height: self.Height - screenScale * 3))
+                
+                print(dixName[index] as Any)
+                
+                backCardsLayout.image = UIImage.init(named: dixName[index]!)
+                
+                index += 1
+                addSubview(backCardsLayout)
+            }
         }
     }
 
+   
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -127,8 +142,8 @@ class PeronheadInfoV: UIView {
         addSubview(nameLabel)
         addSubview(coinsLabel)
         addSubview(showWave)
+
         
-    
     }
 
     /// 拼接
@@ -141,6 +156,7 @@ class PeronheadInfoV: UIView {
         return names
     }
     
+
     
     override func layoutSubviews() {
         super.layoutSubviews()
@@ -153,10 +169,13 @@ class PeronheadInfoV: UIView {
             addSubview(finishImg)
         }
         
-        self.samllCardsShowLeftOrRight = -1
+        /// 尚需修改
         addCards(cardsArray: contactName(prefix: "pa"))
 
         
+        if !isShowBottomCardLayout {
+            addSubview(bigCardLayout)
+        }
     }
     
     required init?(coder aDecoder: NSCoder) {

@@ -52,6 +52,7 @@
 		260EBC201ECE87A9003DD5CA /* ClockCountDown.swift in Sources */ = {isa = PBXBuildFile; fileRef = 260EBC1F1ECE87A9003DD5CA /* ClockCountDown.swift */; };
 		260EBC221ECEC4F7003DD5CA /* CommonV.swift in Sources */ = {isa = PBXBuildFile; fileRef = 260EBC211ECEC4F7003DD5CA /* CommonV.swift */; };
 		260EBC241ECEC564003DD5CA /* CardsLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 260EBC231ECEC564003DD5CA /* CardsLayout.swift */; };
+		260EBC281ECECB14003DD5CA /* GameLeftCornerMsg.swift in Sources */ = {isa = PBXBuildFile; fileRef = 260EBC271ECECB14003DD5CA /* GameLeftCornerMsg.swift */; };
 		260ECA821EC1AF1F00058649 /* LoginModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 260ECA811EC1AF1F00058649 /* LoginModel.swift */; };
 		262433601ECBF140003C41D1 /* simhei.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 2624335F1ECBF140003C41D1 /* simhei.ttf */; };
 		262433621ECBF46F003C41D1 /* InviteV.swift in Sources */ = {isa = PBXBuildFile; fileRef = 262433611ECBF46F003C41D1 /* InviteV.swift */; };
@@ -142,7 +143,6 @@
 		26F14F9C1ECAA2A7006844C9 /* FTToastIndicator.m in Sources */ = {isa = PBXBuildFile; fileRef = 26F14F971ECAA2A7006844C9 /* FTToastIndicator.m */; };
 		26F14F9E1ECAA785006844C9 /* HowToPlayV.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26F14F9D1ECAA785006844C9 /* HowToPlayV.swift */; };
 		26F14FA01ECAC785006844C9 /* ScoreView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26F14F9F1ECAC785006844C9 /* ScoreView.swift */; };
-		26F9FA9E1EC9407100DF4A64 /* GamingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26F9FA9D1EC9407100DF4A64 /* GamingView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -246,6 +246,7 @@
 		260EBC1F1ECE87A9003DD5CA /* ClockCountDown.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ClockCountDown.swift; sourceTree = "<group>"; };
 		260EBC211ECEC4F7003DD5CA /* CommonV.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CommonV.swift; sourceTree = "<group>"; };
 		260EBC231ECEC564003DD5CA /* CardsLayout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CardsLayout.swift; sourceTree = "<group>"; };
+		260EBC271ECECB14003DD5CA /* GameLeftCornerMsg.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameLeftCornerMsg.swift; sourceTree = "<group>"; };
 		260ECA811EC1AF1F00058649 /* LoginModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginModel.swift; sourceTree = "<group>"; };
 		2624335F1ECBF140003C41D1 /* simhei.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = simhei.ttf; sourceTree = "<group>"; };
 		262433611ECBF46F003C41D1 /* InviteV.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InviteV.swift; sourceTree = "<group>"; };
@@ -353,7 +354,6 @@
 		26F14F971ECAA2A7006844C9 /* FTToastIndicator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FTToastIndicator.m; sourceTree = "<group>"; };
 		26F14F9D1ECAA785006844C9 /* HowToPlayV.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HowToPlayV.swift; sourceTree = "<group>"; };
 		26F14F9F1ECAC785006844C9 /* ScoreView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScoreView.swift; sourceTree = "<group>"; };
-		26F9FA9D1EC9407100DF4A64 /* GamingView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GamingView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -638,7 +638,6 @@
 			isa = PBXGroup;
 			children = (
 				264A2CE51EC45D21001B7F0E /* ChatV.swift */,
-				26F9FA9D1EC9407100DF4A64 /* GamingView.swift */,
 				262433611ECBF46F003C41D1 /* InviteV.swift */,
 				26CDFB4A1ECD972900EF3846 /* RightDownV.swift */,
 				26CDFB4C1ECD975F00EF3846 /* PeronheadInfoV.swift */,
@@ -646,6 +645,7 @@
 				26CDFB501ECD97BF00EF3846 /* GameBgV.swift */,
 				260EBC1F1ECE87A9003DD5CA /* ClockCountDown.swift */,
 				260EBC231ECEC564003DD5CA /* CardsLayout.swift */,
+				260EBC271ECECB14003DD5CA /* GameLeftCornerMsg.swift */,
 			);
 			name = view;
 			sourceTree = "<group>";
@@ -1061,6 +1061,7 @@
 				2603D96F1EADCD440069B132 /* CustomAlertView.swift in Sources */,
 				260C66651EB23415006C119E /* POPAnimationRuntime.mm in Sources */,
 				260EBC201ECE87A9003DD5CA /* ClockCountDown.swift in Sources */,
+				260EBC281ECECB14003DD5CA /* GameLeftCornerMsg.swift in Sources */,
 				262433681ECC527A003C41D1 /* SicCowLayout.swift in Sources */,
 				26836AFB1EC1E2DB00061069 /* JoinRoomView.swift in Sources */,
 				2657FD971EB860F900B92648 /* ControlVoice.swift in Sources */,
@@ -1068,7 +1069,6 @@
 				26CDFB581ECDBBFC00EF3846 /* CurrentTimerTool.swift in Sources */,
 				2603D9BD1EADE7E20069B132 /* ScrollLabel.swift in Sources */,
 				26F14F981ECAA2A7006844C9 /* FTIndicator.m in Sources */,
-				26F9FA9E1EC9407100DF4A64 /* GamingView.swift in Sources */,
 				260C66701EB23415006C119E /* POPSpringAnimation.mm in Sources */,
 				26D54AE31EC2BD6D00119FAA /* DDXMLElementAdditions.m in Sources */,
 				26D54B2B1EC2C11B00119FAA /* WavConvert.m in Sources */,

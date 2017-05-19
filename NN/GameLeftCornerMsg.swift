@@ -1,27 +1,12 @@
 //
-//  GamingView.swift
+//  GameLeftCornerMsg.swift
 //  NN
 //
-//  Created by 郑东喜 on 2017/5/15.
+//  Created by 郑东喜 on 2017/5/19.
 //  Copyright © 2017年 郑东喜. All rights reserved.
-//  正在游戏的界面
+//
 
 import UIKit
-
-class GamingView: UIView {
-
-    override init(frame: CGRect) {
-        super.init(frame: frame)
-    }
-    
-    required init?(coder aDecoder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
-}
-
-//class CurrentUserInfo: <#super class#> {
-//    <#code#>
-//}
 
 /// 左上角信息标注
 class GameLeftCornerMsg: UIView {
@@ -68,7 +53,7 @@ class GameLeftCornerMsg: UIView {
         }
         return d
     }()
-
+    
     
     override init(frame: CGRect) {
         super.init(frame: frame)

@@ -76,7 +76,6 @@ class CardsLayout : CommonV {
             dixName.updateValue(aaa, forKey: index)
             
             cardImgs = UIImageView.init(frame: CGRect.init(x: CGFloat(index) * self.Width * 0.15 , y: 2 * screenScale, width: self.Width * 0.15, height: self.Height - screenScale * 3))
-            print(dixName[index] as Any)
             
             cardImgs.image = UIImage.init(named: dixName[index]!)
             

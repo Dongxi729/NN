@@ -40,8 +40,8 @@ class GameBgV: UIView {
     /// 显示创建按钮标识
     var showprepareBtnMark = false
     
-    
-    
+    /// 游戏人员位置
+
     
     /// 显示房间人员位置
     fileprivate lazy var P4: PeronheadInfoV = {
@@ -82,6 +82,8 @@ class GameBgV: UIView {
         d.delegate = self
         return d
     }()
+    
+    var playersNum : Int!
     
     /// 房间号
     fileprivate lazy var roomNoImgV: UIImageView = {
@@ -137,7 +139,7 @@ class GameBgV: UIView {
     
     /// 默认0 显示六人牛牛
     /// 1 显示通比牛牛
-    var showGameTypeMark : Int = 1
+    var showGameTypeMark : Int = RoomModel.shared.readPlayerCount
     
     /// 牌子牛牛
     fileprivate lazy var gameType: UIImageView = {
@@ -161,6 +163,93 @@ class GameBgV: UIView {
             self.startGameBtn.isHidden = false
         } else {
             self.startGameBtn.isHidden = true
+        }
+
+        print("\((#file as NSString).lastPathComponent):(\(#line))\n",RoomModel.shared.currentPersonInRoom)
+        
+        switch RoomModel.shared.currentPersonInRoom {
+        case 1:
+            P1.samllCardsShowLeftOrRight = -1
+//            P1.isShowBottomCardLayout = false
+            addSubview(P1)
+            break
+        case 2:
+            P1.samllCardsShowLeftOrRight = -1
+
+            P2.samllCardsShowLeftOrRight = 1
+            P2.isShowBottomCardLayout = true
+
+            addSubview(P1)
+            addSubview(P2)
+            break
+        case 3:
+            P1.samllCardsShowLeftOrRight = -1
+            P2.samllCardsShowLeftOrRight = 1
+            P3.samllCardsShowLeftOrRight = 1
+            
+            P2.isShowBottomCardLayout = true
+            P3.isShowBottomCardLayout = true
+            addSubview(P1)
+            addSubview(P2)
+            addSubview(P3)
+            break
+        case 4:
+            P1.samllCardsShowLeftOrRight = -1
+            P2.samllCardsShowLeftOrRight = 1
+            P3.samllCardsShowLeftOrRight = 1
+            P4.samllCardsShowLeftOrRight = -1
+            
+            P2.isShowBottomCardLayout = true
+            P3.isShowBottomCardLayout = true
+            P4.isShowBottomCardLayout = true
+            
+            addSubview(P1)
+            addSubview(P2)
+            addSubview(P3)
+            addSubview(P4)
+            break
+        case 5:
+            P1.samllCardsShowLeftOrRight = -1
+            P2.samllCardsShowLeftOrRight = 1
+            P3.samllCardsShowLeftOrRight = 1
+            P4.samllCardsShowLeftOrRight = -1
+            P5.samllCardsShowLeftOrRight = -1
+            
+            P2.isShowBottomCardLayout = true
+            P3.isShowBottomCardLayout = true
+            P4.isShowBottomCardLayout = true
+            P5.isShowBottomCardLayout = true
+            
+            addSubview(P1)
+            addSubview(P2)
+            addSubview(P3)
+            addSubview(P4)
+            addSubview(P5)
+            break
+        case 6:
+            P1.samllCardsShowLeftOrRight = -1
+            P2.samllCardsShowLeftOrRight = 1
+            P3.samllCardsShowLeftOrRight = 1
+            P4.samllCardsShowLeftOrRight = -1
+            P5.samllCardsShowLeftOrRight = -1
+            P6.samllCardsShowLeftOrRight = -1
+            
+            P2.isShowBottomCardLayout = true
+            P3.isShowBottomCardLayout = true
+            P4.isShowBottomCardLayout = true
+            P5.isShowBottomCardLayout = true
+            P6.isShowBottomCardLayout = true
+            
+            addSubview(P1)
+            addSubview(P2)
+            addSubview(P3)
+            addSubview(P4)
+            addSubview(P5)
+            addSubview(P6)
+            break
+        default:
+            
+            break
         }
     }
     
@@ -187,14 +276,6 @@ class GameBgV: UIView {
             self.addSubview(self.currentTime)
             self.refreshTime()
         }
-        
-        /// 添加玩家位置
-        addSubview(P4)
-        addSubview(P3)
-        addSubview(P2)
-        addSubview(P1)
-        addSubview(P5)
-        addSubview(P6)
         
         /// 右上角按钮
         addSubview(rightV)

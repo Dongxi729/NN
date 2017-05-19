@@ -49,6 +49,11 @@ class GamingVC: UIViewController {
         return d
     }()
     
+    override func viewWillLayoutSubviews() {
+        super.viewWillLayoutSubviews()
+        
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -56,8 +61,9 @@ class GamingVC: UIViewController {
         
         view.backgroundColor = UIColor.white
         
+        RoomModel.shared.currentPersonInRoom = 6
         view.addSubview(bgV)
-        bgV.showGameTypeMark = 1
+        bgV.showGameTypeMark = 3
         
         
         bgV.showprepareBtnMark = false
@@ -70,7 +76,7 @@ class GamingVC: UIViewController {
 //        view.addSubview(countDown)
         
         
-        view.addSubview(cardV)
+//        view.addSubview(cardV)
     }
     
     fileprivate lazy var cardV: CardsLayout = {
@@ -78,5 +84,3 @@ class GamingVC: UIViewController {
         return d
     }()
 }
-
-
