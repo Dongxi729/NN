@@ -61,6 +61,27 @@ class RoomModel: NSObject {
     /// 游戏是否开始
     var isGameBegin = false
     
+    /// 是否抢庄
+    var isRobRoomOwner = true
+    
+    /// 是否显示波纹
+    var isShowWave = false
+    
+    /// 是否离线
+    var isOffLine = false
+    
+    /// 是否庄主
+    var isOwner = true
+    
+    /// 是否准备好
+    var isPrepared = false
+    
+    /// 是否完成比牌
+    var isCardsChoosed = false
+    
+    /// 是否邀请朋友
+    var isInvitedFri = false
+    
     /// xml 当前游戏(还未开始的游戏房间的数据)
     var currentRoomPlayInfo : String = "" {
         didSet {

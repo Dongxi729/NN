@@ -20,6 +20,14 @@ class GameBgV: UIView {
         return d
     }()
     
+    /// 邀请朋友
+    lazy var inviteFriendsBtn: CommonBtn = {
+        let d : CommonBtn = CommonBtn.init(frame: CGRect.init(x: self.Width * 0.42, y: self.Height * 0.55, width: self.Width * 0.15, height: self.Height * 0.15))
+        d.addTarget(self, action: #selector(inviteFriSEL(sender:)), for: .touchUpInside)
+        d.setImage(#imageLiteral(resourceName: "intviteFriends"), for: .normal)
+        return d
+    }()
+    
     /// 作弊按钮
     fileprivate lazy var cheatBtn: UIButton = {
         let d : UIButton = UIButton.init(frame: CGRect.init(x: self.Width * 0.42, y: self.Height * 0.55, width: self.Width * (0.15 / 2), height: self.Height * 0.15))
@@ -47,7 +55,6 @@ class GameBgV: UIView {
     /// 显示房间人员位置
     fileprivate lazy var P4: PeronheadInfoV = {
         let d : PeronheadInfoV = PeronheadInfoV()
-//        let d : PeronheadInfoV = PeronheadInfoV.init(frame: CGRect.init(x: 0.45 * self.Width, y: 0.13 * self.Height, width: self.Width * 0.18, height: self.Height * 0.15))
         
         return d
     }()
@@ -63,7 +70,6 @@ class GameBgV: UIView {
     }()
     
     fileprivate lazy var P1: PeronheadInfoV = {
-//        let d : PeronheadInfoV = PeronheadInfoV.init(frame: CGRect.init(x: self.Width * 0.45, y: self.Height * 0.8, width: self.Width * 0.18, height: self.Height * 0.15))
         let d : PeronheadInfoV = PeronheadInfoV()
         return d
     }()
@@ -176,6 +182,7 @@ class GameBgV: UIView {
 
         print("\((#file as NSString).lastPathComponent):(\(#line))\n",RoomModel.shared.currentPersonInRoom)
         
+        /// 根据当前人数以及游戏状态显示
         switch RoomModel.shared.currentPersonInRoom {
         case 1:
             P1.samllCardsShowLeftOrRight = -1
@@ -303,6 +310,8 @@ class GameBgV: UIView {
         addSubview(rightV)
         
         addSubview(rightDownV)
+        
+        addSubview(inviteFriendsBtn)
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -340,6 +349,11 @@ class GameBgV: UIView {
         sender.isHidden = true
         print("===")
         self.cheatBtn.isHidden = true
+    }
+    
+    /// 邀请微信好友
+    @objc fileprivate func inviteFriSEL(sender : UIButton) {
+        print("\((#file as NSString).lastPathComponent):(\(#line))\n","inviteFriSEL")
     }
     
     /// 作弊按钮事件
@@ -417,3 +431,4 @@ extension GameBgV : RightDownVDelegate {
         
     }
 }
+

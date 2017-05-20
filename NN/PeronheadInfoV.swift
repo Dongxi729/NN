@@ -31,6 +31,22 @@ class PeronheadInfoV: UIView {
         return d
     }()
     
+    /// 抢
+    lazy var robImg: UIImageView = {
+        let d : UIImageView = UIImageView.init(frame: self.finishImg.frame)
+        d.image = #imageLiteral(resourceName: "personRob")
+        d.contentMode = UIViewContentMode.scaleAspectFit
+        return d
+    }()
+    
+    /// 不抢
+    lazy var notRobImg: UIImageView = {
+        let d : UIImageView = UIImageView.init(frame: self.finishImg.frame)
+        d.image = #imageLiteral(resourceName: "personNotRob")
+        d.contentMode = UIViewContentMode.scaleAspectFit
+        return d
+    }()
+    
     /// 名字
     fileprivate lazy var nameLabel: UILabel = {
         let d : UILabel = UILabel.init(frame: CGRect.init(x: self.Width * 0.5, y: 2 * screenScale, width: self.Width * 0.5, height: self.Height * 0.4))
@@ -85,6 +101,22 @@ class PeronheadInfoV: UIView {
         return d
     }()
     
+    /// 离线图标
+    fileprivate lazy var offLineImg: UIImageView = {
+        let d : UIImageView = UIImageView.init(frame: CGRect.init(x: self.Width * 0.25, y: 0, width: self.Width * 0.25, height: self.Height * 0.25))
+        d.image = #imageLiteral(resourceName: "offLine")
+        d.contentMode = UIViewContentMode.scaleAspectFit
+        return d
+    }()
+    
+    /// 庄主图标
+    fileprivate lazy var ownerImg: UIImageView = {
+        let d : UIImageView = UIImageView.init(frame: CGRect.init(x: self.Width * 0.25, y: 2 * screenScale, width: self.Width * 0.25, height: self.Height * 0.25))
+        d.image = #imageLiteral(resourceName: "owner")
+        d.contentMode = UIViewContentMode.scaleAspectFit
+        return d
+    }()
+    
     /// 显示波形的标识
     var showPeopletTalkMark = false
     
@@ -106,6 +138,7 @@ class PeronheadInfoV: UIView {
     
     /// 是否显示底部大纸牌
     var isShowBottomCardLayout = false
+    
     
     /// 摆放纸牌
     private func addCards(cardsArray : [String]) -> Void {
@@ -142,8 +175,32 @@ class PeronheadInfoV: UIView {
         addSubview(nameLabel)
         addSubview(coinsLabel)
         addSubview(showWave)
-
+        /// 抢庄
+        addSubview(robImg)
+        addSubview(notRobImg)
         
+        //离线图标
+        addSubview(offLineImg)
+        
+        /// 庄主
+        addSubview(ownerImg)
+        
+        
+        ///完成
+        addSubview(finishImg)
+        
+        /// 准备
+        addSubview(prepareImg)
+        
+        /// 默认隐藏
+        finishImg.isHidden = true
+        prepareImg.isHidden = true
+        robImg.isHidden = true
+        notRobImg.isHidden = true
+        showWave.isHidden = true
+        offLineImg.isHidden = true
+        ownerImg.isHidden = true
+
     }
 
     /// 拼接
@@ -161,15 +218,20 @@ class PeronheadInfoV: UIView {
     override func layoutSubviews() {
         super.layoutSubviews()
         
-        if showPrepareMark {
-            addSubview(prepareImg)
+        /// 是否准备
+        if RoomModel.shared.isPrepared {
+            self.prepareImg.isHidden = false
+        } else {
+            self.prepareImg.isHidden = true
+        }
+    
+        /// 是否完成
+        if RoomModel.shared.isCardsChoosed {
+            self.finishImg.isHidden = false
+        } else {
+            self.finishImg.isHidden = true
         }
         
-        if showCompleteMark {
-            addSubview(finishImg)
-        }
-        
-
 
         /// 是否开始游戏
         if RoomModel.shared.isGameBegin {
@@ -180,7 +242,35 @@ class PeronheadInfoV: UIView {
             addCards(cardsArray: contactName(prefix: "pa"))
         }
         
+        /// 是否显示抢庄
+        if RoomModel.shared.isRobRoomOwner {
+            self.robImg.isHidden = false
+        } else {
+            self.robImg.isHidden = true
+        }
         
+        
+        /// 是否显示波纹
+        if RoomModel.shared.isShowWave {
+            self.showWave.isHidden = false
+        } else {
+            self.showWave.isHidden = true
+        }
+        
+        /// 离线图标
+        if RoomModel.shared.isOffLine {
+            self.offLineImg.isHidden = false
+        } else {
+            self.offLineImg.isHidden = true
+        }
+        
+        
+        /// 是否是庄主
+        if RoomModel.shared.isOwner {
+            self.ownerImg.isHidden = false
+        } else {
+            self.ownerImg.isHidden = true
+        }
     }
     
     required init?(coder aDecoder: NSCoder) {

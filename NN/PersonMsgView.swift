@@ -563,18 +563,4 @@ class HoolRightBtns: UIView {
 }
 
 
-class CommonBtn: UIButton {
-    
-    override func imageRect(forContentRect contentRect: CGRect) -> CGRect {
-        return CGRect.init(x: 0, y: 0, width: self.Width, height: self.Height)
-    }
-    
-    override init(frame: CGRect) {
-        super.init(frame: frame)
-        self.imageView?.contentMode = .scaleAspectFit
-    }
-    
-    required init?(coder aDecoder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
-}
+
