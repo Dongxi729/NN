@@ -126,28 +126,6 @@ class MainGameViewController: UIViewController {
         d.image = #imageLiteral(resourceName: "broadCastRingIcon")
         return d
     }()
-    
-    /// 添加滚动文字
-//    func addScrollText() -> Void {
-//        
-//        
-//        let scText = ScrollText.init(frame: CGRect.init(x: SW * 0.25, y: SH * 0.2, width: SW * 0.5, height: 15 * screenScale), withBackGroundColor: UIColor.clear, withTitleColor: UIColor.white)
-//        
-//        let scrolBgV = UIImageView.init(frame: CGRect.init(x: SW * 0.25, y: SH * 0.2, width: SW * 0.5, height: 12 * screenScale))
-//        
-//        scrolBgV.image = #imageLiteral(resourceName: "broadCastbg")
-//        
-//        let dd = ["撒旦立刻精神看到就撒大声地就拉上记录数卡机的"]
-//        
-//        scText?.titleArray = dd
-//        
-//        view.addSubview(scrolBgV)
-//        view.addSubview(scText!)
-//        
-//        /// 添加铃铛
-//        view.addSubview(ringTong)
-//    }
-    
 }
 
 

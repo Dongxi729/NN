@@ -432,16 +432,33 @@ class SicComonCowLayout: UIView {
     /// 6为
     var py : Int = 6
     
+    
+    
+    fileprivate lazy var s: ScoreV = {
+        let d : ScoreV = ScoreV.init(frame: CGRect.init(x: self.Width * 0.5, y: 0.7 * self.Height, width: 12 * screenScale, height: commonMargin * screenScale))
+        return d
+    }()
+    
     /// 结算砖石
     @objc fileprivate func creatSixCommRoomSEL(sender : UIButton) -> Void {
-        print(setpayfun(_ii: self.rounds, _rn: self.players, _py: self.py))
-        addSubview(scoreImg)
-        self.scoreImg.text = String(setpayfun(_ii: self.rounds, _rn: self.players, _py: self.py))
+
+        s.abc(abc: String(setpayfun(_ii: self.rounds, _rn: self.players, _py: self.py)), scoreType: 1)
+    
+        
+        //购物断网刷新
+        if NSStringFromClass((self.subviews.last?.classForCoder)!).contains("ScoreV") {
+            
+            self.subviews.last?.removeFromSuperview()
+
+        } else {
+            addSubview(s)
+        }
     }
     
     
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
+    
     
 }

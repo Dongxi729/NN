@@ -92,6 +92,7 @@
 		2657FDBE1EB9B95400B92648 /* PlayCommon.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2657FDBD1EB9B95400B92648 /* PlayCommon.swift */; };
 		266EC2031EBC854000AEA31C /* TimerLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 266EC2021EBC854000AEA31C /* TimerLabel.swift */; };
 		266EFF7F1ED02A9000281A9E /* NumViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 266EFF7E1ED02A9000281A9E /* NumViewController.swift */; };
+		266EFF821ED03E4500281A9E /* ScoreImgShowTool.swift in Sources */ = {isa = PBXBuildFile; fileRef = 266EFF811ED03E4500281A9E /* ScoreImgShowTool.swift */; };
 		26771ED01EC54DE300B61DBC /* TestMediaVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26771ECF1EC54DE300B61DBC /* TestMediaVC.swift */; };
 		268255811EC190550080CCCD /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 268255801EC190550080CCCD /* LoginViewController.swift */; };
 		268255891EC194480080CCCD /* ImplementsLinkTool.swift in Sources */ = {isa = PBXBuildFile; fileRef = 268255881EC194480080CCCD /* ImplementsLinkTool.swift */; };
@@ -289,6 +290,7 @@
 		266EC2021EBC854000AEA31C /* TimerLabel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TimerLabel.swift; sourceTree = "<group>"; };
 		266EFF7E1ED02A9000281A9E /* NumViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NumViewController.swift; sourceTree = "<group>"; };
 		266EFF801ED0303500281A9E /* MyPlayground.playground */ = {isa = PBXFileReference; lastKnownFileType = file.playground; path = MyPlayground.playground; sourceTree = "<group>"; };
+		266EFF811ED03E4500281A9E /* ScoreImgShowTool.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScoreImgShowTool.swift; sourceTree = "<group>"; };
 		26771ECF1EC54DE300B61DBC /* TestMediaVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TestMediaVC.swift; sourceTree = "<group>"; };
 		268255801EC190550080CCCD /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		268255881EC194480080CCCD /* ImplementsLinkTool.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImplementsLinkTool.swift; sourceTree = "<group>"; };
@@ -777,6 +779,7 @@
 				26CDFB571ECDBBFC00EF3846 /* CurrentTimerTool.swift */,
 				260EBC211ECEC4F7003DD5CA /* CommonV.swift */,
 				260EBC291ECF06DB003DD5CA /* CommonBtn.swift */,
+				266EFF811ED03E4500281A9E /* ScoreImgShowTool.swift */,
 			);
 			name = tool;
 			sourceTree = "<group>";
@@ -1131,6 +1134,7 @@
 				26F14F9B1ECAA2A7006844C9 /* FTProgressIndicator.m in Sources */,
 				26BC61301EB2EB6C00AE9BE1 /* CountDownBtn.swift in Sources */,
 				2603D93B1EADC8D20069B132 /* AppDelegate.swift in Sources */,
+				266EFF821ED03E4500281A9E /* ScoreImgShowTool.swift in Sources */,
 				266EFF7F1ED02A9000281A9E /* NumViewController.swift in Sources */,
 				26D54AE81EC2BD6D00119FAA /* DDXMLNode.m in Sources */,
 				2657FD9B1EB872C300B92648 /* ScaleView.swift in Sources */,

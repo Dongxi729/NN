@@ -418,12 +418,24 @@ class SicCowLayout: UIView {
     /// 6为
     var py : Int = 6
     
+    fileprivate lazy var s: ScoreV = {
+        let d : ScoreV = ScoreV.init(frame: CGRect.init(x: self.Width * 0.5, y: 0.7 * self.Height, width: 12 * screenScale, height: commonMargin * screenScale))
+        return d
+    }()
+    
     /// 结算砖石
     @objc fileprivate func creatRoomSEL(sender : UIButton) -> Void {
+
+        s.abc(abc: String(setpayfun(_ii: self.rounds, _rn: self.players, _py: self.py)), scoreType: 1)
         
-        print(setpayfun(_ii: self.rounds, _rn: self.players, _py: self.py))
-        addSubview(scoreImg)
-        self.scoreImg.text = String(setpayfun(_ii: self.rounds, _rn: self.players, _py: self.py))
+        //购物断网刷新
+        if NSStringFromClass((self.subviews.last?.classForCoder)!).contains("ScoreV") {
+            
+            self.subviews.last?.removeFromSuperview()
+            
+        } else {
+            addSubview(s)
+        }
     }
     
     /// 分数

@@ -82,6 +82,9 @@ class RoomModel: NSObject {
     /// 是否邀请朋友
     var isInvitedFri = false
     
+    /// 开局所用分数
+    var scoreCount : String!
+    
     /// xml 当前游戏(还未开始的游戏房间的数据)
     var currentRoomPlayInfo : String = "" {
         didSet {

@@ -25,7 +25,7 @@ class GamingVC: UIViewController {
         return d
     }()
     
-
+    
     
     @objc fileprivate func addChartV() -> Void {
         let f : ChatV = ChatV.init(frame: CGRect.init(x: 100, y: SH * 0.2, width: SW * 0.5, height: SH * 0.8))
@@ -57,7 +57,7 @@ class GamingVC: UIViewController {
     //////////// 抢庄
     fileprivate lazy var robV: RobRoomOwner = {
         let d : RobRoomOwner = RobRoomOwner.init(frame: CGRect.init(x: 0, y: 0, width: SW * 0.3, height: SH * 0.1))
-
+        
         return d
     }()
     
@@ -86,74 +86,75 @@ class GamingVC: UIViewController {
         
         /// 抢庄
         robV.center = view.center
-//        view.addSubview(robV)
+        //        view.addSubview(robV)
         
         view.addSubview(getCoins)
         
         /// 倒计时
-//        countDown.countDown = 60
-//        view.addSubview(countDown)
+        //        countDown.countDown = 60
+        //        view.addSubview(countDown)
         
-        let d : ScoreV = ScoreV.init(frame: CGRect.init(x: 0, y: 0, width: SW / 4, height: SH * 0.2))
-        view.addSubview(d)
-        print(d)
+//        RoomModel.shared.scoreCount = "222"
+//        
+//        let d : ScoreV = ScoreV.init(frame: CGRect.init(x: 0, y: 0, width: SW / 4, height: SH * 0.2))
+//        d.abc(abc: RoomModel.shared.scoreCount, scoreType: 2)
+//        view.addSubview(d)
+//        print(d)
         
     }
 }
 
 
-/// 抢装
-class RobRoomOwner: UIView {
+
+class ScoreV: UIView {
     
-    /// 抢装
-    lazy var robBtn: UIButton = {
-        let d : UIButton = UIButton.init(frame: CGRect.init(x: 0, y: 0, width: self.Width * 0.4, height: self.Height))
-        d.setImage(#imageLiteral(resourceName: "roomRob"), for: .normal)
-        d.addTarget(self, action: #selector(robSEL(sender:)), for: .touchUpInside)
-        return d
-    }()
+    //    var score : String = RoomModel.shared.scoreCount
     
-    ///
-    lazy var notRobV: UIButton = {
-        let d : UIButton = UIButton.init(frame: CGRect.init(x: self.robBtn.RightX + self.Width * 0.2, y: 0, width: self.Width * 0.4, height: self.Height))
-        d.setImage(#imageLiteral(resourceName: "roomNotRob"), for: .normal)
-        d.addTarget(self, action: #selector(notRobSEL(sender:)), for: .touchUpInside)
-        return d
-    }()
+    var imgs : UIImageView!
     
-    /// events事件
-    /// 抢庄事件
-    @objc fileprivate func robSEL(sender : UIButton) {
-        print("\((#file as NSString).lastPathComponent):(\(#line))\n")
-    }
-    
-    @objc fileprivate func notRobSEL(sender : UIButton) {
-        print("\((#file as NSString).lastPathComponent):(\(#line))\n")
-    }
-        
     
     override init(frame: CGRect) {
         super.init(frame: frame)
         
-        self.layer.borderWidth = 1
-        
-        addSubview(robBtn)
-        addSubview(notRobV)
     }
     
-    override func layoutSubviews() {
-        super.layoutSubviews()
-        
-        if RoomModel.shared.isGameBegin {
-            robBtn.isHidden = true
-            notRobV.isHidden = true
+    func abc(abc : String,scoreType : Int) -> Void {
+        var index = 0
+
+        if scoreType == 1 {
+            for scoreImgName in inPlusScore(xxx: abc) {
+                imgs = UIImageView.init(frame: CGRect.init(x: CGFloat(index) * self.Width / CGFloat(inPlusScore(xxx: abc).count), y: 0, width: self.Width / CGFloat(inPlusScore(xxx: abc).count), height: self.Height))
+                imgs.image = UIImage.init(named: scoreImgName)
+                
+                index += 1
+                imgs.contentMode = UIViewContentMode.scaleAspectFit
+                
+                addSubview(imgs)
+            }
         }
+        
+        if scoreType == 2 {
+            for scoreImgName in inMinusScore(xxx: abc) {
+                imgs = UIImageView.init(frame: CGRect.init(x: CGFloat(index) * self.Width / CGFloat(inMinusScore(xxx: abc).count), y: 0, width: self.Width / CGFloat(inMinusScore(xxx: abc).count), height: self.Height))
+                imgs.image = UIImage.init(named: scoreImgName)
+                
+                index += 1
+                imgs.contentMode = UIViewContentMode.scaleAspectFit
+                
+                addSubview(imgs)
+            }
+        }
+        
+        
     }
     
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
+    
+    
 }
+
 
 
 /// 分数
@@ -163,10 +164,10 @@ class MarkChoose: UIView {
     var coinsImg : CommonBtn!
     
     var coinsImgName : [Int : UIImage] = [0 : #imageLiteral(resourceName: "room_aff5"),
-                                         1 : #imageLiteral(resourceName: "room_aff10"),
-                                         2 : #imageLiteral(resourceName: "room_aff15"),
-                                         3 : #imageLiteral(resourceName: "room_aff20"),
-                                         4 : #imageLiteral(resourceName: "room_aff25")]
+                                          1 : #imageLiteral(resourceName: "room_aff10"),
+                                          2 : #imageLiteral(resourceName: "room_aff15"),
+                                          3 : #imageLiteral(resourceName: "room_aff20"),
+                                          4 : #imageLiteral(resourceName: "room_aff25")]
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -174,7 +175,7 @@ class MarkChoose: UIView {
     }
     
     private func showCoinImg() {
-    
+        
         for (index,imgName) in coinsImgName {
             coinsImg = CommonBtn.init(frame: CGRect.init(x: self.Width / 5 * CGFloat(index), y: 0, width: self.Width / 5, height: self.Height))
             coinsImg.setImage(imgName, for: .normal)
@@ -211,109 +212,58 @@ class MarkChoose: UIView {
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-
+    
 }
 
-class ScoreV: UIView {
+/// 抢装
+class RobRoomOwner: UIView {
     
-    let score = "-+0123456789"
+    /// 抢装
+    lazy var robBtn: UIButton = {
+        let d : UIButton = UIButton.init(frame: CGRect.init(x: 0, y: 0, width: self.Width * 0.4, height: self.Height))
+        d.setImage(#imageLiteral(resourceName: "roomRob"), for: .normal)
+        d.addTarget(self, action: #selector(robSEL(sender:)), for: .touchUpInside)
+        return d
+    }()
     
-    var imgs : UIImageView!
+    ///
+    lazy var notRobV: UIButton = {
+        let d : UIButton = UIButton.init(frame: CGRect.init(x: self.robBtn.RightX + self.Width * 0.2, y: 0, width: self.Width * 0.4, height: self.Height))
+        d.setImage(#imageLiteral(resourceName: "roomNotRob"), for: .normal)
+        d.addTarget(self, action: #selector(notRobSEL(sender:)), for: .touchUpInside)
+        return d
+    }()
+    
+    /// events事件
+    /// 抢庄事件
+    @objc fileprivate func robSEL(sender : UIButton) {
+        print("\((#file as NSString).lastPathComponent):(\(#line))\n")
+    }
+    
+    @objc fileprivate func notRobSEL(sender : UIButton) {
+        print("\((#file as NSString).lastPathComponent):(\(#line))\n")
+    }
     
     
     override init(frame: CGRect) {
         super.init(frame: frame)
         
-        var index = 0
-        for scoreImgName in inStrReturnImg(xxx: score) {
-            
-            imgs = UIImageView.init(frame: CGRect.init(x: CGFloat(index) * self.Width / CGFloat(inStrReturnImg(xxx: score).count), y: 0, width: self.Width / CGFloat(inStrReturnImg(xxx: score).count), height: self.Height))
-            imgs.image = UIImage.init(named: scoreImgName)
-            
-            index += 1
-            imgs.contentMode = UIViewContentMode.scaleAspectFit
-            
-            addSubview(imgs)
-        }
+        self.layer.borderWidth = 1
+        
+        addSubview(robBtn)
+        addSubview(notRobV)
     }
     
-    
+    override func layoutSubviews() {
+        super.layoutSubviews()
+        
+        if RoomModel.shared.isGameBegin {
+            robBtn.isHidden = true
+            notRobV.isHidden = true
+        }
+    }
     
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-    
-    
-}
-
-func inStrReturnImg(xxx : String) -> [String] {
-    var correctImg : [String] = []
-    for chas in xxx.characters {
-        print(chas)
-        switch chas {
-        case "+":
-            
-            correctImg.append("p+")
-            break
-            
-        case "-":
-            
-            correctImg.append("pm")
-            break
-            
-        case "0":
-            
-            correctImg.append("p00")
-            break
-            
-        case "1":
-            
-            correctImg.append("p1")
-            break
-            
-        case "2":
-            
-            correctImg.append("p2")
-            break
-            
-        case "3":
-            
-            correctImg.append("p3")
-            break
-        case "4":
-            
-            correctImg.append("p4")
-            break
-            
-        case "5":
-            
-            correctImg.append("p5")
-            break
-            
-        case "6":
-            
-            correctImg.append("p6")
-            break
-            
-        case "7":
-            
-            correctImg.append("p7")
-            break
-            
-        case "8":
-            
-            correctImg.append("p8")
-            break
-            
-        case "9":
-            
-            correctImg.append("p9")
-            break
-        default:
-            break
-        }
-        
-        
-    }
-    return correctImg
 }
