@@ -30,7 +30,7 @@ var reportUser = true
 // MARK: - 连接服务器
 func testServer() {
     
-    //    client = TCPClient.init(address: "192.168.1.10", port: 2048)
+//        client = TCPClient.init(address: "192.168.1.10", port: 2048)
     client = TCPClient.init(address: "192.168.2.11", port: 8887)
     
     switch client.connect(timeout: 1) {
@@ -41,11 +41,6 @@ func testServer() {
         while true {
             /// 缓存池数据
             let d = client.read(1024 * 10)
-            
-            
-            print("\((#file as NSString).lastPathComponent):(\(#line))\n",d as Any)
-            
-            
             
             /// 绩溪县,.
             if d != nil {
@@ -265,25 +260,19 @@ func bytesShwoFunc(_over : [Byte]) -> Void {
     
     /// 根据类型进行处理
     if typpppp == 8 {
-        print("ah yes")
         
         RoomModel.shared.currentRoomPlayInfo = String.init(data: dd as Data, encoding: String.Encoding.utf8)!
     }
     
     
+//    if (String.init(data: dd as Data, encoding: String.Encoding.utf8)?.contains("用户连接成功"))! {
+//        AppDelegate.startSendAliveMsg()
+//    }
+//    
     if typpppp == 0 {
-        print("ah yes")
-        
-//        TImerTool.shared.timerCount(seconds: 15)
-        
+
         AppDelegate.startSendAliveMsg()
     }
-    
-//    let receiveStr = String.init(data: dd as Data, encoding: String.Encoding.utf8)
-//    if (receiveStr?.contains("信息正常"))! || (receiveStr?.contains(""))! {
-//        TImerTool.shared.timerCount(seconds: 15)
-//    }
-    
 }
 
 /// 发送语音

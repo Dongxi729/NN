@@ -71,7 +71,7 @@ class RoomModel: NSObject {
     var isOffLine = false
     
     /// 是否庄主
-    var isOwner = true
+    var isOwner = false
     
     /// 是否准备好
     var isPrepared = false
@@ -91,6 +91,9 @@ class RoomModel: NSObject {
     /// 加入房间使用的房间号
     var joinRoomNumber : [String] = []
     
+    /// 名字字典
+    var nameStr = [Int : String]()
+    
     /// xml 当前游戏(还未开始的游戏房间的数据)
     var currentRoomPlayInfo : String = "" {
         didSet {
@@ -108,9 +111,11 @@ class RoomModel: NSObject {
         let doc = try! DDXMLDocument(data: data!, options:0)
         
         //<M>
-        //<tg gt="1" ii="10" tii="0" rn="3" py="1" pyn="25" rnw="1"/>
+        //        <tg rm="6507" gt="1" ii="10" tii="0" rn="3" py="1" pyn="25" ss="0" rnw="2"/>
         //<t>
         //<u id="51615751" h="" n="黯" g="0" bks="false" sc="0"/>
+        //        <u id="50257938" h="http://wx.qlogo.cn/mmopen/Q3auHgzwzM5eia0u1RooDmyq7owxXPicPnibeO3P9NYicZ2IbjNNsXkJicrNGSPEBiaialL9bFia3XXu7PXSeIujp3I90W79Eqh2qfiamLDc8uSZRt0Y/0" n="阿东^_^^_^^_^" g="0" re="false"/>
+        
         //<u id="0"/>
         //<u id="0"/>
         //</t>
@@ -168,35 +173,35 @@ class RoomModel: NSObject {
             
             print("====== 拟定创建好房间的总人数",self.limitedPlayersNum)
             
+            
+            print("====== 所有名字",self.userName)
         }
         
-        let _users = try! doc.nodes(forXPath: "//M/t/u") as! [DDXMLElement]
+        let _users = try! doc.nodes(forXPath: "//M/ty/u") as! [DDXMLElement]
+        
+        
+        self.userName = []
         
         for user in _users {
-            /// 游戏类型
-            if user.attribute(forName: "n") != nil {
-                self.userName.append((user.attribute(forName: "n")?.stringValue)!)
-                print("self.userName",self.userName)
+            
+            let resultStr = user.attribute(forName: "n")?.stringValue
+            
+            if resultStr != nil {
+                self.userName.append(resultStr!)
+            }
+            /// 索引
+            var index = 0
+            
+            for ddd in self.userName {
+                nameStr.updateValue(ddd, forKey: index)
+                
+                index += 1
             }
             
-            
-            /// 游戏类型
-            if user.attribute(forName: "id") != nil {
-                self.userId.append((user.attribute(forName: "id")?.stringValue)!)
-                print("self.userId",self.userId)
-            }
-            
-            /// 是否准备
-            if user.attribute(forName: "bks") != nil {
-                let ready = user.attribute(forName: "bks")!.stringValue!
-                if ready == "false" {
-                    self.isReady = false
-                } else {
-                    self.isReady = true
-                }
-                print("======self.isReady",self.isReady)
-            }
         }
-    
+     
+        print("\((#file as NSString).lastPathComponent):(\(#line))\n",self.userName)
+        print("\((#file as NSString).lastPathComponent):(\(#line))\n",nameStr)
+
     }
 }

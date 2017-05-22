@@ -48,9 +48,15 @@ class PeronheadInfoV: UIView {
     }()
     
     /// 名字
-    fileprivate lazy var nameLabel: UILabel = {
+    lazy var nameLabel: UILabel = {
         let d : UILabel = UILabel.init(frame: CGRect.init(x: self.Width * 0.5, y: 2 * screenScale, width: self.Width * 0.5, height: self.Height * 0.4))
-        d.text = "AJJJJ"
+//        d.text = "AJJJJ"
+        if !(LoginModel.shared.nickname?.isEmpty)! {
+//            d.text = LoginModel.shared.nickname
+        } else {
+            d.text = "AJJJJJ"
+        }
+            
         d.textAlignment = .center
         d.font = UIFont(name: "SimHei", size: 8 * screenScale)
         d.textColor = UIColor.white
@@ -61,7 +67,13 @@ class PeronheadInfoV: UIView {
     /// coinsLabel
     fileprivate lazy var coinsLabel: UILabel = {
         let d : UILabel = UILabel.init(frame: CGRect.init(x: self.Width * 0.5, y: self.nameLabel.BottomY + 2 * screenScale, width: self.Width * 0.5, height: self.Height * 0.4))
-        d.text = "2000"
+        
+        if LoginModel.shared.wealth != nil {
+            d.text = LoginModel.shared.wealth
+        } else{
+            d.text = "2000"
+        }
+        
         d.textAlignment = .center
         d.font = UIFont(name: "SimHei", size: 8 * screenScale)
         d.textColor = UIColor.white
@@ -170,6 +182,8 @@ class PeronheadInfoV: UIView {
     
     override init(frame: CGRect) {
         super.init(frame: frame)
+        
+        
         addSubview(headImg)
         addSubview(hhhh)
         addSubview(nameLabel)
@@ -265,7 +279,7 @@ class PeronheadInfoV: UIView {
         }
         
         
-        /// 是否是庄主
+        /// 是否是庄主--- 要点显示到对应的用户
         if RoomModel.shared.isOwner {
             self.ownerImg.isHidden = false
         } else {

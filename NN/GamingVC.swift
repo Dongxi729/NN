@@ -68,50 +68,23 @@ class GamingVC: UIViewController {
         return d
     }()
     
-//    func reconnectSEL() -> Void {
-//        
-//        var reconnectStr : String = "<M><Nn id='123456' tk='asldkfjwieoskldfksdhf' ty='1'/></M>"
-//        
-//        
-//        //获取xml文件内容
-//        let data = reconnectStr.data(using: String.Encoding.utf8)
-//        
-//        //构造XML文档
-//        let doc = try! DDXMLDocument(data: data!, options:0)
-//        
-//        //利用XPath来定位节点（XPath是XML语言中的定位语法，类似于数据库中的SQL功能）
-//        let users = try! doc.nodes(forXPath: "//M/Nn") as! [DDXMLElement]
-//        
-//        for user in users {
-//            let gameType = user.attribute(forName: "id")!.stringValue!
-//            
-//            print(gameType)
-//        }
-//        
-//    }
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         
         // Do any additional setup after loading the view.
-        
-//        reconnectSEL()
-        
+
         view.backgroundColor = UIColor.white
         
-        RoomModel.shared.currentPersonInRoom = 4
         view.addSubview(bgV)
-        bgV.showGameTypeMark = 3
-        
-        bgV.isGaming = false
-        bgV.showprepareBtnMark = false
+//        bgV.showGameTypeMark = 3
+
         
         
-        countDown.center = view.center
+//        countDown.center = view.center
         
         /// 抢庄
-        robV.center = view.center
-        view.addSubview(robV)
+//        robV.center = view.center
+//        view.addSubview(robV)
         
         //        view.addSubview(getCoins)
         
