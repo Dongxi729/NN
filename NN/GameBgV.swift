@@ -11,7 +11,7 @@ import UIKit
 // MARK: - 游戏背景图片
 class GameBgV: CommonV {
     
-    /// 准备按钮
+    /// 开始游戏按钮
     fileprivate lazy var startGameBtn: CommonBtn = {
         let d : CommonBtn = CommonBtn.init(frame: CGRect.init(x: self.Width * 0.42, y: self.Height * 0.55, width: self.Width * 0.15, height: self.Height * 0.15))
         d.addTarget(self, action: #selector(beginGameSEL(sender:)), for: .touchUpInside)

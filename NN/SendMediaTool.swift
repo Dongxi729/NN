@@ -76,36 +76,7 @@ func testServer() {
 
 /// 上报用户信息
 func reportUID() -> Void {
-    
-//    let str = "<M><Nn id=\"\(LoginModel.shared.uid!)\" tk=\"\(LoginModel.shared.token!)\"/></M>"
-//
-//    let datacc : NSMutableData = NSMutableData()
-//
-//
-//    var dataStr  = str.data(using: String.Encoding.utf8)
-//
-//    /// 包头
-//    var it1  = (dataStr?.count)! + 1
-//    var type:Int = 254
-//    datacc.append(&it1, length: 4)
-//
-//    /// 类型
-//    datacc.append(&type,length: 1)
-//
-//    let adata:NSMutableData = NSMutableData()
-//
-//    /// 包体
-//    adata.append(datacc as Data)
-//    adata.append(dataStr!)
-//
-//    guard let socket = client else {
-//        
-//        return
-//    }
-//    
-//    socket.send(data: adata as Data)
-    
-    
+
     /// 上报用户信息
     reportTypeWithData(typeInt: 254, str: "<M><Nn id=\"\(LoginModel.shared.uid!)\" tk=\"\(LoginModel.shared.token!)\"/></M>")
 }

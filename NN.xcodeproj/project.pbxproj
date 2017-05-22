@@ -77,6 +77,11 @@
 		2629EC041ECAFCA500616626 /* f0_nn8.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 2629EBF61ECAFCA500616626 /* f0_nn8.mp3 */; };
 		2629EC051ECAFCA500616626 /* f0_nn9.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 2629EBF71ECAFCA500616626 /* f0_nn9.mp3 */; };
 		262E1C3A1EB1CBDE007CC745 /* CaptureScreenTool.swift in Sources */ = {isa = PBXBuildFile; fileRef = 262E1C391EB1CBDE007CC745 /* CaptureScreenTool.swift */; };
+		26315CD41ED28FA30026EC6B /* SendRequestModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26315CD31ED28FA30026EC6B /* SendRequestModel.swift */; };
+		26315CD61ED2932F0026EC6B /* RobOwnerModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26315CD51ED2932F0026EC6B /* RobOwnerModel.swift */; };
+		26315CD81ED293BA0026EC6B /* MarkChoose.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26315CD71ED293BA0026EC6B /* MarkChoose.swift */; };
+		26315CDA1ED293EA0026EC6B /* RobRoomOwner.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26315CD91ED293EA0026EC6B /* RobRoomOwner.swift */; };
+		26315CDC1ED2943C0026EC6B /* ScoreV.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26315CDB1ED2943C0026EC6B /* ScoreV.swift */; };
 		264A2CE41EC4565A001B7F0E /* MarketV.swift in Sources */ = {isa = PBXBuildFile; fileRef = 264A2CE31EC4565A001B7F0E /* MarketV.swift */; };
 		264A2CE61EC45D21001B7F0E /* ChatV.swift in Sources */ = {isa = PBXBuildFile; fileRef = 264A2CE51EC45D21001B7F0E /* ChatV.swift */; };
 		264A2CE91EC45F1F001B7F0E /* GamingVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 264A2CE81EC45F1F001B7F0E /* GamingVC.swift */; };
@@ -91,7 +96,6 @@
 		2657FDBC1EB984FE00B92648 /* sss.png in Resources */ = {isa = PBXBuildFile; fileRef = 2657FDBB1EB984FE00B92648 /* sss.png */; };
 		2657FDBE1EB9B95400B92648 /* PlayCommon.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2657FDBD1EB9B95400B92648 /* PlayCommon.swift */; };
 		266EC2031EBC854000AEA31C /* TimerLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 266EC2021EBC854000AEA31C /* TimerLabel.swift */; };
-		266EFF7F1ED02A9000281A9E /* NumViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 266EFF7E1ED02A9000281A9E /* NumViewController.swift */; };
 		266EFF821ED03E4500281A9E /* ScoreImgShowTool.swift in Sources */ = {isa = PBXBuildFile; fileRef = 266EFF811ED03E4500281A9E /* ScoreImgShowTool.swift */; };
 		26771ED01EC54DE300B61DBC /* TestMediaVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26771ECF1EC54DE300B61DBC /* TestMediaVC.swift */; };
 		268255811EC190550080CCCD /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 268255801EC190550080CCCD /* LoginViewController.swift */; };
@@ -273,6 +277,11 @@
 		2629EBF61ECAFCA500616626 /* f0_nn8.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = f0_nn8.mp3; path = "sound 2/f0_nn8.mp3"; sourceTree = "<group>"; };
 		2629EBF71ECAFCA500616626 /* f0_nn9.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = f0_nn9.mp3; path = "sound 2/f0_nn9.mp3"; sourceTree = "<group>"; };
 		262E1C391EB1CBDE007CC745 /* CaptureScreenTool.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CaptureScreenTool.swift; sourceTree = "<group>"; };
+		26315CD31ED28FA30026EC6B /* SendRequestModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SendRequestModel.swift; sourceTree = "<group>"; };
+		26315CD51ED2932F0026EC6B /* RobOwnerModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RobOwnerModel.swift; sourceTree = "<group>"; };
+		26315CD71ED293BA0026EC6B /* MarkChoose.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MarkChoose.swift; sourceTree = "<group>"; };
+		26315CD91ED293EA0026EC6B /* RobRoomOwner.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RobRoomOwner.swift; sourceTree = "<group>"; };
+		26315CDB1ED2943C0026EC6B /* ScoreV.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScoreV.swift; sourceTree = "<group>"; };
 		264A2CE31EC4565A001B7F0E /* MarketV.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MarketV.swift; sourceTree = "<group>"; };
 		264A2CE51EC45D21001B7F0E /* ChatV.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChatV.swift; sourceTree = "<group>"; };
 		264A2CE81EC45F1F001B7F0E /* GamingVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GamingVC.swift; sourceTree = "<group>"; };
@@ -287,8 +296,6 @@
 		2657FDBB1EB984FE00B92648 /* sss.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = sss.png; sourceTree = "<group>"; };
 		2657FDBD1EB9B95400B92648 /* PlayCommon.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PlayCommon.swift; path = ../PlayCommon.swift; sourceTree = "<group>"; };
 		266EC2021EBC854000AEA31C /* TimerLabel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TimerLabel.swift; sourceTree = "<group>"; };
-		266EFF7E1ED02A9000281A9E /* NumViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NumViewController.swift; sourceTree = "<group>"; };
-		266EFF801ED0303500281A9E /* MyPlayground.playground */ = {isa = PBXFileReference; lastKnownFileType = file.playground; path = MyPlayground.playground; sourceTree = "<group>"; };
 		266EFF811ED03E4500281A9E /* ScoreImgShowTool.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScoreImgShowTool.swift; sourceTree = "<group>"; };
 		26771ECF1EC54DE300B61DBC /* TestMediaVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TestMediaVC.swift; sourceTree = "<group>"; };
 		268255801EC190550080CCCD /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
@@ -660,6 +667,9 @@
 				260EBC1F1ECE87A9003DD5CA /* ClockCountDown.swift */,
 				260EBC231ECEC564003DD5CA /* CardsLayout.swift */,
 				260EBC271ECECB14003DD5CA /* GameLeftCornerMsg.swift */,
+				26315CD71ED293BA0026EC6B /* MarkChoose.swift */,
+				26315CD91ED293EA0026EC6B /* RobRoomOwner.swift */,
+				26315CDB1ED2943C0026EC6B /* ScoreV.swift */,
 			);
 			name = view;
 			sourceTree = "<group>";
@@ -685,8 +695,7 @@
 			isa = PBXGroup;
 			children = (
 				264A32D11EC598C7001405C4 /* RoomModel.swift */,
-				266EFF7E1ED02A9000281A9E /* NumViewController.swift */,
-				266EFF801ED0303500281A9E /* MyPlayground.playground */,
+				26315CD51ED2932F0026EC6B /* RobOwnerModel.swift */,
 			);
 			name = model;
 			sourceTree = "<group>";
@@ -810,6 +819,7 @@
 				26D54B301EC2C42800119FAA /* ServerSendMsg.swift */,
 				26D54B2D1EC2C36900119FAA /* SendMediaTool.swift */,
 				26D54B3D1EC2C7D000119FAA /* cccc.png */,
+				26315CD31ED28FA30026EC6B /* SendRequestModel.swift */,
 			);
 			name = socketCommu;
 			sourceTree = "<group>";
@@ -1058,6 +1068,7 @@
 				260C66641EB23415006C119E /* POPAnimationExtras.mm in Sources */,
 				264A2CE91EC45F1F001B7F0E /* GamingVC.swift in Sources */,
 				260EBC221ECEC4F7003DD5CA /* CommonV.swift in Sources */,
+				26315CDA1ED293EA0026EC6B /* RobRoomOwner.swift in Sources */,
 				260C66721EB23415006C119E /* TransformationMatrix.cpp in Sources */,
 				2657FDBE1EB9B95400B92648 /* PlayCommon.swift in Sources */,
 				260C66691EB23415006C119E /* POPCGUtils.mm in Sources */,
@@ -1071,6 +1082,7 @@
 				26D54AE71EC2BD6D00119FAA /* DDXMLElement.m in Sources */,
 				26F14F991ECAA2A7006844C9 /* FTNotificationIndicator.m in Sources */,
 				2682558B1EC196C30080CCCD /* LoginRequestTool.swift in Sources */,
+				26315CDC1ED2943C0026EC6B /* ScoreV.swift in Sources */,
 				262433661ECC5244003C41D1 /* SicComonCowLayout.swift in Sources */,
 				26F14F9E1ECAA785006844C9 /* HowToPlayV.swift in Sources */,
 				26CDFB4F1ECD977700EF3846 /* RightV.swift in Sources */,
@@ -1079,6 +1091,7 @@
 				260EBC201ECE87A9003DD5CA /* ClockCountDown.swift in Sources */,
 				260EBC281ECECB14003DD5CA /* GameLeftCornerMsg.swift in Sources */,
 				262433681ECC527A003C41D1 /* SicCowLayout.swift in Sources */,
+				26315CD61ED2932F0026EC6B /* RobOwnerModel.swift in Sources */,
 				26836AFB1EC1E2DB00061069 /* JoinRoomView.swift in Sources */,
 				2657FD971EB860F900B92648 /* ControlVoice.swift in Sources */,
 				26D54B441EC2F0B500119FAA /* CreateRoomModel.swift in Sources */,
@@ -1099,6 +1112,7 @@
 				26A4872C1EC0060F00E9A091 /* AbortTool.swift in Sources */,
 				26D54B2F1EC2C36900119FAA /* SendMediaTool.swift in Sources */,
 				260C666F1EB23415006C119E /* POPPropertyAnimation.mm in Sources */,
+				26315CD41ED28FA30026EC6B /* SendRequestModel.swift in Sources */,
 				26A487271EC0049E00E9A091 /* UIColor+Extension.swift in Sources */,
 				262E1C3A1EB1CBDE007CC745 /* CaptureScreenTool.swift in Sources */,
 				260C66611EB23415006C119E /* POPAnimatableProperty.mm in Sources */,
@@ -1122,6 +1136,7 @@
 				268255891EC194480080CCCD /* ImplementsLinkTool.swift in Sources */,
 				260C66661EB23415006C119E /* POPAnimationTracer.mm in Sources */,
 				2603D9731EADD1BB0069B132 /* MainGameViewController.swift in Sources */,
+				26315CD81ED293BA0026EC6B /* MarkChoose.swift in Sources */,
 				2682558D1EC19ECC0080CCCD /* LoginInfoLocal.swift in Sources */,
 				26D54B371EC2C5F800119FAA /* SocketVC.swift in Sources */,
 				26F14FA01ECAC785006844C9 /* ScoreView.swift in Sources */,
@@ -1139,7 +1154,6 @@
 				26BC61301EB2EB6C00AE9BE1 /* CountDownBtn.swift in Sources */,
 				2603D93B1EADC8D20069B132 /* AppDelegate.swift in Sources */,
 				266EFF821ED03E4500281A9E /* ScoreImgShowTool.swift in Sources */,
-				266EFF7F1ED02A9000281A9E /* NumViewController.swift in Sources */,
 				26D54AE81EC2BD6D00119FAA /* DDXMLNode.m in Sources */,
 				2657FD9B1EB872C300B92648 /* ScaleView.swift in Sources */,
 				2657FDA11EB96F9300B92648 /* FontVC.swift in Sources */,
