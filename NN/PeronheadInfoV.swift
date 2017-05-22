@@ -82,7 +82,7 @@ class PeronheadInfoV: UIView {
     
     
     /// 头像
-    fileprivate lazy var headImg: UIImageView = {
+    lazy var headImg: UIImageView = {
         let d : UIImageView = UIImageView.init(frame: CGRect.init(x: 3 * screenScale, y: 1 * screenScale, width:  self.Width * 0.43, height: self.Width * 0.42))
         d.backgroundColor = UIColor.gray
         d.contentMode = UIViewContentMode.scaleAspectFit
@@ -184,7 +184,7 @@ class PeronheadInfoV: UIView {
         super.init(frame: frame)
         
         
-        addSubview(headImg)
+        
         addSubview(hhhh)
         addSubview(nameLabel)
         addSubview(coinsLabel)
@@ -205,6 +205,8 @@ class PeronheadInfoV: UIView {
         
         /// 准备
         addSubview(prepareImg)
+        
+        addSubview(headImg)
         
         /// 默认隐藏
         finishImg.isHidden = true

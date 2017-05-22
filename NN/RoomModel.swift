@@ -49,8 +49,7 @@ class RoomModel: NSObject {
     /// 用户ID
     var userId : [String] = []
     
-    /// 用户名
-    var userName : [String] = []
+    
     
     /// 是否准备
     var isReady = false
@@ -92,7 +91,13 @@ class RoomModel: NSObject {
     var joinRoomNumber : [String] = []
     
     /// 名字字典
+    var userName : [String] = []
     var nameStr = [Int : String]()
+    
+    /// 头像字典
+    /// 用户名
+    var headURLArray : [String] = []
+    var headUrlDic = [Int : String]()
     
     /// xml 当前游戏(还未开始的游戏房间的数据)
     var currentRoomPlayInfo : String = "" {
@@ -179,11 +184,15 @@ class RoomModel: NSObject {
         
         let _users = try! doc.nodes(forXPath: "//M/ty/u") as! [DDXMLElement]
         
-        
+        /// 下次重写操作时清空
         self.userName = []
+        
+        self.headURLArray = []
+        self.headUrlDic.removeAll()
         
         for user in _users {
             
+            /// 名字解析成字典供后面使用,展示使用
             let resultStr = user.attribute(forName: "n")?.stringValue
             
             if resultStr != nil {
@@ -205,10 +214,31 @@ class RoomModel: NSObject {
                 index += 1
             }
             
+            /// 头像地址
+            let headUrlStr = user.attribute(forName: "h")?.stringValue
+            
+            if headUrlStr != nil {
+                self.headURLArray.append(headUrlStr!)
+            }
+            /// 索引
+            var headURLIndex = 0
+
+            for ddd in self.headURLArray {
+                
+                if ddd.characters.count == 0 {
+                    headUrlDic.updateValue("https://10.url.cn/eth/ajNVdqHZLLAkicdgzTMWjbuuFd5oRpJKlfdlmymtAuHhzSOBXKENUPzKUO7picLoqFdt5H03dw64k/", forKey: headURLIndex)
+                } else {
+                    headUrlDic.updateValue(ddd, forKey: headURLIndex)
+                }
+                
+                headURLIndex += 1
+            }
+            
+            
         }
         
         print("\((#file as NSString).lastPathComponent):(\(#line))\n",self.userName)
-        print("\((#file as NSString).lastPathComponent):(\(#line))\n",nameStr)
+        print("\((#file as NSString).lastPathComponent):(\(#line))\n",self.headUrlDic)
         
     }
 }

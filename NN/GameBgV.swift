@@ -197,7 +197,20 @@ class GameBgV: CommonV {
         switch RoomModel.shared.currentPersonInRoom {
         case 1:
             P1.samllCardsShowLeftOrRight = -1
+            
+            
             P1.nameLabel.text = RoomModel.shared.nameStr[0]
+//            downImgWith(url: RoomModel.shared.headUrlDic[0]!, toView: P1.headImg)
+            print("\((#file as NSString).lastPathComponent):(\(#line))\n",RoomModel.shared.headUrlDic[0] as Any)
+            
+            
+            
+            DispatchQueue.main.async {
+                let headStr = RoomModel.shared.headUrlDic[0]
+
+                downImgWith(url: headStr!, toView: self.P1.headImg)
+            }
+            
             addSubview(P1)
             break
         case 2:
@@ -207,9 +220,15 @@ class GameBgV: CommonV {
             P2.isShowBottomCardLayout = true
 
             
-            P1.nameLabel.text = RoomModel.shared.nameStr[0]!
-            P2.nameLabel.text = RoomModel.shared.nameStr[1]!
-
+            P1.nameLabel.text = RoomModel.shared.nameStr[0]
+            P2.nameLabel.text = RoomModel.shared.nameStr[1]
+            
+            DispatchQueue.main.async {
+                let headStr = RoomModel.shared.headUrlDic[0]
+                let headStr2 = RoomModel.shared.headUrlDic[1]
+                downImgWith(url: headStr!, toView: self.P1.headImg)
+                downImgWith(url: headStr2!, toView: self.P2.headImg)
+            }
 
             addSubview(P1)
             addSubview(P2)
