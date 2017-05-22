@@ -177,11 +177,17 @@ extension InviteV : UICollectionViewDataSource,UICollectionViewDelegateFlowLayou
                     dddd.append(d)
                     valueRecord.append(selecttext)
                     
-                    if valueRecord.count == 4{
+                    if valueRecord.count == 4 {
+                        
+                        var passPord : String = ""
                         
                         for ddd in valueRecord {
-                            print("\((#file as NSString).lastPathComponent):(\(#line))\n",ddd)
+                            print("\((#file as NSString).lastPathComponent):(\(#line))\n",ddd,RoomModel.shared.roomNumber)
+                            passPord.append(ddd)
+                            
+                            print("passpord",passPord)
                         }
+
                     }
                 } else {
                     for index : UIView in dddd {

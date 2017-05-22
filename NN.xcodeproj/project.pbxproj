@@ -82,6 +82,7 @@
 		26315CD81ED293BA0026EC6B /* MarkChoose.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26315CD71ED293BA0026EC6B /* MarkChoose.swift */; };
 		26315CDA1ED293EA0026EC6B /* RobRoomOwner.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26315CD91ED293EA0026EC6B /* RobRoomOwner.swift */; };
 		26315CDC1ED2943C0026EC6B /* ScoreV.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26315CDB1ED2943C0026EC6B /* ScoreV.swift */; };
+		26315CDE1ED2D15F0026EC6B /* ReconnectModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26315CDD1ED2D15F0026EC6B /* ReconnectModel.swift */; };
 		264A2CE41EC4565A001B7F0E /* MarketV.swift in Sources */ = {isa = PBXBuildFile; fileRef = 264A2CE31EC4565A001B7F0E /* MarketV.swift */; };
 		264A2CE61EC45D21001B7F0E /* ChatV.swift in Sources */ = {isa = PBXBuildFile; fileRef = 264A2CE51EC45D21001B7F0E /* ChatV.swift */; };
 		264A2CE91EC45F1F001B7F0E /* GamingVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 264A2CE81EC45F1F001B7F0E /* GamingVC.swift */; };
@@ -282,6 +283,7 @@
 		26315CD71ED293BA0026EC6B /* MarkChoose.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MarkChoose.swift; sourceTree = "<group>"; };
 		26315CD91ED293EA0026EC6B /* RobRoomOwner.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RobRoomOwner.swift; sourceTree = "<group>"; };
 		26315CDB1ED2943C0026EC6B /* ScoreV.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScoreV.swift; sourceTree = "<group>"; };
+		26315CDD1ED2D15F0026EC6B /* ReconnectModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReconnectModel.swift; sourceTree = "<group>"; };
 		264A2CE31EC4565A001B7F0E /* MarketV.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MarketV.swift; sourceTree = "<group>"; };
 		264A2CE51EC45D21001B7F0E /* ChatV.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChatV.swift; sourceTree = "<group>"; };
 		264A2CE81EC45F1F001B7F0E /* GamingVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GamingVC.swift; sourceTree = "<group>"; };
@@ -696,6 +698,7 @@
 			children = (
 				264A32D11EC598C7001405C4 /* RoomModel.swift */,
 				26315CD51ED2932F0026EC6B /* RobOwnerModel.swift */,
+				26315CDD1ED2D15F0026EC6B /* ReconnectModel.swift */,
 			);
 			name = model;
 			sourceTree = "<group>";
@@ -1149,6 +1152,7 @@
 				26D54AE41EC2BD6D00119FAA /* NSString+DDXML.m in Sources */,
 				26D54B271EC2C11B00119FAA /* amrFileCodec.mm in Sources */,
 				268255811EC190550080CCCD /* LoginViewController.swift in Sources */,
+				26315CDE1ED2D15F0026EC6B /* ReconnectModel.swift in Sources */,
 				2603D9691EADCB6F0069B132 /* Common.swift in Sources */,
 				26F14F9B1ECAA2A7006844C9 /* FTProgressIndicator.m in Sources */,
 				26BC61301EB2EB6C00AE9BE1 /* CountDownBtn.swift in Sources */,

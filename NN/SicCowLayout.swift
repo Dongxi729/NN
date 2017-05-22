@@ -40,17 +40,7 @@ class SicCowLayout: UIView {
         return d
     }()
     
-    
-    
-    
-    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
-        let touch: UITouch? = touches.first
-        let touchPoint: CGPoint? = touch?.location(in: self)
-        print("\((touchPoint?.x)! / self.Width)==\((touchPoint?.y)! / self.Height)")
-        let stringFloat = Int((touchPoint?.x)!)
-        let stringFloat1 = Int((touchPoint?.y)!)
-        print("\(stringFloat)\(stringFloat1)")
-    }
+
     
     /// 六人牛牛右边背景
     fileprivate lazy var bgV: UIImageView = {
@@ -436,6 +426,9 @@ class SicCowLayout: UIView {
         } else {
             addSubview(s)
         }
+        
+        /// 本地模拟房间
+        reportCreateRoomType()
     }
     
     /// 分数

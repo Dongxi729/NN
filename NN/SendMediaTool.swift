@@ -9,19 +9,6 @@
 import UIKit
 import SwiftSocket
 
-/// 收到服务器发来的字符串
-var getReceiveStr : String? {
-    didSet {
-        //        if getReceiveStr == "\0用户连接成功" {
-        //            print("okay")
-        //
-        
-        
-        /// 发送心跳包
-        sendHeart()
-        //        }
-    }
-}
 
 struct ConnectConfig {
     var host : String = ""
@@ -44,7 +31,7 @@ var reportUser = true
 func testServer() {
     
     //    client = TCPClient.init(address: "192.168.1.10", port: 2048)
-    client = TCPClient.init(address: "192.168.2.11", port: 8888)
+    client = TCPClient.init(address: "192.168.2.11", port: 8887)
     
     switch client.connect(timeout: 1) {
         
@@ -137,7 +124,6 @@ func sendHeart() {
     }
     
     socket.send(data: heaerByte)
-    
 }
 
 // MARK: - 非庄家押分数
@@ -155,6 +141,11 @@ func sendText(sendStr : String) {
 // MARK: - 解散房间
 func dismissRoomSocketEvent() -> Void {
     reportTypeWithData(typeInt: 90, str: "<M><ty ms=\"解散房间\"/></M>")
+}
+
+// MARK: - 加入房间
+func joinRoomWithPass(roomPass : String) {
+    reportTypeWithData(typeInt: 7, str: "<M><ty p=\"\(roomPass)\"/></M>")
 }
 
 
@@ -265,16 +256,33 @@ func bytesShwoFunc(_over : [Byte]) -> Void {
     var bodyData = [Byte]()
     
     bodyData = _over
-    bodyData.remove(at: 0)
+    
+    /// 类型
+    let typpppp = bodyData.remove(at: 0)
     
     let dd = NSData.init(bytes: bodyData, length: bodyData.count)
-    print("\((#file as NSString).lastPathComponent):(\(#line))\n",String.init(data: dd as Data, encoding: String.Encoding.utf8))
+    print("\((#file as NSString).lastPathComponent):(\(#line))\n",String.init(data: dd as Data, encoding: String.Encoding.utf8) as Any)
     
-    let receiveStr = String.init(data: dd as Data, encoding: String.Encoding.utf8)
-    if (receiveStr?.contains("信息正常"))! {
-//        sendHeart()
-        TImerTool.shared.timerCount(seconds: 15)
+    /// 根据类型进行处理
+    if typpppp == 8 {
+        print("ah yes")
+        
+        RoomModel.shared.currentRoomPlayInfo = String.init(data: dd as Data, encoding: String.Encoding.utf8)!
     }
+    
+    
+    if typpppp == 0 {
+        print("ah yes")
+        
+//        TImerTool.shared.timerCount(seconds: 15)
+        
+        AppDelegate.startSendAliveMsg()
+    }
+    
+//    let receiveStr = String.init(data: dd as Data, encoding: String.Encoding.utf8)
+//    if (receiveStr?.contains("信息正常"))! || (receiveStr?.contains(""))! {
+//        TImerTool.shared.timerCount(seconds: 15)
+//    }
     
 }
 

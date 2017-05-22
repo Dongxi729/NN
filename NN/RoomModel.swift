@@ -85,6 +85,12 @@ class RoomModel: NSObject {
     /// 开局所用分数
     var scoreCount : String!
     
+    /// 房间号
+    var roomNumber : Int!
+    
+    /// 加入房间使用的房间号
+    var joinRoomNumber : [String] = []
+    
     /// xml 当前游戏(还未开始的游戏房间的数据)
     var currentRoomPlayInfo : String = "" {
         didSet {
@@ -123,6 +129,11 @@ class RoomModel: NSObject {
                 self.gameType = "通比牛牛"
             }
             
+            /// 房间号
+            self.roomNumber = Int(user.attribute(forName: "rm")!.stringValue!)
+            let roomNumber = user.attribute(forName: "rm")!.stringValue!
+            self.joinRoomNumber.append(roomNumber)
+            
             /// 拟定积分
             self.wantCoins = user.attribute(forName: "pyn")!.stringValue!
             
@@ -140,6 +151,8 @@ class RoomModel: NSObject {
             
             /// 拟定开好房间的总人数
             self.limitedPlayersNum = Int(user.attribute(forName: "rn")!.stringValue!)!
+            
+            print("====房间号",self.roomNumber)
             
             print("=====self.gameType",self.gameType)
             
@@ -184,5 +197,6 @@ class RoomModel: NSObject {
                 print("======self.isReady",self.isReady)
             }
         }
+    
     }
 }

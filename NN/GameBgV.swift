@@ -121,7 +121,13 @@ class GameBgV: CommonV {
         d.textAlignment = .left
         
         d.textColor = UIColor.colorWithHexString("713600")
-        d.text = "1468"
+//        d.text = "1468"
+        
+        if RoomModel.shared.roomNumber != nil {
+            d.text = String(RoomModel.shared.roomNumber)
+        } else {
+            d.text = "1111111"
+        }
         return d
     }()
     
@@ -139,7 +145,14 @@ class GameBgV: CommonV {
      fileprivate lazy var roundsNumLabel: UILabel = {
         let d : UILabel = UILabel.init(frame: CGRect.init(x: 0, y: self.Height * 0.13, width: self.Width * 0.1, height: self.Height * 0.045))
         d.layer.borderWidth = 1
-        d.text = String(15) + "/" + String(20)
+        
+        
+        if !RoomModel.shared.currentRounds.isEmpty && !RoomModel.shared.gameRounds.isEmpty {
+            d.text = RoomModel.shared.currentRounds + "/" + RoomModel.shared.gameRounds
+        } else {
+            d.text = String(15) + "/" + String(20)
+        }
+        
         d.textAlignment = .center
         d.adjustsFontSizeToFitWidth = true
         d.font = UIFont(name: "SimHei", size: 9 * screenScale)

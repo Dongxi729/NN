@@ -191,11 +191,17 @@ extension JoinRoomView : UICollectionViewDataSource,UICollectionViewDelegateFlow
                     dddd.append(d)
                     valueRecord.append(selecttext)
                     
-                    if valueRecord.count == 4{
+                    if valueRecord.count == 4 {
+                        
+                        var passPord : String = ""
                         
                         for ddd in valueRecord {
-                            print("\((#file as NSString).lastPathComponent):(\(#line))\n",ddd)
+
+                            passPord.append(ddd)
                         }
+                        
+                        /// 加入房间接口对接
+                        joinRoomWithPass(roomPass: passPord)
                     }
                 } else {
                     for index : UIView in dddd {

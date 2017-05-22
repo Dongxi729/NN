@@ -16,6 +16,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     let tool = WXTool()
     
+    /// 发送心跳包
+    class func startSendAliveMsg() -> Void {
+        TImerTool.shared.timerCount(seconds: 10)
+    }
+    
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
         
@@ -33,6 +38,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     fileprivate var musicMark : Int = 1
     
+    /// 播放音乐
     private func playMusic() -> Void {
         if localSave.object(forKey: "musicOpen") != nil {
             musicMark = localSave.object(forKey: "musicOpen") as! Int
