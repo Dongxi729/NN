@@ -22,7 +22,7 @@ class LoginViewController: UIViewController {
     
     /// 微信登陆按钮
     lazy var wxloginBtn: UIImageView = {
-        let d : UIImageView = UIImageView.init(frame: CGRect.init(x: SW * 0.5 - 80 * screenScale * 0.5, y: SH * 0.85, width: 80 * screenScale, height: 15 * screenScale))
+        let d : UIImageView = UIImageView.init(frame: CGRect.init(x: SW * 0.5 - 100 * screenScale * 0.5, y: SH * 0.85, width: 100 * screenScale, height: 15 * screenScale))
         d.contentMode = .scaleAspectFit
         d.isUserInteractionEnabled = true
         

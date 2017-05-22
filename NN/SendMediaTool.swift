@@ -16,6 +16,9 @@ var getReceiveStr : String? {
             print("okay")
             
             reportUID()
+            
+            /// 发送心跳包
+            sendHeart()
         }
     }
 }
@@ -24,9 +27,6 @@ struct ConnectConfig {
     var host : String = ""
     var port : Int32 = 8888
 }
-
-let d = ConnectConfig.init(host: "192.168.2.11", port: 8887)
-//let d = ConnectConfig.init(host: LoginModel.shared.serviceip!, port: Int32(LoginModel.shared.serviceport!)!)
 
 
 /// 包体长度
@@ -42,27 +42,31 @@ fileprivate var bodyBytesAny:[Byte] = [Byte]()
 /// 测试服务器
 func testServer() {
     
+//    client = TCPClient.init(address: "192.168.1.10", port: 2048)
     client = TCPClient.init(address: "192.168.2.11", port: 8888)
-    //    client = TCPClient.init(address: "192.168.1.10", port: 2048)
     
     switch client.connect(timeout: 1) {
         
     case .success:
         
         while true {
+            /// 缓存池数据
+            let d = client.read(1024 * 10)
+
             
-            if readmsg() != nil {
-                
+            print("\((#file as NSString).lastPathComponent):(\(#line))\n",d as Any)
+            
+            /// 绩溪县,.
+            if d != nil {
+                byteAnalyse(ddd: d!)
             } else {
                 print("\((#file as NSString).lastPathComponent):(\(#line))\n","连接失败")
                 /// 连接异常则关闭连接。
                 client.close()
-                
-                break
+                return
             }
         }
-        
-        
+
         
     case .failure( _):
         
@@ -72,17 +76,47 @@ func testServer() {
 
 /// 上报用户信息
 func reportUID() -> Void {
+    
+//    let str = "<M><Nn id=\"\(LoginModel.shared.uid!)\" tk=\"\(LoginModel.shared.token!)\"/></M>"
+//
+//    let datacc : NSMutableData = NSMutableData()
+//
+//
+//    var dataStr  = str.data(using: String.Encoding.utf8)
+//
+//    /// 包头
+//    var it1  = (dataStr?.count)! + 1
+//    var type:Int = 254
+//    datacc.append(&it1, length: 4)
+//
+//    /// 类型
+//    datacc.append(&type,length: 1)
+//
+//    let adata:NSMutableData = NSMutableData()
+//
+//    /// 包体
+//    adata.append(datacc as Data)
+//    adata.append(dataStr!)
+//
+//    guard let socket = client else {
+//        
+//        return
+//    }
+//    
+//    socket.send(data: adata as Data)
+    
+    
     /// 上报用户信息
-
     reportTypeWithData(typeInt: 254, str: "<M><Nn id=\"\(LoginModel.shared.uid!)\" tk=\"\(LoginModel.shared.token!)\"/></M>")
 }
 
 func reportTypeWithData(typeInt : Int,str : String) {
     
+    print("\((#file as NSString).lastPathComponent):(\(#line))\n",str)
+    
     let str = str
     
     let datacc : NSMutableData = NSMutableData()
-    
     
     var dataStr  = str.data(using: String.Encoding.utf8)
     
@@ -122,7 +156,15 @@ func sendHeart() {
         return
     }
     
+    
     socket.send(data: heaerByte)
+    
+}
+
+/// 非庄家押分数
+func antiOwnerCoins(coins : Int) {
+    reportTypeWithData(typeInt: 11, str: "<M><ty yf=\"\(coins)\"/></M>")
+    
     
 }
 
@@ -148,64 +190,16 @@ func reportCreateRoomType() -> Void {
     reportTypeWithData(typeInt: 6, str: roomType)
 }
 
-
-
-/// 读取信息
-func readmsg()->String? {
-    //read 4 byte int as type
-    
-    /// 缓存池数据
-    var d = client.read(1024 * 10)
-    
-    /// 绩溪县
-    if d != nil {
-        byteAnalyse(ddd: d!)
-    }
-    
-    if d != nil {
-        
-        
-        print("d原始数据",d!)
-        /// 赋值接收到的字符串
-        getReceiveStr = String.init(bytes: d!, encoding: String.Encoding.utf8)
-        
-        for index in 0..<5 {
-            let delIndexByte = d?.remove(at: 0)
-            
-            if index == 4 {
-                print("successMsg",String.init(bytes: d!, encoding: String.Encoding.utf8) as Any)
-                
-                print("删除第五个",delIndexByte)
-                
-                /// 接收类型传值
-                /// 创建房间成功传回的
-                if delIndexByte == 6 {
-                    CreateRoomModel.shared.getServerCreateInfo = String.init(bytes: d!, encoding: String.Encoding.utf8)!
-                }
-                
-                /// 当前在场游戏人员信息
-                if delIndexByte == 8 {
-                    RoomModel.shared.currentRoomPlayInfo = String.init(bytes: d!, encoding: String.Encoding.utf8)!
-                }
-            }
-        }
-        
-        /// 发送心跳包
-        if (String.init(bytes: d!, encoding: String.Encoding.utf8)?.contains("信息正常"))! {
-            TImerTool.shared.timerCount(seconds: 15)
-        }
-        
-        if (String.init(bytes: d!, encoding: String.Encoding.utf8)?.contains("你的帐号关闭"))! {
-            print("掉线了~~~")
-        }
-        
-        
-        return String.init(bytes: d!, encoding: String.Encoding.utf8)
-    } else {
-        
-        return "test"
-    }
+/// 不抢庄
+func getRoomPower() {
+    reportTypeWithData(typeInt: 10, str: "<M><ty qz ='2'/></M>")
 }
+
+/// 不抢庄
+func NotgetRoomPower() {
+    reportTypeWithData(typeInt: 10, str: "<M><ty qz ='1'/></M>")
+}
+
 
 /// 数据解析
 func byteAnalyse(ddd : [Byte]) -> Void {
@@ -289,10 +283,10 @@ func bodyfun() {
 /// 赋值显示操作
 func bytesShwoFunc(_over : [Byte]) -> Void {
     
-    getReceiveStr = String.init(bytes: _over, encoding: String.Encoding.utf8)
+//    getReceiveStr = String.init(bytes: _over, encoding: String.Encoding.utf8)
+    print("\((#file as NSString).lastPathComponent):(\(#line))\n",_over)
+    print("\((#file as NSString).lastPathComponent):(\(#line))\n",getReceiveStr as Any)
     
-    /// 通知传值
-    NotificationCenter.default.post(name: NSNotification.Name(rawValue: "receiveData"), object: nil, userInfo: ["send" : _over])
 }
 
 /// 发送语音
@@ -310,10 +304,7 @@ func sendVoice() -> Void {
         datacc.append(voiceData)
         
         /// 转语音
-        var sendData : Data = datacc as Data
-        
-        //            /// 模拟类型为3
-        //            sendData.insert(3, at: 4)
+        let sendData : Data = datacc as Data
         
         guard let socket = client else {
             return

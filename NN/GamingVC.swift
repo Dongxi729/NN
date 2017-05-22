@@ -190,19 +190,20 @@ class MarkChoose: UIView {
         print(sender.tag)
         switch sender.tag {
         case 800:
-            print("\((#file as NSString).lastPathComponent):(\(#line))\n")
+
+            antiOwnerCoins(coins: 5)
             break
         case 801:
-            print("\((#file as NSString).lastPathComponent):(\(#line))\n")
+            antiOwnerCoins(coins: 10)
             break
         case 802:
-            print("\((#file as NSString).lastPathComponent):(\(#line))\n")
+            antiOwnerCoins(coins: 15)
             break
         case 803:
-            print("\((#file as NSString).lastPathComponent):(\(#line))\n")
+            antiOwnerCoins(coins: 20)
             break
         case 804:
-            print("\((#file as NSString).lastPathComponent):(\(#line))\n")
+            antiOwnerCoins(coins: 25)
             break
         default:
             break

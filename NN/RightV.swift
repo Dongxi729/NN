@@ -4,7 +4,7 @@
 //
 //  Created by 郑东喜 on 2017/5/18.
 //  Copyright © 2017年 郑东喜. All rights reserved.
-//
+//  游戏右上角视图
 
 import UIKit
 // MARK: - 右上角视图绘制

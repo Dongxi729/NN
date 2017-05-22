@@ -9,7 +9,7 @@
 import UIKit
 
 // MARK: - 游戏背景图片
-class GameBgV: UIView {
+class GameBgV: CommonV {
     
     /// 准备按钮
     fileprivate lazy var startGameBtn: CommonBtn = {
@@ -53,14 +53,8 @@ class GameBgV: UIView {
 
     
     /// 显示房间人员位置
-    fileprivate lazy var P4: PeronheadInfoV = {
+    fileprivate lazy var P1: PeronheadInfoV = {
         let d : PeronheadInfoV = PeronheadInfoV()
-        
-        return d
-    }()
-    
-    fileprivate lazy var P3: PeronheadInfoV = {
-        let d : PeronheadInfoV = PeronheadInfoV.init(frame: CGRect.init(x: self.Width * 0.06, y: self.Height * 0.35, width: self.Width * 0.18, height: self.Height * 0.15))
         return d
     }()
     
@@ -69,8 +63,14 @@ class GameBgV: UIView {
         return d
     }()
     
-    fileprivate lazy var P1: PeronheadInfoV = {
+    fileprivate lazy var P3: PeronheadInfoV = {
+        let d : PeronheadInfoV = PeronheadInfoV.init(frame: CGRect.init(x: self.Width * 0.06, y: self.Height * 0.35, width: self.Width * 0.18, height: self.Height * 0.15))
+        return d
+    }()
+    
+    fileprivate lazy var P4: PeronheadInfoV = {
         let d : PeronheadInfoV = PeronheadInfoV()
+        
         return d
     }()
     
@@ -161,11 +161,7 @@ class GameBgV: UIView {
     }()
     
     override func layoutSubviews() {
-        
-        
-        
-        print("\((#file as NSString).lastPathComponent):(\(#line))\n",RoomModel.shared.isGameBegin)
-        
+
         super.layoutSubviews()
         /// 根据状态显示六人牛牛还是通比牛牛
         if showGameTypeMark == 0 {
@@ -174,15 +170,17 @@ class GameBgV: UIView {
             self.gameType.image = #imageLiteral(resourceName: "commonCow")
         }
         
+        /// 显示准备按钮
         if showprepareBtnMark {
             self.startGameBtn.isHidden = false
         } else {
             self.startGameBtn.isHidden = true
         }
 
-        print("\((#file as NSString).lastPathComponent):(\(#line))\n",RoomModel.shared.currentPersonInRoom)
         
         /// 根据当前人数以及游戏状态显示
+        
+        /// 准备完成后---是否开始游戏---开始游戏,
         switch RoomModel.shared.currentPersonInRoom {
         case 1:
             P1.samllCardsShowLeftOrRight = -1
@@ -318,15 +316,6 @@ class GameBgV: UIView {
         fatalError("init(coder:) has not been implemented")
     }
     
-    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
-        let touch: UITouch? = touches.first
-        let touchPoint: CGPoint? = touch?.location(in: self)
-        print("\((touchPoint?.x)! / self.Width)==\((touchPoint?.y)! / self.Height)")
-        let stringFloat = Int((touchPoint?.x)!)
-        let stringFloat1 = Int((touchPoint?.y)!)
-        print("\(stringFloat)\(stringFloat1)")
-    }
-    
     lazy var oBgV: UIImageView = {
         let d : UIImageView = UIImageView.init(frame: CGRect.init(x: 0, y: 0, width: self.Width * 0.2, height: self.Width * 0.2))
         d.image = #imageLiteral(resourceName: "pushToSend")
@@ -398,13 +387,15 @@ extension GameBgV : RightVDelegate {
     }
 }
 
-// MARK: - 左上角事件
+// MARK: - 右下角事件
 extension GameBgV : RightDownVDelegate {
     
+    /// 发送信息、图片
     func msgSEL(sender: UIButton) {
         print("\((#file as NSString).lastPathComponent):(\(#line))\n",sender.frame)
     }
     
+    /// 发送语音
     func voiceSEL(gesture: UILongPressGestureRecognizer) {
         print("\((#file as NSString).lastPathComponent):(\(#line))\n")
         if gesture.state == .began {

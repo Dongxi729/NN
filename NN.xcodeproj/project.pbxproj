@@ -133,7 +133,6 @@
 		26D54B331EC2C50500119FAA /* AvdioTool.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26D54B321EC2C50500119FAA /* AvdioTool.swift */; };
 		26D54B351EC2C55F00119FAA /* SwiftSocket.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 26D54B341EC2C55F00119FAA /* SwiftSocket.framework */; };
 		26D54B371EC2C5F800119FAA /* SocketVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26D54B361EC2C5F800119FAA /* SocketVC.swift */; };
-		26D54B391EC2C66200119FAA /* SyncTimerVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26D54B381EC2C66200119FAA /* SyncTimerVC.swift */; };
 		26D54B3A1EC2C71800119FAA /* SwiftSocket.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 26D54B341EC2C55F00119FAA /* SwiftSocket.framework */; };
 		26D54B3B1EC2C71800119FAA /* SwiftSocket.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 26D54B341EC2C55F00119FAA /* SwiftSocket.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		26D54B3E1EC2C7D000119FAA /* cccc.png in Resources */ = {isa = PBXBuildFile; fileRef = 26D54B3D1EC2C7D000119FAA /* cccc.png */; };
@@ -346,7 +345,6 @@
 		26D54B321EC2C50500119FAA /* AvdioTool.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AvdioTool.swift; sourceTree = "<group>"; };
 		26D54B341EC2C55F00119FAA /* SwiftSocket.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = SwiftSocket.framework; sourceTree = "<group>"; };
 		26D54B361EC2C5F800119FAA /* SocketVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SocketVC.swift; path = ../SocketVC.swift; sourceTree = "<group>"; };
-		26D54B381EC2C66200119FAA /* SyncTimerVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SyncTimerVC.swift; sourceTree = "<group>"; };
 		26D54B3D1EC2C7D000119FAA /* cccc.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = cccc.png; sourceTree = "<group>"; };
 		26D54B431EC2F0B500119FAA /* CreateRoomModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreateRoomModel.swift; sourceTree = "<group>"; };
 		26F14F891ECA95EE006844C9 /* ShareView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShareView.swift; sourceTree = "<group>"; };
@@ -623,6 +621,15 @@
 			name = playMusic;
 			sourceTree = "<group>";
 		};
+		26315CD11ED17DF60026EC6B /* extension */ = {
+			isa = PBXGroup;
+			children = (
+				26A487261EC0049E00E9A091 /* UIColor+Extension.swift */,
+				26A487281EC004F400E9A091 /* UIView+Extension.swift */,
+			);
+			name = extension;
+			sourceTree = "<group>";
+		};
 		264A2CE21EC4564F001B7F0E /* market */ = {
 			isa = PBXGroup;
 			children = (
@@ -706,6 +713,7 @@
 		268255831EC1913B0080CCCD /* category */ = {
 			isa = PBXGroup;
 			children = (
+				26315CD11ED17DF60026EC6B /* extension */,
 				268255871EC194260080CCCD /* implements */,
 				26A4872A1EC0050700E9A091 /* tool */,
 				260C662C1EB23415006C119E /* pop */,
@@ -769,8 +777,6 @@
 				266EC2021EBC854000AEA31C /* TimerLabel.swift */,
 				26D54B141EC2C0E700119FAA /* VoicieControl.swift */,
 				26BC612F1EB2EB6C00AE9BE1 /* CountDownBtn.swift */,
-				26A487261EC0049E00E9A091 /* UIColor+Extension.swift */,
-				26A487281EC004F400E9A091 /* UIView+Extension.swift */,
 				262E1C391EB1CBDE007CC745 /* CaptureScreenTool.swift */,
 				2657FD9C1EB8809100B92648 /* DelayTimerTool.swift */,
 				2657FD961EB860F900B92648 /* ControlVoice.swift */,
@@ -801,7 +807,6 @@
 				26D54B321EC2C50500119FAA /* AvdioTool.swift */,
 				26D54B361EC2C5F800119FAA /* SocketVC.swift */,
 				26D54B2C1EC2C36900119FAA /* TImerTool.swift */,
-				26D54B381EC2C66200119FAA /* SyncTimerVC.swift */,
 				26D54B301EC2C42800119FAA /* ServerSendMsg.swift */,
 				26D54B2D1EC2C36900119FAA /* SendMediaTool.swift */,
 				26D54B3D1EC2C7D000119FAA /* cccc.png */,
@@ -1121,7 +1126,6 @@
 				26D54B371EC2C5F800119FAA /* SocketVC.swift in Sources */,
 				26F14FA01ECAC785006844C9 /* ScoreView.swift in Sources */,
 				2603D95B1EADCA3C0069B132 /* WXApiManager.m in Sources */,
-				26D54B391EC2C66200119FAA /* SyncTimerVC.swift in Sources */,
 				266EC2031EBC854000AEA31C /* TimerLabel.swift in Sources */,
 				260EBC241ECEC564003DD5CA /* CardsLayout.swift in Sources */,
 				260C66631EB23415006C119E /* POPAnimationEvent.mm in Sources */,
