@@ -61,6 +61,7 @@ class GamingVC: UIViewController {
         return d
     }()
     
+    /// 非庄家压分
     fileprivate lazy var getCoins: MarkChoose = {
         let d : MarkChoose = MarkChoose.init(frame: CGRect.init(x: 0, y: 0, width: SW * 0.3, height: SH * 0.1))
         
@@ -86,20 +87,20 @@ class GamingVC: UIViewController {
         
         /// 抢庄
         robV.center = view.center
-        //        view.addSubview(robV)
+        view.addSubview(robV)
         
-        view.addSubview(getCoins)
+        //        view.addSubview(getCoins)
         
         /// 倒计时
         //        countDown.countDown = 60
         //        view.addSubview(countDown)
         
-//        RoomModel.shared.scoreCount = "222"
-//        
-//        let d : ScoreV = ScoreV.init(frame: CGRect.init(x: 0, y: 0, width: SW / 4, height: SH * 0.2))
-//        d.abc(abc: RoomModel.shared.scoreCount, scoreType: 2)
-//        view.addSubview(d)
-//        print(d)
+        //        RoomModel.shared.scoreCount = "222"
+        //
+        //        let d : ScoreV = ScoreV.init(frame: CGRect.init(x: 0, y: 0, width: SW / 4, height: SH * 0.2))
+        //        d.abc(abc: RoomModel.shared.scoreCount, scoreType: 2)
+        //        view.addSubview(d)
+        //        print(d)
         
     }
 }

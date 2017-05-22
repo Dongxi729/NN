@@ -65,6 +65,7 @@ class MainGameViewController: UIViewController {
         DispatchQueue.global(qos: .default).async {
             
             testServer()
+            
         }
     }
     

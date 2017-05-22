@@ -31,10 +31,13 @@ class RobRoomOwner: UIView {
     /// 抢庄事件
     @objc fileprivate func robSEL(sender : UIButton) {
         print("\((#file as NSString).lastPathComponent):(\(#line))\n")
+        
+        getRoomPower()
     }
     
     @objc fileprivate func notRobSEL(sender : UIButton) {
         print("\((#file as NSString).lastPathComponent):(\(#line))\n")
+        NotgetRoomPower()
     }
     
     
@@ -60,3 +63,4 @@ class RobRoomOwner: UIView {
         fatalError("init(coder:) has not been implemented")
     }
 }
+

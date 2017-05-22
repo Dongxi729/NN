@@ -12,14 +12,14 @@ import SwiftSocket
 /// 收到服务器发来的字符串
 var getReceiveStr : String? {
     didSet {
-        if getReceiveStr == "\0用户连接成功" {
-            print("okay")
-            
-            reportUID()
-            
-            /// 发送心跳包
-            sendHeart()
-        }
+        //        if getReceiveStr == "\0用户连接成功" {
+        //            print("okay")
+        //
+        
+        
+        /// 发送心跳包
+        sendHeart()
+        //        }
     }
 }
 
@@ -38,27 +38,39 @@ fileprivate var client: TCPClient!
 /// 用作存储收到的字节流长度
 fileprivate var bodyBytesAny:[Byte] = [Byte]()
 
+var reportUser = true
 
-/// 测试服务器
+// MARK: - 连接服务器
 func testServer() {
     
-//    client = TCPClient.init(address: "192.168.1.10", port: 2048)
+    //    client = TCPClient.init(address: "192.168.1.10", port: 2048)
     client = TCPClient.init(address: "192.168.2.11", port: 8888)
     
     switch client.connect(timeout: 1) {
         
     case .success:
         
+        
         while true {
             /// 缓存池数据
             let d = client.read(1024 * 10)
-
+            
             
             print("\((#file as NSString).lastPathComponent):(\(#line))\n",d as Any)
+            
+            
             
             /// 绩溪县,.
             if d != nil {
                 byteAnalyse(ddd: d!)
+
+                if reportUser == true {
+                    reportUID()
+                    reportUser = false
+                }
+                
+
+                
             } else {
                 print("\((#file as NSString).lastPathComponent):(\(#line))\n","连接失败")
                 /// 连接异常则关闭连接。
@@ -66,7 +78,7 @@ func testServer() {
                 return
             }
         }
-
+        
         
     case .failure( _):
         
@@ -74,17 +86,14 @@ func testServer() {
     }
 }
 
-/// 上报用户信息
+// MARK: - 上报用户信息
 func reportUID() -> Void {
-
+    
     /// 上报用户信息
     reportTypeWithData(typeInt: 254, str: "<M><Nn id=\"\(LoginModel.shared.uid!)\" tk=\"\(LoginModel.shared.token!)\"/></M>")
 }
 
 func reportTypeWithData(typeInt : Int,str : String) {
-    
-    print("\((#file as NSString).lastPathComponent):(\(#line))\n",str)
-    
     let str = str
     
     let datacc : NSMutableData = NSMutableData()
@@ -114,7 +123,7 @@ func reportTypeWithData(typeInt : Int,str : String) {
     
 }
 
-/// 发送心跳包
+// MARK: - 发送心跳包
 func sendHeart() {
     var heaerByte : [Byte] = [Byte]()
     heaerByte.append(1)
@@ -127,16 +136,13 @@ func sendHeart() {
         return
     }
     
-    
     socket.send(data: heaerByte)
     
 }
 
-/// 非庄家押分数
+// MARK: - 非庄家押分数
 func antiOwnerCoins(coins : Int) {
     reportTypeWithData(typeInt: 11, str: "<M><ty yf=\"\(coins)\"/></M>")
-    
-    
 }
 
 
@@ -146,14 +152,13 @@ func sendText(sendStr : String) {
 }
 
 
-
-/// 解散房间
+// MARK: - 解散房间
 func dismissRoomSocketEvent() -> Void {
     reportTypeWithData(typeInt: 90, str: "<M><ty ms=\"解散房间\"/></M>")
 }
 
 
-/// 上报房间类型
+// MARK: - 上报房间类型
 func reportCreateRoomType() -> Void {
     let roomType = "<M><ty gt=\"\(CreateRoomModel.shared.roomType)\" ii=\"\(CreateRoomModel.shared.rounds)\" rn=\"\(CreateRoomModel.shared.players)\" py=\"\(CreateRoomModel.shared.payType)\"/></M>"
     
@@ -161,6 +166,7 @@ func reportCreateRoomType() -> Void {
     reportTypeWithData(typeInt: 6, str: roomType)
 }
 
+// MARK: - 抢庄
 /// 不抢庄
 func getRoomPower() {
     reportTypeWithData(typeInt: 10, str: "<M><ty qz ='2'/></M>")
@@ -172,7 +178,7 @@ func NotgetRoomPower() {
 }
 
 
-/// 数据解析
+// MARK: - 数据解析
 func byteAnalyse(ddd : [Byte]) -> Void {
     /// 记录包头的值
     var headCountBytes : [Byte] = []
@@ -250,13 +256,25 @@ func bodyfun() {
     }
 }
 
+var final = NSData()
 
-/// 赋值显示操作
+// MARK: - 解析好的赋值操作
 func bytesShwoFunc(_over : [Byte]) -> Void {
     
-//    getReceiveStr = String.init(bytes: _over, encoding: String.Encoding.utf8)
-    print("\((#file as NSString).lastPathComponent):(\(#line))\n",_over)
-    print("\((#file as NSString).lastPathComponent):(\(#line))\n",getReceiveStr as Any)
+    /// 记录字节流数据
+    var bodyData = [Byte]()
+    
+    bodyData = _over
+    bodyData.remove(at: 0)
+    
+    let dd = NSData.init(bytes: bodyData, length: bodyData.count)
+    print("\((#file as NSString).lastPathComponent):(\(#line))\n",String.init(data: dd as Data, encoding: String.Encoding.utf8))
+    
+    let receiveStr = String.init(data: dd as Data, encoding: String.Encoding.utf8)
+    if (receiveStr?.contains("信息正常"))! {
+//        sendHeart()
+        TImerTool.shared.timerCount(seconds: 15)
+    }
     
 }
 
