@@ -192,16 +192,23 @@ class RoomModel: NSObject {
             /// 索引
             var index = 0
             
+            
             for ddd in self.userName {
-                nameStr.updateValue(ddd, forKey: index)
+                
+                if ddd.characters.count == 0 {
+                    nameStr.updateValue("  ", forKey: index)
+                } else {
+                    nameStr.updateValue(ddd, forKey: index)
+                }
+
                 
                 index += 1
             }
             
         }
-     
+        
         print("\((#file as NSString).lastPathComponent):(\(#line))\n",self.userName)
         print("\((#file as NSString).lastPathComponent):(\(#line))\n",nameStr)
-
+        
     }
 }
