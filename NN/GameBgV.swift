@@ -50,7 +50,7 @@ class GameBgV: CommonV {
     
     /// 是否游戏中
     var isGaming = RoomModel.shared.isGameBegin
-
+    
     
     /// 显示房间人员位置
     fileprivate lazy var P1: PeronheadInfoV = {
@@ -121,7 +121,7 @@ class GameBgV: CommonV {
         d.textAlignment = .left
         
         d.textColor = UIColor.colorWithHexString("713600")
-//        d.text = "1468"
+        //        d.text = "1468"
         
         if RoomModel.shared.roomNumber != nil {
             d.text = String(RoomModel.shared.roomNumber)
@@ -131,7 +131,7 @@ class GameBgV: CommonV {
         return d
     }()
     
-
+    
     /// 右下角视图
     fileprivate lazy var rightDownV: RightDownV = {
         let d : RightDownV = RightDownV.init(frame: CGRect.init(x: self.Width * 0.87, y: self.Height * 0.788, width: self.Width - self.Width * 0.87, height: self.Height - self.Height * 0.794))
@@ -142,7 +142,7 @@ class GameBgV: CommonV {
     }()
     
     /// 局数
-     fileprivate lazy var roundsNumLabel: UILabel = {
+    fileprivate lazy var roundsNumLabel: UILabel = {
         let d : UILabel = UILabel.init(frame: CGRect.init(x: 0, y: self.Height * 0.13, width: self.Width * 0.1, height: self.Height * 0.045))
         d.layer.borderWidth = 1
         
@@ -174,7 +174,7 @@ class GameBgV: CommonV {
     }()
     
     override func layoutSubviews() {
-
+        
         super.layoutSubviews()
         /// 根据状态显示六人牛牛还是通比牛牛
         if showGameTypeMark == 0 {
@@ -184,12 +184,12 @@ class GameBgV: CommonV {
         }
         
         /// 显示准备按钮
-        if RoomModel.shared.isGameBegin {
-            self.startGameBtn.isHidden = true
-        } else {
-            self.startGameBtn.isHidden = false
-        }
-
+        //        if RoomModel.shared.isGameBegin {
+        //            self.startGameBtn.isHidden = true
+        //        } else {
+        //            self.startGameBtn.isHidden = false
+        //        }
+        
         
         /// 根据当前人数以及游戏状态显示
         
@@ -200,24 +200,35 @@ class GameBgV: CommonV {
             
             
             P1.nameLabel.text = RoomModel.shared.nameStr[0]
-
+            
             print("\((#file as NSString).lastPathComponent):(\(#line))\n",RoomModel.shared.headUrlDic[0] as Any)
             
             DispatchQueue.main.async {
                 let headStr = RoomModel.shared.headUrlDic[0]
-
+                
                 
                 downImgWith(url: headStr!, toView: self.P1.headImg)
             }
             
             addSubview(P1)
+            
+            /// 显示准备？？？
+            if RoomModel.shared.prepareDic[0] != nil {
+                /// 取出判断值是否为true
+                let xxx = RoomModel.shared.prepareDic[0]
+                
+                if (xxx?.contains("true"))! {
+                    P1.prepareImg.isHidden = false
+                }
+            }
+            
             break
         case 2:
             P1.samllCardsShowLeftOrRight = -1
-
+            
             P2.samllCardsShowLeftOrRight = 1
             P2.isShowBottomCardLayout = true
-
+            
             
             P1.nameLabel.text = RoomModel.shared.nameStr[0]
             P2.nameLabel.text = RoomModel.shared.nameStr[1]
@@ -228,7 +239,28 @@ class GameBgV: CommonV {
                 downImgWith(url: headStr!, toView: self.P1.headImg)
                 downImgWith(url: headStr2!, toView: self.P2.headImg)
             }
-
+            
+            /// 显示准备？？？
+            if RoomModel.shared.prepareDic[0] != nil {
+                
+                /// 取出判断值是否为true
+                let xxx = RoomModel.shared.prepareDic[0]
+                
+                if (xxx?.contains("true"))! {
+                    P1.prepareImg.isHidden = false
+                }
+                
+            }
+            if RoomModel.shared.prepareDic[1] != nil {
+                
+                /// 取出判断值是否为true
+                let xxx = RoomModel.shared.prepareDic[1]
+                
+                if (xxx?.contains("true"))! {
+                    P2.prepareImg.isHidden = false
+                }
+            }
+            
             addSubview(P1)
             addSubview(P2)
             break
@@ -305,10 +337,10 @@ class GameBgV: CommonV {
         /// 是否在游戏中
         if RoomModel.shared.isGameBegin {
             /// 改变游戏1、4玩家的位置
-        
+            
             P1 = PeronheadInfoV.init(frame: CGRect.init(x: self.Width * 0.15, y: self.Height * 0.8, width: self.Width * 0.18, height: self.Height * 0.15))
             P4 = PeronheadInfoV.init(frame: CGRect.init(x: 0.6 * self.Width, y: 0.13 * self.Height, width: self.Width * 0.18, height: self.Height * 0.15))
-
+            
         } else {
             
             P1 = PeronheadInfoV.init(frame: CGRect.init(x: self.Width * 0.45, y: self.Height * 0.8, width: self.Width * 0.18, height: self.Height * 0.15))

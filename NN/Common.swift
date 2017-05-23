@@ -259,7 +259,7 @@ func spring(addToV : UIView,tovalue : CGPoint) -> Void {
 ///   - toView: 添加到的视图
 func downImgWith(url : String,toView : UIImageView) {
     
-    if url.characters.count == 0{
+    if url.characters.count == 0 || url.isEmpty {
         print("下载地址不对")
         return
     } else {

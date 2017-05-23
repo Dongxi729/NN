@@ -52,9 +52,7 @@ func testServer() {
                     reportUID()
                     reportUser = false
                 }
-                
-
-                
+            
             } else {
                 print("\((#file as NSString).lastPathComponent):(\(#line))\n","连接失败")
                 
@@ -259,8 +257,10 @@ func bytesShwoFunc(_over : [Byte]) -> Void {
     /// 类型
     let typpppp = bodyData.remove(at: 0)
     
+    
     let dd = NSData.init(bytes: bodyData, length: bodyData.count)
     print("\((#file as NSString).lastPathComponent):(\(#line))\n",String.init(data: dd as Data, encoding: String.Encoding.utf8) as Any)
+    print("\((#file as NSString).lastPathComponent):(\(#line))\n",typpppp)
     
     /// 根据类型进行处理
     if typpppp == 8 {
@@ -268,11 +268,6 @@ func bytesShwoFunc(_over : [Byte]) -> Void {
         RoomModel.shared.currentRoomPlayInfo = String.init(data: dd as Data, encoding: String.Encoding.utf8)!
     }
     
-    
-//    if (String.init(data: dd as Data, encoding: String.Encoding.utf8)?.contains("用户连接成功"))! {
-//        AppDelegate.startSendAliveMsg()
-//    }
-//    
     if typpppp == 0 {
 
         AppDelegate.startSendAliveMsg()
@@ -283,6 +278,12 @@ func bytesShwoFunc(_over : [Byte]) -> Void {
         print("\((#file as NSString).lastPathComponent):(\(#line))\n",String.init(data: dd as Data, encoding: String.Encoding.utf8))
         JoinRoomModel.shared.joinResultStr = String.init(data: dd as Data, encoding: String.Encoding.utf8)!
     }
+    
+    /// 断线重连
+    if typpppp == 255 {
+        
+    }
+    
 }
 
 /// 发送语音

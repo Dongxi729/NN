@@ -95,13 +95,17 @@ class RoomModel: NSObject {
     var nameStr = [Int : String]()
     
     /// 头像字典
-
+    
     fileprivate var headURLArray : [String] = []
     var headUrlDic = [Int : String]()
     
     /// 分数字典
     fileprivate var userScore : [String] = []
     var userScoreDic = [Int : String]()
+    
+    /// 准备
+    fileprivate var prepareArray : [String] = []
+    var prepareDic = [Int : String]()
     
     /// xml 当前游戏(还未开始的游戏房间的数据)
     var currentRoomPlayInfo : String = "" {
@@ -192,7 +196,10 @@ class RoomModel: NSObject {
         self.userName = []
         
         self.headURLArray = []
-        self.headUrlDic.removeAll()
+        self.userScore = []
+        
+    
+        self.prepareArray = []
         
         for user in _users {
             
@@ -213,7 +220,7 @@ class RoomModel: NSObject {
                 } else {
                     nameStr.updateValue(ddd, forKey: index)
                 }
-
+                
                 
                 index += 1
             }
@@ -227,7 +234,7 @@ class RoomModel: NSObject {
             
             /// 索引
             var headURLIndex = 0
-
+            
             for ddd in self.headURLArray {
                 
                 if ddd.characters.count == 0 {
@@ -258,11 +265,28 @@ class RoomModel: NSObject {
                 
                 scoreIndex += 1
             }
+            
+            ///=========================== 准备
+            let prepareStr = user.attribute(forName: "re")?.stringValue
+            
+            if prepareStr != nil {
+                self.prepareArray.append(prepareStr!)
+            }
+            var prepareIndex = 0
+            
+            for ddd in self.prepareArray {
+                
+                prepareDic.updateValue(ddd, forKey: prepareIndex)
+                
+                prepareIndex += 1
+            }
+            
         }
         
         print("\((#file as NSString).lastPathComponent):(\(#line))\n",self.userName)
         print("\((#file as NSString).lastPathComponent):(\(#line))\n",self.headUrlDic)
         print("\((#file as NSString).lastPathComponent):(\(#line))\n",self.userScoreDic)
+        print("\((#file as NSString).lastPathComponent):(\(#line))\n",self.prepareDic)
         
     }
 }

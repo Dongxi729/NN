@@ -12,7 +12,7 @@ import UIKit
 class PeronheadInfoV: UIView {
     
     /// 准备 尤模型决定
-    fileprivate lazy var prepareImg: UIImageView = {
+    lazy var prepareImg: UIImageView = {
         let d : UIImageView = UIImageView.init(frame: CGRect.init(x: 0, y: self.Height * 0.5, width: self.Width * 0.5, height: self.Height * 0.4))
         d.image = #imageLiteral(resourceName: "prepare")
         d.contentMode = UIViewContentMode.scaleAspectFit
@@ -23,7 +23,7 @@ class PeronheadInfoV: UIView {
     
     
     /// 准备 尤模型决定
-    fileprivate lazy var finishImg: UIImageView = {
+    lazy var finishImg: UIImageView = {
         let d : UIImageView = UIImageView.init(frame: CGRect.init(x: 0, y: self.Height * 0.45, width: self.Width * 0.5, height: self.Height * 0.5))
         d.image = #imageLiteral(resourceName: "complete")
         d.contentMode = UIViewContentMode.scaleAspectFit
@@ -50,13 +50,13 @@ class PeronheadInfoV: UIView {
     /// 名字
     lazy var nameLabel: UILabel = {
         let d : UILabel = UILabel.init(frame: CGRect.init(x: self.Width * 0.5, y: 2 * screenScale, width: self.Width * 0.5, height: self.Height * 0.4))
-//        d.text = "AJJJJ"
+        //        d.text = "AJJJJ"
         if !(LoginModel.shared.nickname?.isEmpty)! {
-//            d.text = LoginModel.shared.nickname
+            //            d.text = LoginModel.shared.nickname
         } else {
             d.text = "AJJJJJ"
         }
-            
+        
         d.textAlignment = .center
         d.font = UIFont(name: "SimHei", size: 8 * screenScale)
         d.textColor = UIColor.white
@@ -177,8 +177,8 @@ class PeronheadInfoV: UIView {
             }
         }
     }
-
-   
+    
+    
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -196,17 +196,18 @@ class PeronheadInfoV: UIView {
         //离线图标
         addSubview(offLineImg)
         
-        /// 庄主
-        addSubview(ownerImg)
         
+        addSubview(headImg)
         
-        ///完成
-        addSubview(finishImg)
         
         /// 准备
         addSubview(prepareImg)
         
-        addSubview(headImg)
+        ///完成
+        addSubview(finishImg)
+        
+        /// 庄主
+        addSubview(ownerImg)
         
         /// 默认隐藏
         finishImg.isHidden = true
@@ -216,9 +217,9 @@ class PeronheadInfoV: UIView {
         showWave.isHidden = true
         offLineImg.isHidden = true
         ownerImg.isHidden = true
-
+        
     }
-
+    
     /// 拼接
     ///
     /// - Parameter prefix: 图片前缀
@@ -229,26 +230,13 @@ class PeronheadInfoV: UIView {
         return names
     }
     
-
+    
     
     override func layoutSubviews() {
         super.layoutSubviews()
         
-        /// 是否准备
-        if RoomModel.shared.isPrepared {
-            self.prepareImg.isHidden = false
-        } else {
-            self.prepareImg.isHidden = true
-        }
-    
-        /// 是否完成
-        if RoomModel.shared.isCardsChoosed {
-            self.finishImg.isHidden = false
-        } else {
-            self.finishImg.isHidden = true
-        }
         
-
+        
         /// 是否开始游戏
         if RoomModel.shared.isGameBegin {
             if !isShowBottomCardLayout {
