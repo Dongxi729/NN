@@ -22,7 +22,7 @@ class GameBgV: CommonV {
     
     /// 邀请朋友
     lazy var inviteFriendsBtn: CommonBtn = {
-        let d : CommonBtn = CommonBtn.init(frame: CGRect.init(x: self.Width * 0.42, y: self.Height * 0.55, width: self.Width * 0.15, height: self.Height * 0.15))
+        let d : CommonBtn = CommonBtn.init(frame: CGRect.init(x: self.Width * 0.42, y: self.Height * 0.45, width: self.Width * 0.15, height: self.Height * 0.15))
         d.addTarget(self, action: #selector(inviteFriSEL(sender:)), for: .touchUpInside)
         d.setImage(#imageLiteral(resourceName: "intviteFriends"), for: .normal)
         return d
@@ -184,10 +184,10 @@ class GameBgV: CommonV {
         }
         
         /// 显示准备按钮
-        if showprepareBtnMark {
-            self.startGameBtn.isHidden = false
-        } else {
+        if RoomModel.shared.isGameBegin {
             self.startGameBtn.isHidden = true
+        } else {
+            self.startGameBtn.isHidden = false
         }
 
         
@@ -200,14 +200,13 @@ class GameBgV: CommonV {
             
             
             P1.nameLabel.text = RoomModel.shared.nameStr[0]
-//            downImgWith(url: RoomModel.shared.headUrlDic[0]!, toView: P1.headImg)
+
             print("\((#file as NSString).lastPathComponent):(\(#line))\n",RoomModel.shared.headUrlDic[0] as Any)
-            
-            
             
             DispatchQueue.main.async {
                 let headStr = RoomModel.shared.headUrlDic[0]
 
+                
                 downImgWith(url: headStr!, toView: self.P1.headImg)
             }
             
@@ -370,11 +369,13 @@ class GameBgV: CommonV {
         displayLink.add(to: RunLoop.main, forMode: RunLoopMode.defaultRunLoopMode)
     }
     
-    /// 开始游戏
+    /// 开始游戏说白了就是准备
     @objc fileprivate func beginGameSEL(sender : UIButton) {
         sender.isHidden = true
         print("===")
         self.cheatBtn.isHidden = true
+        
+        playPrepare()
     }
     
     /// 邀请微信好友

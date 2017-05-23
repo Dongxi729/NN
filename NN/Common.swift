@@ -258,28 +258,36 @@ func spring(addToV : UIView,tovalue : CGPoint) -> Void {
 ///   - url: 链接
 ///   - toView: 添加到的视图
 func downImgWith(url : String,toView : UIImageView) {
-    //创建URL对象
-    let url = URL(string:url)!
-    //创建请求对象
-    let request = URLRequest(url: url)
     
-    let session = URLSession.shared
-    let dataTask = session.dataTask(with: request, completionHandler: {
-        (data, response, error) -> Void in
-        if error != nil{
-            print(error.debugDescription)
-        }else{
-            //将图片数据赋予UIImage
-            let img = UIImage(data:data!)
-            
-            DispatchQueue.main.async {
-                toView.image = img
+    if url.characters.count == 0{
+        print("下载地址不对")
+        return
+    } else {
+        //创建URL对象
+        let url = URL(string:url)!
+        //创建请求对象
+        let request = URLRequest(url: url)
+        
+        let session = URLSession.shared
+        let dataTask = session.dataTask(with: request, completionHandler: {
+            (data, response, error) -> Void in
+            if error != nil{
+                print(error.debugDescription)
+            }else{
+                //将图片数据赋予UIImage
+                let img = UIImage(data:data!)
+                
+                DispatchQueue.main.async {
+                    toView.image = img
+                }
             }
-        }
-    }) as URLSessionTask
+        }) as URLSessionTask
+        
+        //使用resume方法启动任务
+        dataTask.resume()
+
+    }
     
-    //使用resume方法启动任务
-    dataTask.resume()
 }
 
 

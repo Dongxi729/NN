@@ -200,8 +200,11 @@ extension JoinRoomView : UICollectionViewDataSource,UICollectionViewDelegateFlow
                             passPord.append(ddd)
                         }
                         
+             
+                        
                         /// 加入房间接口对接
                         joinRoomWithPass(roomPass: passPord)
+                        
                     }
                 } else {
                     for index : UIView in dddd {

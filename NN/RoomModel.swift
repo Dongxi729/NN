@@ -91,13 +91,17 @@ class RoomModel: NSObject {
     var joinRoomNumber : [String] = []
     
     /// 名字字典
-    var userName : [String] = []
+    fileprivate var userName : [String] = []
     var nameStr = [Int : String]()
     
     /// 头像字典
-    /// 用户名
-    var headURLArray : [String] = []
+
+    fileprivate var headURLArray : [String] = []
     var headUrlDic = [Int : String]()
+    
+    /// 分数字典
+    fileprivate var userScore : [String] = []
+    var userScoreDic = [Int : String]()
     
     /// xml 当前游戏(还未开始的游戏房间的数据)
     var currentRoomPlayInfo : String = "" {
@@ -184,7 +188,7 @@ class RoomModel: NSObject {
         
         let _users = try! doc.nodes(forXPath: "//M/ty/u") as! [DDXMLElement]
         
-        /// 下次重写操作时清空
+        /// 重新执行,就重写操作时清空，因为持续的操作不会释放内存
         self.userName = []
         
         self.headURLArray = []
@@ -192,7 +196,7 @@ class RoomModel: NSObject {
         
         for user in _users {
             
-            /// 名字解析成字典供后面使用,展示使用
+            ///=========================== 名字解析成字典供后面使用,展示使用
             let resultStr = user.attribute(forName: "n")?.stringValue
             
             if resultStr != nil {
@@ -214,12 +218,13 @@ class RoomModel: NSObject {
                 index += 1
             }
             
-            /// 头像地址
+            ///=========================== 头像地址
             let headUrlStr = user.attribute(forName: "h")?.stringValue
             
             if headUrlStr != nil {
                 self.headURLArray.append(headUrlStr!)
             }
+            
             /// 索引
             var headURLIndex = 0
 
@@ -234,11 +239,30 @@ class RoomModel: NSObject {
                 headURLIndex += 1
             }
             
+            ///=========================== 分数
             
+            let scoreStr = user.attribute(forName: "sc")?.stringValue
+            
+            if scoreStr != nil {
+                self.userScore.append(headUrlStr!)
+            }
+            var scoreIndex = 0
+            
+            for ddd in self.userScore {
+                
+                if ddd.characters.count == 0 {
+                    userScoreDic.updateValue("----", forKey: headURLIndex)
+                } else {
+                    userScoreDic.updateValue(ddd, forKey: headURLIndex)
+                }
+                
+                scoreIndex += 1
+            }
         }
         
         print("\((#file as NSString).lastPathComponent):(\(#line))\n",self.userName)
         print("\((#file as NSString).lastPathComponent):(\(#line))\n",self.headUrlDic)
+        print("\((#file as NSString).lastPathComponent):(\(#line))\n",self.userScoreDic)
         
     }
 }

@@ -31,7 +31,7 @@ var reportUser = true
 func testServer() {
     
 //        client = TCPClient.init(address: "192.168.1.10", port: 2048)
-    client = TCPClient.init(address: "192.168.2.11", port: 8887)
+    client = TCPClient.init(address: "192.168.2.11", port: 8888)
     
     switch client.connect(timeout: 1) {
         
@@ -41,6 +41,8 @@ func testServer() {
         while true {
             /// 缓存池数据
             let d = client.read(1024 * 10)
+            
+            print("\((#file as NSString).lastPathComponent):(\(#line))\n",d)
             
             /// 绩溪县,.
             if d != nil {
@@ -55,6 +57,8 @@ func testServer() {
                 
             } else {
                 print("\((#file as NSString).lastPathComponent):(\(#line))\n","连接失败")
+                
+                FTIndicator.showError(withMessage: "连接失败")
                 /// 连接异常则关闭连接。
                 client.close()
                 return
@@ -273,6 +277,12 @@ func bytesShwoFunc(_over : [Byte]) -> Void {
 
         AppDelegate.startSendAliveMsg()
     }
+    
+    /// 房间无
+    if typpppp == 7 {
+        print("\((#file as NSString).lastPathComponent):(\(#line))\n",String.init(data: dd as Data, encoding: String.Encoding.utf8))
+        JoinRoomModel.shared.joinResultStr = String.init(data: dd as Data, encoding: String.Encoding.utf8)!
+    }
 }
 
 /// 发送语音
@@ -298,5 +308,9 @@ func sendVoice() -> Void {
         
         socket.send(data: sendData)
     }
-    
+}
+
+// MARK: - 准备
+func playPrepare() {
+    reportTypeWithData(typeInt: 9, str: "<M><ty re ='true'/></M>")
 }

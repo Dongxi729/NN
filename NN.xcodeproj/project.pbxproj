@@ -107,6 +107,7 @@
 		26A487271EC0049E00E9A091 /* UIColor+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26A487261EC0049E00E9A091 /* UIColor+Extension.swift */; };
 		26A487291EC004F400E9A091 /* UIView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26A487281EC004F400E9A091 /* UIView+Extension.swift */; };
 		26A4872C1EC0060F00E9A091 /* AbortTool.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26A4872B1EC0060F00E9A091 /* AbortTool.swift */; };
+		26B878971ED3D8BC008A24E5 /* JoinRoomModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26B878961ED3D8BC008A24E5 /* JoinRoomModel.swift */; };
 		26BC61301EB2EB6C00AE9BE1 /* CountDownBtn.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26BC612F1EB2EB6C00AE9BE1 /* CountDownBtn.swift */; };
 		26BC613A1EB4250600AE9BE1 /* CollectVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26BC61391EB4250600AE9BE1 /* CollectVC.swift */; };
 		26BC613C1EB4253B00AE9BE1 /* CollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26BC613B1EB4253B00AE9BE1 /* CollectionViewCell.swift */; };
@@ -308,6 +309,7 @@
 		26A487261EC0049E00E9A091 /* UIColor+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIColor+Extension.swift"; sourceTree = "<group>"; };
 		26A487281EC004F400E9A091 /* UIView+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIView+Extension.swift"; sourceTree = "<group>"; };
 		26A4872B1EC0060F00E9A091 /* AbortTool.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AbortTool.swift; sourceTree = "<group>"; };
+		26B878961ED3D8BC008A24E5 /* JoinRoomModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JoinRoomModel.swift; sourceTree = "<group>"; };
 		26BC612F1EB2EB6C00AE9BE1 /* CountDownBtn.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CountDownBtn.swift; sourceTree = "<group>"; };
 		26BC61391EB4250600AE9BE1 /* CollectVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CollectVC.swift; sourceTree = "<group>"; };
 		26BC613B1EB4253B00AE9BE1 /* CollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CollectionViewCell.swift; sourceTree = "<group>"; };
@@ -699,6 +701,7 @@
 				264A32D11EC598C7001405C4 /* RoomModel.swift */,
 				26315CD51ED2932F0026EC6B /* RobOwnerModel.swift */,
 				26315CDD1ED2D15F0026EC6B /* ReconnectModel.swift */,
+				26B878961ED3D8BC008A24E5 /* JoinRoomModel.swift */,
 			);
 			name = model;
 			sourceTree = "<group>";
@@ -1073,6 +1076,7 @@
 				260EBC221ECEC4F7003DD5CA /* CommonV.swift in Sources */,
 				26315CDA1ED293EA0026EC6B /* RobRoomOwner.swift in Sources */,
 				260C66721EB23415006C119E /* TransformationMatrix.cpp in Sources */,
+				26B878971ED3D8BC008A24E5 /* JoinRoomModel.swift in Sources */,
 				2657FDBE1EB9B95400B92648 /* PlayCommon.swift in Sources */,
 				260C66691EB23415006C119E /* POPCGUtils.mm in Sources */,
 				260C666A1EB23415006C119E /* POPCustomAnimation.mm in Sources */,
