@@ -251,7 +251,7 @@ class RoomModel: NSObject {
             let scoreStr = user.attribute(forName: "sc")?.stringValue
             
             if scoreStr != nil {
-                self.userScore.append(headUrlStr!)
+                self.userScore.append(scoreStr!)
             }
             var scoreIndex = 0
             

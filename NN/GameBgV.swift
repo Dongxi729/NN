@@ -173,6 +173,13 @@ class GameBgV: CommonV {
         return d
     }()
     
+    /// 非庄家压分
+    fileprivate lazy var getCoins: MarkChoose = {
+        let d : MarkChoose = MarkChoose.init(frame: CGRect.init(x: 0, y: 0, width: SW * 0.5, height: SH * 0.25))
+        
+        return d
+    }()
+    
     override func layoutSubviews() {
         
         super.layoutSubviews()
@@ -198,14 +205,12 @@ class GameBgV: CommonV {
         case 1:
             P1.samllCardsShowLeftOrRight = -1
             
-            
             P1.nameLabel.text = RoomModel.shared.nameStr[0]
             
             print("\((#file as NSString).lastPathComponent):(\(#line))\n",RoomModel.shared.headUrlDic[0] as Any)
             
             DispatchQueue.main.async {
                 let headStr = RoomModel.shared.headUrlDic[0]
-                
                 
                 downImgWith(url: headStr!, toView: self.P1.headImg)
             }
@@ -222,13 +227,19 @@ class GameBgV: CommonV {
                 }
             }
             
+            if CardNameModel.shared.P1CardsDic.count > 0 {
+                
+                print("\((#file as NSString).lastPathComponent):(\(#line))\n",CardNameModel.shared.P1CardsDic)
+                P1.imgNames = CardNameModel.shared.P1CardsDic
+                P1.addCards(cardsArray: CardNameModel.shared.P1CardsDic)
+            }
+            
             break
         case 2:
             P1.samllCardsShowLeftOrRight = -1
             
             P2.samllCardsShowLeftOrRight = 1
             P2.isShowBottomCardLayout = true
-            
             
             P1.nameLabel.text = RoomModel.shared.nameStr[0]
             P2.nameLabel.text = RoomModel.shared.nameStr[1]
@@ -250,6 +261,8 @@ class GameBgV: CommonV {
                     P1.prepareImg.isHidden = false
                 }
                 
+            } else {
+                P1.prepareImg.isHidden = true
             }
             if RoomModel.shared.prepareDic[1] != nil {
                 
@@ -259,6 +272,25 @@ class GameBgV: CommonV {
                 if (xxx?.contains("true"))! {
                     P2.prepareImg.isHidden = false
                 }
+            } else {
+                P1.prepareImg.isHidden = true
+            }
+            
+            
+            print("\((#file as NSString).lastPathComponent):(\(#line))\n","======================")
+            
+            if CardNameModel.shared.P1CardsDic.count > 0 {
+               
+                print("\((#file as NSString).lastPathComponent):(\(#line))\n",CardNameModel.shared.P1CardsDic)
+                P1.imgNames = CardNameModel.shared.P1CardsDic
+                P1.addCards(cardsArray: CardNameModel.shared.P1CardsDic)
+            }
+            
+            if CardNameModel.shared.P2CardsDic.count > 0 {
+               
+                print("\((#file as NSString).lastPathComponent):(\(#line))\n",CardNameModel.shared.P2CardsDic)
+                P1.imgNames = CardNameModel.shared.P2CardsDic
+                P1.addCards(cardsArray: CardNameModel.shared.P2CardsDic)
             }
             
             addSubview(P1)
@@ -405,9 +437,13 @@ class GameBgV: CommonV {
     @objc fileprivate func beginGameSEL(sender : UIButton) {
         sender.isHidden = true
         print("===")
-        self.cheatBtn.isHidden = true
         
+        /// 用户准备
         playPrepare()
+        
+        getCoins.center = self.center
+        /// 创建压分视图
+        addSubview(getCoins)
     }
     
     /// 邀请微信好友

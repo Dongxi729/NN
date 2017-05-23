@@ -30,8 +30,7 @@ class CreateRoomModel: NSObject {
     
     /// 房间类型
     /// 1:六人牛牛
-    /// 2:通比牛牛
-    var roomType : String = "1"
+    var roomType : String = "2"
     
     /// 局数(10、20、30)
     var rounds : String = "10"

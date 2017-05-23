@@ -453,6 +453,8 @@ class SicComonCowLayout: UIView {
         } else {
             addSubview(s)
         }
+        
+        reportCommonType()
     }
     
     

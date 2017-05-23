@@ -145,11 +145,20 @@ func joinRoomWithPass(roomPass : String) {
     reportTypeWithData(typeInt: 7, str: "<M><ty p=\"\(roomPass)\"/></M>")
 }
 
-
+    
 // MARK: - 上报房间类型
+/// 六人牛牛
 func reportCreateRoomType() -> Void {
     let roomType = "<M><ty gt=\"\(CreateRoomModel.shared.roomType)\" ii=\"\(CreateRoomModel.shared.rounds)\" rn=\"\(CreateRoomModel.shared.players)\" py=\"\(CreateRoomModel.shared.payType)\"/></M>"
     
+    /// 添加发送的文字
+    reportTypeWithData(typeInt: 6, str: roomType)
+}
+
+/// 通比牛牛
+func reportCommonType() -> Void {
+    let roomType = "<M><ty gt='' ii='5' rn='10' py='2' ss='10'/></M>"
+
     /// 添加发送的文字
     reportTypeWithData(typeInt: 6, str: roomType)
 }
@@ -265,6 +274,12 @@ func bytesShwoFunc(_over : [Byte]) -> Void {
     /// 根据类型进行处理
     if typpppp == 8 {
         
+        if testXML(analayseStr: String.init(data: dd as Data, encoding: String.Encoding.utf8)!).contains("4") {
+            print("\((#file as NSString).lastPathComponent):(\(#line))\n","xpxxxxxxxxxxxxxx")
+            
+            CardNameModel.shared.receiverStr = String.init(data: dd as Data, encoding: String.Encoding.utf8)!
+        }
+        
         RoomModel.shared.currentRoomPlayInfo = String.init(data: dd as Data, encoding: String.Encoding.utf8)!
     }
     
@@ -314,4 +329,32 @@ func sendVoice() -> Void {
 // MARK: - 准备
 func playPrepare() {
     reportTypeWithData(typeInt: 9, str: "<M><ty re ='true'/></M>")
+}
+
+
+// MARK: - 六人牛牛压分
+func markScore(reportType : String) {
+//    <M><ty yf ="5"/></M>p=\"\(roomPass)\"
+    reportTypeWithData(typeInt: 11, str: "<M><ty yf=\"\(reportType)\"></M>")
+}
+
+
+/// 只能解析是不是该类型
+func testXML(analayseStr : String) -> String{
+    //获取xml文件内容
+    let data = analayseStr.data(using: String.Encoding.utf8)
+    
+    //构造XML文档
+    let doc = try! DDXMLDocument(data: data!, options:0)
+    
+    
+    let users = try! doc.nodes(forXPath: "//M/ty") as! [DDXMLElement]
+    
+    var typeStr : String?
+    
+    for user in users {
+        typeStr = user.attribute(forName: "type")?.stringValue!
+        
+    }
+    return typeStr!
 }

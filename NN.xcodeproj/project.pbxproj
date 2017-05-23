@@ -108,6 +108,7 @@
 		26A487291EC004F400E9A091 /* UIView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26A487281EC004F400E9A091 /* UIView+Extension.swift */; };
 		26A4872C1EC0060F00E9A091 /* AbortTool.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26A4872B1EC0060F00E9A091 /* AbortTool.swift */; };
 		26B878971ED3D8BC008A24E5 /* JoinRoomModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26B878961ED3D8BC008A24E5 /* JoinRoomModel.swift */; };
+		26B878991ED45A49008A24E5 /* CardNameModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26B878981ED45A49008A24E5 /* CardNameModel.swift */; };
 		26BC61301EB2EB6C00AE9BE1 /* CountDownBtn.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26BC612F1EB2EB6C00AE9BE1 /* CountDownBtn.swift */; };
 		26BC613A1EB4250600AE9BE1 /* CollectVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26BC61391EB4250600AE9BE1 /* CollectVC.swift */; };
 		26BC613C1EB4253B00AE9BE1 /* CollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26BC613B1EB4253B00AE9BE1 /* CollectionViewCell.swift */; };
@@ -310,6 +311,7 @@
 		26A487281EC004F400E9A091 /* UIView+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIView+Extension.swift"; sourceTree = "<group>"; };
 		26A4872B1EC0060F00E9A091 /* AbortTool.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AbortTool.swift; sourceTree = "<group>"; };
 		26B878961ED3D8BC008A24E5 /* JoinRoomModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JoinRoomModel.swift; sourceTree = "<group>"; };
+		26B878981ED45A49008A24E5 /* CardNameModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CardNameModel.swift; sourceTree = "<group>"; };
 		26BC612F1EB2EB6C00AE9BE1 /* CountDownBtn.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CountDownBtn.swift; sourceTree = "<group>"; };
 		26BC61391EB4250600AE9BE1 /* CollectVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CollectVC.swift; sourceTree = "<group>"; };
 		26BC613B1EB4253B00AE9BE1 /* CollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CollectionViewCell.swift; sourceTree = "<group>"; };
@@ -702,6 +704,7 @@
 				26315CD51ED2932F0026EC6B /* RobOwnerModel.swift */,
 				26315CDD1ED2D15F0026EC6B /* ReconnectModel.swift */,
 				26B878961ED3D8BC008A24E5 /* JoinRoomModel.swift */,
+				26B878981ED45A49008A24E5 /* CardNameModel.swift */,
 			);
 			name = model;
 			sourceTree = "<group>";
@@ -1082,6 +1085,7 @@
 				260C666A1EB23415006C119E /* POPCustomAnimation.mm in Sources */,
 				26D54B331EC2C50500119FAA /* AvdioTool.swift in Sources */,
 				264A32D21EC598C7001405C4 /* RoomModel.swift in Sources */,
+				26B878991ED45A49008A24E5 /* CardNameModel.swift in Sources */,
 				26CFB6E11EC2FC2E00327748 /* CreateV.swift in Sources */,
 				26D54B151EC2C0E700119FAA /* VoicieControl.swift in Sources */,
 				26BC613A1EB4250600AE9BE1 /* CollectVC.swift in Sources */,

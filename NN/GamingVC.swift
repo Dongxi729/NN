@@ -61,12 +61,7 @@ class GamingVC: UIViewController {
         return d
     }()
     
-    /// 非庄家压分
-    fileprivate lazy var getCoins: MarkChoose = {
-        let d : MarkChoose = MarkChoose.init(frame: CGRect.init(x: 0, y: 0, width: SW * 0.3, height: SH * 0.1))
-        
-        return d
-    }()
+
     
     override func viewDidLoad() {
         super.viewDidLoad()

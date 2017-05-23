@@ -129,6 +129,9 @@ class PeronheadInfoV: UIView {
         return d
     }()
     
+    /// 获取的图片名字
+    var imgNames : [Int : String] = [:]
+    
     /// 显示波形的标识
     var showPeopletTalkMark = false
     
@@ -153,26 +156,22 @@ class PeronheadInfoV: UIView {
     
     
     /// 摆放纸牌
-    private func addCards(cardsArray : [String]) -> Void {
-        var dixName = [Int : String]()
+    func addCards(cardsArray : [Int : String]) -> Void {
         
-        var index : Int = 0
+        print("\((#file as NSString).lastPathComponent):(\(#line))\n",cardsArray)
         
-        for aaa in cardsArray {
-            print(index)
+        for (index,value) in cardsArray {
             
-            dixName.updateValue(aaa, forKey: index)
+            
             
             if isShowBottomCardLayout == false {
                 backCardsLayout = UIImageView.init(frame: CGRect.init(x: CGFloat(self.samllCardsShowLeftOrRight) + CGFloat(index) * self.Width * 0.15 , y: 2 * screenScale, width: self.Width * 0.3, height: self.Height - screenScale * 3))
+                
             } else {
                 backCardsLayout = UIImageView.init(frame: CGRect.init(x: self.Width * CGFloat(self.samllCardsShowLeftOrRight) + CGFloat(index) * self.Width * 0.15 , y: 2 * screenScale, width: self.Width * 0.3, height: self.Height - screenScale * 3))
                 
-                print(dixName[index] as Any)
-                
-                backCardsLayout.image = UIImage.init(named: dixName[index]!)
-                
-                index += 1
+                backCardsLayout.image = UIImage.init(named:value)
+
                 addSubview(backCardsLayout)
             }
         }
@@ -235,15 +234,16 @@ class PeronheadInfoV: UIView {
     override func layoutSubviews() {
         super.layoutSubviews()
         
-        
-        
         /// 是否开始游戏
         if RoomModel.shared.isGameBegin {
+            
+            print("\((#file as NSString).lastPathComponent):(\(#line))\n","======================")
             if !isShowBottomCardLayout {
+                bigCardLayout.addCards(cardsArray: imgNames)
                 addSubview(bigCardLayout)
             }
             /// 尚需修改
-            addCards(cardsArray: contactName(prefix: "pa"))
+            addCards(cardsArray: imgNames)
         }
         
         /// 是否显示抢庄
