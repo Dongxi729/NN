@@ -11,6 +11,21 @@ import UIKit
 // MARK: - 游戏控制器
 class GamingVC: UIViewController {
     
+    
+    var closeGameV : String = "" {
+        didSet{
+            print("closeBgV")
+            
+        }
+    }
+    
+    
+    func dismisSelf() -> Void {
+        self.bgV.removeFromSuperview()
+    }
+    
+    static let shared = GamingVC()
+    
     fileprivate lazy var addChartBtn: UIButton = {
         let d : UIButton = UIButton.init(frame: CGRect(x: 0, y: 0, width: 100, height: 100))
         d.backgroundColor = UIColor.randomColor()
@@ -48,11 +63,7 @@ class GamingVC: UIViewController {
         
         return d
     }()
-    
-    override func viewWillLayoutSubviews() {
-        super.viewWillLayoutSubviews()
-        
-    }
+
     
     //////////// 抢庄
     fileprivate lazy var robV: RobRoomOwner = {

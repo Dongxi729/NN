@@ -91,29 +91,10 @@ class CardsLayout : CommonV {
         }
     }
     
-//    private func addCards(cardsArray : [String]) -> Void {
-//        var dixName = [Int : String]()
-//        
-//        var index : Int = 0
-//        
-//        for aaa in cardsArray {
-//            print(index)
-//            
-//            dixName.updateValue(aaa, forKey: index)
-//            
-//            cardImgs = UIImageView.init(frame: CGRect.init(x: CGFloat(index) * self.Width * 0.15 , y: 2 * screenScale, width: self.Width * 0.15, height: self.Height - screenScale * 3))
-//            
-//            cardImgs.image = UIImage.init(named: dixName[index]!)
-//            
-//            index += 1
-//            addSubview(cardImgs)
-//        }
-//    }
-    
+
     override init(frame: CGRect) {
         super.init(frame: frame)
         addSubview(cardsBgV)
-//        addCards(cardsArray: contactName(prefix: "pa"))
         
         addSubview(alertBtn)
         addSubview(showCardBtn)

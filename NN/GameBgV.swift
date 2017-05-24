@@ -180,6 +180,8 @@ class GameBgV: CommonV {
         return d
     }()
     
+    
+    
     override func layoutSubviews() {
         
         super.layoutSubviews()

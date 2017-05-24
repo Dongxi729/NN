@@ -147,12 +147,6 @@ class CardNameModel: NSObject {
         print(P6CardsDic)
         
         RoomModel.shared.isGameBegin = true
-        
-        
-        let c = CardsLayout.init(frame: (UIApplication.shared.keyWindow?.rootViewController?.view.bounds)!)
-        c.addCards(cardsArray: P1CardsDic)
-        UIApplication.shared.keyWindow?.rootViewController?.view.addSubview(c)
-        
     }
     
     

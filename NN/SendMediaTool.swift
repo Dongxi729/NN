@@ -271,6 +271,8 @@ func bytesShwoFunc(_over : [Byte]) -> Void {
     print("\((#file as NSString).lastPathComponent):(\(#line))\n",String.init(data: dd as Data, encoding: String.Encoding.utf8) as Any)
     print("\((#file as NSString).lastPathComponent):(\(#line))\n",typpppp)
     
+
+    
     /// 根据类型进行处理
     if typpppp == 8 {
         
@@ -297,6 +299,19 @@ func bytesShwoFunc(_over : [Byte]) -> Void {
     /// 断线重连
     if typpppp == 255 {
         
+    }
+    
+    /// 解散房间
+    if typpppp == 90 {
+        if AnylasyseWithKey(analayseStr: String.init(data: dd as Data, encoding: String.Encoding.utf8)!, withSepcifiedKey: "ms").contains("解菜房间") {
+            print("解散房间~~~~")
+
+            DispatchQueue.main.async {
+                
+                UIApplication.shared.keyWindow?.rootViewController?.view.subviews.first?.removeFromSuperview()
+                UIApplication.shared.keyWindow?.rootViewController?.view.removeFromSuperview()
+            }
+        }
     }
     
 }
@@ -354,6 +369,26 @@ func testXML(analayseStr : String) -> String{
     
     for user in users {
         typeStr = user.attribute(forName: "type")?.stringValue!
+        
+    }
+    return typeStr!
+}
+
+/// 只能解析是不是该类型
+func AnylasyseWithKey(analayseStr : String,withSepcifiedKey : String) -> String{
+    //获取xml文件内容
+    let data = analayseStr.data(using: String.Encoding.utf8)
+    
+    //构造XML文档
+    let doc = try! DDXMLDocument(data: data!, options:0)
+    
+    
+    let users = try! doc.nodes(forXPath: "//M/ty") as! [DDXMLElement]
+    
+    var typeStr : String?
+    
+    for user in users {
+        typeStr = user.attribute(forName: withSepcifiedKey)?.stringValue!
         
     }
     return typeStr!
