@@ -84,7 +84,15 @@ class GameBgV: CommonV {
         return d
     }()
     
-    
+    ////////////////////////////////////////////////////////
+    /// 测试用
+    lazy var backToHoll: UIButton = {
+        let d : UIButton = UIButton.init(frame: CGRect.init(x: 0, y: self.Height * 0.5, width: 50, height: 50))
+        d.backgroundColor = UIColor.randomColor()
+        d.addTarget(self, action: #selector(backTohollSEL), for: .touchUpInside)
+        d.setTitle("返回大厅", for: .normal)
+        return d
+    }()
     
     /// 右上角按钮组
     fileprivate lazy var rightV: RightV = {
@@ -379,9 +387,20 @@ class GameBgV: CommonV {
         }
     }
     
+    /// 返回大厅
+    @objc fileprivate func backTohollSEL() {
+        DispatchQueue.main.async {
+            
+            UIApplication.shared.keyWindow?.rootViewController?.view.subviews.first?.removeFromSuperview()
+            UIApplication.shared.keyWindow?.rootViewController?.view.removeFromSuperview()
+        }
+    }
     
     override init(frame: CGRect) {
         super.init(frame: frame)
+        
+  
+        
         addSubview(bgVImg)
         addSubview(startGameBtn)
         
@@ -409,6 +428,9 @@ class GameBgV: CommonV {
         addSubview(rightDownV)
         
         addSubview(inviteFriendsBtn)
+        
+        /// 测试按钮
+        addSubview(backToHoll)
     }
     
     required init?(coder aDecoder: NSCoder) {
