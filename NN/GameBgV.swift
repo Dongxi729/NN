@@ -184,6 +184,9 @@ class GameBgV: CommonV {
     
     override func layoutSubviews() {
         
+        
+        
+        
         super.layoutSubviews()
         /// 根据状态显示六人牛牛还是通比牛牛
         if showGameTypeMark == 0 {
@@ -191,13 +194,7 @@ class GameBgV: CommonV {
         } else {
             self.gameType.image = #imageLiteral(resourceName: "commonCow")
         }
-        
-        /// 显示准备按钮
-        //        if RoomModel.shared.isGameBegin {
-        //            self.startGameBtn.isHidden = true
-        //        } else {
-        //            self.startGameBtn.isHidden = false
-        //        }
+
         
         
         /// 根据当前人数以及游戏状态显示

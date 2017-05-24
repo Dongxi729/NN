@@ -147,6 +147,11 @@ class CardNameModel: NSObject {
         print(P6CardsDic)
         
         RoomModel.shared.isGameBegin = true
+        
+        UIApplication.shared.keyWindow?.rootViewController?.view.layoutSubviews()
+        
+        print("\((#file as NSString).lastPathComponent):(\(#line))\n",UIApplication.shared.keyWindow?.rootViewController?.view as Any as Any)
+        print("\((#file as NSString).lastPathComponent):(\(#line))\n")
     }
     
     

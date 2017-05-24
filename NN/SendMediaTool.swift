@@ -268,7 +268,6 @@ func bytesShwoFunc(_over : [Byte]) -> Void {
     
     
     let dd = NSData.init(bytes: bodyData, length: bodyData.count)
-    print("\((#file as NSString).lastPathComponent):(\(#line))\n",String.init(data: dd as Data, encoding: String.Encoding.utf8) as Any)
     print("\((#file as NSString).lastPathComponent):(\(#line))\n",typpppp)
     
 
@@ -285,14 +284,20 @@ func bytesShwoFunc(_over : [Byte]) -> Void {
         RoomModel.shared.currentRoomPlayInfo = String.init(data: dd as Data, encoding: String.Encoding.utf8)!
     }
     
+    if typpppp == 254 {
+        if AnylasyseWithKey(analayseStr:String.init(data: dd as Data, encoding: String.Encoding.utf8)! , secondNode: "Nn", withSepcifiedKey: "ms").contains("信息正常") {
+            print("join success~")
+            FTIndicator.showSuccess(withMessage: "登陆成功")
+        }
+    }
+    
     if typpppp == 0 {
-
         AppDelegate.startSendAliveMsg()
     }
     
     /// 房间无
     if typpppp == 7 {
-        print("\((#file as NSString).lastPathComponent):(\(#line))\n",String.init(data: dd as Data, encoding: String.Encoding.utf8))
+    
         JoinRoomModel.shared.joinResultStr = String.init(data: dd as Data, encoding: String.Encoding.utf8)!
     }
     
@@ -303,7 +308,7 @@ func bytesShwoFunc(_over : [Byte]) -> Void {
     
     /// 解散房间
     if typpppp == 90 {
-        if AnylasyseWithKey(analayseStr: String.init(data: dd as Data, encoding: String.Encoding.utf8)!, withSepcifiedKey: "ms").contains("解菜房间") {
+        if AnylasyseWithKey(analayseStr: String.init(data: dd as Data, encoding: String.Encoding.utf8)!, secondNode: "ty", withSepcifiedKey: "ms").contains("解菜房间") {
             print("解散房间~~~~")
 
             DispatchQueue.main.async {
@@ -314,6 +319,16 @@ func bytesShwoFunc(_over : [Byte]) -> Void {
         }
     }
     
+    /// 创建房间
+    if typpppp == 6 {
+        print("\((#file as NSString).lastPathComponent):(\(#line))\n",AnylasyseWithKey(analayseStr: String.init(data: dd as Data, encoding: String.Encoding.utf8)!, secondNode: "ty", withSepcifiedKey: "ms"))
+        
+        if AnylasyseWithKey(analayseStr: String.init(data: dd as Data, encoding: String.Encoding.utf8)!, secondNode: "ty", withSepcifiedKey: "su").contains("false") {
+            FTIndicator.showError(withMessage: AnylasyseWithKey(analayseStr: String.init(data: dd as Data, encoding: String.Encoding.utf8)!, secondNode: "ty", withSepcifiedKey: "ms"))
+        } else if AnylasyseWithKey(analayseStr: String.init(data: dd as Data, encoding: String.Encoding.utf8)!, secondNode: "ty", withSepcifiedKey: "su").contains("true") {
+                FTIndicator.showSuccess(withMessage: AnylasyseWithKey(analayseStr: String.init(data: dd as Data, encoding: String.Encoding.utf8)!, secondNode: "ty", withSepcifiedKey: "ms"))
+        }
+    }
 }
 
 /// 发送语音
@@ -375,7 +390,7 @@ func testXML(analayseStr : String) -> String{
 }
 
 /// 只能解析是不是该类型
-func AnylasyseWithKey(analayseStr : String,withSepcifiedKey : String) -> String{
+func AnylasyseWithKey(analayseStr : String,secondNode : String,withSepcifiedKey : String) -> String{
     //获取xml文件内容
     let data = analayseStr.data(using: String.Encoding.utf8)
     
@@ -383,7 +398,7 @@ func AnylasyseWithKey(analayseStr : String,withSepcifiedKey : String) -> String{
     let doc = try! DDXMLDocument(data: data!, options:0)
     
     
-    let users = try! doc.nodes(forXPath: "//M/ty") as! [DDXMLElement]
+    let users = try! doc.nodes(forXPath: "//M/\(secondNode)") as! [DDXMLElement]
     
     var typeStr : String?
     

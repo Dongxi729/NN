@@ -62,8 +62,6 @@ class CreateRoomModel: NSObject {
         let data = xmlStr.data(using: String.Encoding.utf8)
         
         //构造XML文档
-        
-        
         do {
             let doc = try DDXMLDocument(data: data!, options:0)
             

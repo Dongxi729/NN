@@ -33,7 +33,6 @@ class RoomModel: NSObject {
             DispatchQueue.main.async {
                 UIApplication.shared.keyWindow?.rootViewController = GamingVC()
             }
-            
         }
     }
     
@@ -169,6 +168,8 @@ class RoomModel: NSObject {
             
             /// 拟定开好房间的总人数
             self.limitedPlayersNum = Int(user.attribute(forName: "rn")!.stringValue!)!
+            
+            
             
             print("====房间号",self.roomNumber)
             
