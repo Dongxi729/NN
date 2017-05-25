@@ -161,7 +161,8 @@ class RoomModel: NSObject {
             self.gameRounds = user.attribute(forName: "ii")!.stringValue!
             
             /// 当前局数
-            self.currentRounds = user.attribute(forName: "tii")!.stringValue!
+            self.currentRounds = String(Int(user.attribute(forName: "tii")!.stringValue!)! + 1)
+            
             
             /// 当前游戏人数
             self.currentPersonInRoom = Int(user.attribute(forName: "rnw")!.stringValue!)!

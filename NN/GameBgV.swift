@@ -290,9 +290,11 @@ class GameBgV: CommonV {
                 
                 P1.imgNames = CardNameModel.shared.currentUbackCardsName
                 P1.addCards(cardsArray: CardNameModel.shared.currentUbackCardsName)
+                
+                print("\((#file as NSString).lastPathComponent):(\(#line))\n",CardNameModel.shared.currentUbackCardsName)
             }
             
-            if CardNameModel.shared.P2CardsDic.count > 0 {
+            if CardNameModel.shared.P2Array.count > 0 {
                 
                 P2.imgNames = CardNameModel.shared.backCardsName
                 P2.addCards(cardsArray: CardNameModel.shared.backCardsName)
@@ -360,16 +362,18 @@ class GameBgV: CommonV {
             if CardNameModel.shared.currentUbackCardsName.count > 0 {
                 
                 P1.imgNames = CardNameModel.shared.currentUbackCardsName
-                P1.addCards(cardsArray: CardNameModel.shared.P1CardsDic)
+                P1.addCards(cardsArray: CardNameModel.shared.P1Array)
+                
+                
             }
             
-            if CardNameModel.shared.P2CardsDic.count > 0 {
+            if CardNameModel.shared.P2Array.count > 0 {
                 
                 P2.imgNames = CardNameModel.shared.backCardsName
                 P2.addCards(cardsArray: CardNameModel.shared.backCardsName)
             }
             
-            if CardNameModel.shared.P3CardsDic.count > 0 {
+            if CardNameModel.shared.P3Array.count > 0 {
                 
                 P3.imgNames = CardNameModel.shared.backCardsName
                 P3.addCards(cardsArray: CardNameModel.shared.backCardsName)

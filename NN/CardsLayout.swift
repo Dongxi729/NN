@@ -79,24 +79,23 @@ class CardsLayout : CommonV {
     /// 摆放纸牌
     
     /// [3: "pb3", 2: "pbJ", 4: "pc3", 0: "pb4", 1: "pa7"]
-    func addCards(cardsArray : [Int : String]) -> Void {
+    func addCards(cardsArray : [String]) -> Void {
         
         var dixName = cardsArray
         
         var index : Int = 0
         
-        for (_,value) in cardsArray {
+        for value in cardsArray {
             print(index)
             
-            dixName.updateValue(value, forKey: index)
+//            dixName.updateValue(value, forKey: index)
             
             cardImgs = UIImageView.init(frame: CGRect.init(x: CGFloat(index) * self.Width * 0.15 , y: 2 * screenScale, width: self.Width * 0.15, height: self.Height - screenScale * 3))
             
-            cardImgs.image = UIImage.init(named: dixName[index]!)
+            cardImgs.image = UIImage.init(named: value)
             
             index += 1
             addSubview(cardImgs)
-            
         }
     }
     

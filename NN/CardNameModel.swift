@@ -18,8 +18,7 @@ class CardNameModel: NSObject {
     
     static let shared = CardNameModel()
     
-    /// 处理好的纸牌的字典 [ 索引 : 图片名字 ]
-    var P1CardsDic : [Int : String] = [:] {
+    var P1Array : [String] = [] {
         didSet {
             
             print("\((#file as NSString).lastPathComponent):(\(#line))\n")
@@ -33,24 +32,22 @@ class CardNameModel: NSObject {
             }
         }
     }
-    
-    
-    var P2CardsDic : [Int : String] = [:]
-    var P3CardsDic : [Int : String] = [:]
-    var P4CardsDic : [Int : String] = [:]
-    var P5CardsDic : [Int : String] = [:]
-    var P6CardsDic : [Int : String] = [:]
+
+    var P2Array : [String] = []
+    var P3Array : [String] = []
+    var P4Array : [String] = []
+    var P5Array : [String] = []
     
     // 背面纸牌
-    var backCardsName : [Int : String] = [0 : "p0",
-                                          1 : "p0",
-                                          2 : "p0",
-                                          3 : "p0",
-                                          4 : "p0",
-                                          5 : "p0"]
+    var backCardsName : [String] = ["p0",
+                                          "p0",
+                                          "p0",
+                                          "p0",
+                                          "p0",
+                                          "p0"]
     
     // 当前玩家默认隐藏2张
-    var currentUbackCardsName : [Int : String] = [:]
+    var currentUbackCardsName : [String] = []
     
     var receiverStr : String = "" {
         didSet {
@@ -62,12 +59,8 @@ class CardNameModel: NSObject {
     
     fileprivate func xmlAnalyse(xmlStr : String) -> Void {
         
-        P1CardsDic = [:]
-        P2CardsDic = [:]
-        P3CardsDic = [:]
-        P4CardsDic = [:]
-        P5CardsDic = [:]
-        currentUbackCardsName = [:]
+
+        currentUbackCardsName = []
         
         P1CardsArrray = []
         P2CardsArrray = []
@@ -109,86 +102,82 @@ class CardNameModel: NSObject {
             }
         }
         
-        // P1牌
+        
         if P1CardsArrray.count > 0 {
-            P1CardsDic.updateValue(P1CardsArrray[0], forKey: 0)
-            P1CardsDic.updateValue(P2CardsArrray[0], forKey: 1)
-            P1CardsDic.updateValue(P3CardsArrray[0], forKey: 2)
-            P1CardsDic.updateValue(P4CardsArrray[0], forKey: 3)
-            P1CardsDic.updateValue(P5CardsArrray[0], forKey: 4)
+            P1Array.append(P1CardsArrray[0])
+            P1Array.append(P2CardsArrray[0])
+            P1Array.append(P3CardsArrray[0])
+            P1Array.append(P4CardsArrray[0])
+            P1Array.append(P5CardsArrray[0])
         }
         
-        // P2牌
         if P1CardsArrray.count > 1 {
-            P2CardsDic.updateValue(P1CardsArrray[1], forKey: 0)
-            P2CardsDic.updateValue(P2CardsArrray[1], forKey: 1)
-            P2CardsDic.updateValue(P3CardsArrray[1], forKey: 2)
-            P2CardsDic.updateValue(P4CardsArrray[1], forKey: 3)
-            P2CardsDic.updateValue(P5CardsArrray[1], forKey: 4)
+            P2Array.append(P1CardsArrray[1])
+            P2Array.append(P2CardsArrray[1])
+            P2Array.append(P3CardsArrray[1])
+            P2Array.append(P4CardsArrray[1])
+            P2Array.append(P5CardsArrray[1])
         }
         
-        // P3牌
         if P1CardsArrray.count > 2 {
-            P3CardsDic.updateValue(P1CardsArrray[2], forKey: 0)
-            P3CardsDic.updateValue(P2CardsArrray[2], forKey: 1)
-            P3CardsDic.updateValue(P3CardsArrray[2], forKey: 2)
-            P3CardsDic.updateValue(P4CardsArrray[2], forKey: 3)
-            P3CardsDic.updateValue(P5CardsArrray[2], forKey: 4)
+            P3Array.append(P1CardsArrray[2])
+            P3Array.append(P2CardsArrray[2])
+            P3Array.append(P3CardsArrray[2])
+            P3Array.append(P4CardsArrray[2])
+            P3Array.append(P5CardsArrray[2])
         }
         
-        // P4牌
         if P1CardsArrray.count > 3 {
-            P4CardsDic.updateValue(P1CardsArrray[3], forKey: 0)
-            P4CardsDic.updateValue(P2CardsArrray[3], forKey: 1)
-            P4CardsDic.updateValue(P3CardsArrray[3], forKey: 2)
-            P4CardsDic.updateValue(P4CardsArrray[3], forKey: 3)
-            P4CardsDic.updateValue(P5CardsArrray[3], forKey: 4)
+            P4Array.append(P1CardsArrray[3])
+            P4Array.append(P2CardsArrray[3])
+            P4Array.append(P3CardsArrray[3])
+            P4Array.append(P4CardsArrray[3])
+            P4Array.append(P5CardsArrray[3])
         }
         
-        // P5牌
         if P1CardsArrray.count > 4 {
-            P5CardsDic.updateValue(P1CardsArrray[4], forKey: 0)
-            P5CardsDic.updateValue(P2CardsArrray[4], forKey: 1)
-            P5CardsDic.updateValue(P3CardsArrray[4], forKey: 2)
-            P5CardsDic.updateValue(P4CardsArrray[4], forKey: 3)
-            P5CardsDic.updateValue(P5CardsArrray[4], forKey: 4)
+            P5Array.append(P1CardsArrray[4])
+            P5Array.append(P2CardsArrray[4])
+            P5Array.append(P3CardsArrray[4])
+            P5Array.append(P4CardsArrray[4])
+            P5Array.append(P5CardsArrray[4])
         }
         
-        // P6牌
-        if P1CardsArrray.count > 5 {
-            P6CardsDic.updateValue(P1CardsArrray[5], forKey: 0)
-            P6CardsDic.updateValue(P2CardsArrray[5], forKey: 1)
-            P6CardsDic.updateValue(P3CardsArrray[5], forKey: 2)
-            P6CardsDic.updateValue(P4CardsArrray[5], forKey: 3)
-            P6CardsDic.updateValue(P5CardsArrray[5], forKey: 4)
-        }
-        
-        
-        print(P1CardsDic)
-        print(P2CardsDic)
-        print(P3CardsDic)
-        print(P4CardsDic)
-        print(P5CardsDic)
-        print(P6CardsDic)
-        
-        /// 处理的纸牌名称
-        P1CardsDic = resoveCardsName(cards: P1CardsDic)
-        P2CardsDic = resoveCardsName(cards: P2CardsDic)
-        P3CardsDic = resoveCardsName(cards: P3CardsDic)
-        P4CardsDic = resoveCardsName(cards: P4CardsDic)
-        P5CardsDic = resoveCardsName(cards: P5CardsDic)
-        P6CardsDic = resoveCardsName(cards: P5CardsDic)
         
         /// 游戏状态改为开始
         RoomModel.shared.isGameBegin = true
         
-        /// 当前玩家默认只显示前三张纸牌
-        currentUbackCardsName = [0 : P1CardsDic[0]!,
-                                 1 : P1CardsDic[1]!,
-                                 2 : P1CardsDic[2]!,
-                                 3 : "p0",
-                                 4 : "p0"]
+        print(P1Array)
+        print(P2Array)
+        print(P3Array)
+        print(P4Array)
+        print(P5Array)
+
         
+        
+        P1Array = getImgName(sss: P1Array)
+        P2Array = getImgName(sss: P2Array)
+        P3Array = getImgName(sss: P3Array)
+        P4Array = getImgName(sss: P4Array)
+        P5Array = getImgName(sss: P5Array)
+        
+        print(P1Array)
+        print(P2Array)
+        print(P3Array)
+        print(P4Array)
+        print(P5Array)
+        
+        /// 当前玩家默认只显示前三张纸牌
+        currentUbackCardsName = [P1Array[0],
+                                 P1Array[1],
+                                 P1Array[2],
+                                 "p0",
+                                 "p0"]
+        
+
+        
+        
+        print("\((#file as NSString).lastPathComponent):(\(#line))\n",P2Array)
     }
     
     
@@ -196,42 +185,46 @@ class CardNameModel: NSObject {
     ///
     /// - Parameter cards: 传入要纸牌的名字
     /// - Returns: 带有图片名称的纸牌
-    func resoveCardsName(cards : [Int : String]) -> [Int : String] {
+    func getImgName(sss : [String]) -> [String] {
+        
         var cardsName : String!
         
-        var cardsNeDic : [Int : String] = [:]
+        var cardsNeArray : [String] = []
         
-        for (index,imgName) in cards {
+        
+        for imgName in sss {
             
             cardsName = imgName
+            
             /// 处理♦
             if imgName.contains("♦") {
                 
                 cardsName = (cardsName as NSString).replacingOccurrences(of: "♦$", with: "pa")
+                cardsNeArray.append(cardsName)
             }
             
             /// 处理♣
             if imgName.contains("♣") {
                 
                 cardsName = (cardsName as NSString).replacingOccurrences(of: "♣$", with: "pd")
+                cardsNeArray.append(cardsName)
             }
             
             /// 处理♥
             if imgName.contains("♥") {
                 
                 cardsName = (cardsName as NSString).replacingOccurrences(of: "♥$", with: "pc")
+                cardsNeArray.append(cardsName)
             }
             
             /// 处理♠
             if imgName.contains("♠") {
                 
                 cardsName = (cardsName as NSString).replacingOccurrences(of: "♠$", with: "pb")
+                cardsNeArray.append(cardsName)
             }
-            
-            cardsNeDic.updateValue(cardsName, forKey: index)
-            
         }
         
-        return cardsNeDic
+        return cardsNeArray
     }
 }

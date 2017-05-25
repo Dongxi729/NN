@@ -130,7 +130,7 @@ class PeronheadInfoV: UIView {
     }()
     
     /// 获取的图片名字
-    var imgNames : [Int : String] = [:]
+    var imgNames : [String] = []
     
     /// 显示波形的标识
     var showPeopletTalkMark = false
@@ -156,11 +156,13 @@ class PeronheadInfoV: UIView {
     
     
     /// 摆放纸牌
-    func addCards(cardsArray : [Int : String]) -> Void {
+    func addCards(cardsArray : [String]) -> Void {
         
         print("\((#file as NSString).lastPathComponent):(\(#line))\n",cardsArray)
         
-        for (index,value) in cardsArray {
+        var index = 0
+        for value in cardsArray {
+            
             
             if isShowBottomCardLayout == false {
                 backCardsLayout = UIImageView.init(frame: CGRect.init(x: CGFloat(self.samllCardsShowLeftOrRight) + CGFloat(index) * self.Width * 0.15 , y: 2 * screenScale, width: self.Width * 0.3, height: self.Height - screenScale * 3))
@@ -169,9 +171,12 @@ class PeronheadInfoV: UIView {
                 backCardsLayout = UIImageView.init(frame: CGRect.init(x: self.Width * CGFloat(self.samllCardsShowLeftOrRight) + CGFloat(index) * self.Width * 0.15 , y: 2 * screenScale, width: self.Width * 0.3, height: self.Height - screenScale * 3))
                 
                 backCardsLayout.image = UIImage.init(named:value)
+                
+                index += 1
 
                 addSubview(backCardsLayout)
             }
+            
         }
     }
     

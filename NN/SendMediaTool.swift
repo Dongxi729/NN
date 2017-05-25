@@ -42,7 +42,7 @@ func testServer() {
             /// 缓存池数据
             let d = client.read(1024 * 10)
             
-            print("\((#file as NSString).lastPathComponent):(\(#line))\n",d as Any)
+//            print("\((#file as NSString).lastPathComponent):(\(#line))\n",d as Any)
             
             /// 绩溪县,.
             if d != nil {
@@ -325,27 +325,24 @@ func bytesShwoFunc(_over : [Byte]) -> Void {
             }
             
             /// 清空roomModel中的字典模型
-            CardNameModel.shared.backCardsName = [:]
-            CardNameModel.shared.currentUbackCardsName = [:]
-            CardNameModel.shared.P1CardsDic = [:]
-            CardNameModel.shared.P2CardsDic = [:]
-            CardNameModel.shared.P3CardsDic = [:]
-            CardNameModel.shared.P4CardsDic = [:]
-            CardNameModel.shared.P5CardsDic = [:]
+            CardNameModel.shared.backCardsName = []
+            CardNameModel.shared.currentUbackCardsName = []
+            CardNameModel.shared.P1Array = []
+            CardNameModel.shared.P2Array = []
+            CardNameModel.shared.P3Array = []
+            CardNameModel.shared.P4Array = []
+            CardNameModel.shared.P5Array = []
         }
     }
     
     /// 创建房间
     if typpppp == 6 {
         print("\((#file as NSString).lastPathComponent):(\(#line))\n",AnylasyseWithKey(analayseStr: String.init(data: dd as Data, encoding: String.Encoding.utf8)!, secondNode: "ty", withSepcifiedKey: "ms"))
-        /// 创建失败
-        if AnylasyseWithKey(analayseStr: String.init(data: dd as Data, encoding: String.Encoding.utf8)!, secondNode: "ty", withSepcifiedKey: "su").contains("false") {
-            FTIndicator.showError(withMessage: AnylasyseWithKey(analayseStr: String.init(data: dd as Data, encoding: String.Encoding.utf8)!, secondNode: "ty", withSepcifiedKey: "ms"))
-            
-        /// 创建成功
-        } else if AnylasyseWithKey(analayseStr: String.init(data: dd as Data, encoding: String.Encoding.utf8)!, secondNode: "ty", withSepcifiedKey: "su").contains("true") {
-                FTIndicator.showSuccess(withMessage: AnylasyseWithKey(analayseStr: String.init(data: dd as Data, encoding: String.Encoding.utf8)!, secondNode: "ty", withSepcifiedKey: "ms"))
-        }
+        
+        let alertMsg = AnylasyseWithKey(analayseStr: String.init(data: dd as Data, encoding: String.Encoding.utf8)!, secondNode: "ty", withSepcifiedKey: "ms")
+
+        
+        FTIndicator.showToastMessage(alertMsg)
     }
 }
 
