@@ -101,7 +101,7 @@ class MainGameViewController: UIViewController {
 
         view.addSubview(boradCastBgV)
         
-        view.addSubview(tetsInviteV)
+//        view.addSubview(tetsInviteV)
         
 //        addScrollText()
         
@@ -123,12 +123,7 @@ class MainGameViewController: UIViewController {
         
         presentView.center = view.center
     }
-    
-    lazy var ringTong: UIImageView = {
-        let d : UIImageView = UIImageView.init(frame: CGRect.init(x: SW * 0.24, y: SH * 0.18, width: 20 * screenScale, height: 20 * screenScale))
-        d.image = #imageLiteral(resourceName: "broadCastRingIcon")
-        return d
-    }()
+
 }
 
 

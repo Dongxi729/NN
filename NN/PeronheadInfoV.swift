@@ -162,8 +162,6 @@ class PeronheadInfoV: UIView {
         
         for (index,value) in cardsArray {
             
-            
-            
             if isShowBottomCardLayout == false {
                 backCardsLayout = UIImageView.init(frame: CGRect.init(x: CGFloat(self.samllCardsShowLeftOrRight) + CGFloat(index) * self.Width * 0.15 , y: 2 * screenScale, width: self.Width * 0.3, height: self.Height - screenScale * 3))
                 

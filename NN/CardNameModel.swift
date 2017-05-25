@@ -28,7 +28,7 @@ class CardNameModel: NSObject {
                 /// 移除在创建
                 
                 UIApplication.shared.keyWindow?.rootViewController?.view.removeFromSuperview()
-
+                
                 UIApplication.shared.keyWindow?.rootViewController = GamingVC()
             }
         }
@@ -68,7 +68,6 @@ class CardNameModel: NSObject {
         P4CardsDic = [:]
         P5CardsDic = [:]
         currentUbackCardsName = [:]
-//        backCardsName = [:]
         
         P1CardsArrray = []
         P2CardsArrray = []
@@ -163,7 +162,7 @@ class CardNameModel: NSObject {
             P6CardsDic.updateValue(P4CardsArrray[5], forKey: 3)
             P6CardsDic.updateValue(P5CardsArrray[5], forKey: 4)
         }
-
+        
         
         print(P1CardsDic)
         print(P2CardsDic)
@@ -179,16 +178,16 @@ class CardNameModel: NSObject {
         P4CardsDic = resoveCardsName(cards: P4CardsDic)
         P5CardsDic = resoveCardsName(cards: P5CardsDic)
         P6CardsDic = resoveCardsName(cards: P5CardsDic)
-
+        
         /// 游戏状态改为开始
         RoomModel.shared.isGameBegin = true
-    
+        
         /// 当前玩家默认只显示前三张纸牌
         currentUbackCardsName = [0 : P1CardsDic[0]!,
                                  1 : P1CardsDic[1]!,
                                  2 : P1CardsDic[2]!,
                                  3 : "p0",
-                                4 : "p0"]
+                                 4 : "p0"]
         
     }
     

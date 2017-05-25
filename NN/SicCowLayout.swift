@@ -422,6 +422,8 @@ class SicCowLayout: UIView {
         
         /// 本地模拟房间
         reportCreateRoomType()
+        
+        FTIndicator.showProgressWithmessage("正在创建房间中...")
     }
     
     /// 分数

@@ -21,11 +21,9 @@ class PersonMsgView: UIView {
         
         d.image = #imageLiteral(resourceName: "presonHeadBg")
         
-        
-        
-        //        if !(LoginModel.shared.headImgURL != nil) {
-        //            downImgWith(url: LoginModel.shared.headImgURL!, toView: d)
-        //        }
+        if (LoginModel.shared.headImgURL != nil) {
+            downImgWith(url: LoginModel.shared.headImgURL!, toView: d)
+        }
         
         return d
     }()
