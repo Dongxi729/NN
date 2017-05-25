@@ -140,7 +140,7 @@ class RoomModel: NSObject {
             /// 游戏类型
             let gameType = user.attribute(forName: "gt")!.stringValue!
             
-            if gameType == "1" {
+            if gameType < "5" {
                 self.gameType = "六人牛牛"
             } else {
                 self.gameType = "通比牛牛"

@@ -203,7 +203,7 @@ class GameBgV: CommonV {
         
         super.layoutSubviews()
         /// 根据状态显示六人牛牛还是通比牛牛
-        if showGameTypeMark == 0 {
+        if RoomModel.shared.gameType == "六人牛牛" {
             self.gameType.image = #imageLiteral(resourceName: "liuCow")
         } else {
             self.gameType.image = #imageLiteral(resourceName: "commonCow")
