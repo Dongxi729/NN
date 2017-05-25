@@ -99,10 +99,12 @@ class MainGameViewController: UIViewController {
         
         view.addSubview(mainView)
 
+        view.addSubview(boradCastBgV)
+        
         view.addSubview(tetsInviteV)
         
 //        addScrollText()
-        view.addSubview(boradCastBgV)
+        
     }
     
     fileprivate lazy var boradCastBgV: BroadCastV = {
@@ -130,6 +132,7 @@ class MainGameViewController: UIViewController {
 }
 
 
+/// 滚动文字条
 class BroadCastV: UIView {
     
     lazy var bgV: UIImageView = {
@@ -152,9 +155,10 @@ class BroadCastV: UIView {
     
     override init(frame: CGRect) {
         super.init(frame: frame)
-        
         addSubview(bgV)
         addSubview(broadCastText)
+        
+        
     }
     
     required init?(coder aDecoder: NSCoder) {

@@ -290,15 +290,15 @@ class GameBgV: CommonV {
             if CardNameModel.shared.P1CardsDic.count > 0 {
                 
                 print("\((#file as NSString).lastPathComponent):(\(#line))\n",CardNameModel.shared.P1CardsDic)
-                P1.imgNames = CardNameModel.shared.P1CardsDic
+                P1.imgNames = CardNameModel.shared.currentUbackCardsName
                 P1.addCards(cardsArray: CardNameModel.shared.P1CardsDic)
             }
             
             if CardNameModel.shared.P2CardsDic.count > 0 {
                 
                 print("\((#file as NSString).lastPathComponent):(\(#line))\n",CardNameModel.shared.P2CardsDic)
-                P2.imgNames = CardNameModel.shared.P2CardsDic
-                P2.addCards(cardsArray: CardNameModel.shared.P2CardsDic)
+                P2.imgNames = CardNameModel.shared.backCardsName
+                P2.addCards(cardsArray: CardNameModel.shared.backCardsName)
             }
             
             addSubview(P1)
@@ -364,22 +364,22 @@ class GameBgV: CommonV {
             if CardNameModel.shared.P1CardsDic.count > 0 {
                 
                 print("\((#file as NSString).lastPathComponent):(\(#line))\n",CardNameModel.shared.P1CardsDic)
-                P1.imgNames = CardNameModel.shared.P1CardsDic
+                P1.imgNames = CardNameModel.shared.currentUbackCardsName
                 P1.addCards(cardsArray: CardNameModel.shared.P1CardsDic)
             }
             
             if CardNameModel.shared.P2CardsDic.count > 0 {
                 
                 print("\((#file as NSString).lastPathComponent):(\(#line))\n",CardNameModel.shared.P2CardsDic)
-                P2.imgNames = CardNameModel.shared.P2CardsDic
-                P2.addCards(cardsArray: CardNameModel.shared.P2CardsDic)
+                P2.imgNames = CardNameModel.shared.backCardsName
+                P2.addCards(cardsArray: CardNameModel.shared.backCardsName)
             }
             
             if CardNameModel.shared.P3CardsDic.count > 0 {
                 
                 print("\((#file as NSString).lastPathComponent):(\(#line))\n",CardNameModel.shared.P3CardsDic)
-                P3.imgNames = CardNameModel.shared.P3CardsDic
-                P3.addCards(cardsArray: CardNameModel.shared.P3CardsDic)
+                P3.imgNames = CardNameModel.shared.backCardsName
+                P3.addCards(cardsArray: CardNameModel.shared.backCardsName)
             }
             
             

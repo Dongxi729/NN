@@ -441,19 +441,11 @@ class SicComonCowLayout: UIView {
     
     /// 结算砖石
     @objc fileprivate func creatSixCommRoomSEL(sender : UIButton) -> Void {
-
-        s.abc(abc: String(setpayfun(_ii: self.rounds, _rn: self.players, _py: self.py)), scoreType: 1)
-    
+        print(setpayfun(_ii: self.rounds, _rn: self.players, _py: self.py))
+        addSubview(scoreImg)
+        self.scoreImg.text = String(setpayfun(_ii: self.rounds, _rn: self.players, _py: self.py))
         
-        //购物断网刷新
-        if NSStringFromClass((self.subviews.last?.classForCoder)!).contains("ScoreV") {
-            
-            self.subviews.last?.removeFromSuperview()
-
-        } else {
-            addSubview(s)
-        }
-        
+        /// 通比牛牛
         reportCommonType()
     }
     

@@ -5,6 +5,7 @@
 //  Created by 郑东喜 on 2017/5/10.
 //  Copyright © 2017年 郑东喜. All rights reserved.
 //  记录创建房间信息模型
+//注 ： 游戏类型传 1 ~ 4 （为4种玩法选项）,若传5则服务端默认识别为通比牛牛的创建。
 /// <M><ty gt = "游戏类型" ii ="局数" rn="人数" py="付费方式" /> </M>
 //  <M><ty gt = "1" ii ="30" rn="6" py="2" /> </M>
 
@@ -30,7 +31,7 @@ class CreateRoomModel: NSObject {
     
     /// 房间类型
     /// 1:六人牛牛
-    var roomType : String = "2"
+    var roomType : String = "3"
     
     /// 局数(10、20、30)
     var rounds : String = "10"

@@ -101,9 +101,10 @@ class PersonMsgView: UIView {
         } else {
             d.text = "阿东"
         }
+        d.font = UIFont(name: "SimHei", size: 8 * screenScale)
         d.textColor = UIColor.white
         d.layer.borderColor = UIColor.red.cgColor
-        
+//        d.sizeToFit()
         d.layer.borderWidth = 1
         
         return d
@@ -114,17 +115,13 @@ class PersonMsgView: UIView {
         let d : UIImageView = UIImageView.init(frame: CGRect.init(x: SW * 0.5, y: SH * 0.25, width: SW * 0.5, height: SW * 0.4))
         d.image = #imageLiteral(resourceName: "joinRoom")
         d.contentMode = .scaleAspectFit
-        
+        /// addJoinRoom
+        d.isUserInteractionEnabled = true
+        let getTap = UITapGestureRecognizer.init(target: self, action: #selector(addJoinRoom))
+        d.addGestureRecognizer(getTap)
         return d
     }()
-    
-    /// 加入房间遮罩按钮
-    lazy var joinMaskBtn: UIButton = {
-        let d : UIButton = UIButton.init(frame: CGRect.init(x: SW * 0.55, y: SH * 0.7, width: SW * 0.3, height: SW * 0.13))
-        d.addTarget(self, action: #selector(addJoinRoom), for: .touchUpInside)
-        
-        return d
-    }()
+
     
     /// 背景图片
     lazy var bgImgVIew: UIImageView = {
@@ -139,18 +136,13 @@ class PersonMsgView: UIView {
         
         d.image = #imageLiteral(resourceName: "createRoom")
         d.contentMode = .scaleAspectFit
+        d.isUserInteractionEnabled = true
+        let getTap = UITapGestureRecognizer.init(target: self, action: #selector(createRoom))
+        d.addGestureRecognizer(getTap)
         
         return d
     }()
-    
-    
-    /// 创建房间遮罩按钮
-    lazy var createMaskBtn: UIButton = {
-        let d : UIButton = UIButton.init(frame: CGRect.init(x: SW * 0.15, y: SH * 0.7, width: SW * 0.3, height: SW * 0.13))
-        d.addTarget(self, action: #selector(createRoom), for: .touchUpInside)
-        
-        return d
-    }()
+
     
     lazy var bgViewImg: UIImageView = {
         let d : UIImageView = UIImageView.init(frame: self.frame)
@@ -187,11 +179,8 @@ class PersonMsgView: UIView {
         addSubview(coinsLabel)
         
         addSubview(joinRoom)
-        addSubview(self.joinMaskBtn)
         
         addSubview(makeRoom)
-        addSubview(self.createMaskBtn)
-        
         addSubview(marketBtn)
     }
     
@@ -288,21 +277,6 @@ class PersonMsgView: UIView {
     }
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
-        //        if isJoinViewExist.count > 0  {
-        //            print("\((#file as NSString).lastPathComponent):(\(#line))\n")
-        
-        
-        //购物断网刷新
-        //            if NSStringFromClass((self.subviews.last?.classForCoder)!).contains("JoinRoomView") {
-        
-        //                self.subviews.last?.removeFromSuperview()
-        //
-        //                /// 清空记录数组
-        //                isJoinViewExist.removeAll()
-        //            }
-        
-        //        }
-        
 
         
         /// 商城清除
@@ -452,11 +426,11 @@ extension PersonMsgView : HoolRightBtnsDelegate {
 // MARK: - 分享视图代理方法
 extension PersonMsgView : ShareViewDelegate {
     func wxShar(sender: UIButton) {
-        print("\((#file as NSString).lastPathComponent):(\(#line))\n",sender.currentTitle)
+        print("\((#file as NSString).lastPathComponent):(\(#line))\n",sender.currentTitle!)
     }
     
     func wxSharFri(sender: UIButton) {
-        print("\((#file as NSString).lastPathComponent):(\(#line))\n",sender.currentTitle)
+        print("\((#file as NSString).lastPathComponent):(\(#line))\n",sender.currentTitle!)
     }
 }
 

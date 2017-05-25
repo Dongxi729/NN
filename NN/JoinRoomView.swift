@@ -60,7 +60,6 @@ class JoinRoomView: UIView {
     lazy var titleLabel: UILabel = {
         let d : UILabel = UILabel.init(frame: CGRect.init(x: 0, y: 0, width: self.frame.width, height: 30))
         d.textAlignment = .center
-        d.text = "加入房间"
         return d
     }()
     

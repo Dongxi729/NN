@@ -41,6 +41,16 @@ class CardNameModel: NSObject {
     var P5CardsDic : [Int : String] = [:]
     var P6CardsDic : [Int : String] = [:]
     
+    // 背面纸牌
+    var backCardsName : [Int : String] = [0 : "p0",
+                                          1 : "p0",
+                                          2 : "p0",
+                                          3 : "p0",
+                                          4 : "p0",
+                                          5 : "p0"]
+    
+    // 当前玩家默认隐藏2张
+    var currentUbackCardsName : [Int : String] = [:]
     
     var receiverStr : String = "" {
         didSet {
@@ -57,6 +67,8 @@ class CardNameModel: NSObject {
         P3CardsDic = [:]
         P4CardsDic = [:]
         P5CardsDic = [:]
+        currentUbackCardsName = [:]
+//        backCardsName = [:]
         
         P1CardsArrray = []
         P2CardsArrray = []
@@ -167,16 +179,17 @@ class CardNameModel: NSObject {
         P4CardsDic = resoveCardsName(cards: P4CardsDic)
         P5CardsDic = resoveCardsName(cards: P5CardsDic)
         P6CardsDic = resoveCardsName(cards: P5CardsDic)
-        
-        print(P1CardsDic)
-        print(P2CardsDic)
-        print(P3CardsDic)
-        print(P4CardsDic)
-        print(P5CardsDic)
-        print(P6CardsDic)
-        
+
+        /// 游戏状态改为开始
         RoomModel.shared.isGameBegin = true
     
+        /// 当前玩家默认只显示前三张纸牌
+        currentUbackCardsName = [0 : P1CardsDic[0]!,
+                                 1 : P1CardsDic[1]!,
+                                 2 : P1CardsDic[2]!,
+                                 3 : "p0",
+                                4 : "p0"]
+        
     }
     
     

@@ -156,7 +156,7 @@ func joinRoomWithPass(roomPass : String) {
 
     
 // MARK: - 上报房间类型
-/// 六人牛牛
+/// 六人牛牛 -- 每局都要压分才能愉快的玩耍
 func reportCreateRoomType() -> Void {
     let roomType = "<M><ty gt=\"\(CreateRoomModel.shared.roomType)\" ii=\"\(CreateRoomModel.shared.rounds)\" rn=\"\(CreateRoomModel.shared.players)\" py=\"\(CreateRoomModel.shared.payType)\"/></M>"
     
@@ -166,7 +166,7 @@ func reportCreateRoomType() -> Void {
 
 /// 通比牛牛
 func reportCommonType() -> Void {
-    let roomType = "<M><ty gt='' ii='5' rn='10' py='2' ss='10'/></M>"
+    let roomType = "<M><ty gt='5' ii='10' rn='6' py='2' ss='10'/></M>"
 
     /// 添加发送的文字
     reportTypeWithData(typeInt: 6, str: roomType)
