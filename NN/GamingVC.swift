@@ -82,28 +82,6 @@ class GamingVC: UIViewController {
         view.backgroundColor = UIColor.white
         
         view.addSubview(bgV)
-//        bgV.showGameTypeMark = 3
-
-        
-        
-//        countDown.center = view.center
-        
-        /// 抢庄
-//        robV.center = view.center
-//        view.addSubview(robV)
-        
-        //        view.addSubview(getCoins)
-        
-        /// 倒计时
-        //        countDown.countDown = 60
-        //        view.addSubview(countDown)
-        
-        //        RoomModel.shared.scoreCount = "222"
-        //
-        //        let d : ScoreV = ScoreV.init(frame: CGRect.init(x: 0, y: 0, width: SW / 4, height: SH * 0.2))
-        //        d.abc(abc: RoomModel.shared.scoreCount, scoreType: 2)
-        //        view.addSubview(d)
-        //        print(d)
-        
+ 
     }
 }

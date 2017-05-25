@@ -85,12 +85,21 @@ class GameBgV: CommonV {
     }()
     
     ////////////////////////////////////////////////////////
-    /// 测试用
+    /// 测试用--- 返回大厅
     lazy var backToHoll: UIButton = {
         let d : UIButton = UIButton.init(frame: CGRect.init(x: 0, y: self.Height * 0.5, width: 50, height: 50))
         d.backgroundColor = UIColor.randomColor()
         d.addTarget(self, action: #selector(backTohollSEL), for: .touchUpInside)
         d.setTitle("返回大厅", for: .normal)
+        return d
+    }()
+    
+    /// 测试用--- 提示
+    lazy var aaaaaaaaaa: UIButton = {
+        let d : UIButton = UIButton.init(frame: CGRect.init(x: 0, y: self.Height * 0.7, width: 50, height: 50))
+        d.backgroundColor = UIColor.randomColor()
+        d.addTarget(self, action: #selector(testAlert), for: .touchUpInside)
+        d.setTitle("提示", for: .normal)
         return d
     }()
     
@@ -192,9 +201,6 @@ class GameBgV: CommonV {
     
     override func layoutSubviews() {
         
-        
-        
-        
         super.layoutSubviews()
         /// 根据状态显示六人牛牛还是通比牛牛
         if showGameTypeMark == 0 {
@@ -202,7 +208,7 @@ class GameBgV: CommonV {
         } else {
             self.gameType.image = #imageLiteral(resourceName: "commonCow")
         }
-
+        
         
         
         /// 根据当前人数以及游戏状态显示
@@ -267,10 +273,8 @@ class GameBgV: CommonV {
                 if (xxx?.contains("true"))! {
                     P1.prepareImg.isHidden = false
                 }
-                
-            } else {
-                P1.prepareImg.isHidden = true
             }
+            
             if RoomModel.shared.prepareDic[1] != nil {
                 
                 /// 取出判断值是否为true
@@ -279,25 +283,22 @@ class GameBgV: CommonV {
                 if (xxx?.contains("true"))! {
                     P2.prepareImg.isHidden = false
                 }
-            } else {
-                P1.prepareImg.isHidden = true
             }
             
-            
-            print("\((#file as NSString).lastPathComponent):(\(#line))\n","======================")
+            print("\((#file as NSString).lastPathComponent):(\(#line))\n",CardNameModel.shared.P1CardsDic)
             
             if CardNameModel.shared.P1CardsDic.count > 0 {
-               
+                
                 print("\((#file as NSString).lastPathComponent):(\(#line))\n",CardNameModel.shared.P1CardsDic)
                 P1.imgNames = CardNameModel.shared.P1CardsDic
                 P1.addCards(cardsArray: CardNameModel.shared.P1CardsDic)
             }
             
             if CardNameModel.shared.P2CardsDic.count > 0 {
-               
+                
                 print("\((#file as NSString).lastPathComponent):(\(#line))\n",CardNameModel.shared.P2CardsDic)
-                P1.imgNames = CardNameModel.shared.P2CardsDic
-                P1.addCards(cardsArray: CardNameModel.shared.P2CardsDic)
+                P2.imgNames = CardNameModel.shared.P2CardsDic
+                P2.addCards(cardsArray: CardNameModel.shared.P2CardsDic)
             }
             
             addSubview(P1)
@@ -310,6 +311,78 @@ class GameBgV: CommonV {
             
             P2.isShowBottomCardLayout = true
             P3.isShowBottomCardLayout = true
+            
+            
+            
+            P1.nameLabel.text = RoomModel.shared.nameStr[0]
+            P2.nameLabel.text = RoomModel.shared.nameStr[1]
+            P3.nameLabel.text = RoomModel.shared.nameStr[2]
+            
+            
+            DispatchQueue.main.async {
+                let headStr = RoomModel.shared.headUrlDic[0]
+                let headStr2 = RoomModel.shared.headUrlDic[1]
+                let headStr3 = RoomModel.shared.headUrlDic[2]
+                downImgWith(url: headStr!, toView: self.P1.headImg)
+                downImgWith(url: headStr2!, toView: self.P2.headImg)
+                downImgWith(url: headStr3!, toView: self.P3.headImg)
+            }
+            
+            /// 显示准备？？？
+            if RoomModel.shared.prepareDic[0] != nil {
+                
+                /// 取出判断值是否为true
+                let xxx = RoomModel.shared.prepareDic[0]
+                
+                if (xxx?.contains("true"))! {
+                    P1.prepareImg.isHidden = false
+                }
+            }
+            
+            if RoomModel.shared.prepareDic[1] != nil {
+                
+                /// 取出判断值是否为true
+                let xxx = RoomModel.shared.prepareDic[1]
+                
+                if (xxx?.contains("true"))! {
+                    P2.prepareImg.isHidden = false
+                }
+            }
+            
+            if RoomModel.shared.prepareDic[2] != nil {
+                
+                /// 取出判断值是否为true
+                let xxx = RoomModel.shared.prepareDic[2]
+                
+                if (xxx?.contains("true"))! {
+                    P3.prepareImg.isHidden = false
+                }
+            }
+            
+            print("\((#file as NSString).lastPathComponent):(\(#line))\n",CardNameModel.shared.P1CardsDic)
+            
+            if CardNameModel.shared.P1CardsDic.count > 0 {
+                
+                print("\((#file as NSString).lastPathComponent):(\(#line))\n",CardNameModel.shared.P1CardsDic)
+                P1.imgNames = CardNameModel.shared.P1CardsDic
+                P1.addCards(cardsArray: CardNameModel.shared.P1CardsDic)
+            }
+            
+            if CardNameModel.shared.P2CardsDic.count > 0 {
+                
+                print("\((#file as NSString).lastPathComponent):(\(#line))\n",CardNameModel.shared.P2CardsDic)
+                P2.imgNames = CardNameModel.shared.P2CardsDic
+                P2.addCards(cardsArray: CardNameModel.shared.P2CardsDic)
+            }
+            
+            if CardNameModel.shared.P3CardsDic.count > 0 {
+                
+                print("\((#file as NSString).lastPathComponent):(\(#line))\n",CardNameModel.shared.P3CardsDic)
+                P3.imgNames = CardNameModel.shared.P3CardsDic
+                P3.addCards(cardsArray: CardNameModel.shared.P3CardsDic)
+            }
+            
+            
             addSubview(P1)
             addSubview(P2)
             addSubview(P3)
@@ -396,10 +469,15 @@ class GameBgV: CommonV {
         }
     }
     
+    /// 测试--- 亮牌
+    @objc fileprivate func testAlert() {
+        showCards()
+    }
+    
     override init(frame: CGRect) {
         super.init(frame: frame)
         
-  
+        
         
         addSubview(bgVImg)
         addSubview(startGameBtn)
@@ -417,6 +495,7 @@ class GameBgV: CommonV {
         
         addSubview(roundsNumLabel)
         
+        
         DispatchQueue.main.async {
             self.addSubview(self.currentTime)
             self.refreshTime()
@@ -431,6 +510,9 @@ class GameBgV: CommonV {
         
         /// 测试按钮
         addSubview(backToHoll)
+        
+        /// 测试亮牌
+        addSubview(aaaaaaaaaa)
     }
     
     required init?(coder aDecoder: NSCoder) {

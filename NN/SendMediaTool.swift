@@ -57,6 +57,9 @@ func testServer() {
                 print("\((#file as NSString).lastPathComponent):(\(#line))\n","连接失败")
                 
                 FTIndicator.showError(withMessage: "连接失败")
+                
+                backToholl()
+                
                 /// 连接异常则关闭连接。
                 client.close()
                 return
@@ -68,6 +71,12 @@ func testServer() {
         
         print("\((#file as NSString).lastPathComponent):(\(#line))\n","服务器状态不好或连接不上")
     }
+}
+
+
+/// 返回大厅
+public func backToholl() {
+    UIApplication.shared.keyWindow?.rootViewController?.view.removeFromSuperview()
 }
 
 // MARK: - 上报用户信息
@@ -312,9 +321,7 @@ func bytesShwoFunc(_over : [Byte]) -> Void {
             print("解散房间~~~~")
 
             DispatchQueue.main.async {
-                
-                UIApplication.shared.keyWindow?.rootViewController?.view.subviews.first?.removeFromSuperview()
-                UIApplication.shared.keyWindow?.rootViewController?.view.removeFromSuperview()
+                backToholl()
             }
         }
     }
@@ -407,4 +414,10 @@ func AnylasyseWithKey(analayseStr : String,secondNode : String,withSepcifiedKey 
         
     }
     return typeStr!
+}
+
+/// 亮牌
+func showCards() {
+    
+    reportTypeWithData(typeInt: 12, str: "<M><ty bb ='true'/></M>")
 }

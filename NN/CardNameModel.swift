@@ -19,12 +19,28 @@ class CardNameModel: NSObject {
     static let shared = CardNameModel()
     
     /// 处理好的纸牌的字典 [ 索引 : 图片名字 ]
-    var P1CardsDic : [Int : String] = [:]
+    var P1CardsDic : [Int : String] = [:] {
+        didSet {
+            
+            print("\((#file as NSString).lastPathComponent):(\(#line))\n")
+            DispatchQueue.main.async {
+                
+                /// 移除在创建
+                
+                UIApplication.shared.keyWindow?.rootViewController?.view.removeFromSuperview()
+
+                UIApplication.shared.keyWindow?.rootViewController = GamingVC()
+            }
+        }
+    }
+    
+    
     var P2CardsDic : [Int : String] = [:]
     var P3CardsDic : [Int : String] = [:]
     var P4CardsDic : [Int : String] = [:]
     var P5CardsDic : [Int : String] = [:]
     var P6CardsDic : [Int : String] = [:]
+    
     
     var receiverStr : String = "" {
         didSet {
@@ -35,6 +51,19 @@ class CardNameModel: NSObject {
     }
     
     fileprivate func xmlAnalyse(xmlStr : String) -> Void {
+        
+        P1CardsDic = [:]
+        P2CardsDic = [:]
+        P3CardsDic = [:]
+        P4CardsDic = [:]
+        P5CardsDic = [:]
+        
+        P1CardsArrray = []
+        P2CardsArrray = []
+        P3CardsArrray = []
+        P4CardsArrray = []
+        P5CardsArrray = []
+        
         //获取xml文件内容
         let data = xmlStr.data(using: String.Encoding.utf8)
         

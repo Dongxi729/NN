@@ -56,21 +56,24 @@ class CardsLayout : CommonV {
     override func layoutSubviews() {
         super.layoutSubviews()
         /// 根据游戏状态隐藏提示、亮牌按钮
-        if RoomModel.shared.isGameBegin {
-//            self.alertBtn.isHidden = true
-            self.showCardBtn.isHidden = true
-        }
+        
+        
     }
     
     ///////交互事件
     /// 提示
     @objc fileprivate func alertSEL(sender : UIButton) {
         print("\((#file as NSString).lastPathComponent):(\(#line))\n")
+        
+        /// 亮牌
+        showCards()
     }
     
     /// 显示
     @objc fileprivate func showSEL(sender : UIButton) {
         print("\((#file as NSString).lastPathComponent):(\(#line))\n")
+        /// 提示
+        //        将结尾的两张牌反过来
     }
     
     /// 摆放纸牌
@@ -78,23 +81,29 @@ class CardsLayout : CommonV {
     /// [3: "pb3", 2: "pbJ", 4: "pc3", 0: "pb4", 1: "pa7"]
     func addCards(cardsArray : [Int : String]) -> Void {
         
-        print("\((#file as NSString).lastPathComponent):(\(#line))\n",cardsArray)
+        var dixName = cardsArray
         
-        for (index,value) in cardsArray {
+        var index : Int = 0
+        
+        for (_,value) in cardsArray {
             print(index)
-
+            
+            dixName.updateValue(value, forKey: index)
+            
             cardImgs = UIImageView.init(frame: CGRect.init(x: CGFloat(index) * self.Width * 0.15 , y: 2 * screenScale, width: self.Width * 0.15, height: self.Height - screenScale * 3))
             
-            cardImgs.image = UIImage.init(named: value)
-
+            cardImgs.image = UIImage.init(named: dixName[index]!)
+            
+            index += 1
             addSubview(cardImgs)
+            
         }
     }
     
-
+    
     override init(frame: CGRect) {
         super.init(frame: frame)
-        addSubview(cardsBgV)
+//        addSubview(cardsBgV)
         
         addSubview(alertBtn)
         addSubview(showCardBtn)
