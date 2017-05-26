@@ -85,20 +85,21 @@ class GameBgV: CommonV {
     }()
     
     ////////////////////////////////////////////////////////
-    /// 测试用--- 返回大厅
-    lazy var backToHoll: UIButton = {
-        let d : UIButton = UIButton.init(frame: CGRect.init(x: 0, y: self.Height * 0.5, width: 50, height: 50))
+    
+    /// 测试用--- 亮牌
+    lazy var showCards: UIButton = {
+        let d : UIButton = UIButton.init(frame: CGRect.init(x: 0, y: self.Height * 0.5, width: 100, height: 50))
         d.backgroundColor = UIColor.randomColor()
-        d.addTarget(self, action: #selector(backTohollSEL), for: .touchUpInside)
-        d.setTitle("返回大厅", for: .normal)
+        d.addTarget(self, action: #selector(showCardsRequest), for: .touchUpInside)
+        d.setTitle("亮牌", for: .normal)
         return d
     }()
     
     /// 测试用--- 提示
-    lazy var aaaaaaaaaa: UIButton = {
-        let d : UIButton = UIButton.init(frame: CGRect.init(x: 0, y: self.Height * 0.7, width: 50, height: 50))
+    lazy var alertBtn: UIButton = {
+        let d : UIButton = UIButton.init(frame: CGRect.init(x: 0, y: self.Height * 0.7, width: 100, height: 50))
         d.backgroundColor = UIColor.randomColor()
-        d.addTarget(self, action: #selector(testAlert), for: .touchUpInside)
+        d.addTarget(self, action: #selector(testShow), for: .touchUpInside)
         d.setTitle("提示", for: .normal)
         return d
     }()
@@ -192,14 +193,45 @@ class GameBgV: CommonV {
     
     /// 非庄家压分
     fileprivate lazy var getCoins: MarkChoose = {
-        let d : MarkChoose = MarkChoose.init(frame: CGRect.init(x: 0, y: 0, width: SW * 0.5, height: SH * 0.25))
+        let d : MarkChoose = MarkChoose.init(frame: CGRect.init(x: self.Width * 0.5 - self.Width * 0.25, y: self.Height * 0.75 - self.Height * 0.123, width: SW * 0.5, height: SH * 0.25))
         
         return d
     }()
     
+    /// 抢庄视图
+    fileprivate lazy var robOwner: RobRoomOwner = {
+        let d : RobRoomOwner = RobRoomOwner.init(frame: CGRect.init(x: self.Width * 0.25, y: self.Height * 0.5 - self.Height * 0.05, width: self.Width * 0.5, height: self.Height * 0.1))
+        d.layer.borderWidth = 1
+        return d
+    }()
     
+    /// 测试--- 亮牌
+    @objc fileprivate func showCardsRequest() {
+        showCardsSEL()
+    }
+    
+    /// 测试--- 提示
+    @objc fileprivate func testShow() {
+        switch RoomModel.shared.currentPersonInRoom {
+        case 1:
+            
+            break
+        case 2:
+            
+            DispatchQueue.main.async {
+                self.P1.imgNames = CardNameModel.shared.P1Array
+                self.P1.addCards(cardsArray: CardNameModel.shared.P1Array)
+            }
+            
+            break
+        default:
+            break
+        }
+    }
     
     override func layoutSubviews() {
+        
+     
         
         super.layoutSubviews()
         /// 根据状态显示六人牛牛还是通比牛牛
@@ -249,19 +281,26 @@ class GameBgV: CommonV {
             
             break
         case 2:
+            
+            /// 游戏开始，隐藏邀请好友按钮
             if RoomModel.shared.isGameBegin {
                 self.inviteFriendsBtn.isHidden = true
             }
-
             
+            /// 六人牛牛的抢庄视图是否显示，当且仅当六人牛牛玩法为抢庄模式的时候显示。
+            
+
+            /// 设置摆放纸牌位置
             P1.samllCardsShowLeftOrRight = -1
             
             P2.samllCardsShowLeftOrRight = 1
             P2.isShowBottomCardLayout = true
             
+            /// 显示名字
             P1.nameLabel.text = RoomModel.shared.nameStr[0]
             P2.nameLabel.text = RoomModel.shared.nameStr[1]
             
+            /// 下载头像
             DispatchQueue.main.async {
                 let headStr = RoomModel.shared.headUrlDic[0]
                 let headStr2 = RoomModel.shared.headUrlDic[1]
@@ -270,6 +309,7 @@ class GameBgV: CommonV {
             }
             
             /// 显示准备？？？
+            /// 用户1显示准备
             if RoomModel.shared.prepareDic[0] != nil {
                 
                 /// 取出判断值是否为true
@@ -281,6 +321,8 @@ class GameBgV: CommonV {
                 
             }
             
+            
+            /// 用户2显示准备
             if RoomModel.shared.prepareDic[1] != nil {
                 
                 /// 取出判断值是否为true
@@ -293,6 +335,8 @@ class GameBgV: CommonV {
             
             /// 有牌
             if CardNameModel.shared.currentUbackCardsName.count > 0 {
+                
+                
                 
                 P1.niuniuImg.isHidden = true
                 P2.niuniuImg.isHidden = true
@@ -502,19 +546,7 @@ class GameBgV: CommonV {
         }
     }
     
-    /// 返回大厅
-    @objc fileprivate func backTohollSEL() {
-        DispatchQueue.main.async {
-            
-            UIApplication.shared.keyWindow?.rootViewController?.view.subviews.first?.removeFromSuperview()
-            UIApplication.shared.keyWindow?.rootViewController?.view.removeFromSuperview()
-        }
-    }
-    
-    /// 测试--- 亮牌
-    @objc fileprivate func testAlert() {
-        showCards()
-    }
+  
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -549,12 +581,20 @@ class GameBgV: CommonV {
         addSubview(rightDownV)
         
         addSubview(inviteFriendsBtn)
+
         
-        /// 测试按钮
-        addSubview(backToHoll)
+        /////////////////////////////////////////////////
+        /// 亮牌
+        addSubview(showCards)
         
-        /// 测试亮牌
-        addSubview(aaaaaaaaaa)
+        /// 提示
+        addSubview(alertBtn)
+        
+        
+        /// 抢庄
+        addSubview(robOwner)
+        
+        robOwner.isHidden = true
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -586,11 +626,16 @@ class GameBgV: CommonV {
         /// 用户准备
         playPrepare()
         
-        getCoins.center = self.center
         /// 创建压分视图
         
         if RoomModel.shared.gameType == "六人牛牛" {
             addSubview(getCoins)
+        }
+        
+        
+        
+        if RoomModel.shared.sixGameType == "1" {
+            self.robOwner.isHidden = false
         }
     }
     

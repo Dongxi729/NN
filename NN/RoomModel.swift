@@ -18,6 +18,9 @@ class RoomModel: NSObject {
     /// 游戏类型 1： 六人牛牛  通比牛牛
     var gameType : String = "1"
     
+    /// 六人牛牛玩法模式
+    var sixGameType : String = "1"
+    
     /// 游戏局数 10 、 20 、 30
     var gameRounds : String = "10"
     
@@ -149,6 +152,8 @@ class RoomModel: NSObject {
             
             /// 游戏类型
             let gameType = user.attribute(forName: "gt")!.stringValue!
+            
+            self.sixGameType = gameType
             
             if gameType < "5" {
                 self.gameType = "六人牛牛"

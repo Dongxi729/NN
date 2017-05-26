@@ -276,7 +276,6 @@ class PeronheadInfoV: UIView {
         /// 是否开始游戏
         if RoomModel.shared.isGameBegin {
             
-            print("\((#file as NSString).lastPathComponent):(\(#line))\n","======================")
             if !isShowBottomCardLayout {
                 bigCardLayout.addCards(cardsArray: imgNames)
                 addSubview(bigCardLayout)

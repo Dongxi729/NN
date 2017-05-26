@@ -37,7 +37,6 @@ class ScoreModel: NSObject {
     /// xmlString
     var xmlStr : String = "" {
         didSet {
-            print("\((#file as NSString).lastPathComponent):(\(#line))\n",xmlStr)
             testXML(xmlStr: xmlStr)
         }
     }
@@ -63,7 +62,6 @@ class ScoreModel: NSObject {
             if (user.attribute(forName: "igg")?.stringValue!) != nil {
                 /// 得分
                 self.scoreCountDownScore = Int((user.attribute(forName: "igg")?.stringValue!)!)!
-                print("getScore",self.scoreCountDownScore)
                 
                 userScoreDic.append(self.scoreCountDownScore)
                 backupUserDic.append(self.scoreCountDownScore)
@@ -73,8 +71,7 @@ class ScoreModel: NSObject {
             if (user.attribute(forName: "gg")?.stringValue!) != nil {
                 /// 扣分
                 self.costScore = Int((user.attribute(forName: "gg")?.stringValue!)!)!
-                print("costScore",self.costScore)
-                
+
                 leftScoreIndex += 1
                 
                 leftScore.append(self.costScore)

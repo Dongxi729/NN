@@ -66,7 +66,7 @@ class CardsLayout : CommonV {
         print("\((#file as NSString).lastPathComponent):(\(#line))\n")
         
         /// 亮牌
-        showCards()
+        showCardsSEL()
     }
     
     /// 显示
@@ -86,9 +86,6 @@ class CardsLayout : CommonV {
         var index : Int = 0
         
         for value in cardsArray {
-            print(index)
-            
-//            dixName.updateValue(value, forKey: index)
             
             cardImgs = UIImageView.init(frame: CGRect.init(x: CGFloat(index) * self.Width * 0.15 , y: 2 * screenScale, width: self.Width * 0.15, height: self.Height - screenScale * 3))
             

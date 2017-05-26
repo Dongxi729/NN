@@ -430,7 +430,7 @@ func AnylasyseWithKey(analayseStr : String,secondNode : String,withSepcifiedKey 
 }
 
 /// 亮牌
-func showCards() {
+func showCardsSEL() {
     
     reportTypeWithData(typeInt: 12, str: "<M><ty bb ='true'/></M>")
 }

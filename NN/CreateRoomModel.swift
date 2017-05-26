@@ -30,8 +30,11 @@ class CreateRoomModel: NSObject {
     static let shared = CreateRoomModel()
     
     /// 房间类型
-    /// 1:六人牛牛
-    var roomType : String = "5"
+    /// 1:抢庄模式
+    /// 2:轮流做庄
+    /// 3:房主做庄
+    /// 4:谁大谁做庄
+    var roomType : String = "1"
     
     /// 局数(10、20、30)
     var rounds : String = "10"

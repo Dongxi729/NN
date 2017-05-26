@@ -49,15 +49,7 @@ class RobRoomOwner: UIView {
         addSubview(robBtn)
         addSubview(notRobV)
     }
-    
-    override func layoutSubviews() {
-        super.layoutSubviews()
-        
-        if RoomModel.shared.isGameBegin {
-            robBtn.isHidden = true
-            notRobV.isHidden = true
-        }
-    }
+
     
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
