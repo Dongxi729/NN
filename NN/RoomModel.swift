@@ -22,14 +22,22 @@ class RoomModel: NSObject {
     var gameRounds : String = "10"
     
     /// 当前局数
-    var currentRounds : String = "0"
+    var currentRounds : String = "0" {
+        didSet {
+            DispatchQueue.main.async {
+                UIApplication.shared.keyWindow?.rootViewController = GamingVC()
+
+//                CardNameModel.shared.niuniuArray = []
+                ScoreModel.shared.userScoreDic = []
+            }
+        }
+    }
     
     /// 游戏人数 3/6人
     /// 开始规定的游戏人数
     var limitedPlayersNum : Int = 3 {
         didSet {
             
-            print("\((#file as NSString).lastPathComponent):(\(#line))\n")
             DispatchQueue.main.async {
                 UIApplication.shared.keyWindow?.rootViewController = GamingVC()
             }
@@ -170,26 +178,26 @@ class RoomModel: NSObject {
             /// 拟定开好房间的总人数
             self.limitedPlayersNum = Int(user.attribute(forName: "rn")!.stringValue!)!
             
-            
-            
-            print("====房间号",self.roomNumber)
-            
-            print("=====self.gameType",self.gameType)
-            
-            print("=====self.wantCoins",self.wantCoins)
-            
-            print("====== 支付方式",self.payType)
-            
-            print("====== 总局数",self.gameRounds)
-            
-            print("====== 当前局数",self.currentRounds)
-            
-            print("====== 当前房间在线人数",self.currentPersonInRoom)
-            
-            print("====== 拟定创建好房间的总人数",self.limitedPlayersNum)
-            
-            
-            print("====== 所有名字",self.userName)
+//            
+//            
+//            print("====房间号",self.roomNumber)
+//            
+//            print("=====self.gameType",self.gameType)
+//            
+//            print("=====self.wantCoins",self.wantCoins)
+//            
+//            print("====== 支付方式",self.payType)
+//            
+//            print("====== 总局数",self.gameRounds)
+//            
+//            print("====== 当前局数",self.currentRounds)
+//            
+//            print("====== 当前房间在线人数",self.currentPersonInRoom)
+//            
+//            print("====== 拟定创建好房间的总人数",self.limitedPlayersNum)
+//            
+//            
+//            print("====== 所有名字",self.userName)
         }
         
         let _users = try! doc.nodes(forXPath: "//M/ty/u") as! [DDXMLElement]
@@ -284,11 +292,7 @@ class RoomModel: NSObject {
             }
             
         }
-        
-        print("\((#file as NSString).lastPathComponent):(\(#line))\n",self.userName)
-        print("\((#file as NSString).lastPathComponent):(\(#line))\n",self.headUrlDic)
-        print("\((#file as NSString).lastPathComponent):(\(#line))\n",self.userScoreDic)
-        print("\((#file as NSString).lastPathComponent):(\(#line))\n",self.prepareDic)
+    
         
     }
 }

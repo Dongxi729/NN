@@ -104,6 +104,7 @@
 		2682558B1EC196C30080CCCD /* LoginRequestTool.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2682558A1EC196C30080CCCD /* LoginRequestTool.swift */; };
 		2682558D1EC19ECC0080CCCD /* LoginInfoLocal.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2682558C1EC19ECC0080CCCD /* LoginInfoLocal.swift */; };
 		26836AFB1EC1E2DB00061069 /* JoinRoomView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26836AFA1EC1E2DB00061069 /* JoinRoomView.swift */; };
+		26A2FD4E1ED6EF6700CAB137 /* ScoreModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26A2FD4D1ED6EF6700CAB137 /* ScoreModel.swift */; };
 		26A487271EC0049E00E9A091 /* UIColor+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26A487261EC0049E00E9A091 /* UIColor+Extension.swift */; };
 		26A487291EC004F400E9A091 /* UIView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26A487281EC004F400E9A091 /* UIView+Extension.swift */; };
 		26A4872C1EC0060F00E9A091 /* AbortTool.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26A4872B1EC0060F00E9A091 /* AbortTool.swift */; };
@@ -307,6 +308,7 @@
 		2682558A1EC196C30080CCCD /* LoginRequestTool.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginRequestTool.swift; sourceTree = "<group>"; };
 		2682558C1EC19ECC0080CCCD /* LoginInfoLocal.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginInfoLocal.swift; sourceTree = "<group>"; };
 		26836AFA1EC1E2DB00061069 /* JoinRoomView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JoinRoomView.swift; sourceTree = "<group>"; };
+		26A2FD4D1ED6EF6700CAB137 /* ScoreModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScoreModel.swift; sourceTree = "<group>"; };
 		26A487261EC0049E00E9A091 /* UIColor+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIColor+Extension.swift"; sourceTree = "<group>"; };
 		26A487281EC004F400E9A091 /* UIView+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIView+Extension.swift"; sourceTree = "<group>"; };
 		26A4872B1EC0060F00E9A091 /* AbortTool.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AbortTool.swift; sourceTree = "<group>"; };
@@ -705,6 +707,7 @@
 				26315CDD1ED2D15F0026EC6B /* ReconnectModel.swift */,
 				26B878961ED3D8BC008A24E5 /* JoinRoomModel.swift */,
 				26B878981ED45A49008A24E5 /* CardNameModel.swift */,
+				26A2FD4D1ED6EF6700CAB137 /* ScoreModel.swift */,
 			);
 			name = model;
 			sourceTree = "<group>";
@@ -1156,6 +1159,7 @@
 				260EBC241ECEC564003DD5CA /* CardsLayout.swift in Sources */,
 				260C66631EB23415006C119E /* POPAnimationEvent.mm in Sources */,
 				262433621ECBF46F003C41D1 /* InviteV.swift in Sources */,
+				26A2FD4E1ED6EF6700CAB137 /* ScoreModel.swift in Sources */,
 				260EBC2A1ECF06DB003DD5CA /* CommonBtn.swift in Sources */,
 				26D54AE41EC2BD6D00119FAA /* NSString+DDXML.m in Sources */,
 				26D54B271EC2C11B00119FAA /* amrFileCodec.mm in Sources */,

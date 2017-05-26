@@ -285,12 +285,16 @@ func bytesShwoFunc(_over : [Byte]) -> Void {
     if typpppp == 8 {
         
         if testXML(analayseStr: String.init(data: dd as Data, encoding: String.Encoding.utf8)!).contains("4") {
-            print("\((#file as NSString).lastPathComponent):(\(#line))\n","xpxxxxxxxxxxxxxx")
             
             CardNameModel.shared.receiverStr = String.init(data: dd as Data, encoding: String.Encoding.utf8)!
         }
         
         RoomModel.shared.currentRoomPlayInfo = String.init(data: dd as Data, encoding: String.Encoding.utf8)!
+        
+        if AnylasyseWithKey(analayseStr:String.init(data: dd as Data, encoding: String.Encoding.utf8)! , secondNode: "ty", withSepcifiedKey: "type").contains("7") {
+            
+            ScoreModel.shared.xmlStr = String.init(data: dd as Data, encoding: String.Encoding.utf8)!
+        }
     }
     
     if typpppp == 254 {
@@ -308,6 +312,8 @@ func bytesShwoFunc(_over : [Byte]) -> Void {
     if typpppp == 7 {
     
         JoinRoomModel.shared.joinResultStr = String.init(data: dd as Data, encoding: String.Encoding.utf8)!
+        
+        
     }
     
     /// 断线重连
@@ -325,7 +331,6 @@ func bytesShwoFunc(_over : [Byte]) -> Void {
             }
             
             /// 清空roomModel中的字典模型
-            CardNameModel.shared.backCardsName = []
             CardNameModel.shared.currentUbackCardsName = []
             CardNameModel.shared.P1Array = []
             CardNameModel.shared.P2Array = []

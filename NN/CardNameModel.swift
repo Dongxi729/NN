@@ -29,6 +29,8 @@ class CardNameModel: NSObject {
                 UIApplication.shared.keyWindow?.rootViewController?.view.removeFromSuperview()
                 
                 UIApplication.shared.keyWindow?.rootViewController = GamingVC()
+                
+                
             }
         }
     }
@@ -49,6 +51,13 @@ class CardNameModel: NSObject {
     // 当前玩家默认隐藏2张
     var currentUbackCardsName : [String] = []
     
+    /// 牛牛数组
+    var niuniuArray : [String] = []
+    
+    
+    /// 是否收到结算分数标识
+    var isreceivedCountScore = "false"
+   
     var receiverStr : String = "" {
         didSet {
             print("receiverStr",receiverStr)
@@ -68,11 +77,26 @@ class CardNameModel: NSObject {
         P4CardsArrray = []
         P5CardsArrray = []
         
+        
+        niuniuArray = []
+        
+        self.isreceivedCountScore = "false"
+        
         //获取xml文件内容
         let data = xmlStr.data(using: String.Encoding.utf8)
         
         //构造XML文档
         let doc = try! DDXMLDocument(data: data!, options:0)
+        
+        let marks = try! doc.nodes(forXPath: "//M/ty") as! [DDXMLElement]
+        
+        for _user in marks {
+            if _user.attribute(forName: "type")?.stringValue != nil {
+                self.isreceivedCountScore = (_user.attribute(forName: "type")?.stringValue!)!
+                
+                print("\((#file as NSString).lastPathComponent):(\(#line))\n",self.isreceivedCountScore)
+            }
+        }
         
         
         let users = try! doc.nodes(forXPath: "//M/ty/u") as! [DDXMLElement]
@@ -99,6 +123,10 @@ class CardNameModel: NSObject {
             
             if user.attribute(forName: "p5")?.stringValue != nil {
                 P5CardsArrray.append((user.attribute(forName: "p5")?.stringValue)!)
+            }
+            /// 牛牛
+            if user.attribute(forName: "can")?.stringValue != nil {
+                niuniuArray.append((user.attribute(forName: "can")?.stringValue)!)
             }
         }
         
@@ -175,11 +203,21 @@ class CardNameModel: NSObject {
                                  "p0"]
         
 
-        
-        
+
         print("\((#file as NSString).lastPathComponent):(\(#line))\n",P2Array)
+        
+        niuniuArray = contactName(cardsArray: niuniuArray, prefix: "niu")
     }
     
+    /// 拼接
+    ///
+    /// - Parameter prefix: 图片前缀
+    private func contactName(cardsArray : [String],prefix : String) -> [String] {
+        let names = cardsArray.map {
+            prefix + String($0)
+        }
+        return names
+    }
     
     /// 处理纸牌
     ///

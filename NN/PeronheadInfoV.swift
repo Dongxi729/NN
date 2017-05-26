@@ -64,14 +64,14 @@ class PeronheadInfoV: UIView {
         return d
     }()
     
-    /// coinsLabel
-    fileprivate lazy var coinsLabel: UILabel = {
+    /// 剩余分数
+    lazy var coinsLabel: UILabel = {
         let d : UILabel = UILabel.init(frame: CGRect.init(x: self.Width * 0.5, y: self.nameLabel.BottomY + 2 * screenScale, width: self.Width * 0.5, height: self.Height * 0.4))
         
         if LoginModel.shared.wealth != nil {
             d.text = LoginModel.shared.wealth
         } else{
-            d.text = "2000"
+            d.text = "2000  "
         }
         
         d.textAlignment = .center
@@ -129,6 +129,20 @@ class PeronheadInfoV: UIView {
         return d
     }()
     
+    /// 图片名字
+    var imgName : String = "" {
+        didSet {
+            
+        }
+    }
+    
+    /// 分数图片
+    lazy var scoreImg: ScoreV = {
+        let d : ScoreV = ScoreV.init(frame: CGRect.init(x: self.Width * 0.5, y: self.Height, width: self.Width * 0.5, height: self.Height * 0.5))
+        
+        return d
+    }()
+    
     /// 获取的图片名字
     var imgNames : [String] = []
     
@@ -154,11 +168,21 @@ class PeronheadInfoV: UIView {
     /// 是否显示底部大纸牌
     var isShowBottomCardLayout = false
     
+    /// 开关关闭牛牛图片
+    var isNinNiuShow = false
+    
+    /// 添加分数图片
+    func addScoreImg(str : String,type : Int) -> Void {
+        scoreImg.abc(abc: str, scoreType: type)
+    }
+    
+    /// 添加牛牛图片
+    func addNNimg(str imgName:String) -> Void {
+        self.niuniuImg.image = UIImage.init(named: imgName)
+    }
     
     /// 摆放纸牌
     func addCards(cardsArray : [String]) -> Void {
-        
-        print("\((#file as NSString).lastPathComponent):(\(#line))\n",cardsArray)
         
         var index = 0
         for value in cardsArray {
@@ -211,6 +235,11 @@ class PeronheadInfoV: UIView {
         /// 庄主
         addSubview(ownerImg)
         
+        addSubview(scoreImg)
+        
+        /// 牛牛图片
+        addSubview(niuniuImg)
+        
         /// 默认隐藏
         finishImg.isHidden = true
         prepareImg.isHidden = true
@@ -220,7 +249,22 @@ class PeronheadInfoV: UIView {
         offLineImg.isHidden = true
         ownerImg.isHidden = true
         
+        /// 分数隐
+        if CardNameModel.shared.isreceivedCountScore == "4" {
+            scoreImg.isHidden = false
+            CardNameModel.shared.isreceivedCountScore = "false"
+        } else {
+            scoreImg.isHidden = true
+        }
+        
     }
+    
+    
+    /// 牛牛图片
+    lazy var niuniuImg: UIImageView = {
+        let d : UIImageView = UIImageView.init(frame: CGRect.init(x: 0, y: 0, width: self.Width, height: self.Height))
+        return d
+    }()
     
     /// 拼接
     ///
@@ -247,36 +291,6 @@ class PeronheadInfoV: UIView {
             }
             /// 尚需修改
             addCards(cardsArray: imgNames)
-        }
-        
-        /// 是否显示抢庄
-        if RoomModel.shared.isRobRoomOwner {
-            self.robImg.isHidden = false
-        } else {
-            self.robImg.isHidden = true
-        }
-        
-        
-        /// 是否显示波纹
-        if RoomModel.shared.isShowWave {
-            self.showWave.isHidden = false
-        } else {
-            self.showWave.isHidden = true
-        }
-        
-        /// 离线图标
-        if RoomModel.shared.isOffLine {
-            self.offLineImg.isHidden = false
-        } else {
-            self.offLineImg.isHidden = true
-        }
-        
-        
-        /// 是否是庄主--- 要点显示到对应的用户
-        if RoomModel.shared.isOwner {
-            self.ownerImg.isHidden = false
-        } else {
-            self.ownerImg.isHidden = true
         }
     }
     
