@@ -127,25 +127,14 @@ class RoomModel: NSObject {
         }
     }
     
-    /// 解析的xml字符串
+    /// 解析的xml字符串1
     fileprivate func xmlAnalyse(xmlStr : String) -> Void {
         //获取xml文件内容
         let data = xmlStr.data(using: String.Encoding.utf8)
         
         //构造XML文档
         let doc = try! DDXMLDocument(data: data!, options:0)
-        
-        //<M>
-        //        <tg rm="6507" gt="1" ii="10" tii="0" rn="3" py="1" pyn="25" ss="0" rnw="2"/>
-        //<t>
-        //<u id="51615751" h="" n="黯" g="0" bks="false" sc="0"/>
-        //        <u id="50257938" h="http://wx.qlogo.cn/mmopen/Q3auHgzwzM5eia0u1RooDmyq7owxXPicPnibeO3P9NYicZ2IbjNNsXkJicrNGSPEBiaialL9bFia3XXu7PXSeIujp3I90W79Eqh2qfiamLDc8uSZRt0Y/0" n="阿东^_^^_^^_^" g="0" re="false"/>
-        
-        //<u id="0"/>
-        //<u id="0"/>
-        //</t>
-        //<Nn/>
-        //</M>
+
         //利用XPath来定位节点（XPath是XML语言中的定位语法，类似于数据库中的SQL功能）
         let users = try! doc.nodes(forXPath: "//M/tg") as! [DDXMLElement]
         for user in users {
@@ -185,8 +174,6 @@ class RoomModel: NSObject {
             /// 拟定开好房间的总人数
             self.limitedPlayersNum = Int(user.attribute(forName: "rn")!.stringValue!)!
             
-//            
-//            
 //            print("====房间号",self.roomNumber)
 //            
 //            print("=====self.gameType",self.gameType)
@@ -202,8 +189,7 @@ class RoomModel: NSObject {
 //            print("====== 当前房间在线人数",self.currentPersonInRoom)
 //            
 //            print("====== 拟定创建好房间的总人数",self.limitedPlayersNum)
-//            
-//            
+//
 //            print("====== 所有名字",self.userName)
         }
         
@@ -296,6 +282,8 @@ class RoomModel: NSObject {
                 prepareDic.updateValue(ddd, forKey: prepareIndex)
                 
                 prepareIndex += 1
+                
+                CardNameModel.shared.isShowP1Front = false
             }
             
         }

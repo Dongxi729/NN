@@ -33,6 +33,7 @@ class ScoreV: UIView {
                 imgs.contentMode = UIViewContentMode.scaleAspectFit
                 
                 addSubview(imgs)
+                
             }
         }
         
@@ -45,6 +46,7 @@ class ScoreV: UIView {
                 imgs.contentMode = UIViewContentMode.scaleAspectFit
                 
                 addSubview(imgs)
+                
             }
         }
         

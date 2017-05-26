@@ -218,10 +218,7 @@ class GameBgV: CommonV {
             break
         case 2:
             
-            DispatchQueue.main.async {
-                self.P1.imgNames = CardNameModel.shared.P1Array
-                self.P1.addCards(cardsArray: CardNameModel.shared.P1Array)
-            }
+            CardNameModel.shared.isShowP1Front = true
             
             break
         default:
@@ -333,16 +330,24 @@ class GameBgV: CommonV {
                 }
             }
             
-            /// 有牌
+            /// 玩家1是否有牌
             if CardNameModel.shared.currentUbackCardsName.count > 0 {
-                
-                
                 
                 P1.niuniuImg.isHidden = true
                 P2.niuniuImg.isHidden = true
                 
-                P1.imgNames = CardNameModel.shared.currentUbackCardsName
-                P1.addCards(cardsArray: CardNameModel.shared.currentUbackCardsName)
+                
+                if CardNameModel.shared.isShowP1Front {
+                    P1.imgNames = CardNameModel.shared.P1Array
+                    P1.addCards(cardsArray: CardNameModel.shared.P1Array)
+                    
+                    
+                } else {
+                    P1.imgNames = CardNameModel.shared.currentUbackCardsName
+                    P1.addCards(cardsArray: CardNameModel.shared.currentUbackCardsName)
+                }
+                
+                
                 
                 /// 隐藏
                 P1.prepareImg.isHidden = true
@@ -351,6 +356,8 @@ class GameBgV: CommonV {
             
             /// 添加玩家2的纸牌
             if CardNameModel.shared.P2Array.count > 0 {
+            
+                
                 
                 P2.imgNames = CardNameModel.shared.backCardsName
                 P2.addCards(cardsArray: CardNameModel.shared.backCardsName)
@@ -386,9 +393,13 @@ class GameBgV: CommonV {
                     
                     P1.niuniuImg.image = UIImage.init(named: CardNameModel.shared.niuniuArray[0])
                     P2.niuniuImg.image = UIImage.init(named: CardNameModel.shared.niuniuArray[1])
+                    
+                    
                 }
+                
             }
 
+            
             
             addSubview(P1)
             addSubview(P2)
@@ -721,4 +732,3 @@ extension GameBgV : RightDownVDelegate {
         
     }
 }
-

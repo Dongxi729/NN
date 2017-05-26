@@ -153,6 +153,8 @@
 		26F14F9C1ECAA2A7006844C9 /* FTToastIndicator.m in Sources */ = {isa = PBXBuildFile; fileRef = 26F14F971ECAA2A7006844C9 /* FTToastIndicator.m */; };
 		26F14F9E1ECAA785006844C9 /* HowToPlayV.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26F14F9D1ECAA785006844C9 /* HowToPlayV.swift */; };
 		26F14FA01ECAC785006844C9 /* ScoreView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26F14F9F1ECAC785006844C9 /* ScoreView.swift */; };
+		26FB53A61ED81EC80046829F /* ShowGuessCoinsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26FB53A51ED81EC80046829F /* ShowGuessCoinsView.swift */; };
+		26FB53A81ED82EA30046829F /* DispatchQueue-Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26FB53A71ED82EA30046829F /* DispatchQueue-Extension.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -374,6 +376,8 @@
 		26F14F971ECAA2A7006844C9 /* FTToastIndicator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FTToastIndicator.m; sourceTree = "<group>"; };
 		26F14F9D1ECAA785006844C9 /* HowToPlayV.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HowToPlayV.swift; sourceTree = "<group>"; };
 		26F14F9F1ECAC785006844C9 /* ScoreView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScoreView.swift; sourceTree = "<group>"; };
+		26FB53A51ED81EC80046829F /* ShowGuessCoinsView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShowGuessCoinsView.swift; sourceTree = "<group>"; };
+		26FB53A71ED82EA30046829F /* DispatchQueue-Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "DispatchQueue-Extension.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -678,6 +682,7 @@
 				26315CD71ED293BA0026EC6B /* MarkChoose.swift */,
 				26315CD91ED293EA0026EC6B /* RobRoomOwner.swift */,
 				26315CDB1ED2943C0026EC6B /* ScoreV.swift */,
+				26FB53A51ED81EC80046829F /* ShowGuessCoinsView.swift */,
 			);
 			name = view;
 			sourceTree = "<group>";
@@ -792,6 +797,7 @@
 		26A4872A1EC0050700E9A091 /* tool */ = {
 			isa = PBXGroup;
 			children = (
+				26FB53A71ED82EA30046829F /* DispatchQueue-Extension.swift */,
 				2657FDBD1EB9B95400B92648 /* PlayCommon.swift */,
 				26013DB01EC1D21400ACA99D /* labelScroll */,
 				26A4872B1EC0060F00E9A091 /* AbortTool.swift */,
@@ -1074,6 +1080,7 @@
 			files = (
 				26D54AE61EC2BD6D00119FAA /* DDXMLDocument.m in Sources */,
 				260C66711EB23415006C119E /* POPVector.mm in Sources */,
+				26FB53A61ED81EC80046829F /* ShowGuessCoinsView.swift in Sources */,
 				2603D9711EADCD830069B132 /* ViewController.swift in Sources */,
 				2629EBE31ECADE1D00616626 /* SettingV.swift in Sources */,
 				26013DAF1EC1D20F00ACA99D /* ScrollText.m in Sources */,
@@ -1162,6 +1169,7 @@
 				26A2FD4E1ED6EF6700CAB137 /* ScoreModel.swift in Sources */,
 				260EBC2A1ECF06DB003DD5CA /* CommonBtn.swift in Sources */,
 				26D54AE41EC2BD6D00119FAA /* NSString+DDXML.m in Sources */,
+				26FB53A81ED82EA30046829F /* DispatchQueue-Extension.swift in Sources */,
 				26D54B271EC2C11B00119FAA /* amrFileCodec.mm in Sources */,
 				268255811EC190550080CCCD /* LoginViewController.swift in Sources */,
 				26315CDE1ED2D15F0026EC6B /* ReconnectModel.swift in Sources */,

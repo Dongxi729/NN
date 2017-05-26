@@ -12,13 +12,17 @@ import UIKit
 
 class ReconnectModel: NSObject {
     /// xml 当前游戏(还未开始的游戏房间的数据)
-//    var reconnectStr : String = "" {
-//        didSet {
-//            self.xmlAnalyse(xmlStr: currentRoomPlayInfo)
-//        }
-//    }
+    static let shared = ReconnectModel()
     
-    var reconnectStr : String = "<M><Nn id='123456' tk='asldkfjwieoskldfksdhf' ty='1'/></M>"
+    var reconnectStr : String = "" {
+        didSet {
+            print("\((#file as NSString).lastPathComponent):(\(#line))\n",reconnectStr)
+            
+            DispatchQueue.main.async {
+                UIApplication.shared.keyWindow?.rootViewController = MainGameViewController()
+            }
+        }
+    }
 
     /// 解析的xml字符串
     fileprivate func xmlAnalyse(xmlStr : String) -> Void {

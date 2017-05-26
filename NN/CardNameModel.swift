@@ -18,6 +18,24 @@ class CardNameModel: NSObject {
     
     static let shared = CardNameModel()
     
+    
+    var isShowP1Front = false {
+        didSet {
+            
+            print("\((#file as NSString).lastPathComponent):(\(#line))\n")
+            
+            if self.isShowP1Front {
+                DispatchQueue.main.async {
+                    
+                    /// 移除在创建
+                    UIApplication.shared.keyWindow?.rootViewController?.view.removeFromSuperview()
+                    
+                    UIApplication.shared.keyWindow?.rootViewController = GamingVC()
+                }
+            }
+        }
+    }
+    
     var P1Array : [String] = [] {
         didSet {
             
@@ -29,13 +47,12 @@ class CardNameModel: NSObject {
                 UIApplication.shared.keyWindow?.rootViewController?.view.removeFromSuperview()
                 
                 UIApplication.shared.keyWindow?.rootViewController = GamingVC()
-                
-                
             }
         }
     }
 
-    var P2Array : [String] = []
+    
+    var P2Array : [String] = [] 
     var P3Array : [String] = []
     var P4Array : [String] = []
     var P5Array : [String] = []
@@ -265,4 +282,5 @@ class CardNameModel: NSObject {
         
         return cardsNeArray
     }
+
 }

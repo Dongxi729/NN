@@ -63,9 +63,7 @@ class MainGameViewController: UIViewController {
         
         /// 开启链接服务器
         DispatchQueue.global(qos: .default).async {
-            
             testServer()
-            
         }
     }
     
@@ -117,6 +115,20 @@ class MainGameViewController: UIViewController {
     }
 
     
+    
+    func reconnect() -> Void {
+        
+        let connectAlert : UIAlertController = UIAlertController.init(title: "提示", message: "已断开连接,是否重新连接", preferredStyle: .alert)
+        connectAlert.addAction(UIAlertAction.init(title: "好的", style: .default, handler: { (alert) in
+            testServer()
+        }))
+        
+        connectAlert.addAction(UIAlertAction.init(title: "取消", style: .default, handler: { (alert) in
+            
+        }))
+        
+        UIApplication.shared.keyWindow?.rootViewController?.present(connectAlert, animated: true, completion: nil)
+    }
     
     func presenrView() -> Void {
         view.addSubview(presentView)

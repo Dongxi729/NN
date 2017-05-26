@@ -140,6 +140,7 @@ class PeronheadInfoV: UIView {
     lazy var scoreImg: ScoreV = {
         let d : ScoreV = ScoreV.init(frame: CGRect.init(x: self.Width * 0.5, y: self.Height, width: self.Width * 0.5, height: self.Height * 0.5))
         
+        
         return d
     }()
     
@@ -200,7 +201,6 @@ class PeronheadInfoV: UIView {
 
                 addSubview(backCardsLayout)
             }
-            
         }
     }
     

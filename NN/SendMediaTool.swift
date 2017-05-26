@@ -30,7 +30,7 @@ var reportUser = true
 // MARK: - 连接服务器
 func testServer() {
     
-//        client = TCPClient.init(address: "192.168.1.10", port: 2048)
+    //        client = TCPClient.init(address: "192.168.1.10", port: 2048)
     client = TCPClient.init(address: "192.168.2.11", port: 8887)
     
     switch client.connect(timeout: 1) {
@@ -42,26 +42,26 @@ func testServer() {
             /// 缓存池数据
             let d = client.read(1024 * 10)
             
-//            print("\((#file as NSString).lastPathComponent):(\(#line))\n",d as Any)
+            //            print("\((#file as NSString).lastPathComponent):(\(#line))\n",d as Any)
             
             /// 绩溪县,.
             if d != nil {
                 byteAnalyse(ddd: d!)
-
+                
                 if reportUser == true {
                     reportUID()
                     reportUser = false
                 }
-            
-            } else {
-                print("\((#file as NSString).lastPathComponent):(\(#line))\n","连接失败")
                 
-                FTIndicator.showError(withMessage: "连接失败")
+            } else {
+
+                print("\((#file as NSString).lastPathComponent):(\(#line))\n","连接失败")
                 
                 backToholl()
                 
                 /// 连接异常则关闭连接。
                 client.close()
+
                 return
             }
         }
@@ -86,6 +86,11 @@ func reportUID() -> Void {
     reportTypeWithData(typeInt: 254, str: "<M><Nn id=\"\(LoginModel.shared.uid!)\" tk=\"\(LoginModel.shared.token!)\"/></M>")
 }
 
+///统一上报类型
+///
+/// - Parameters:
+///   - typeInt: 上报的类型
+///   - str: 上报的消息
 func reportTypeWithData(typeInt : Int,str : String) {
     let str = str
     
@@ -154,7 +159,7 @@ func joinRoomWithPass(roomPass : String) {
     reportTypeWithData(typeInt: 7, str: "<M><ty p=\"\(roomPass)\"/></M>")
 }
 
-    
+
 // MARK: - 上报房间类型
 /// 六人牛牛 -- 每局都要压分才能愉快的玩耍
 func reportCreateRoomType() -> Void {
@@ -167,7 +172,7 @@ func reportCreateRoomType() -> Void {
 /// 通比牛牛
 func reportCommonType() -> Void {
     let roomType = "<M><ty gt='5' ii='10' rn='6' py='2' ss='10'/></M>"
-
+    
     /// 添加发送的文字
     reportTypeWithData(typeInt: 6, str: roomType)
 }
@@ -279,7 +284,7 @@ func bytesShwoFunc(_over : [Byte]) -> Void {
     let dd = NSData.init(bytes: bodyData, length: bodyData.count)
     print("\((#file as NSString).lastPathComponent):(\(#line))\n",typpppp)
     
-
+    
     
     /// 根据类型进行处理
     if typpppp == 8 {
@@ -310,7 +315,7 @@ func bytesShwoFunc(_over : [Byte]) -> Void {
     
     /// 房间无
     if typpppp == 7 {
-    
+        
         JoinRoomModel.shared.joinResultStr = String.init(data: dd as Data, encoding: String.Encoding.utf8)!
         
         
@@ -318,14 +323,20 @@ func bytesShwoFunc(_over : [Byte]) -> Void {
     
     /// 断线重连
     if typpppp == 255 {
-        
+        /// 开始上报用户信息,传socket
+//        AvdioTool.shared.creatSession()
+//        
+//        /// 开启链接服务器
+//        DispatchQueue.global(qos: .default).async {
+//            testServer()
+//        }
     }
     
     /// 解散房间
     if typpppp == 90 {
         if AnylasyseWithKey(analayseStr: String.init(data: dd as Data, encoding: String.Encoding.utf8)!, secondNode: "ty", withSepcifiedKey: "ms").contains("解菜房间") {
             print("解散房间~~~~")
-
+            
             DispatchQueue.main.async {
                 backToholl()
             }
@@ -345,7 +356,7 @@ func bytesShwoFunc(_over : [Byte]) -> Void {
         print("\((#file as NSString).lastPathComponent):(\(#line))\n",AnylasyseWithKey(analayseStr: String.init(data: dd as Data, encoding: String.Encoding.utf8)!, secondNode: "ty", withSepcifiedKey: "ms"))
         
         let alertMsg = AnylasyseWithKey(analayseStr: String.init(data: dd as Data, encoding: String.Encoding.utf8)!, secondNode: "ty", withSepcifiedKey: "ms")
-
+        
         
         FTIndicator.showToastMessage(alertMsg)
     }
@@ -384,7 +395,7 @@ func playPrepare() {
 
 // MARK: - 六人牛牛压分
 func markScore(reportType : String) {
-//    <M><ty yf ="5"/></M>p=\"\(roomPass)\"
+    //    <M><ty yf ="5"/></M>p=\"\(roomPass)\"
     reportTypeWithData(typeInt: 11, str: "<M><ty yf=\"\(reportType)\"></M>")
 }
 
