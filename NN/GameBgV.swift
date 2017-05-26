@@ -249,7 +249,9 @@ class GameBgV: CommonV {
             
             break
         case 2:
-            
+            if RoomModel.shared.isGameBegin {
+                self.inviteFriendsBtn.isHidden = true
+            }
 
             
             P1.samllCardsShowLeftOrRight = -1
@@ -289,7 +291,7 @@ class GameBgV: CommonV {
                 }
             }
             
-            
+            /// 有牌
             if CardNameModel.shared.currentUbackCardsName.count > 0 {
                 
                 P1.niuniuImg.isHidden = true
@@ -298,9 +300,12 @@ class GameBgV: CommonV {
                 P1.imgNames = CardNameModel.shared.currentUbackCardsName
                 P1.addCards(cardsArray: CardNameModel.shared.currentUbackCardsName)
                 
-                print("\((#file as NSString).lastPathComponent):(\(#line))\n",CardNameModel.shared.currentUbackCardsName)
+                /// 隐藏
+                P1.prepareImg.isHidden = true
+                P2.prepareImg.isHidden = true
             }
             
+            /// 添加玩家2的纸牌
             if CardNameModel.shared.P2Array.count > 0 {
                 
                 P2.imgNames = CardNameModel.shared.backCardsName

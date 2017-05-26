@@ -29,6 +29,8 @@ class RoomModel: NSObject {
 
 //                CardNameModel.shared.niuniuArray = []
                 ScoreModel.shared.userScoreDic = []
+                
+                
             }
         }
     }

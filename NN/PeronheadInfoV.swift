@@ -249,14 +249,6 @@ class PeronheadInfoV: UIView {
         offLineImg.isHidden = true
         ownerImg.isHidden = true
         
-        /// 分数隐
-        if CardNameModel.shared.isreceivedCountScore == "4" {
-            scoreImg.isHidden = false
-            CardNameModel.shared.isreceivedCountScore = "false"
-        } else {
-            scoreImg.isHidden = true
-        }
-        
     }
     
     
