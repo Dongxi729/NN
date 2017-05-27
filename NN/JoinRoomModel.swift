@@ -69,6 +69,10 @@ class JoinRoomModel: NSObject {
         if failInfo.count != 0 {
             for user in successInfo {
                 
+                if user.attribute(forName: "type") != nil {
+                    CardNameModel.shared.isreceivedCountScore = (user.attribute(forName: "su")?.stringValue!)!
+                }
+                
                 if user.attribute(forName: "su") != nil {
                     let succesOFail = user.attribute(forName: "su")!.stringValue
                     print("\((#file as NSString).lastPathComponent):(\(#line))\n",succesOFail as Any)

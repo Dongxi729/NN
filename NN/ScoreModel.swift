@@ -9,7 +9,7 @@
 import UIKit
 
 class ScoreModel: NSObject {
-
+    
     /// 分数加减数组
     fileprivate var scoreCountDownScore : Int = 0
     
@@ -21,7 +21,10 @@ class ScoreModel: NSObject {
     
     /// 备份的用户增减分数
     var backupUserDic : [Int] = []
-
+    
+    
+    /// 游戏进行中的状态
+    var gamingReciveType : String = ""
     
     /// 用户剩余分数
     var leftScore : [Int] = [] {
@@ -71,10 +74,30 @@ class ScoreModel: NSObject {
             if (user.attribute(forName: "gg")?.stringValue!) != nil {
                 /// 扣分
                 self.costScore = Int((user.attribute(forName: "gg")?.stringValue!)!)!
-
+                
                 leftScoreIndex += 1
                 
                 leftScore.append(self.costScore)
+            }
+        }
+        
+        ///<M>
+        //        <ty type="7">
+        //        <u id="50257938" igg="-50" gg="-50"/>
+        //        <u id="51615751" igg="0" gg="50"/>
+        //        <u id="0"/>
+        //        <u id="0"/>
+        //        <u id="0"/>
+        //        <u id="0"/>
+        //        </ty>
+        //        <Nn/>
+        //        </M>
+        let typeCount = try! doc.nodes(forXPath: "//M/ty") as! [DDXMLElement]
+        
+        for xx in typeCount {
+            if xx.attribute(forName: "type")?.stringValue != nil {
+                self.gamingReciveType = (xx.attribute(forName: "type")?.stringValue
+                    )!
             }
         }
     }

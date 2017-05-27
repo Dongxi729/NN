@@ -22,8 +22,6 @@ class CardNameModel: NSObject {
     var isShowP1Front = false {
         didSet {
             
-            print("\((#file as NSString).lastPathComponent):(\(#line))\n")
-            
             if self.isShowP1Front {
                 DispatchQueue.main.async {
                     

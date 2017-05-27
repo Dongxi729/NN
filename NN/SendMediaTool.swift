@@ -284,7 +284,11 @@ func bytesShwoFunc(_over : [Byte]) -> Void {
     let dd = NSData.init(bytes: bodyData, length: bodyData.count)
     print("\((#file as NSString).lastPathComponent):(\(#line))\n",typpppp)
     
-    
+
+    /// 准备游戏
+    if typpppp == 9 {
+        ScoreModel.shared.gamingReciveType = "9"
+    }
     
     /// 根据类型进行处理
     if typpppp == 8 {
@@ -317,25 +321,17 @@ func bytesShwoFunc(_over : [Byte]) -> Void {
     if typpppp == 7 {
         
         JoinRoomModel.shared.joinResultStr = String.init(data: dd as Data, encoding: String.Encoding.utf8)!
-        
-        
+ 
     }
     
     /// 断线重连
     if typpppp == 255 {
-        /// 开始上报用户信息,传socket
-//        AvdioTool.shared.creatSession()
-//        
-//        /// 开启链接服务器
-//        DispatchQueue.global(qos: .default).async {
-//            testServer()
-//        }
+
     }
     
     /// 解散房间
     if typpppp == 90 {
         if AnylasyseWithKey(analayseStr: String.init(data: dd as Data, encoding: String.Encoding.utf8)!, secondNode: "ty", withSepcifiedKey: "ms").contains("解菜房间") {
-            print("解散房间~~~~")
             
             DispatchQueue.main.async {
                 backToholl()
@@ -360,6 +356,8 @@ func bytesShwoFunc(_over : [Byte]) -> Void {
         
         FTIndicator.showToastMessage(alertMsg)
     }
+    
+    
 }
 
 /// 发送语音

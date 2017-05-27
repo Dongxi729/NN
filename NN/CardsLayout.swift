@@ -99,7 +99,6 @@ class CardsLayout : CommonV {
     
     override init(frame: CGRect) {
         super.init(frame: frame)
-//        addSubview(cardsBgV)
         
         addSubview(alertBtn)
         addSubview(showCardBtn)

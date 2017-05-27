@@ -228,8 +228,21 @@ class GameBgV: CommonV {
     
     override func layoutSubviews() {
         
-     
+        if RoomModel.shared.gameType == "通比牛牛" {
+            /// 准备游戏时，准备按钮隐藏
+            if ScoreModel.shared.gamingReciveType == "9" {
+                self.startGameBtn.isHidden = true
+            }
+            
+            /// 收到积分结算时，准备按钮显示
+            if ScoreModel.shared.gamingReciveType == "7" {
+                
+                self.startGameBtn.isHidden = false
+            }
+            
+        }
         
+
         super.layoutSubviews()
         /// 根据状态显示六人牛牛还是通比牛牛
         if RoomModel.shared.gameType == "六人牛牛" {
@@ -337,7 +350,7 @@ class GameBgV: CommonV {
                 P2.niuniuImg.isHidden = true
                 
                 
-                if CardNameModel.shared.isShowP1Front {
+                if CardNameModel.shared.isShowP1Front || ScoreModel.shared.gamingReciveType == "7" {
                     P1.imgNames = CardNameModel.shared.P1Array
                     P1.addCards(cardsArray: CardNameModel.shared.P1Array)
                     
@@ -566,6 +579,9 @@ class GameBgV: CommonV {
         
         addSubview(bgVImg)
         addSubview(startGameBtn)
+
+    
+        
         
         addSubview(roomNoImgV)
         addSubview(cheatBtn)
@@ -606,6 +622,7 @@ class GameBgV: CommonV {
         addSubview(robOwner)
         
         robOwner.isHidden = true
+    
     }
     
     required init?(coder aDecoder: NSCoder) {
