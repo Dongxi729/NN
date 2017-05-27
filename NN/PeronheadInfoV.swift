@@ -163,9 +163,6 @@ class PeronheadInfoV: UIView {
     /// 背面纸牌
     var backCardsLayout : UIImageView!
     
-    /// 纸牌
-    var cardCards = [0,0,0,0,0]
-    
     /// 是否显示底部大纸牌
     var isShowBottomCardLayout = false
     
@@ -257,17 +254,6 @@ class PeronheadInfoV: UIView {
         let d : UIImageView = UIImageView.init(frame: CGRect.init(x: 0, y: 0, width: self.Width, height: self.Height))
         return d
     }()
-    
-    /// 拼接
-    ///
-    /// - Parameter prefix: 图片前缀
-    private func contactName(prefix : String) -> [String] {
-        let names = cardCards.map {
-            prefix + String($0)
-        }
-        return names
-    }
-    
     
     
     override func layoutSubviews() {

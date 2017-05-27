@@ -24,6 +24,9 @@ class RoomModel: NSObject {
     /// 游戏局数 10 、 20 、 30
     var gameRounds : String = "10"
     
+    /// 是否可以作弊
+    var canCheat = false
+    
     /// 当前局数
     var currentRounds : String = "0" {
         didSet {
@@ -32,6 +35,7 @@ class RoomModel: NSObject {
 
 //                CardNameModel.shared.niuniuArray = []
                 ScoreModel.shared.userScoreDic = []
+                
                 
                 
             }
@@ -119,6 +123,9 @@ class RoomModel: NSObject {
     fileprivate var prepareArray : [String] = []
     var prepareDic = [Int : String]()
     
+    /// 用户ID
+    var userUIDS : [String] = []
+    
     /// xml 当前游戏(还未开始的游戏房间的数据)
     var currentRoomPlayInfo : String = "" {
         didSet {
@@ -174,23 +181,23 @@ class RoomModel: NSObject {
             /// 拟定开好房间的总人数
             self.limitedPlayersNum = Int(user.attribute(forName: "rn")!.stringValue!)!
             
-//            print("====房间号",self.roomNumber)
-//            
-//            print("=====self.gameType",self.gameType)
-//            
-//            print("=====self.wantCoins",self.wantCoins)
-//            
-//            print("====== 支付方式",self.payType)
-//            
-//            print("====== 总局数",self.gameRounds)
-//            
-//            print("====== 当前局数",self.currentRounds)
-//            
-//            print("====== 当前房间在线人数",self.currentPersonInRoom)
-//            
-//            print("====== 拟定创建好房间的总人数",self.limitedPlayersNum)
-//
-//            print("====== 所有名字",self.userName)
+            print("====房间号",self.roomNumber)
+            
+            print("=====self.gameType",self.gameType)
+            
+            print("=====self.wantCoins",self.wantCoins)
+            
+            print("====== 支付方式",self.payType)
+            
+            print("====== 总局数",self.gameRounds)
+            
+            print("====== 当前局数",self.currentRounds)
+            
+            print("====== 当前房间在线人数",self.currentPersonInRoom)
+            
+            print("====== 拟定创建好房间的总人数",self.limitedPlayersNum)
+
+            print("====== 所有名字",self.userName)
         }
         
         let _users = try! doc.nodes(forXPath: "//M/ty/u") as! [DDXMLElement]
@@ -204,7 +211,11 @@ class RoomModel: NSObject {
     
         self.prepareArray = []
         
+        self.userId = []
+        
         for user in _users {
+            
+
             
             ///=========================== 名字解析成字典供后面使用,展示使用
             let resultStr = user.attribute(forName: "n")?.stringValue
@@ -285,9 +296,16 @@ class RoomModel: NSObject {
                 
                 CardNameModel.shared.isShowP1Front = false
             }
+
+            /// 解析用户ID
+            ///=========================== 准备
+            let userUID = user.attribute(forName: "id")?.stringValue
             
+            if userUID != nil {
+                self.userId.append(userUID!)
+            }
+            
+            print(userId)
         }
-    
-        
     }
 }

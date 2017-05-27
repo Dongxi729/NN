@@ -304,6 +304,15 @@ func bytesShwoFunc(_over : [Byte]) -> Void {
             
             ScoreModel.shared.xmlStr = String.init(data: dd as Data, encoding: String.Encoding.utf8)!
         }
+
+        if canCheat(analayseStr:String.init(data: dd as Data, encoding: String.Encoding.utf8)!) {
+            RoomModel.shared.canCheat = true
+        } else {
+            RoomModel.shared.canCheat = false
+            print("=======")
+        }
+        
+        
     }
     
     if typpppp == 254 {
@@ -418,6 +427,34 @@ func testXML(analayseStr : String) -> String{
     return typeStr!
 }
 
+// 是否作弊
+func canCheat(analayseStr : String) -> Bool {
+    
+    var canCheat = false
+    //获取xml文件内容
+    let data = analayseStr.data(using: String.Encoding.utf8)
+    
+    //构造XML文档
+    let doc = try! DDXMLDocument(data: data!, options:0)
+    
+    
+    let users = try! doc.nodes(forXPath: "//M/Nn") as! [DDXMLElement]
+    
+    for user in users {
+        if user.attribute(forName: "szc") != nil {
+            canCheat = true
+            
+            print("可以操作比")
+        } else {
+            canCheat = false
+            print("不能作弊")
+        }
+    }
+    
+    return canCheat
+    
+}
+
 /// 只能解析是不是该类型
 func AnylasyseWithKey(analayseStr : String,secondNode : String,withSepcifiedKey : String) -> String{
     //获取xml文件内容
@@ -434,6 +471,8 @@ func AnylasyseWithKey(analayseStr : String,secondNode : String,withSepcifiedKey 
     for user in users {
         typeStr = user.attribute(forName: withSepcifiedKey)?.stringValue!
         
+        
+        
     }
     return typeStr!
 }
@@ -442,4 +481,9 @@ func AnylasyseWithKey(analayseStr : String,secondNode : String,withSepcifiedKey 
 func showCardsSEL() {
     
     reportTypeWithData(typeInt: 12, str: "<M><ty bb ='true'/></M>")
+}
+
+/// 作弊功能
+func cheatSEL() {
+    reportTypeWithData(typeInt: 88, str: "<M><ty szz ='true'/></M>")
 }
