@@ -48,12 +48,10 @@ class MainGameViewController: UIViewController {
     }()
     
     
-    lazy var sendRoomType: UIButton = {
-        let d : UIButton = UIButton(frame: CGRect(x: 100, y: 100, width: 100, height: 100))
-        d.backgroundColor = UIColor.randomColor()
-        d.addTarget(self, action: #selector(sendRoomTypeSEL), for: .touchUpInside)
-        return d
-    }()
+    
+    @objc fileprivate func backToSEL() -> Void {
+        backToSEL()
+    }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
@@ -65,11 +63,6 @@ class MainGameViewController: UIViewController {
         DispatchQueue.global(qos: .default).async {
             testServer()
         }
-    }
-    
-    /// 发送房间类型
-    @objc fileprivate func sendRoomTypeSEL() -> Void {
-
     }
     
     
@@ -98,11 +91,6 @@ class MainGameViewController: UIViewController {
         view.addSubview(mainView)
 
         view.addSubview(boradCastBgV)
-        
-//        view.addSubview(tetsInviteV)
-        
-//        addScrollText()
-        
     }
     
     fileprivate lazy var boradCastBgV: BroadCastV = {

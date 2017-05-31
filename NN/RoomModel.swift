@@ -196,8 +196,6 @@ class RoomModel: NSObject {
             print("====== 当前房间在线人数",self.currentPersonInRoom)
             
             print("====== 拟定创建好房间的总人数",self.limitedPlayersNum)
-
-            print("====== 所有名字",self.userName)
         }
         
         let _users = try! doc.nodes(forXPath: "//M/ty/u") as! [DDXMLElement]

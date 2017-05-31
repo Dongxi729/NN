@@ -54,14 +54,14 @@ func testServer() {
                 }
                 
             } else {
-
+                
                 print("\((#file as NSString).lastPathComponent):(\(#line))\n","连接失败")
                 
                 backToholl()
                 
                 /// 连接异常则关闭连接。
                 client.close()
-
+                
                 return
             }
         }
@@ -221,6 +221,7 @@ func byteAnalyse(ddd : [Byte]) -> Void {
             
             
             print("leng :",leng)
+            
             bodyfun()
         } else {
             return
@@ -280,11 +281,10 @@ func bytesShwoFunc(_over : [Byte]) -> Void {
     /// 类型
     let typpppp = bodyData.remove(at: 0)
     
-    
     let dd = NSData.init(bytes: bodyData, length: bodyData.count)
     print("\((#file as NSString).lastPathComponent):(\(#line))\n",typpppp)
     
-
+    
     /// 准备游戏
     if typpppp == 9 {
         ScoreModel.shared.gamingReciveType = "9"
@@ -304,7 +304,7 @@ func bytesShwoFunc(_over : [Byte]) -> Void {
             
             ScoreModel.shared.xmlStr = String.init(data: dd as Data, encoding: String.Encoding.utf8)!
         }
-
+        
         if canCheat(analayseStr:String.init(data: dd as Data, encoding: String.Encoding.utf8)!) {
             RoomModel.shared.canCheat = true
         } else {
@@ -330,17 +330,17 @@ func bytesShwoFunc(_over : [Byte]) -> Void {
     if typpppp == 7 {
         
         JoinRoomModel.shared.joinResultStr = String.init(data: dd as Data, encoding: String.Encoding.utf8)!
- 
+        
     }
     
     /// 断线重连
     if typpppp == 255 {
-
+        
     }
     
     /// 解散房间
     if typpppp == 90 {
-        if AnylasyseWithKey(analayseStr: String.init(data: dd as Data, encoding: String.Encoding.utf8)!, secondNode: "ty", withSepcifiedKey: "ms").contains("解菜房间") {
+        if AnylasyseWithKey(analayseStr: String.init(data: dd as Data, encoding: String.Encoding.utf8)!, secondNode: "ty", withSepcifiedKey: "ms").contains("解散房间") {
             
             DispatchQueue.main.async {
                 backToholl()
@@ -452,7 +452,6 @@ func canCheat(analayseStr : String) -> Bool {
     }
     
     return canCheat
-    
 }
 
 /// 只能解析是不是该类型
@@ -470,9 +469,6 @@ func AnylasyseWithKey(analayseStr : String,secondNode : String,withSepcifiedKey 
     
     for user in users {
         typeStr = user.attribute(forName: withSepcifiedKey)?.stringValue!
-        
-        
-        
     }
     return typeStr!
 }

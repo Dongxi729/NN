@@ -21,7 +21,7 @@ class ServerSendMsg: NSObject {
     }
     
     
-    /// 倒计时
+    /// 倒计
     var coutSec : Int = 0
     
     static let shared = ServerSendMsg()

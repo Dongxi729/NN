@@ -212,26 +212,17 @@ class GameBgV: CommonV {
     
     /// 测试--- 提示
     @objc fileprivate func testShow() {
-        switch RoomModel.shared.currentPersonInRoom {
-        case 1:
-            
-            break
-        case 2:
-            
-            CardNameModel.shared.isShowP1Front = true
-            
-            break
-        default:
-            break
-        }
+        
+        CardNameModel.shared.isShowP1Front = true
     }
     
     override func layoutSubviews() {
         
+        super.layoutSubviews()
         
         
-        /// 返回当前用户的分数位置
-        var indexxxx = 0
+        /// 返回当前用户的分数位置(用户1)
+        var userIndex1 = 0
         
         var currentUserIndex = 0
         
@@ -239,14 +230,14 @@ class GameBgV: CommonV {
             
             /// 当前用户的
             if value == LoginModel.shared.uid {
-                currentUserIndex = indexxxx
+                currentUserIndex = userIndex1
                 break
             }
             
-            indexxxx += 1
+            userIndex1 += 1
         }
         
-        /// 22
+        /// 用户2
         var userIndex2 = 0
         
         var currentUserIndex2 = 0
@@ -254,15 +245,47 @@ class GameBgV: CommonV {
         for (_,value) in RoomModel.shared.nameStr {
             
             /// 当前用户的
-            if value == RoomModel.shared.nameStr[currentUserIndex + 1] {
+            if value == RoomModel.shared.nameStr[1] {
                 
                 currentUserIndex2 = userIndex2
                 break
             }
-            
             userIndex2 += 1
         }
-
+        
+        /// 用户3
+        var userIndex3 = 0
+        
+        var currentUserIndex3 = 0
+        
+        for (_,value) in RoomModel.shared.nameStr {
+            
+            /// 当前用户的
+            if value == RoomModel.shared.nameStr[2] {
+                
+                currentUserIndex3 = userIndex3
+                break
+            }
+            userIndex3 += 1
+        }
+        
+        
+        /// 用户4
+        var userIndex4 = 0
+        
+        var currentUserIndex4 = 0
+        
+        for (_,value) in RoomModel.shared.nameStr {
+            
+            /// 当前用户的
+            if value == RoomModel.shared.nameStr[3] {
+                
+                currentUserIndex4 = userIndex4
+                break
+            }
+            userIndex4 += 1
+        }
+        
         
         
         if RoomModel.shared.gameType == "通比牛牛" {
@@ -279,16 +302,16 @@ class GameBgV: CommonV {
         }
         
         
-        super.layoutSubviews()
+        
         /// 根据状态显示六人牛牛还是通比牛牛
         if RoomModel.shared.gameType == "六人牛牛" {
             self.gameType.image = #imageLiteral(resourceName: "liuCow")
         } else {
             self.gameType.image = #imageLiteral(resourceName: "commonCow")
         }
-    
         
-        /// 根据当前人数以及游戏状态显示
+        print("\((#file as NSString).lastPathComponent):(\(#line))\n",CardNameModel.shared.currentUserIndexSEL())
+        
         
         /// 准备完成后---是否开始游戏---开始游戏,
         switch RoomModel.shared.currentPersonInRoom {
@@ -328,7 +351,6 @@ class GameBgV: CommonV {
             
             break
         case 2:
-
             
             /// 设置摆放纸牌位置
             P1.samllCardsShowLeftOrRight = -1
@@ -356,7 +378,7 @@ class GameBgV: CommonV {
                 
                 let headStr = RoomModel.shared.headUrlDic[currentUserIndex]
                 let headStr2 = RoomModel.shared.headUrlDic[currentUserIndex2]
-
+                
                 
                 downImgWith(url: headStr!, toView: self.P1.headImg)
                 downImgWith(url: headStr2!, toView: self.P2.headImg)
@@ -395,9 +417,8 @@ class GameBgV: CommonV {
                 
                 
                 if CardNameModel.shared.isShowP1Front || ScoreModel.shared.gamingReciveType == "7" {
-                    P1.imgNames = CardNameModel.shared.P1Array
-                    P1.addCards(cardsArray: CardNameModel.shared.P1Array)
-                    
+                    P1.imgNames = CardNameModel.shared.rightCurrentIndexCards()
+                    P1.addCards(cardsArray: CardNameModel.shared.rightCurrentIndexCards())
                     
                 } else {
                     P1.imgNames = CardNameModel.shared.currentUbackCardsName
@@ -420,11 +441,8 @@ class GameBgV: CommonV {
             
             /// 显示剩余的分数
             if ScoreModel.shared.leftScore.count > 0 {
-                P1.coinsLabel.text = String(ScoreModel.shared.leftScore[0])
-                P2.coinsLabel.text = String(ScoreModel.shared.leftScore[1])
-                
-                
-                
+                P1.coinsLabel.text = String(ScoreModel.shared.leftScore[currentUserIndex])
+                P2.coinsLabel.text = String(ScoreModel.shared.leftScore[currentUserIndex2])
             }
             
             
@@ -441,8 +459,8 @@ class GameBgV: CommonV {
                 P1.scoreImg.isHidden = false
                 P2.scoreImg.isHidden = false
                 
-                P1.scoreImg.abc(abc: String(ScoreModel.shared.userScoreDic[0]), scoreType: type)
-                P2.scoreImg.abc(abc: String(ScoreModel.shared.userScoreDic[1]), scoreType: type)
+                P1.scoreImg.abc(abc: String(ScoreModel.shared.userScoreDic[currentUserIndex]), scoreType: type)
+                P2.scoreImg.abc(abc: String(ScoreModel.shared.userScoreDic[currentUserIndex2]), scoreType: type)
                 
                 
                 /// 显示牛牛的图片
@@ -450,8 +468,8 @@ class GameBgV: CommonV {
                     P1.niuniuImg.isHidden = false
                     P2.niuniuImg.isHidden = false
                     
-                    P1.niuniuImg.image = UIImage.init(named: CardNameModel.shared.niuniuArray[0])
-                    P2.niuniuImg.image = UIImage.init(named: CardNameModel.shared.niuniuArray[1])
+                    P1.niuniuImg.image = UIImage.init(named: CardNameModel.shared.niuniuArray[currentUserIndex])
+                    P2.niuniuImg.image = UIImage.init(named: CardNameModel.shared.niuniuArray[currentUserIndex2])
                     
                 }
             }
@@ -459,6 +477,7 @@ class GameBgV: CommonV {
             addSubview(P1)
             addSubview(P2)
             break
+            
         case 3:
             P1.samllCardsShowLeftOrRight = -1
             P2.samllCardsShowLeftOrRight = 1
@@ -473,16 +492,17 @@ class GameBgV: CommonV {
             }
             
             
+            /// 显示名字
+            P1.nameLabel.text = RoomModel.shared.nameStr[currentUserIndex]
+            P2.nameLabel.text = RoomModel.shared.nameStr[currentUserIndex2]
+            P3.nameLabel.text = RoomModel.shared.nameStr[currentUserIndex3]
             
-            P1.nameLabel.text = RoomModel.shared.nameStr[0]
-            P2.nameLabel.text = RoomModel.shared.nameStr[1]
-            P3.nameLabel.text = RoomModel.shared.nameStr[2]
             
-            
+            /// 加载头像
             DispatchQueue.main.async {
-                let headStr = RoomModel.shared.headUrlDic[0]
-                let headStr2 = RoomModel.shared.headUrlDic[1]
-                let headStr3 = RoomModel.shared.headUrlDic[2]
+                let headStr = RoomModel.shared.headUrlDic[currentUserIndex]
+                let headStr2 = RoomModel.shared.headUrlDic[currentUserIndex2]
+                let headStr3 = RoomModel.shared.headUrlDic[currentUserIndex3]
                 downImgWith(url: headStr!, toView: self.P1.headImg)
                 downImgWith(url: headStr2!, toView: self.P2.headImg)
                 downImgWith(url: headStr3!, toView: self.P3.headImg)
@@ -525,12 +545,13 @@ class GameBgV: CommonV {
                 
                 
                 if CardNameModel.shared.isShowP1Front || ScoreModel.shared.gamingReciveType == "7" {
-                    P1.imgNames = CardNameModel.shared.P1Array
-                    P1.addCards(cardsArray: CardNameModel.shared.P1Array)
-                    
-                    
+                    P1.imgNames = CardNameModel.shared.rightCurrentIndexCards()
+                    P1.addCards(cardsArray: CardNameModel.shared.rightCurrentIndexCards())
                 } else {
+                    /// 添加牌的名字。
                     P1.imgNames = CardNameModel.shared.currentUbackCardsName
+                    
+                    /// 摆出对应的牌形
                     P1.addCards(cardsArray: CardNameModel.shared.currentUbackCardsName)
                 }
                 
@@ -553,9 +574,9 @@ class GameBgV: CommonV {
             
             /// 显示剩余的分数
             if ScoreModel.shared.leftScore.count > 0 {
-                P1.coinsLabel.text = String(ScoreModel.shared.leftScore[0])
-                P2.coinsLabel.text = String(ScoreModel.shared.leftScore[1])
-                P3.coinsLabel.text = String(ScoreModel.shared.leftScore[2])
+                P1.coinsLabel.text = String(ScoreModel.shared.leftScore[currentUserIndex])
+                P2.coinsLabel.text = String(ScoreModel.shared.leftScore[currentUserIndex2])
+                P3.coinsLabel.text = String(ScoreModel.shared.leftScore[currentUserIndex3])
             }
             
             
@@ -573,9 +594,9 @@ class GameBgV: CommonV {
                 P2.scoreImg.isHidden = false
                 P3.scoreImg.isHidden = false
                 
-                P1.scoreImg.abc(abc: String(ScoreModel.shared.userScoreDic[0]), scoreType: type)
-                P2.scoreImg.abc(abc: String(ScoreModel.shared.userScoreDic[1]), scoreType: type)
-                P3.scoreImg.abc(abc: String(ScoreModel.shared.userScoreDic[2]), scoreType: type)
+                P1.scoreImg.abc(abc: String(ScoreModel.shared.userScoreDic[currentUserIndex]), scoreType: type)
+                P2.scoreImg.abc(abc: String(ScoreModel.shared.userScoreDic[currentUserIndex2]), scoreType: type)
+                P3.scoreImg.abc(abc: String(ScoreModel.shared.userScoreDic[currentUserIndex3]), scoreType: type)
                 
                 /// 显示牛牛的图片
                 if CardNameModel.shared.niuniuArray.count > 0 {
@@ -583,9 +604,9 @@ class GameBgV: CommonV {
                     P2.niuniuImg.isHidden = false
                     P3.niuniuImg.isHidden = false
                     
-                    P1.niuniuImg.image = UIImage.init(named: CardNameModel.shared.niuniuArray[0])
-                    P2.niuniuImg.image = UIImage.init(named: CardNameModel.shared.niuniuArray[1])
-                    P3.niuniuImg.image = UIImage.init(named: CardNameModel.shared.niuniuArray[1])
+                    P1.niuniuImg.image = UIImage.init(named: CardNameModel.shared.niuniuArray[currentUserIndex])
+                    P2.niuniuImg.image = UIImage.init(named: CardNameModel.shared.niuniuArray[currentUserIndex2])
+                    P3.niuniuImg.image = UIImage.init(named: CardNameModel.shared.niuniuArray[currentUserIndex3])
                     
                 }
             }
@@ -603,24 +624,30 @@ class GameBgV: CommonV {
             P4.samllCardsShowLeftOrRight = -1
             
             
+            
+            P2.isShowBottomCardLayout = true
+            P3.isShowBottomCardLayout = true
+            P3.isShowBottomCardLayout = true
+            P4.isShowBottomCardLayout = true
+            
             /// 游戏开始，隐藏邀请好友按钮
             if RoomModel.shared.isGameBegin {
                 self.inviteFriendsBtn.isHidden = true
             }
             
             
+            /// 显示名字
+            P1.nameLabel.text = RoomModel.shared.nameStr[currentUserIndex]
+            P2.nameLabel.text = RoomModel.shared.nameStr[currentUserIndex2]
+            P3.nameLabel.text = RoomModel.shared.nameStr[currentUserIndex3]
+            P4.nameLabel.text = RoomModel.shared.nameStr[currentUserIndex4]
             
-            P1.nameLabel.text = RoomModel.shared.nameStr[0]
-            P2.nameLabel.text = RoomModel.shared.nameStr[1]
-            P3.nameLabel.text = RoomModel.shared.nameStr[2]
-            P4.nameLabel.text = RoomModel.shared.nameStr[3]
-            
-            
+            /// 加载头像
             DispatchQueue.main.async {
-                let headStr = RoomModel.shared.headUrlDic[0]
-                let headStr2 = RoomModel.shared.headUrlDic[1]
-                let headStr3 = RoomModel.shared.headUrlDic[2]
-                let headStr4 = RoomModel.shared.headUrlDic[3]
+                let headStr = RoomModel.shared.headUrlDic[currentUserIndex]
+                let headStr2 = RoomModel.shared.headUrlDic[currentUserIndex2]
+                let headStr3 = RoomModel.shared.headUrlDic[currentUserIndex3]
+                let headStr4 = RoomModel.shared.headUrlDic[currentUserIndex4]
                 downImgWith(url: headStr!, toView: self.P1.headImg)
                 downImgWith(url: headStr2!, toView: self.P2.headImg)
                 downImgWith(url: headStr3!, toView: self.P3.headImg)
@@ -663,14 +690,14 @@ class GameBgV: CommonV {
                 P4.niuniuImg.isHidden = true
                 
                 
-                
                 if CardNameModel.shared.isShowP1Front || ScoreModel.shared.gamingReciveType == "7" {
-                    P1.imgNames = CardNameModel.shared.P1Array
-                    P1.addCards(cardsArray: CardNameModel.shared.P1Array)
-                    
-                    
+                    P1.imgNames = CardNameModel.shared.rightCurrentIndexCards()
+                    P1.addCards(cardsArray: CardNameModel.shared.rightCurrentIndexCards())
                 } else {
+                    /// 添加牌的名字。
                     P1.imgNames = CardNameModel.shared.currentUbackCardsName
+                    
+                    /// 摆出对应的牌形
                     P1.addCards(cardsArray: CardNameModel.shared.currentUbackCardsName)
                 }
                 
@@ -696,10 +723,10 @@ class GameBgV: CommonV {
             
             /// 显示剩余的分数
             if ScoreModel.shared.leftScore.count > 0 {
-                P1.coinsLabel.text = String(ScoreModel.shared.leftScore[0])
-                P2.coinsLabel.text = String(ScoreModel.shared.leftScore[1])
-                P3.coinsLabel.text = String(ScoreModel.shared.leftScore[2])
-                P4.coinsLabel.text = String(ScoreModel.shared.leftScore[3])
+                P1.coinsLabel.text = String(ScoreModel.shared.leftScore[currentUserIndex])
+                P2.coinsLabel.text = String(ScoreModel.shared.leftScore[currentUserIndex2])
+                P3.coinsLabel.text = String(ScoreModel.shared.leftScore[currentUserIndex3])
+                P4.coinsLabel.text = String(ScoreModel.shared.leftScore[currentUserIndex4])
             }
             
             
@@ -718,11 +745,10 @@ class GameBgV: CommonV {
                 P3.scoreImg.isHidden = false
                 P4.scoreImg.isHidden = false
                 
-                P1.scoreImg.abc(abc: String(ScoreModel.shared.userScoreDic[0]), scoreType: type)
-                P2.scoreImg.abc(abc: String(ScoreModel.shared.userScoreDic[1]), scoreType: type)
-                
-                P3.scoreImg.abc(abc: String(ScoreModel.shared.userScoreDic[2]), scoreType: type)
-                P4.scoreImg.abc(abc: String(ScoreModel.shared.userScoreDic[3]), scoreType: type)
+                P1.scoreImg.abc(abc: String(ScoreModel.shared.userScoreDic[currentUserIndex]), scoreType: type)
+                P2.scoreImg.abc(abc: String(ScoreModel.shared.userScoreDic[currentUserIndex2]), scoreType: type)
+                P3.scoreImg.abc(abc: String(ScoreModel.shared.userScoreDic[currentUserIndex3]), scoreType: type)
+                P4.scoreImg.abc(abc: String(ScoreModel.shared.userScoreDic[currentUserIndex4]), scoreType: type)
                 
                 /// 显示牛牛的图片
                 if CardNameModel.shared.niuniuArray.count > 0 {
@@ -731,19 +757,13 @@ class GameBgV: CommonV {
                     P3.niuniuImg.isHidden = false
                     P4.niuniuImg.isHidden = false
                     
-                    P1.niuniuImg.image = UIImage.init(named: CardNameModel.shared.niuniuArray[0])
-                    P2.niuniuImg.image = UIImage.init(named: CardNameModel.shared.niuniuArray[1])
-                    P3.niuniuImg.image = UIImage.init(named: CardNameModel.shared.niuniuArray[2])
-                    P4.niuniuImg.image = UIImage.init(named: CardNameModel.shared.niuniuArray[3])
+                    P1.niuniuImg.image = UIImage.init(named: CardNameModel.shared.niuniuArray[currentUserIndex])
+                    P2.niuniuImg.image = UIImage.init(named: CardNameModel.shared.niuniuArray[currentUserIndex2])
+                    P3.niuniuImg.image = UIImage.init(named: CardNameModel.shared.niuniuArray[currentUserIndex3])
+                    P4.niuniuImg.image = UIImage.init(named: CardNameModel.shared.niuniuArray[currentUserIndex4])
                     
                 }
             }
-            
-            
-            P2.isShowBottomCardLayout = true
-            P3.isShowBottomCardLayout = true
-            P4.isShowBottomCardLayout = true
-            
             
             
             
@@ -1288,7 +1308,7 @@ extension GameBgV : RightDownVDelegate {
             AvdioTool.shared.startRecord()
             
             oBgV.center = self.center
-            ///  创建录音视图
+            ///  创建录音视图b
             addSubview(oBgV)
         } else {
             

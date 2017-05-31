@@ -15,6 +15,7 @@ class CardNameModel: NSObject {
     fileprivate var P3CardsArrray : [String] = []
     fileprivate var P4CardsArrray : [String] = []
     fileprivate var P5CardsArrray : [String] = []
+    fileprivate var P6CardsArrray : [String] = []
     
     static let shared = CardNameModel()
     
@@ -37,7 +38,6 @@ class CardNameModel: NSObject {
     var P1Array : [String] = [] {
         didSet {
             
-            print("\((#file as NSString).lastPathComponent):(\(#line))\n")
             DispatchQueue.main.async {
                 
                 /// 移除在创建
@@ -54,6 +54,7 @@ class CardNameModel: NSObject {
     var P3Array : [String] = []
     var P4Array : [String] = []
     var P5Array : [String] = []
+    var P6Array : [String] = []
     
     // 背面纸牌
     var backCardsName : [String] = ["p0",
@@ -81,16 +82,114 @@ class CardNameModel: NSObject {
         }
     }
     
+    
+    
+    /// 当前用户的索引
+    func currentUserIndexSEL() -> [String] {
+        
+        var cardsArray : [String] = []
+        
+        /// 返回当前用户的分数位置(用户1)
+        var userIndex1 = 0
+        
+        var currentUserIndex = 0
+        
+        for value in RoomModel.shared.userId {
+            
+            /// 当前用户的
+            if value == LoginModel.shared.uid {
+                currentUserIndex = userIndex1
+                break
+            }
+            
+            userIndex1 += 1
+        }
+        
+        switch userIndex1 {
+        case 0:
+            return P1Array
+            
+        case 1:
+            return P2Array
+            
+        case 2:
+            return P3Array
+            
+        case 3:
+            return P4Array
+            
+        case 4:
+            return P5Array
+            
+        case 5:
+            return P6Array
+            
+        default:
+            break
+        }
+        
+        return cardsArray
+    }
+    
+    /// 当前用户的索引
+    func rightCurrentIndexCards() -> [String] {
+        
+        let cardsArray : [String] = []
+        
+        /// 返回当前用户的分数位置(用户1)
+        var userIndex1 = 0
+        
+        var currentUserIndex = 0
+        
+        for value in RoomModel.shared.userId {
+            
+            /// 当前用户的
+            if value == LoginModel.shared.uid {
+                currentUserIndex = userIndex1
+                break
+            }
+            
+            userIndex1 += 1
+        }
+        
+        print("\((#file as NSString).lastPathComponent):(\(#line))\n",currentUserIndex)
+        
+        switch userIndex1 {
+        case 0:
+            return P1Array
+            
+        case 1:
+            return P2Array
+            
+        case 2:
+            return P3Array
+            
+        case 3:
+            return P4Array
+            
+        case 4:
+            return P5Array
+            
+        case 5:
+            return P6Array
+            
+        default:
+            break
+        }
+        
+        return cardsArray
+    }
+    
     fileprivate func xmlAnalyse(xmlStr : String) -> Void {
         
-
         currentUbackCardsName = []
-        
+       
         P1CardsArrray = []
         P2CardsArrray = []
         P3CardsArrray = []
         P4CardsArrray = []
         P5CardsArrray = []
+        P6CardsArrray = []
         
         
         niuniuArray = []
@@ -139,6 +238,12 @@ class CardNameModel: NSObject {
             if user.attribute(forName: "p5")?.stringValue != nil {
                 P5CardsArrray.append((user.attribute(forName: "p5")?.stringValue)!)
             }
+            
+            if user.attribute(forName: "p6")?.stringValue != nil {
+                P6CardsArrray.append((user.attribute(forName: "p6")?.stringValue)!)
+            }
+
+            
             /// 牛牛
             if user.attribute(forName: "can")?.stringValue != nil {
                 niuniuArray.append((user.attribute(forName: "can")?.stringValue)!)
@@ -186,6 +291,14 @@ class CardNameModel: NSObject {
             P5Array.append(P5CardsArrray[4])
         }
         
+        if P1CardsArrray.count > 5 {
+            P5Array.append(P1CardsArrray[5])
+            P5Array.append(P2CardsArrray[5])
+            P5Array.append(P3CardsArrray[5])
+            P5Array.append(P4CardsArrray[5])
+            P5Array.append(P5CardsArrray[5])
+        }
+        
         
         /// 游戏状态改为开始
         RoomModel.shared.isGameBegin = true
@@ -195,6 +308,7 @@ class CardNameModel: NSObject {
         print(P3Array)
         print(P4Array)
         print(P5Array)
+        print(P6Array)
 
         
         
@@ -203,27 +317,23 @@ class CardNameModel: NSObject {
         P3Array = getImgName(sss: P3Array)
         P4Array = getImgName(sss: P4Array)
         P5Array = getImgName(sss: P5Array)
+        P5Array = getImgName(sss: P6Array)
         
-        print(P1Array)
-        print(P2Array)
-        print(P3Array)
-        print(P4Array)
-        print(P5Array)
+        
+        print("xxxxxxx",currentUserIndexSEL())
         
         /// 当前玩家默认只显示前三张纸牌
-        currentUbackCardsName = [P1Array[0],
-                                 P1Array[1],
-                                 P1Array[2],
+        currentUbackCardsName = [currentUserIndexSEL()[0],
+                                 currentUserIndexSEL()[1],
+                                 currentUserIndexSEL()[2],
                                  "p0",
                                  "p0"]
         
 
-
-        print("\((#file as NSString).lastPathComponent):(\(#line))\n",P2Array)
-        
         niuniuArray = contactName(cardsArray: niuniuArray, prefix: "niu")
     }
     
+
     /// 拼接
     ///
     /// - Parameter prefix: 图片前缀
@@ -280,5 +390,7 @@ class CardNameModel: NSObject {
         
         return cardsNeArray
     }
+    
+    
 
 }

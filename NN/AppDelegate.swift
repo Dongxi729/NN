@@ -25,7 +25,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Override point for customization after application launch.
         
 //                window?.rootViewController = MusicTool()
-        window?.rootViewController = TestMusicVC()
+        window?.rootViewController = LoginViewController()
         
         window?.makeKeyAndVisible()
         window?.backgroundColor = UIColor.white
