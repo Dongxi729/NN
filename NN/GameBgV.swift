@@ -239,31 +239,28 @@ class GameBgV: CommonV {
             
             /// 当前用户的
             if value == LoginModel.shared.uid {
-                
                 currentUserIndex = indexxxx
                 break
             }
             
             indexxxx += 1
-        
         }
         
         /// 22
-        var indexxxx2 = 0
+        var userIndex2 = 0
         
         var currentUserIndex2 = 0
         
-        for (inttt,value) in RoomModel.shared.nameStr {
+        for (_,value) in RoomModel.shared.nameStr {
             
             /// 当前用户的
             if value == RoomModel.shared.nameStr[currentUserIndex + 1] {
                 
-                currentUserIndex2 = indexxxx2
+                currentUserIndex2 = userIndex2
                 break
             }
             
-            indexxxx2 += 1
-            
+            userIndex2 += 1
         }
 
         
@@ -331,9 +328,7 @@ class GameBgV: CommonV {
             
             break
         case 2:
-            
-            
-            
+
             
             /// 设置摆放纸牌位置
             P1.samllCardsShowLeftOrRight = -1

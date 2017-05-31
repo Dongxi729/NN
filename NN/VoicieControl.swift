@@ -18,9 +18,7 @@ class VoicieControl: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-//        actionVolumPlus()
-        
+    
 
         let d : UIView = UIView.init(frame: CGRect.init(x: 0, y: 0, width: 300, height: 300))
         

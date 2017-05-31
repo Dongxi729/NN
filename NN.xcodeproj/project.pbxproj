@@ -59,7 +59,7 @@
 		262433621ECBF46F003C41D1 /* InviteV.swift in Sources */ = {isa = PBXBuildFile; fileRef = 262433611ECBF46F003C41D1 /* InviteV.swift */; };
 		262433661ECC5244003C41D1 /* SicComonCowLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 262433651ECC5244003C41D1 /* SicComonCowLayout.swift */; };
 		262433681ECC527A003C41D1 /* SicCowLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 262433671ECC527A003C41D1 /* SicCowLayout.swift */; };
-		2624336A1ECC89BD003C41D1 /* MusicVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 262433691ECC89BD003C41D1 /* MusicVC.swift */; };
+		2624336A1ECC89BD003C41D1 /* MusicTool.swift in Sources */ = {isa = PBXBuildFile; fileRef = 262433691ECC89BD003C41D1 /* MusicTool.swift */; };
 		2629EBE31ECADE1D00616626 /* SettingV.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2629EBE21ECADE1D00616626 /* SettingV.swift */; };
 		2629EBE61ECAFC8000616626 /* nn_bg_music.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 2629EBE51ECAFC8000616626 /* nn_bg_music.mp3 */; };
 		2629EBF81ECAFCA500616626 /* f0_nn0.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 2629EBEA1ECAFCA500616626 /* f0_nn0.mp3 */; };
@@ -121,6 +121,7 @@
 		26CDFB561ECDB83700EF3846 /* TimeUpdateVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26CDFB551ECDB83700EF3846 /* TimeUpdateVC.swift */; };
 		26CDFB581ECDBBFC00EF3846 /* CurrentTimerTool.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26CDFB571ECDBBFC00EF3846 /* CurrentTimerTool.swift */; };
 		26CFB6E11EC2FC2E00327748 /* CreateV.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26CFB6E01EC2FC2E00327748 /* CreateV.swift */; };
+		26D2763E1EDE5FE9001138C6 /* TestMusicVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26D2763D1EDE5FE9001138C6 /* TestMusicVC.swift */; };
 		26D54ACC1EC2A93B00119FAA /* AddViewWithPop.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26D54ACB1EC2A93B00119FAA /* AddViewWithPop.swift */; };
 		26D54AE31EC2BD6D00119FAA /* DDXMLElementAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 26D54AD41EC2BD6D00119FAA /* DDXMLElementAdditions.m */; };
 		26D54AE41EC2BD6D00119FAA /* NSString+DDXML.m in Sources */ = {isa = PBXBuildFile; fileRef = 26D54AD71EC2BD6D00119FAA /* NSString+DDXML.m */; };
@@ -265,7 +266,7 @@
 		262433611ECBF46F003C41D1 /* InviteV.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InviteV.swift; sourceTree = "<group>"; };
 		262433651ECC5244003C41D1 /* SicComonCowLayout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SicComonCowLayout.swift; sourceTree = "<group>"; };
 		262433671ECC527A003C41D1 /* SicCowLayout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SicCowLayout.swift; sourceTree = "<group>"; };
-		262433691ECC89BD003C41D1 /* MusicVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MusicVC.swift; sourceTree = "<group>"; };
+		262433691ECC89BD003C41D1 /* MusicTool.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MusicTool.swift; sourceTree = "<group>"; };
 		2629EBE21ECADE1D00616626 /* SettingV.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingV.swift; sourceTree = "<group>"; };
 		2629EBE51ECAFC8000616626 /* nn_bg_music.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = nn_bg_music.mp3; sourceTree = "<group>"; };
 		2629EBEA1ECAFCA500616626 /* f0_nn0.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = f0_nn0.mp3; path = "sound 2/f0_nn0.mp3"; sourceTree = "<group>"; };
@@ -327,6 +328,7 @@
 		26CDFB551ECDB83700EF3846 /* TimeUpdateVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TimeUpdateVC.swift; sourceTree = "<group>"; };
 		26CDFB571ECDBBFC00EF3846 /* CurrentTimerTool.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CurrentTimerTool.swift; sourceTree = "<group>"; };
 		26CFB6E01EC2FC2E00327748 /* CreateV.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreateV.swift; sourceTree = "<group>"; };
+		26D2763D1EDE5FE9001138C6 /* TestMusicVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TestMusicVC.swift; sourceTree = "<group>"; };
 		26D54ACB1EC2A93B00119FAA /* AddViewWithPop.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddViewWithPop.swift; sourceTree = "<group>"; };
 		26D54AD31EC2BD6D00119FAA /* DDXMLElementAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DDXMLElementAdditions.h; sourceTree = "<group>"; };
 		26D54AD41EC2BD6D00119FAA /* DDXMLElementAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DDXMLElementAdditions.m; sourceTree = "<group>"; };
@@ -606,7 +608,8 @@
 			children = (
 				2629EBE81ECAFC9700616626 /* playMusic */,
 				2629EBE71ECAFC8900616626 /* loopBgMusic */,
-				262433691ECC89BD003C41D1 /* MusicVC.swift */,
+				262433691ECC89BD003C41D1 /* MusicTool.swift */,
+				26D2763D1EDE5FE9001138C6 /* TestMusicVC.swift */,
 			);
 			name = musicResource;
 			sourceTree = "<group>";
@@ -1122,7 +1125,7 @@
 				260C66701EB23415006C119E /* POPSpringAnimation.mm in Sources */,
 				26D54AE31EC2BD6D00119FAA /* DDXMLElementAdditions.m in Sources */,
 				26D54B2B1EC2C11B00119FAA /* WavConvert.m in Sources */,
-				2624336A1ECC89BD003C41D1 /* MusicVC.swift in Sources */,
+				2624336A1ECC89BD003C41D1 /* MusicTool.swift in Sources */,
 				260C66681EB23415006C119E /* POPBasicAnimation.mm in Sources */,
 				260ECA821EC1AF1F00058649 /* LoginModel.swift in Sources */,
 				264A2CE41EC4565A001B7F0E /* MarketV.swift in Sources */,
@@ -1186,6 +1189,7 @@
 				26771ED01EC54DE300B61DBC /* TestMediaVC.swift in Sources */,
 				260C66621EB23415006C119E /* POPAnimation.mm in Sources */,
 				2603D9791EADD3AA0069B132 /* PersonMsgView.swift in Sources */,
+				26D2763E1EDE5FE9001138C6 /* TestMusicVC.swift in Sources */,
 				26CDFB511ECD97BF00EF3846 /* GameBgV.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

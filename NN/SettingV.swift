@@ -84,10 +84,10 @@ class SettingV: UIView {
         if musicMark % 2 == 1 {
             self.musicBtn.image = #imageLiteral(resourceName: "on")
             
-            MusicVC.shared.backgroundMusic(soundName: "nn_bg_music", withType: "mp3")
+            MusicTool.shared.backgroundMusic(soundName: "nn_bg_music", withType: "mp3")
         } else {
             self.musicBtn.image = #imageLiteral(resourceName: "off")
-            MusicVC.shared.pauseMusic(filename: "nn_bg_music", withType: "mp3")
+            MusicTool.shared.pauseMusic(filename: "nn_bg_music", withType: "mp3")
             
         FTIndicator.showToastMessage("当前暂无音乐播放")
         }

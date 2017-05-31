@@ -162,11 +162,7 @@ class PersonMsgView: UIView {
         addSubview(rightV)
         
         addSubview(bgViewImg)
-        
-        addSubview(personImgView)
-        
-        
-        
+
         addSubview(nameBgV)
         
         addSubview(diaBgV)
@@ -180,6 +176,7 @@ class PersonMsgView: UIView {
         
         addSubview(makeRoom)
         addSubview(marketBtn)
+        addSubview(personImgView)
     }
     
     /// 测试发送媒体信息
