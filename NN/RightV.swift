@@ -22,17 +22,21 @@ class RightV: UIView {
     
     var delegate : RightVDelegate?
     
+    /// 设置按钮
     fileprivate lazy var setBtn: UIButton = {
         let d : UIButton = UIButton.init(frame: CGRect.init(x: 0, y: 0, width: self.Width * 0.5, height: self.Height))
         d.addTarget(self, action: #selector(rightSetSEL(sender:)), for: .touchUpInside)
         return d
     }()
     
+    /// 退出按钮
     fileprivate lazy var exitBtn: UIButton = {
         let d : UIButton = UIButton.init(frame: CGRect.init(x: self.Width * 0.5, y: 0, width: self.Width * 0.5, height: self.Height))
         d.addTarget(self, action: #selector(rightExitSEL(sender:)), for: .touchUpInside)
         return d
     }()
+    
+
     
     @objc fileprivate func rightExitSEL(sender : UIButton) {
         self.delegate?.righExitSEL(sender: sender)
@@ -44,6 +48,8 @@ class RightV: UIView {
     
     override init(frame: CGRect) {
         super.init(frame: frame)
+        
+        self.backgroundColor = UIColor.randomColor()
         
         addSubview(setBtn)
         addSubview(exitBtn)

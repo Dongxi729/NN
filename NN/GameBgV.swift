@@ -41,6 +41,7 @@ class GameBgV: CommonV {
     fileprivate lazy var bgVImg: UIImageView = {
         let d : UIImageView = UIImageView.init(frame: self.bounds)
         d.image = #imageLiteral(resourceName: "gamePrepareBgV")
+        d.contentMode = UIViewContentMode.scaleAspectFit
         
         return d
     }()
@@ -106,8 +107,9 @@ class GameBgV: CommonV {
     
     /// 右上角按钮组
     fileprivate lazy var rightV: RightV = {
-        let d : RightV = RightV.init(frame: CGRect.init(x: self.Width * 0.9, y: 0, width: self.Width * 0.1, height: self.Height * 0.1))
+        let d : RightV = RightV.init(frame: CGRect.init(x: self.Width * 0.85, y: 0, width: self.Width * 0.15, height: self.Height * 0.15))
         d.delegate = self
+    
         return d
     }()
     
@@ -210,10 +212,40 @@ class GameBgV: CommonV {
         showCardsSEL()
     }
     
+    /// 右上角视图
+    lazy var rightImgView: UIImageView = {
+        let d : UIImageView = UIImageView.init(frame: CGRect.init(x: self.Width * 0.85, y: 0, width: self.Width * 0.15, height: self.Height * 0.15))
+        d.image = #imageLiteral(resourceName: "room_toprightan")
+        d.contentMode = UIViewContentMode.scaleAspectFit
+        return d
+    }()
+    
+    /// 设置视图
+    fileprivate lazy var setView: SettingV = {
+        let d : SettingV = SettingV.init(frame: CGRect.init(x: 0, y: 0, width: SW * 0.45, height: SH * 0.45))
+        
+        return d
+    }()
+    
     /// 测试--- 提示
     @objc fileprivate func testShow() {
         
         CardNameModel.shared.isShowP1Front = true
+    }
+    
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        /// 商城清除
+        if setViewISExist.count > 0  {
+            
+            //购物断网刷新
+            if NSStringFromClass((UIApplication.shared.keyWindow?.rootViewController?.view.subviews.last?.classForCoder)!).contains("SettingV") {
+                
+                UIApplication.shared.keyWindow?.rootViewController?.view.subviews.last?.removeFromSuperview()
+                
+                /// 清空记录数组
+                setViewISExist.removeAll()
+            }
+        }
     }
     
     override func layoutSubviews() {
@@ -252,6 +284,10 @@ class GameBgV: CommonV {
             }
             userIndex2 += 1
         }
+        
+        
+        print("userIndex - currentUserIndex2",userIndex2,currentUserIndex2)
+        
         
         /// 用户3
         var userIndex3 = 0
@@ -716,6 +752,9 @@ class GameBgV: CommonV {
                 P2.imgNames = CardNameModel.shared.backCardsName
                 P3.imgNames = CardNameModel.shared.backCardsName
                 P4.imgNames = CardNameModel.shared.backCardsName
+                
+                
+                
                 P2.addCards(cardsArray: CardNameModel.shared.backCardsName)
                 P3.addCards(cardsArray: CardNameModel.shared.backCardsName)
                 P4.addCards(cardsArray: CardNameModel.shared.backCardsName)
@@ -1178,6 +1217,8 @@ class GameBgV: CommonV {
         }
         
         /// 右上角按钮
+        addSubview(rightImgView)
+        
         addSubview(rightV)
         
         addSubview(rightDownV)
@@ -1197,6 +1238,7 @@ class GameBgV: CommonV {
         addSubview(robOwner)
         
         robOwner.isHidden = true
+        
         
     }
     
@@ -1283,13 +1325,17 @@ extension GameBgV {
 // MARK: - 右上角事件
 extension GameBgV : RightVDelegate {
     func righExitSEL(sender: UIButton) {
-        print("\((#file as NSString).lastPathComponent):(\(#line))\n",sender.frame)
+        print("退出按钮")
     }
     
     func rightSetSEL(sender: UIButton) {
-        print("\((#file as NSString).lastPathComponent):(\(#line))\n",sender.frame)
+        print("设置按钮")
+        setView.center = self.center
+        addToView(setView)
+        setViewISExist.append(setView)
     }
 }
+
 
 // MARK: - 右下角事件
 extension GameBgV : RightDownVDelegate {
