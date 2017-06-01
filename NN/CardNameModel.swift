@@ -83,16 +83,16 @@ class CardNameModel: NSObject {
     }
     
     
+    /// 用户1
+    var currentUserIndex = 0
     
     /// 当前用户的索引
     func currentUserIndexSEL() -> [String] {
         
-        var cardsArray : [String] = []
+        let cardsArray : [String] = []
         
         /// 返回当前用户的分数位置(用户1)
         var userIndex1 = 0
-        
-        var currentUserIndex = 0
         
         for value in RoomModel.shared.userId {
             
@@ -319,8 +319,7 @@ class CardNameModel: NSObject {
         P5Array = getImgName(sss: P5Array)
         P5Array = getImgName(sss: P6Array)
         
-        
-        print("xxxxxxx",currentUserIndexSEL())
+
         
         /// 当前玩家默认只显示前三张纸牌
         currentUbackCardsName = [currentUserIndexSEL()[0],
@@ -391,6 +390,39 @@ class CardNameModel: NSObject {
         return cardsNeArray
     }
     
+    /// 用户2的数据
+    func p2ArrayWithoutP1() -> [String] {
+        
+        print("\((#file as NSString).lastPathComponent):(\(#line))\n",RoomModel.shared.headUrlDic)
+        
+        /// 移除了第一个索引后的值
+        var newDic : [String] = []
+        
+        for (_,v) in RoomModel.shared.headUrlDic {
+            
+            if v != RoomModel.shared.headUrlDic[currentUserIndex] {
+                newDic.append(v)
+            }
+        }
+        
+        print("\((#file as NSString).lastPathComponent):(\(#line))\n",newDic)
+        
+        return newDic
+    }
     
+    
+    func p2NameLabelWithoutP1() -> [String] {
+        /// 移除了第一个索引后的值
+        var newDic : [String] = []
+        
+        for (_,v) in RoomModel.shared.nameStr {
+            
+            if v != RoomModel.shared.nameStr[currentUserIndex] {
+                newDic.append(v)
+            }
+        }
+        
+        return newDic
+    }
 
 }

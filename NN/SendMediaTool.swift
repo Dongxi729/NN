@@ -83,7 +83,7 @@ public func backToholl() {
 func reportUID() -> Void {
     
     /// 上报用户信息
-    reportTypeWithData(typeInt: 254, str: "<M><Nn id=\"\(LoginModel.shared.uid!)\" tk=\"\(LoginModel.shared.token!)\"/></M>")
+    reportTypeWithData(typeInt: 254, str: "<M><Nn id=\"\(LoginModel.shared.uid)\" tk=\"\(LoginModel.shared.token)\"/></M>")
 }
 
 ///统一上报类型

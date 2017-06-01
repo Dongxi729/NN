@@ -32,12 +32,7 @@ class RoomModel: NSObject {
         didSet {
             DispatchQueue.main.async {
                 UIApplication.shared.keyWindow?.rootViewController = GamingVC()
-
-//                CardNameModel.shared.niuniuArray = []
                 ScoreModel.shared.userScoreDic = []
-                
-                
-                
             }
         }
     }

@@ -17,7 +17,7 @@ class LoginModel: NSObject {
     var msg : String?
     
     /// 昵称
-    var nickname : String?
+    var nickname : String = "JohnConna"
     
     var serviceip : String?
     
@@ -27,13 +27,13 @@ class LoginModel: NSObject {
     var status : String?
     
     /// 用户ID
-    var uid : String?
+    var uid : String = "542967"
     
     /// 砖石数量
     var wealth : String?
     
     /// token
-    var token : String?
+    var token : String = "acfef98fb0f54786bab454612f92b6bb"
 
     static let shared = LoginModel()
     

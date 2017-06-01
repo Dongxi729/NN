@@ -72,7 +72,7 @@ class PersonMsgView: UIView {
         
         d.layer.borderWidth = 1
         if LoginModel.shared.uid != nil {
-            d.text = "ID:" + LoginModel.shared.uid!
+            d.text = "ID:" + LoginModel.shared.uid
         } else {
             d.text = "ID:123456"
         }

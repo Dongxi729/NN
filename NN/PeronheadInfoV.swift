@@ -51,7 +51,7 @@ class PeronheadInfoV: UIView {
     lazy var nameLabel: UILabel = {
         let d : UILabel = UILabel.init(frame: CGRect.init(x: self.Width * 0.5, y: 2 * screenScale, width: self.Width * 0.5, height: self.Height * 0.4))
         //        d.text = "AJJJJ"
-        if !(LoginModel.shared.nickname?.isEmpty)! {
+        if !(LoginModel.shared.nickname.isEmpty) {
             //            d.text = LoginModel.shared.nickname
         } else {
             d.text = "AJJJJJ"

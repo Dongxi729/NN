@@ -63,10 +63,10 @@ class LoginRequestTool: NSObject {
             
             LoginModel.shared.headImgURL = headIgURl
             LoginModel.shared.msg = msg
-            LoginModel.shared.nickname = name
+            LoginModel.shared.nickname = name!
             LoginModel.shared.status = status
-            LoginModel.shared.token = token
-            LoginModel.shared.uid = uid
+            LoginModel.shared.token = token!
+            LoginModel.shared.uid = uid!
             LoginModel.shared.wealth = wealth
             LoginModel.shared.serviceip = ip
             LoginModel.shared.serviceport = port
