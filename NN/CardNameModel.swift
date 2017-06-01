@@ -48,9 +48,9 @@ class CardNameModel: NSObject {
             }
         }
     }
-
     
-    var P2Array : [String] = [] 
+    
+    var P2Array : [String] = []
     var P3Array : [String] = []
     var P4Array : [String] = []
     var P5Array : [String] = []
@@ -58,11 +58,11 @@ class CardNameModel: NSObject {
     
     // 背面纸牌
     var backCardsName : [String] = ["p0",
-                                          "p0",
-                                          "p0",
-                                          "p0",
-                                          "p0",
-                                          "p0"]
+                                    "p0",
+                                    "p0",
+                                    "p0",
+                                    "p0",
+                                    "p0"]
     
     // 当前玩家默认隐藏2张
     var currentUbackCardsName : [String] = []
@@ -73,7 +73,7 @@ class CardNameModel: NSObject {
     
     /// 是否收到结算分数标识
     var isreceivedCountScore = "false"
-   
+    
     var receiverStr : String = "" {
         didSet {
             print("receiverStr",receiverStr)
@@ -183,7 +183,7 @@ class CardNameModel: NSObject {
     fileprivate func xmlAnalyse(xmlStr : String) -> Void {
         
         currentUbackCardsName = []
-       
+        
         P1CardsArrray = []
         P2CardsArrray = []
         P3CardsArrray = []
@@ -242,7 +242,7 @@ class CardNameModel: NSObject {
             if user.attribute(forName: "p6")?.stringValue != nil {
                 P6CardsArrray.append((user.attribute(forName: "p6")?.stringValue)!)
             }
-
+            
             
             /// 牛牛
             if user.attribute(forName: "can")?.stringValue != nil {
@@ -309,7 +309,7 @@ class CardNameModel: NSObject {
         print(P4Array)
         print(P5Array)
         print(P6Array)
-
+        
         
         
         P1Array = getImgName(sss: P1Array)
@@ -319,7 +319,7 @@ class CardNameModel: NSObject {
         P5Array = getImgName(sss: P5Array)
         P5Array = getImgName(sss: P6Array)
         
-
+        
         
         /// 当前玩家默认只显示前三张纸牌
         currentUbackCardsName = [currentUserIndexSEL()[0],
@@ -328,11 +328,11 @@ class CardNameModel: NSObject {
                                  "p0",
                                  "p0"]
         
-
+        
         niuniuArray = contactName(cardsArray: niuniuArray, prefix: "niu")
     }
     
-
+    
     /// 拼接
     ///
     /// - Parameter prefix: 图片前缀
@@ -411,6 +411,8 @@ class CardNameModel: NSObject {
     }
     
     
+    
+    /// 名字
     func p2NameLabelWithoutP1() -> [String] {
         /// 移除了第一个索引后的值
         var newDic : [String] = []
@@ -424,5 +426,51 @@ class CardNameModel: NSObject {
         
         return newDic
     }
-
+    
+    /// 分数
+    func P2CoinsLabel() -> [Int] {
+        /// 移除了第一个索引后的值
+        var newDic : [Int] = []
+        
+        for v in ScoreModel.shared.leftScore {
+            
+            if v != ScoreModel.shared.leftScore[currentUserIndex] {
+                newDic.append(v)
+            }
+        }
+        
+        return newDic
+    }
+    
+    /// 牛牛纸牌
+    func P2NNArray() -> [String] {
+        /// 移除了第一个索引后的值
+        var newDic : [String] = []
+        
+        for v in CardNameModel.shared.niuniuArray {
+            
+            if v != CardNameModel.shared.niuniuArray[currentUserIndex] {
+                newDic.append(v)
+            }
+        }
+        
+        return newDic
+    }
+    
+    
+    /// 分数
+    func P2UseScore() -> [Int] {
+        /// 移除了第一个索引后的值
+        var newDic : [Int] = []
+        
+        for v in ScoreModel.shared.userScoreDic {
+            
+            if v != ScoreModel.shared.userScoreDic[currentUserIndex] {
+                newDic.append(v)
+            }
+        }
+        
+        return newDic
+    }
+    
 }

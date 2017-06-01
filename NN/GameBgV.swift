@@ -408,9 +408,8 @@ class GameBgV: CommonV {
             /// 下载头像
             DispatchQueue.main.async {
                 
-                
                 let headStr = RoomModel.shared.headUrlDic[currentUserIndex]
-                let headStr2 = CardNameModel.shared.p2NameLabelWithoutP1()[0]
+                let headStr2 = CardNameModel.shared.p2ArrayWithoutP1()[0]
                 
                 
                 downImgWith(url: headStr!, toView: self.P1.headImg)
@@ -473,7 +472,7 @@ class GameBgV: CommonV {
             /// 显示剩余的分数
             if ScoreModel.shared.leftScore.count > 0 {
                 P1.coinsLabel.text = String(ScoreModel.shared.leftScore[currentUserIndex])
-                P2.coinsLabel.text = String(CardNameModel.shared.p2NameLabelWithoutP1()[0])
+                P2.coinsLabel.text = String(describing: CardNameModel.shared.P2CoinsLabel())
             }
             
             
@@ -491,7 +490,7 @@ class GameBgV: CommonV {
                 P2.scoreImg.isHidden = false
                 
                 P1.scoreImg.abc(abc: String(ScoreModel.shared.userScoreDic[currentUserIndex]), scoreType: type)
-                P2.scoreImg.abc(abc: String(ScoreModel.shared.userScoreDic[currentUserIndex2]), scoreType: type)
+                P2.scoreImg.abc(abc: String(CardNameModel.shared.P2UseScore()[0]), scoreType: type)
                 
                 
                 /// 显示牛牛的图片
@@ -500,7 +499,7 @@ class GameBgV: CommonV {
                     P2.niuniuImg.isHidden = false
                     
                     P1.niuniuImg.image = UIImage.init(named: CardNameModel.shared.niuniuArray[currentUserIndex])
-                    P2.niuniuImg.image = UIImage.init(named: CardNameModel.shared.niuniuArray[currentUserIndex2])
+                    P2.niuniuImg.image = UIImage.init(named: CardNameModel.shared.P2NNArray()[0])
                     
                 }
             }
@@ -537,10 +536,6 @@ class GameBgV: CommonV {
                 downImgWith(url: RoomModel.shared.headUrlDic[currentUserIndex]!, toView: self.P1.headImg)
                 downImgWith(url: CardNameModel.shared.p2ArrayWithoutP1()[0], toView: self.P2.headImg)
                 downImgWith(url: CardNameModel.shared.p2ArrayWithoutP1()[1], toView: self.P3.headImg)
-                
-                print(RoomModel.shared.headUrlDic[currentUserIndex]!)
-                print(CardNameModel.shared.p2ArrayWithoutP1()[0])
-                print(CardNameModel.shared.p2ArrayWithoutP1()[1])
             }
             
 
@@ -1296,7 +1291,6 @@ extension GameBgV {
         // 分钟
         min = CGFloat((cmp?.minute)!)
     }
-    
 }
 
 // MARK: - 右上角事件
@@ -1331,7 +1325,7 @@ extension GameBgV : RightDownVDelegate {
             AvdioTool.shared.startRecord()
             
             oBgV.center = self.center
-            ///  创建录音视图b
+            ///  创建录音视图
             addSubview(oBgV)
         } else {
             
@@ -1348,4 +1342,6 @@ extension GameBgV : RightDownVDelegate {
         }
         
     }
+    
+    
 }

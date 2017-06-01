@@ -34,7 +34,7 @@ class ScoreModel: NSObject {
             }
         }
     }
-
+    
     
     static let shared = ScoreModel()
     
@@ -81,7 +81,7 @@ class ScoreModel: NSObject {
                 leftScore.append(self.costScore)
             }
             
-      
+            
             
             
         }
