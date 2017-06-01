@@ -48,9 +48,7 @@ class RightV: UIView {
     
     override init(frame: CGRect) {
         super.init(frame: frame)
-        
-        self.backgroundColor = UIColor.randomColor()
-        
+    
         addSubview(setBtn)
         addSubview(exitBtn)
     }

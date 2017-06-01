@@ -26,7 +26,6 @@ class RightDownV: UIView {
         
         d.addGestureRecognizer(longTap)
         
-        //        d.addTarget(self, action: #selector(voiceControl(sender:)), for: .touchUpInside)
         d.backgroundColor = UIColor.gray
         return d
     }()
@@ -42,7 +41,7 @@ class RightDownV: UIView {
     /// 消息按钮
     fileprivate lazy var msgBtn: UIButton = {
         let d : UIButton = UIButton.init(frame: CGRect.init(x: 0, y: self.Height * 0.5, width: self.Width , height: self.Height * 0.5))
-        d.backgroundColor = UIColor.randomColor()
+        
         d.addTarget(self, action: #selector(sendMsg(sender:)), for: .touchUpInside)
         
         return d

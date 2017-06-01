@@ -53,6 +53,13 @@ class MainGameViewController: UIViewController {
         backToSEL()
     }
     
+    /// 分数视图
+    fileprivate lazy var scoreTableView: ScoreView = {
+        let d : ScoreView = ScoreView.init(frame: CGRect.init(x: 5, y: 5, width: SW - commonMargin, height: SH - commonMargin))
+        
+        return d
+    }()
+    
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
@@ -91,10 +98,13 @@ class MainGameViewController: UIViewController {
         view.addSubview(mainView)
 
         view.addSubview(boradCastBgV)
+        
+//        view.addSubview(scoreTableView)
     }
     
+    /// 广播栏目
     fileprivate lazy var boradCastBgV: BroadCastV = {
-        let d : BroadCastV = BroadCastV.init(frame: CGRect.init(x: SW * 0.25, y: SH * 0.2, width: SW * 0.5, height: 15 * screenScale))
+        let d : BroadCastV = BroadCastV.init(frame: CGRect.init(x: SW * 0.25, y: SH * 0.2 - commonMargin, width: SW * 0.5, height: 15 * screenScale))
         return d
     }()
     

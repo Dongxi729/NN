@@ -32,7 +32,6 @@ class CreateV: UIView {
     /// 隐藏自身按钮
     fileprivate lazy var dismissSelf: UIButton = {
         let d : UIButton = UIButton.init(frame: CGRect.init(x: self.Width * 0.90, y: 0.01, width: 18 * screenScale, height: 18 * screenScale))
-        d.backgroundColor = UIColor.red
         d.addTarget(self, action: #selector(dismissSEL), for: .touchUpInside)
         return d
     }()

@@ -155,8 +155,6 @@ class GameBgV: CommonV {
     /// 右下角视图
     fileprivate lazy var rightDownV: RightDownV = {
         let d : RightDownV = RightDownV.init(frame: CGRect.init(x: self.Width * 0.87, y: self.Height * 0.788, width: self.Width - self.Width * 0.87, height: self.Height - self.Height * 0.794))
-        d.layer.borderWidth = 2
-        d.layer.borderColor = UIColor.red.cgColor
         d.delegate = self
         return d
     }()

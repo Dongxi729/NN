@@ -21,8 +21,20 @@ class PersonMsgView: UIView {
         
         d.image = #imageLiteral(resourceName: "presonHeadBg")
         
+        return d
+    }()
+    
+    lazy var personHeadImgV: UIImageView = {
+        let d : UIImageView = UIImageView.init(frame: CGRect.init(x: commonMargin / 2 + 2.5, y: commonMargin / 2 + 2.5, width: 30 * screenScale - 5, height: 30 * screenScale - 5))
+        d.backgroundColor = UIColor.gray
+        
+        d.layer.cornerRadius = 30 * screenScale / 2
+        d.clipsToBounds = true
+        
         if (LoginModel.shared.headImgURL != nil) {
             downImgWith(url: LoginModel.shared.headImgURL!, toView: d)
+        } else {
+            downImgWith(url: "https://ss3.bdstatic.com/70cFv8Sh_Q1YnxGkpoWK1HF6hhy/it/u=1987683146,3571917101&fm=117&gp=0.jpg", toView: d)
         }
         
         return d
@@ -37,7 +49,7 @@ class PersonMsgView: UIView {
     
     /// 砖石背景
     lazy var diaBgV: UIImageView = {
-        let d : UIImageView = UIImageView.init(frame: CGRect.init(x: self.personImgView.RightX + commonMargin, y: self.nameBgV.BottomY + commonMargin, width: 33 * screenScale, height: 12 * screenScale))
+        let d : UIImageView = UIImageView.init(frame: CGRect.init(x: self.personImgView.RightX + commonMargin, y: self.nameBgV.BottomY + commonMargin, width: 35 * screenScale, height: 12 * screenScale))
         d.image = #imageLiteral(resourceName: "diammand")
         return d
     }()
@@ -74,7 +86,7 @@ class PersonMsgView: UIView {
     
     /// 砖石数量
     lazy var coinsLabel: CommonLabel = {
-        let d :CommonLabel = CommonLabel.init(frame: CGRect.init(x: self.personImgView.RightX + commonMargin, y: self.nameBgV.BottomY + commonMargin, width: self.Width * 0.15, height: 12 * screenScale))
+        let d :CommonLabel = CommonLabel.init(frame: CGRect.init(x: self.personImgView.RightX + commonMargin, y: self.nameBgV.BottomY + 5 * screenScale, width: self.Width * 0.15, height: 12 * screenScale))
         
         d.textAlignment = .center
         
@@ -83,6 +95,8 @@ class PersonMsgView: UIView {
         } else{
             d.text = "2000"
         }
+        d.font = UIFont(name: "SimHei", size: 8 * screenScale)
+        
         return d
     }()
     
@@ -90,7 +104,7 @@ class PersonMsgView: UIView {
     
     /// 昵称
     lazy var nameLabel: CommonLabel = {
-        let d : CommonLabel = CommonLabel.init(frame: CGRect.init(x: self.personImgView.RightX + commonMargin, y: 5, width: self.nameBgV.Width * 0.3, height: 12 * screenScale))
+        let d : CommonLabel = CommonLabel.init(frame: CGRect.init(x: self.personImgView.RightX + commonMargin, y: 5, width: self.nameBgV.Width * 0.4, height: 12 * screenScale))
         
         
         if LoginModel.shared.nickname != nil {
@@ -99,11 +113,8 @@ class PersonMsgView: UIView {
         } else {
             d.text = "阿东"
         }
-        d.font = UIFont(name: "SimHei", size: 8 * screenScale)
+        
         d.textColor = UIColor.white
-        d.layer.borderColor = UIColor.red.cgColor
-//        d.sizeToFit()
-        d.layer.borderWidth = 1
         
         return d
     }()
@@ -177,6 +188,7 @@ class PersonMsgView: UIView {
         addSubview(makeRoom)
         addSubview(marketBtn)
         addSubview(personImgView)
+        addSubview(personHeadImgV)
     }
     
     /// 测试发送媒体信息
@@ -333,12 +345,7 @@ class PersonMsgView: UIView {
         return v
     }()
     
-    /// 分数视图
-    fileprivate lazy var scoreTableView: ScoreView = {
-        let d : ScoreView = ScoreView.init(frame: CGRect.init(x: 5, y: 5, width: SW - commonMargin, height: SH - commonMargin))
-        
-        return d
-    }()
+    
     
     /// 设置视图
     fileprivate lazy var setView: SettingV = {
@@ -412,8 +419,6 @@ extension PersonMsgView : HoolRightBtnsDelegate {
     
     func scoreFunc(sender: UIButton) {
         print("\((#file as NSString).lastPathComponent):(\(#line))\n",sender.currentTitle as Any)
-        scoreTableView.center = self.center
-        addToView(customView: scoreTableView)
     }
 }
 
@@ -462,9 +467,6 @@ class HoolRightBtns: UIView {
         d.setImage(#imageLiteral(resourceName: "play"), for: .normal)
         d.setImage(#imageLiteral(resourceName: "playSelected"), for: .highlighted)
         d.addTarget(self, action: #selector(playTypeFunction(sender:)), for: .touchUpInside)
-        
-        d.setTitle("playType", for: .normal)
-        
         return d
     }()
     
@@ -474,9 +476,7 @@ class HoolRightBtns: UIView {
         d.setImage(#imageLiteral(resourceName: "shareNormal"), for: .normal)
         d.setImage(#imageLiteral(resourceName: "shareSelected"), for: .highlighted)
         d.addTarget(self, action: #selector(shareFunction(sender:)), for: .touchUpInside)
-        
-        d.setTitle("share", for: .normal)
-        
+
         return d
     }()
     
@@ -486,9 +486,7 @@ class HoolRightBtns: UIView {
         d.setImage(#imageLiteral(resourceName: "scoreNormal"), for: .normal)
         d.setImage(#imageLiteral(resourceName: "scoreSelected"), for: .highlighted)
         d.addTarget(self, action: #selector(scoreFunction(sender:)), for: .touchUpInside)
-        
-        d.setTitle("score", for: .normal)
-        
+       
         return d
     }()
     
@@ -497,7 +495,6 @@ class HoolRightBtns: UIView {
         let d : CommonBtn = CommonBtn.init(frame: CGRect.init(x: self.scoreBtn.RightX, y: 5, width: self.Width / 4, height: self.Width / 4))
         d.setImage(#imageLiteral(resourceName: "setBtnNormal"), for: .normal)
         d.setImage(#imageLiteral(resourceName: "setNormalSelected"), for: .highlighted)
-        d.setTitle("set", for: .normal)
         d.addTarget(self, action: #selector(setFunction(sender:)), for: .touchUpInside)
         return d
     }()
