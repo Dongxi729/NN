@@ -15,8 +15,7 @@ class PersonMsgView: UIView {
     /// 个人头像
     lazy var personImgView: UIImageView = {
         let d : UIImageView = UIImageView.init(frame: CGRect.init(x: commonMargin / 2, y: commonMargin / 2, width: 30 * screenScale, height: 30 * screenScale))
-        d.backgroundColor = UIColor.gray
-        
+       
         d.layer.cornerRadius = 30 * screenScale / 2
         
         d.image = #imageLiteral(resourceName: "presonHeadBg")
@@ -28,7 +27,7 @@ class PersonMsgView: UIView {
         let d : UIImageView = UIImageView.init(frame: CGRect.init(x: commonMargin / 2 + 2.5, y: commonMargin / 2 + 2.5, width: 30 * screenScale - 5, height: 30 * screenScale - 5))
         d.backgroundColor = UIColor.gray
         
-        d.layer.cornerRadius = 30 * screenScale / 2
+        d.layer.cornerRadius = (30 * screenScale - 5) / 2
         d.clipsToBounds = true
         
         if (LoginModel.shared.headImgURL != nil) {
