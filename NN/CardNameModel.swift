@@ -416,10 +416,9 @@ class CardNameModel: NSObject {
     func p2NameLabelWithoutP1() -> [String] {
         /// 移除了第一个索引后的值
         var newDic : [String] = []
-        
-        for (_,v) in RoomModel.shared.nameStr {
-            
-            if v != RoomModel.shared.nameStr[currentUserIndex] {
+       
+        for (k,v) in RoomModel.shared.nameStr {
+            if k != currentUserIndex {
                 newDic.append(v)
             }
         }
@@ -447,12 +446,7 @@ class CardNameModel: NSObject {
         /// 移除了第一个索引后的值
         var newDic : [String] = []
         
-        for v in CardNameModel.shared.niuniuArray {
-            
-            if v != CardNameModel.shared.niuniuArray[currentUserIndex] {
-                newDic.append(v)
-            }
-        }
+        newDic = [CardNameModel.shared.niuniuArray.remove(at: currentUserIndex)]
         
         return newDic
     }
@@ -463,14 +457,13 @@ class CardNameModel: NSObject {
         /// 移除了第一个索引后的值
         var newDic : [Int] = []
         
-        for v in ScoreModel.shared.userScoreDic {
+        DispatchQueue.once(token: "") {
+            print("\((#file as NSString).lastPathComponent):(\(#line))\n",ScoreModel.shared.userScoreDic)
             
-            if v != ScoreModel.shared.userScoreDic[currentUserIndex] {
-                newDic.append(v)
-            }
+            newDic = [ScoreModel.shared.userScoreDic.remove(at: currentUserIndex)]
+            
+            print("\((#file as NSString).lastPathComponent):(\(#line))\n",newDic)
         }
-        
         return newDic
     }
-    
 }
