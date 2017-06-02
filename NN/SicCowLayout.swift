@@ -133,6 +133,13 @@ class SicCowLayout: UIView {
     }()
 
     
+    /// 玩法选项
+    /// 1 - 抢庄模式
+    /// 2 - 轮流坐庄
+    /// 3 - 房主坐庄
+    /// 4 - 谁大谁坐庄
+    var playTypeIndex : Int = 1
+    
     override init(frame: CGRect) {
         super.init(frame: frame)
         addSubview(bgV)
@@ -210,6 +217,9 @@ class SicCowLayout: UIView {
             playTypeImgTwo.isHidden = true
             playTypeImgThree.isHidden = true
             playTypeImgFour.isHidden = true
+            
+            self.playTypeIndex = 1
+            
             break
             /// 轮流
         case 402:
@@ -217,6 +227,8 @@ class SicCowLayout: UIView {
             playTypeImgTwo.isHidden = false
             playTypeImgThree.isHidden = true
             playTypeImgFour.isHidden = true
+            
+            self.playTypeIndex = 2
             break
             /// 房主做东
         case 403:
@@ -224,6 +236,8 @@ class SicCowLayout: UIView {
             playTypeImgTwo.isHidden = true
             playTypeImgThree.isHidden = false
             playTypeImgFour.isHidden = true
+            
+            self.playTypeIndex = 3
             break
             /// 谁大谁作者
         case 404:
@@ -231,6 +245,8 @@ class SicCowLayout: UIView {
             playTypeImgTwo.isHidden = true
             playTypeImgThree.isHidden = true
             playTypeImgFour.isHidden = false
+            
+            self.playTypeIndex = 4
             break
         default:
             break
@@ -277,13 +293,13 @@ class SicCowLayout: UIView {
         case 301:
             payImgOne.isHidden = false
             payImgTwo.isHidden = true
-            self.py = 6
+            self.py = 1
             break
             /// 房费平摊
         case 302:
             payImgOne.isHidden = true
             payImgTwo.isHidden = false
-            self.py = 1
+            self.py = 2
             break
             
         default:
@@ -406,7 +422,7 @@ class SicCowLayout: UIView {
     
     /// 付费类型
     /// 6为
-    var py : Int = 6
+    var py : Int = 1
     
     fileprivate lazy var s: ScoreV = {
         let d : ScoreV = ScoreV.init(frame: CGRect.init(x: self.Width * 0.5, y: 0.7 * self.Height, width: 12 * screenScale, height: commonMargin * screenScale))
@@ -416,12 +432,31 @@ class SicCowLayout: UIView {
     /// 结算砖石
     @objc fileprivate func creatRoomSEL(sender : UIButton) -> Void {
         
+        print("\((#file as NSString).lastPathComponent):(\(#line))\n",self.rounds)
+        print("\((#file as NSString).lastPathComponent):(\(#line))\n",self.players)
+        print("\((#file as NSString).lastPathComponent):(\(#line))\n",self.py)
+        print("\((#file as NSString).lastPathComponent):(\(#line))\n",self.playTypeIndex)
+        
         print(setpayfun(_ii: self.rounds, _rn: self.players, _py: self.py))
         addSubview(scoreImg)
         self.scoreImg.text = String(setpayfun(_ii: self.rounds, _rn: self.players, _py: self.py))
         
+        
+        
+        
+        reportCreateRoomTypeWith(roomType: self.playTypeIndex, rounds: self.rounds, players: self.players, payType: self.py)
+        
         /// 本地模拟房间
-        reportCreateRoomType()
+//        reportCreateRoomType()
+        
+//        let roomType = "<M><ty gt=\"\(CreateRoomModel.shared.roomType)\" ii=\"\(CreateRoomModel.shared.rounds)\" rn=\"\(CreateRoomModel.shared.players)\" py=\"\(CreateRoomModel.shared.payType)\"/></M>"
+        
+//        六人牛牛
+//        <M><ty gt = "游戏类型" ii ="局数" rn="人数" py="付费方式" /> </M>
+//        <M><ty gt = "1" ii ="30" rn="6" py="2" /> </M>
+        
+        
+
     }
     
     /// 分数
@@ -444,7 +479,7 @@ class SicCowLayout: UIView {
 ///   - _py: 付费方式
 func setpayfun(_ii:Int,_rn:Int,_py:Int) -> Int {
     
-    if (_py == 6) {
+    if (_py == 1) {
         //房主付费
         switch _ii {
         case 10:
@@ -483,7 +518,7 @@ func setpayfun(_ii:Int,_rn:Int,_py:Int) -> Int {
         default:
             break
         }
-    } else if(_py == 1) {
+    } else if(_py == 2) {
         //平摊付费
         switch _ii {
         case 10:
@@ -495,10 +530,11 @@ func setpayfun(_ii:Int,_rn:Int,_py:Int) -> Int {
             return 15
             
         case 30:
-            break
-        default:
             //30 局
             return  25
+            
+        default:
+            break
         }
     }
     return  -1

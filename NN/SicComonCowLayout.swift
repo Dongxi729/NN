@@ -219,6 +219,10 @@ class SicComonCowLayout: UIView {
         playTypeImgFive.isHidden = true
     }
     
+    /// 分数
+    /// 默认是积分是25
+    var coinsNum = 25
+    
     @objc fileprivate func playTypeSEL(sender :UIButton) {
         print(sender.tag)
         
@@ -229,6 +233,9 @@ class SicComonCowLayout: UIView {
             playTypeImgThree.isHidden = true
             playTypeImgFour.isHidden = true
             playTypeImgFive.isHidden = true
+            
+            self.coinsNum = 25
+            
             break
         case 402:
             playTypeImgOne.isHidden = true
@@ -236,6 +243,9 @@ class SicComonCowLayout: UIView {
             playTypeImgThree.isHidden = true
             playTypeImgFour.isHidden = true
             playTypeImgFive.isHidden = true
+            
+            self.coinsNum = 20
+            
             break
         case 403:
             playTypeImgOne.isHidden = true
@@ -243,6 +253,9 @@ class SicComonCowLayout: UIView {
             playTypeImgThree.isHidden = false
             playTypeImgFour.isHidden = true
             playTypeImgFive.isHidden = true
+            
+            self.coinsNum = 15
+            
             break
         case 404:
             playTypeImgOne.isHidden = true
@@ -250,6 +263,9 @@ class SicComonCowLayout: UIView {
             playTypeImgThree.isHidden = true
             playTypeImgFour.isHidden = false
             playTypeImgFive.isHidden = true
+            
+            self.coinsNum = 10
+            
             break
         case 405:
             playTypeImgOne.isHidden = true
@@ -257,6 +273,9 @@ class SicComonCowLayout: UIView {
             playTypeImgThree.isHidden = true
             playTypeImgFour.isHidden = true
             playTypeImgFive.isHidden = false
+            
+            self.coinsNum = 5
+            
             break
         default:
             break
@@ -301,13 +320,13 @@ class SicComonCowLayout: UIView {
         case 301:
             payImgOne.isHidden = false
             payImgTwo.isHidden = true
-            self.py = 6
+            self.py = 1
             break
             /// 房费平摊
         case 302:
             payImgOne.isHidden = true
             payImgTwo.isHidden = false
-            self.py = 1
+            self.py = 2
             break
             
         default:
@@ -429,8 +448,7 @@ class SicComonCowLayout: UIView {
     var players : Int = 3
     
     /// 付费类型
-    /// 6为
-    var py : Int = 6
+    var py : Int = 1
     
     
     
@@ -444,9 +462,14 @@ class SicComonCowLayout: UIView {
         print(setpayfun(_ii: self.rounds, _rn: self.players, _py: self.py))
         addSubview(scoreImg)
         self.scoreImg.text = String(setpayfun(_ii: self.rounds, _rn: self.players, _py: self.py))
+    
         
-        /// 通比牛牛
-        reportCommonType()
+        print("\((#file as NSString).lastPathComponent):(\(#line))\n",self.coinsNum)
+        print("\((#file as NSString).lastPathComponent):(\(#line))\n",self.rounds)
+        print("\((#file as NSString).lastPathComponent):(\(#line))\n",self.players)
+        print("\((#file as NSString).lastPathComponent):(\(#line))\n",self.py)
+        
+        reportCreateSixCommonRoomTypeWith(roomType: 5, rounds: self.rounds, players: self.players, payType: self.py, coinsNum: self.coinsNum)
     }
     
     

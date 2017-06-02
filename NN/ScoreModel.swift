@@ -69,8 +69,6 @@ class ScoreModel: NSObject {
                 
                 userScoreDic.append(self.scoreCountDownScore)
                 backupUserDic.append(self.scoreCountDownScore)
-                
-                print("\((#file as NSString).lastPathComponent):(\(#line))\n",userScoreDic)
             }
             
             var leftScoreIndex = 0

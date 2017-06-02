@@ -169,6 +169,29 @@ func reportCreateRoomType() -> Void {
     reportTypeWithData(typeInt: 6, str: roomType)
 }
 
+/// 上报六人牛牛房间类型
+///
+/// - Parameters:
+///   - roomType: 房间类型
+///   - rounds: 局数
+///   - players: 玩家数量
+///   - payType: 支付类型
+func reportCreateRoomTypeWith(roomType : Int,rounds : Int,players : Int,payType : Int) -> Void {
+    let roomType = "<M><ty gt=\"\(roomType)\" ii=\"\(rounds)\" rn=\"\(players)\" py=\"\(payType)\"/></M>"
+    
+    /// 添加发送的文字
+    reportTypeWithData(typeInt: 6, str: roomType)
+}
+
+func reportCreateSixCommonRoomTypeWith(roomType : Int,rounds : Int,players : Int,payType : Int,coinsNum : Int) -> Void {
+
+    let roomType = "<M><ty gt=\"\(roomType)\" ii=\"\(rounds)\" rn=\"\(players)\" py=\"\(payType)\" ss=\"\(coinsNum)\"/></M>"
+    
+    /// 添加发送的文字
+    reportTypeWithData(typeInt: 6, str: roomType)
+}
+
+
 /// 通比牛牛
 func reportCommonType() -> Void {
     let roomType = "<M><ty gt='5' ii='10' rn='6' py='2' ss='10'/></M>"
@@ -339,6 +362,8 @@ func bytesShwoFunc(_over : [Byte]) -> Void {
     /// 解散房间
     if typpppp == 90 {
         if AnylasyseWithKey(analayseStr: String.init(data: dd as Data, encoding: String.Encoding.utf8)!, secondNode: "ty", withSepcifiedKey: "ms").contains("解散房间") {
+            
+            print("\((#file as NSString).lastPathComponent):(\(#line))\n","解散房间")
             
             DispatchQueue.main.async {
                 backToholl()

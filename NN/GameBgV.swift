@@ -85,25 +85,6 @@ class GameBgV: CommonV {
         return d
     }()
     
-    ////////////////////////////////////////////////////////
-    
-    /// 测试用--- 亮牌
-    lazy var showCards: UIButton = {
-        let d : UIButton = UIButton.init(frame: CGRect.init(x: 0, y: self.Height * 0.5, width: 100, height: 50))
-        d.backgroundColor = UIColor.randomColor()
-        d.addTarget(self, action: #selector(showCardsRequest), for: .touchUpInside)
-        d.setTitle("亮牌", for: .normal)
-        return d
-    }()
-    
-    /// 测试用--- 提示
-    lazy var alertBtn: UIButton = {
-        let d : UIButton = UIButton.init(frame: CGRect.init(x: 0, y: self.Height * 0.7, width: 100, height: 50))
-        d.backgroundColor = UIColor.randomColor()
-        d.addTarget(self, action: #selector(testShow), for: .touchUpInside)
-        d.setTitle("提示", for: .normal)
-        return d
-    }()
     
     /// 右上角按钮组
     fileprivate lazy var rightV: RightV = {
@@ -207,7 +188,7 @@ class GameBgV: CommonV {
     
     /// 测试--- 亮牌
     @objc fileprivate func showCardsRequest() {
-        showCardsSEL()
+        
     }
     
     /// 右上角视图
@@ -225,10 +206,17 @@ class GameBgV: CommonV {
         return d
     }()
     
+    /// 右下角提示个亮牌小视图
+    lazy var alertAndShowV: ShowAndAlertV = {
+        let sd : ShowAndAlertV = ShowAndAlertV.init(frame: CGRect.init(x: self.Width * 0.75, y: self.Height * 0.74, width: self.Width * 0.12, height: self.Width * 0.12))
+        sd.delegate = self
+        return sd
+    }()
+    
     /// 测试--- 提示
     @objc fileprivate func testShow() {
         
-        CardNameModel.shared.isShowP1Front = true
+        
     }
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
@@ -396,9 +384,6 @@ class GameBgV: CommonV {
             }
             
             /// 六人牛牛的抢庄视图是否显示，当且仅当六人牛牛玩法为抢庄模式的时候显示。
-            
-            
-            
             P2.isShowBottomCardLayout = true
             
             /// 显示名字
@@ -410,7 +395,6 @@ class GameBgV: CommonV {
                 
                 let headStr = RoomModel.shared.headUrlDic[currentUserIndex]
                 let headStr2 = CardNameModel.shared.p2ArrayWithoutP1()[0]
-                
                 
                 downImgWith(url: headStr!, toView: self.P1.headImg)
                 downImgWith(url: headStr2, toView: self.P2.headImg)
@@ -444,14 +428,19 @@ class GameBgV: CommonV {
             /// 玩家1是否有牌
             if CardNameModel.shared.currentUbackCardsName.count > 0 {
                 
+                /// 有牌显示隐藏和提示视图
+                self.alertAndShowV.isHidden = false
+                
                 P1.niuniuImg.isHidden = true
                 P2.niuniuImg.isHidden = true
                 
-                
+                /// 接收分数，显示完正确的牌行后
                 if CardNameModel.shared.isShowP1Front || ScoreModel.shared.gamingReciveType == "7" {
                     P1.imgNames = CardNameModel.shared.rightCurrentIndexCards()
                     P1.addCards(cardsArray: CardNameModel.shared.rightCurrentIndexCards())
                     
+                    /// 有牌显示隐藏和提示视图
+                    self.alertAndShowV.isHidden = true
                 } else {
                     P1.imgNames = CardNameModel.shared.currentUbackCardsName
                     P1.addCards(cardsArray: CardNameModel.shared.currentUbackCardsName)
@@ -500,7 +489,6 @@ class GameBgV: CommonV {
                     
                     P1.niuniuImg.image = UIImage.init(named: CardNameModel.shared.niuniuArray[currentUserIndex])
                     P2.niuniuImg.image = UIImage.init(named: CardNameModel.shared.P2NNArray()[0])
-                    
                 }
             }
             
@@ -548,9 +536,11 @@ class GameBgV: CommonV {
                     P1.imgNames = CardNameModel.shared.rightCurrentIndexCards()
                     P1.addCards(cardsArray: CardNameModel.shared.rightCurrentIndexCards())
                     
+                    
                 } else {
                     P1.imgNames = CardNameModel.shared.currentUbackCardsName
                     P1.addCards(cardsArray: CardNameModel.shared.currentUbackCardsName)
+                    
                 }
                 
                 
@@ -599,9 +589,9 @@ class GameBgV: CommonV {
                 
                 P1.scoreImg.abc(abc: String(ScoreModel.shared.userScoreDic[currentUserIndex]), scoreType: type)
                 
-                var newDic = [ScoreModel.shared.userScoreDic.remove(at: currentUserIndex)]
-                P2.scoreImg.abc(abc: String(newDic[0]), scoreType: type)
-                P3.scoreImg.abc(abc: String(newDic[1]), scoreType: type)
+                
+                P2.scoreImg.abc(abc: String(CardNameModel.shared.P2UseScore()[0]), scoreType: type)
+                P3.scoreImg.abc(abc: String(CardNameModel.shared.P2UseScore()[1]), scoreType: type)
                 
                 
                 /// 显示牛牛的图片
@@ -620,6 +610,9 @@ class GameBgV: CommonV {
             addSubview(P1)
             addSubview(P2)
             addSubview(P3)
+            
+            /// 提示和亮牌视图
+
             break
         case 4:
             P1.samllCardsShowLeftOrRight = -1
@@ -697,12 +690,14 @@ class GameBgV: CommonV {
                 if CardNameModel.shared.isShowP1Front || ScoreModel.shared.gamingReciveType == "7" {
                     P1.imgNames = CardNameModel.shared.rightCurrentIndexCards()
                     P1.addCards(cardsArray: CardNameModel.shared.rightCurrentIndexCards())
+                    
                 } else {
                     /// 添加牌的名字。
                     P1.imgNames = CardNameModel.shared.currentUbackCardsName
                     
                     /// 摆出对应的牌形
                     P1.addCards(cardsArray: CardNameModel.shared.currentUbackCardsName)
+                    
                 }
                 
                 
@@ -778,6 +773,9 @@ class GameBgV: CommonV {
             addSubview(P2)
             addSubview(P3)
             addSubview(P4)
+            
+            /// 提示和亮牌视图
+//            addSubview(alertAndShowV)
             break
         case 5:
             P1.samllCardsShowLeftOrRight = -1
@@ -1195,19 +1193,14 @@ class GameBgV: CommonV {
         
         addSubview(inviteFriendsBtn)
         
-        
-        /////////////////////////////////////////////////
-        /// 亮牌
-        addSubview(showCards)
-        
-        /// 提示
-        addSubview(alertBtn)
-        
-        
         /// 抢庄
         addSubview(robOwner)
         
         robOwner.isHidden = true
+        
+        /// 提示和亮牌视图
+        addSubview(alertAndShowV)
+        alertAndShowV.isHidden = true
         
         
     }
@@ -1342,4 +1335,14 @@ extension GameBgV : RightDownVDelegate {
     }
     
     
+}
+
+extension GameBgV : ShowAndAlertVDelegate {
+    func showSEL() {
+        showCardsSEL()
+    }
+    
+    func alertSEL() {
+        CardNameModel.shared.isShowP1Front = true
+    }
 }

@@ -40,7 +40,7 @@ class CardsLayout : CommonV {
         d.layer.borderWidth = 1
         
         d.setImage(#imageLiteral(resourceName: "roomAlert"), for: .normal)
-        d.addTarget(self, action: #selector(alertSEL(sender:)), for: .touchUpInside)
+        d.addTarget(self, action: #selector(alertSEL), for: .touchUpInside)
         return d
     }()
     
@@ -56,13 +56,14 @@ class CardsLayout : CommonV {
     override func layoutSubviews() {
         super.layoutSubviews()
         /// 根据游戏状态隐藏提示、亮牌按钮
-        
+        addSubview(alertBtn)
+        addSubview(showCardBtn)
         
     }
     
     ///////交互事件
     /// 提示
-    @objc fileprivate func alertSEL(sender : UIButton) {
+    @objc fileprivate func alertSEL() {
         print("\((#file as NSString).lastPathComponent):(\(#line))\n")
         
         /// 亮牌
@@ -100,9 +101,7 @@ class CardsLayout : CommonV {
     override init(frame: CGRect) {
         super.init(frame: frame)
         
-        addSubview(alertBtn)
-        addSubview(showCardBtn)
-        
+        self.isUserInteractionEnabled = true
     }
     
     required init?(coder aDecoder: NSCoder) {

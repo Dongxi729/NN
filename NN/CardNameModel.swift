@@ -392,8 +392,7 @@ class CardNameModel: NSObject {
     
     /// 用户2的数据
     func p2ArrayWithoutP1() -> [String] {
-        
-        print("\((#file as NSString).lastPathComponent):(\(#line))\n",RoomModel.shared.headUrlDic)
+    
         
         /// 移除了第一个索引后的值
         var newDic : [String] = []
@@ -405,7 +404,6 @@ class CardNameModel: NSObject {
             }
         }
         
-        print("\((#file as NSString).lastPathComponent):(\(#line))\n",newDic)
         
         return newDic
     }
@@ -416,7 +414,7 @@ class CardNameModel: NSObject {
     func p2NameLabelWithoutP1() -> [String] {
         /// 移除了第一个索引后的值
         var newDic : [String] = []
-       
+        
         for (k,v) in RoomModel.shared.nameStr {
             if k != currentUserIndex {
                 newDic.append(v)
@@ -437,7 +435,6 @@ class CardNameModel: NSObject {
                 newDic.append(v)
             }
         }
-        
         return newDic
     }
     
@@ -450,20 +447,26 @@ class CardNameModel: NSObject {
         
         return newDic
     }
+
     
+    /// 标识
+    var userScoreMark = true
     
     /// 分数
     func P2UseScore() -> [Int] {
         /// 移除了第一个索引后的值
         var newDic : [Int] = []
         
-        DispatchQueue.once(token: "") {
+        if userScoreMark {
             print("\((#file as NSString).lastPathComponent):(\(#line))\n",ScoreModel.shared.userScoreDic)
             
             newDic = [ScoreModel.shared.userScoreDic.remove(at: currentUserIndex)]
             
             print("\((#file as NSString).lastPathComponent):(\(#line))\n",newDic)
+            
+            userScoreMark = false
         }
+        
         return newDic
     }
 }

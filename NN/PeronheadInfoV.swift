@@ -100,10 +100,11 @@ class PeronheadInfoV: UIView {
     /// 显示底部打纸牌
     lazy var bigCardLayout: CardsLayout = {
         let d : CardsLayout = CardsLayout.init(frame: CGRect.init(x: self.hhhh.RightX, y: -self.Height * 0.45, width: self.Width * 3, height: self.Height * 1.45))
+        d.isUserInteractionEnabled = true
         return d
     }()
     
-    
+
     /// 波形图片
     fileprivate lazy var showWave: UIImageView = {
         let d : UIImageView = UIImageView.init(frame: CGRect.init(x: self.Width * 0.25, y: 0, width: self.Width * 0.25, height: self.Height * 0.5))
@@ -202,7 +203,6 @@ class PeronheadInfoV: UIView {
     }
     
     
-    
     override init(frame: CGRect) {
         super.init(frame: frame)
         
@@ -245,9 +245,7 @@ class PeronheadInfoV: UIView {
         showWave.isHidden = true
         offLineImg.isHidden = true
         ownerImg.isHidden = true
-        
     }
-    
     
     /// 牛牛图片
     lazy var niuniuImg: UIImageView = {
