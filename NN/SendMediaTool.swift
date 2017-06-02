@@ -16,6 +16,9 @@ struct ConnectConfig {
 }
 
 
+/// 心跳
+var headrtData : [Byte] = []
+
 /// 包体长度
 fileprivate var leng:Int = 0
 
@@ -37,12 +40,11 @@ func testServer() {
         
     case .success:
         
-        
         while true {
             /// 缓存池数据
             let d = client.read(1024 * 10)
             
-            //            print("\((#file as NSString).lastPathComponent):(\(#line))\n",d as Any)
+            print("\((#file as NSString).lastPathComponent):(\(#line))\n",d as Any)
             
             /// 绩溪县,.
             if d != nil {
@@ -53,9 +55,22 @@ func testServer() {
                     reportUser = false
                 }
                 
+                /// 心跳包赋值
+                if d! == [1, 0, 0, 0, 4] {
+                    
+                    
+                    headrtData = [1, 0, 0, 0, 4]
+                    
+                    /// 检查是否收到心跳包
+                    AppDelegate.checkreceiveHeartInfo()
+                    
+                }
+                
             } else {
                 
                 print("\((#file as NSString).lastPathComponent):(\(#line))\n","连接失败")
+                /// 心跳包无
+                headrtData = []
                 
                 backToholl()
                 
@@ -344,7 +359,10 @@ func bytesShwoFunc(_over : [Byte]) -> Void {
     }
     
     if typpppp == 0 {
+        /// 发送心跳包
         AppDelegate.startSendAliveMsg()
+        
+        
     }
     
     /// 房间无

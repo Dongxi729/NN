@@ -18,13 +18,18 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     /// 发送心跳包
     class func startSendAliveMsg() -> Void {
-        TImerTool.shared.timerCount(seconds: 10)
+        TImerTool.shared.timerCount(seconds: 5)
+    }
+    
+    /// 检查是否收到心跳包正确信息
+    class func checkreceiveHeartInfo() {
+        TImerTool.shared.checkTimerStart()
     }
     
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
         
-        window?.rootViewController = LoginViewController()
+        window?.rootViewController = MainGameViewController()
         
         window?.makeKeyAndVisible()
         window?.backgroundColor = UIColor.white

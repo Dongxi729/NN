@@ -16,6 +16,8 @@ class TImerTool: NSObject {
     
     fileprivate var client: TCPClient!
     
+    fileprivate var checkTimer : Timer?
+    
     
     static let shared = TImerTool.init()
     
@@ -27,12 +29,42 @@ class TImerTool: NSObject {
         RunLoop.main.add(timer!, forMode: RunLoopMode.commonModes)
     }
     
+    /// 检查心跳包是否收到
+    func checkTimerStart() -> Void {
+        checkTimer = Timer.init(timeInterval: 15.0, target: self, selector: #selector(heartCheckSEL), userInfo: nil, repeats: true)
+        
+        checkTimer?.fire()
+        RunLoop.main.add(checkTimer!, forMode: RunLoopMode.commonModes)
+    }
+    
+    /// 第一次心跳不算，程序刚启动不发送
+    
+    /// 检查心跳包事件
+    func heartCheckSEL() -> Void {
+        
+        print("\((#file as NSString).lastPathComponent):(\(#line))\n",headrtData)
+        
+        if headrtData != [1, 0, 0, 0, 4] {
+            print("心跳信息不对")
+            
+            self.checkTimer?.invalidate()
+            
+            /// 发送通知
+            NotificationCenter.default.post(name: NSNotification.Name(rawValue: "offLineSEL"), object: nil)
+            
+            return
+        }
+        
+        
+        print("\((#file as NSString).lastPathComponent):(\(#line))\n","heartCheckSEL")
+    }
+    
     func timerFunc() -> Void {
         
         sendHeart()
     }
     
-    func invalidTimer() -> Void {
+    private func invalidTimer() -> Void {
         timer?.invalidate()
     }
     

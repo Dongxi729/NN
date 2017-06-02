@@ -60,17 +60,17 @@ class MainGameViewController: UIViewController {
         return d
     }()
     
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        
-        /// 开始上报用户信息,传socket
-        AvdioTool.shared.creatSession()
-        
-        /// 开启链接服务器
-        DispatchQueue.global(qos: .default).async {
-            testServer()
-        }
-    }
+//    override func viewWillAppear(_ animated: Bool) {
+//        super.viewWillAppear(animated)
+//        
+//        /// 开始上报用户信息,传socket
+//        AvdioTool.shared.creatSession()
+//        
+//        /// 开启链接服务器
+//        DispatchQueue.global(qos: .default).async {
+//            testServer()
+//        }
+//    }
     
     
     
@@ -81,11 +81,25 @@ class MainGameViewController: UIViewController {
         view.addSubview(f)
     }
     
+    /// 显示离线视图
+    func showOffLineV() -> Void {
+        let d = OffLineV.init(frame: CGRect.init(x: 0, y: 0, width: SW * 0.7, height: SH * 0.75))
+        d.backgroundColor = UIColor.randomColor()
+        
+        view.addSubview(d)
+        
+        NotificationCenter.default.removeObserver(self, name: NSNotification.Name(rawValue: "offLineSEL"), object: nil)
+        
+        print("\((#file as NSString).lastPathComponent):(\(#line))\n","离线通知")
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
         // Do any additional setup after loading the view.
         
+        /// 接收离线通知
+        NotificationCenter.default.addObserver(self, selector: #selector(showOffLineV), name: NSNotification.Name(rawValue: "offLineSEL"), object: nil)
         
         let add = UIButton.init(frame: CGRect.init(x: 30, y: 30, width: 100, height: 100))
         add.backgroundColor = UIColor.red
@@ -99,7 +113,11 @@ class MainGameViewController: UIViewController {
 
         view.addSubview(boradCastBgV)
         
-//        view.addSubview(scoreTableView)
+        let d = OffLineV.init(frame: CGRect.init(x: 0, y: 0, width: SW * 0.6, height: SH * 0.75))
+        d.backgroundColor = UIColor.randomColor()
+        d.center = view.center
+        
+        view.addSubview(d)
     }
     
     /// 广播栏目
