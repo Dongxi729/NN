@@ -21,16 +21,27 @@ class OffLineV : UIView {
     @objc fileprivate func cancelSEL() -> Void {
         self.delegate?.OffLineCancelDelegateSEL()
         print("\((#file as NSString).lastPathComponent):(\(#line))\n","OffLineVcancelSEL")
+        
+        self.removeFromSuperview()
     }
     
     /// 确定事件
     @objc fileprivate func confirmSEL() -> Void {
-        self.delegate?.OffLineConfirmDelegateSEL()
         print("\((#file as NSString).lastPathComponent):(\(#line))\n","OffLineVconfirmSEL")
         
         self.removeFromSuperview()
         
         /// 断线重连操作
+        /// 上报用户
+        reportUser = true
+        
+        ConnectModel.shared.connectSEL()
+        
+        if reportUser == false {
+            
+            return
+        }
+        
     }
     
     
@@ -42,15 +53,13 @@ class OffLineV : UIView {
         d.isUserInteractionEnabled = true
         let tapGes = UITapGestureRecognizer.init(target: self, action: #selector(cancelSEL))
         d.addGestureRecognizer(tapGes)
-        d.layer.borderWidth = 1
         return d
-    }() 
+    }()
     
     /// 取消按钮
     lazy var confirmBtn: UIButton = {
         let d : UIButton = UIButton.init(frame: CGRect.init(x: self.Width * 0.5, y: self.Height * 0.6, width: self.Width * 0.5, height: self.Height * 0.3))
         d.setImage(#imageLiteral(resourceName: "alert_03"), for: .normal)
-        d.layer.borderWidth = 1
         
         d.isUserInteractionEnabled = true
         let tapGes = UITapGestureRecognizer.init(target: self, action: #selector(confirmSEL))

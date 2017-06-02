@@ -85,6 +85,7 @@
 		26315CDE1ED2D15F0026EC6B /* ReconnectModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26315CDD1ED2D15F0026EC6B /* ReconnectModel.swift */; };
 		263541A51EE031A9005C4927 /* GetCurrenIndex.swift in Sources */ = {isa = PBXBuildFile; fileRef = 263541A41EE031A9005C4927 /* GetCurrenIndex.swift */; };
 		26421EEE1EE15099000C9B25 /* OffLineV.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26421EED1EE15099000C9B25 /* OffLineV.swift */; };
+		26421EF01EE16718000C9B25 /* ConnectModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26421EEF1EE16718000C9B25 /* ConnectModel.swift */; };
 		264A2CE41EC4565A001B7F0E /* MarketV.swift in Sources */ = {isa = PBXBuildFile; fileRef = 264A2CE31EC4565A001B7F0E /* MarketV.swift */; };
 		264A2CE61EC45D21001B7F0E /* ChatV.swift in Sources */ = {isa = PBXBuildFile; fileRef = 264A2CE51EC45D21001B7F0E /* ChatV.swift */; };
 		264A2CE91EC45F1F001B7F0E /* GamingVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 264A2CE81EC45F1F001B7F0E /* GamingVC.swift */; };
@@ -295,6 +296,7 @@
 		26315CDD1ED2D15F0026EC6B /* ReconnectModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReconnectModel.swift; sourceTree = "<group>"; };
 		263541A41EE031A9005C4927 /* GetCurrenIndex.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GetCurrenIndex.swift; sourceTree = "<group>"; };
 		26421EED1EE15099000C9B25 /* OffLineV.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OffLineV.swift; sourceTree = "<group>"; };
+		26421EEF1EE16718000C9B25 /* ConnectModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConnectModel.swift; sourceTree = "<group>"; };
 		264A2CE31EC4565A001B7F0E /* MarketV.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MarketV.swift; sourceTree = "<group>"; };
 		264A2CE51EC45D21001B7F0E /* ChatV.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChatV.swift; sourceTree = "<group>"; };
 		264A2CE81EC45F1F001B7F0E /* GamingVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GamingVC.swift; sourceTree = "<group>"; };
@@ -725,6 +727,7 @@
 				26B878981ED45A49008A24E5 /* CardNameModel.swift */,
 				26A2FD4D1ED6EF6700CAB137 /* ScoreModel.swift */,
 				263541A41EE031A9005C4927 /* GetCurrenIndex.swift */,
+				26421EEF1EE16718000C9B25 /* ConnectModel.swift */,
 			);
 			name = model;
 			sourceTree = "<group>";
@@ -1162,6 +1165,7 @@
 				26F14F9C1ECAA2A7006844C9 /* FTToastIndicator.m in Sources */,
 				26D54ACC1EC2A93B00119FAA /* AddViewWithPop.swift in Sources */,
 				260C666C1EB23415006C119E /* POPGeometry.mm in Sources */,
+				26421EF01EE16718000C9B25 /* ConnectModel.swift in Sources */,
 				2657FD9D1EB8809100B92648 /* DelayTimerTool.swift in Sources */,
 				260C666B1EB23415006C119E /* POPDecayAnimation.mm in Sources */,
 				26D54B2E1EC2C36900119FAA /* TImerTool.swift in Sources */,

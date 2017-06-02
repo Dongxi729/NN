@@ -19,6 +19,13 @@ class TImerTool: NSObject {
     fileprivate var checkTimer : Timer?
     
     
+    /// 断线索引
+    var reconnectIndex = 0
+    
+    /// 断线定时器
+    var reconnectTimer : Timer?
+    
+    
     static let shared = TImerTool.init()
     
     func timerCount(seconds : Int) -> Void {
@@ -31,7 +38,7 @@ class TImerTool: NSObject {
     
     /// 检查心跳包是否收到
     func checkTimerStart() -> Void {
-        checkTimer = Timer.init(timeInterval: 15.0, target: self, selector: #selector(heartCheckSEL), userInfo: nil, repeats: true)
+        checkTimer = Timer.init(timeInterval: 5.0, target: self, selector: #selector(heartCheckSEL), userInfo: nil, repeats: true)
         
         checkTimer?.fire()
         RunLoop.main.add(checkTimer!, forMode: RunLoopMode.commonModes)
@@ -42,10 +49,7 @@ class TImerTool: NSObject {
     /// 检查心跳包事件
     func heartCheckSEL() -> Void {
         
-        print("\((#file as NSString).lastPathComponent):(\(#line))\n",headrtData)
-        
         if headrtData != [1, 0, 0, 0, 4] {
-            print("心跳信息不对")
             
             self.checkTimer?.invalidate()
             
@@ -54,16 +58,14 @@ class TImerTool: NSObject {
             
             return
         }
-        
-        
-        print("\((#file as NSString).lastPathComponent):(\(#line))\n","heartCheckSEL")
     }
     
+    
+
     func timerFunc() -> Void {
-        
         sendHeart()
     }
-    
+
     private func invalidTimer() -> Void {
         timer?.invalidate()
     }
@@ -71,5 +73,17 @@ class TImerTool: NSObject {
     func timerIsValid() -> Bool {
         return (timer?.isValid)!
     }
+}
+
+
+// MARK: - 断线重连
+extension TImerTool {
     
+
+    func reconnectSEL() -> Void {
+        
+
+        
+        print("\((#file as NSString).lastPathComponent):(\(#line))\n")
+    }
 }

@@ -60,17 +60,11 @@ class MainGameViewController: UIViewController {
         return d
     }()
     
-//    override func viewWillAppear(_ animated: Bool) {
-//        super.viewWillAppear(animated)
-//        
-//        /// 开始上报用户信息,传socket
-//        AvdioTool.shared.creatSession()
-//        
-//        /// 开启链接服务器
-//        DispatchQueue.global(qos: .default).async {
-//            testServer()
-//        }
-//    }
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+
+        ConnectModel.shared.connectSEL()
+    }
     
     
     
@@ -83,13 +77,10 @@ class MainGameViewController: UIViewController {
     
     /// 显示离线视图
     func showOffLineV() -> Void {
-        let d = OffLineV.init(frame: CGRect.init(x: 0, y: 0, width: SW * 0.7, height: SH * 0.75))
-        d.backgroundColor = UIColor.randomColor()
-        
+        let d = OffLineV.init(frame: CGRect.init(x: 0, y: 0, width: SW * 0.6, height: SH * 0.75))
         view.addSubview(d)
-        
+        d.center = view.center
         NotificationCenter.default.removeObserver(self, name: NSNotification.Name(rawValue: "offLineSEL"), object: nil)
-        
         print("\((#file as NSString).lastPathComponent):(\(#line))\n","离线通知")
     }
     
@@ -112,12 +103,6 @@ class MainGameViewController: UIViewController {
         view.addSubview(mainView)
 
         view.addSubview(boradCastBgV)
-        
-        let d = OffLineV.init(frame: CGRect.init(x: 0, y: 0, width: SW * 0.6, height: SH * 0.75))
-        d.backgroundColor = UIColor.randomColor()
-        d.center = view.center
-        
-        view.addSubview(d)
     }
     
     /// 广播栏目
@@ -130,21 +115,6 @@ class MainGameViewController: UIViewController {
         dismissRoomSocketEvent()
     }
 
-    
-    
-    func reconnect() -> Void {
-        
-        let connectAlert : UIAlertController = UIAlertController.init(title: "提示", message: "已断开连接,是否重新连接", preferredStyle: .alert)
-        connectAlert.addAction(UIAlertAction.init(title: "好的", style: .default, handler: { (alert) in
-            testServer()
-        }))
-        
-        connectAlert.addAction(UIAlertAction.init(title: "取消", style: .default, handler: { (alert) in
-            
-        }))
-        
-        UIApplication.shared.keyWindow?.rootViewController?.present(connectAlert, animated: true, completion: nil)
-    }
     
     func presenrView() -> Void {
         view.addSubview(presentView)

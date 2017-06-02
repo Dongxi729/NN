@@ -63,7 +63,6 @@ func testServer() {
                     
                     /// 检查是否收到心跳包
                     AppDelegate.checkreceiveHeartInfo()
-                    
                 }
                 
             } else {
@@ -99,6 +98,9 @@ func reportUID() -> Void {
     
     /// 上报用户信息
     reportTypeWithData(typeInt: 254, str: "<M><Nn id=\"\(LoginModel.shared.uid!)\" tk=\"\(LoginModel.shared.token!)\"/></M>")
+    
+    print("\((#file as NSString).lastPathComponent):(\(#line))\n",LoginModel.shared.uid as Any)
+    print("\((#file as NSString).lastPathComponent):(\(#line))\n",LoginModel.shared.token as Any)
 }
 
 ///统一上报类型
@@ -148,6 +150,9 @@ func sendHeart() {
     guard let socket = client else {
         return
     }
+    
+    
+    
     
     socket.send(data: heaerByte)
 }
@@ -322,6 +327,7 @@ func bytesShwoFunc(_over : [Byte]) -> Void {
     let dd = NSData.init(bytes: bodyData, length: bodyData.count)
     print("\((#file as NSString).lastPathComponent):(\(#line))\n",typpppp)
     
+    print("\((#file as NSString).lastPathComponent):(\(#line))\n",String.init(data: dd as Data, encoding: String.Encoding.utf8)!)
     
     /// 准备游戏
     if typpppp == 9 {
