@@ -1250,6 +1250,9 @@ class GameBgV: CommonV {
     /// 邀请微信好友
     @objc fileprivate func inviteFriSEL(sender : UIButton) {
         print("\((#file as NSString).lastPathComponent):(\(#line))\n","inviteFriSEL")
+
+        let tool : WXTool = WXTool()
+        tool.shareText(title: "牛牛-" + String(RoomModel.shared.roomNumber), desc: "牛牛-房号" + String(RoomModel.shared.roomNumber) + "," + String(RoomModel.shared.gameRounds) + "局,速度来看啊~", link: "www.baidu.com", imgUrl: "http://upload-images.jianshu.io/upload_images/906389-1ca000d41787f8f5.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240", shareType: 0)
     }
     
     /// 作弊按钮事件

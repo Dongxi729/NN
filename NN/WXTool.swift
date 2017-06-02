@@ -147,7 +147,7 @@ class WXTool : UIView,WXApiDelegate,NSURLConnectionDelegate {
                         return
                     }
                     
-//                    print("微信个人信息",wxInfoData)
+                    //                    print("微信个人信息",wxInfoData)
                     
                     
                     
@@ -191,7 +191,7 @@ class WXTool : UIView,WXApiDelegate,NSURLConnectionDelegate {
                         print("授权s失败")
                     }
                     
-  
+                    
                 }, failure: { (error) in
                     print("获取access_token时出错 = \(error)")
                 })
@@ -359,6 +359,61 @@ extension WXTool {
         }
         
     }
+    
+    /// 自定义微信分享
+    ///
+    /// - Parameters:
+    ///   - title: 标题
+    ///   - desc: 描述
+    ///   - link: 链接
+    ///   - imgUrl: 图片链接
+    ///   - shareType: 分享类型
+    //    WXSceneSession  = 0,        /**< 聊天界面    */
+    //    WXSceneTimeline = 1,        /**< 朋友圈      */
+    //    WXSceneFavorite = 2,        /**< 收藏       */
+    func shareText(title : String,desc : String,shareType : Int) -> Void {
+        
+        if WXApi.isWXAppInstalled() == false {
+            
+            CustomAlertView.shared.alertWithTitle(strTitle: "未安装微信或版本不支持")
+            
+        } else {
+            
+            let message =  WXMediaMessage()
+            
+            //标题
+            message.title = title
+            
+            //描述
+            message.description = desc
+            
+            
+            //            do {
+            //                let img = try UIImage.init(data: Data.init(contentsOf: URL.init(string:imgUrl)!))
+            //
+            //                let compresImage = UIImageJPEGRepresentation(img!, 0.1) as Data!
+            //
+            //                message.setThumbImage(UIImage.init(data: compresImage!))
+            //
+            //            } catch {
+            //
+            //                return
+            //            }
+            
+            message.setThumbImage(UIImage.init(named: "shareImg"))
+            
+//            let ext =  WXWebpageObject()
+//            ext.webpageUrl = imgUrl
+            
+//            message.mediaObject = ext
+            
+            let req =  SendMessageToWXReq()
+            req.bText = false
+            req.message = message
+            req.scene = Int32(WXScene(rawValue: UInt32(shareType)).rawValue)
+            WXApi.send(req)
+        }
+    }
 }
 
 
@@ -408,10 +463,10 @@ extension WXTool {
                     let reAccessToken = refreshDict[WX_ACCESS_TOKEN] as! String
                     
                     wxAccessToken = refreshDict["access_token"] as! String
-                
+                    
                     
                     print("wxAccessToken:",wxAccessToken)
-
+                    
                     
                     // 如果reAccessToken为空,说明reAccessToken也过期了,反之则没有过期
                     if (reAccessToken.characters.count == 0) {
