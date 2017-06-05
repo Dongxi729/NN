@@ -93,8 +93,6 @@ class GameV: UIView {
         
         NotificationCenter.default.removeObserver(self, name: NSNotification.Name(rawValue: "createGamingLayout"), object: nil)
 
-
-        
         
         switch RoomModel.shared.currentPersonInRoom {
             
@@ -130,17 +128,19 @@ class GameV: UIView {
             }
             break
         case 2:
-            
+
             /// 设置摆放纸牌位置
             P1.samllCardsShowLeftOrRight = -1
             
             P2.samllCardsShowLeftOrRight = 1
             
-            /// 六人牛牛的抢庄视图是否显示，当且仅当六人牛牛玩法为抢庄模式的时候显示。
-            P2.isShowBottomCardLayout = true
             
             /// 纸牌 不能提前创建，除非模型有值，才能创建
             //////////////////////////////////////////////////
+            
+            /// 打开才显示
+            P2.isShowBottomCardLayout = true
+
             
             P1.imgNames = CardNameModel.shared.currentUbackCardsName
             P1.addCards(cardsArray: CardNameModel.shared.currentUbackCardsName)
@@ -160,6 +160,9 @@ class GameV: UIView {
                 downImgWith(url: headStr2, toView: self.P2.headImg)
             }
             
+            addSubview(P1)
+            P2.isHidden = false
+            
             break
         default: break
         }
@@ -168,6 +171,10 @@ class GameV: UIView {
     
     override init(frame: CGRect) {
         super.init(frame: frame)
+        
+        addSubview(P2)
+        
+        P2.isHidden = true
         
         addSubview(alertBtn)
         
@@ -192,14 +199,7 @@ class GameV: UIView {
         
         /// 开始按钮
         addSubview(startGameBtn)
-        
-        
-        DispatchQueue.main.async {
-            self.addSubview(self.P1)
-            self.addSubview(self.P2)
-        }
-        
-        
+
         NotificationCenter.default.addObserver(self, selector: #selector(createGamingLayout), name: NSNotification.Name(rawValue: "CardNameModelNotNIll"), object: nil)
     }
     

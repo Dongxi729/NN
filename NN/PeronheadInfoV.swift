@@ -187,8 +187,6 @@ class PeronheadInfoV: UIView {
         
         /// 提示的时候
         if CardNameModel.shared.isShowP1Front {
-            
-            self.isShowBottomCardLayout = false
 
             backCardsLayout.isHidden = true
             
@@ -198,6 +196,9 @@ class PeronheadInfoV: UIView {
                 
                 addSubview(backCardsLayout)
             }
+            
+            /// 重置标识
+            CardNameModel.shared.isShowP1Front = false
         } else {
             
             var index = 0
@@ -207,7 +208,7 @@ class PeronheadInfoV: UIView {
                     backCardsLayout = UIImageView.init(frame: CGRect.init(x: CGFloat(self.samllCardsShowLeftOrRight) + CGFloat(index) * self.Width * 0.15 , y: 2 * screenScale, width: self.Width * 0.3, height: self.Height - screenScale * 3))
                     
                     
-                } else if isShowBottomCardLayout == true || CardNameModel.shared.isShowP1Front {
+                } else if isShowBottomCardLayout == true {
                     backCardsLayout = UIImageView.init(frame: CGRect.init(x: self.Width * CGFloat(self.samllCardsShowLeftOrRight) + CGFloat(index) * self.Width * 0.15 , y: 2 * screenScale, width: self.Width * 0.3, height: self.Height - screenScale * 3))
                     
                     print("\((#file as NSString).lastPathComponent):(\(#line))\n",value)
