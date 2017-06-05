@@ -229,7 +229,7 @@ class GameBgV: CommonV {
     /// 测试--- 提示
     @objc fileprivate func testShow() {
         
-        CardNameModel.shared.isShowP1Front = true
+//        CardNameModel.shared.isShowP1Front = true
        
 //        P1.imgNames = CardNameModel.shared.rightCurrentIndexCards()
 //        P1.addCards(cardsArray: CardNameModel.shared.rightCurrentIndexCards())

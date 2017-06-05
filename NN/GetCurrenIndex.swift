@@ -100,4 +100,19 @@ class GetCurrenIndex: NSObject {
         
         return newDic
     }
+    
+    /// 名字
+    func p2NameLabelWithoutP1() -> [String] {
+        /// 移除了第一个索引后的值
+        var newDic : [String] = []
+        
+        for (k,v) in RoomModel.shared.nameStr {
+            if k != currentUserIndex {
+                newDic.append(v)
+            }
+        }
+        
+        return newDic
+    }
+    
 }

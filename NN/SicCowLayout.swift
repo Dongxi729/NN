@@ -432,10 +432,10 @@ class SicCowLayout: UIView {
     /// 结算砖石
     @objc fileprivate func creatRoomSEL(sender : UIButton) -> Void {
         
-        print("\((#file as NSString).lastPathComponent):(\(#line))\n",self.rounds)
-        print("\((#file as NSString).lastPathComponent):(\(#line))\n",self.players)
-        print("\((#file as NSString).lastPathComponent):(\(#line))\n",self.py)
-        print("\((#file as NSString).lastPathComponent):(\(#line))\n",self.playTypeIndex)
+//        print("\((#file as NSString).lastPathComponent):(\(#line))\n",self.rounds)
+//        print("\((#file as NSString).lastPathComponent):(\(#line))\n",self.players)
+//        print("\((#file as NSString).lastPathComponent):(\(#line))\n",self.py)
+//        print("\((#file as NSString).lastPathComponent):(\(#line))\n",self.playTypeIndex)
         
         print(setpayfun(_ii: self.rounds, _rn: self.players, _py: self.py))
         addSubview(scoreImg)

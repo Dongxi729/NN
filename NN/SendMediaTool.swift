@@ -319,7 +319,9 @@ func bytesShwoFunc(_over : [Byte]) -> Void {
     let typpppp = bodyData.remove(at: 0)
     
     let dd = NSData.init(bytes: bodyData, length: bodyData.count)
-//    print("\((#file as NSString).lastPathComponent):(\(#line))\n",typpppp)
+    print("\((#file as NSString).lastPathComponent):(\(#line))\n",typpppp)
+    
+    print("\((#file as NSString).lastPathComponent):(\(#line))\n",String.init(data: dd as Data, encoding: String.Encoding.utf8)!)
     
     
     /// 准备游戏
@@ -349,6 +351,13 @@ func bytesShwoFunc(_over : [Byte]) -> Void {
             RoomModel.shared.canCheat = true
         } else {
             RoomModel.shared.canCheat = false
+        }
+        
+        /// 判断抢庄
+        if testXML(analayseStr: String.init(data: dd as Data, encoding: String.Encoding.utf8)!).contains("1") {
+            print("\((#file as NSString).lastPathComponent):(\(#line))\n",String.init(data: dd as Data, encoding: String.Encoding.utf8)!)
+            
+            RobOwnerModel.shared.receiveStr = String.init(data: dd as Data, encoding: String.Encoding.utf8)!
         }
     }
     
