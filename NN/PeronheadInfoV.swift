@@ -4,7 +4,7 @@
 //
 //  Created by 郑东喜 on 2017/5/18.
 //  Copyright © 2017年 郑东喜. All rights reserved.
-//
+//  位置类
 
 import UIKit
 
@@ -104,7 +104,7 @@ class PeronheadInfoV: UIView {
         return d
     }()
     
-
+    
     /// 波形图片
     fileprivate lazy var showWave: UIImageView = {
         let d : UIImageView = UIImageView.init(frame: CGRect.init(x: self.Width * 0.25, y: 0, width: self.Width * 0.25, height: self.Height * 0.5))
@@ -182,30 +182,77 @@ class PeronheadInfoV: UIView {
     
     /// 摆放纸牌
     func addCards(cardsArray : [String]) -> Void {
-        
-        var index = 0
-        for value in cardsArray {
+
+        /// 提示的时候
+        if CardNameModel.shared.isShowP1Front {
             
+            self.isShowBottomCardLayout = false
+
+            backCardsLayout.isHidden = true
             
-            if isShowBottomCardLayout == false {
-                backCardsLayout = UIImageView.init(frame: CGRect.init(x: CGFloat(self.samllCardsShowLeftOrRight) + CGFloat(index) * self.Width * 0.15 , y: 2 * screenScale, width: self.Width * 0.3, height: self.Height - screenScale * 3))
-                
-            } else {
-                backCardsLayout = UIImageView.init(frame: CGRect.init(x: self.Width * CGFloat(self.samllCardsShowLeftOrRight) + CGFloat(index) * self.Width * 0.15 , y: 2 * screenScale, width: self.Width * 0.3, height: self.Height - screenScale * 3))
-                
+            for value in cardsArray {
+
                 backCardsLayout.image = UIImage.init(named:value)
                 
-                index += 1
-
                 addSubview(backCardsLayout)
+            }
+        } else {
+            
+            var index = 0
+            for value in cardsArray {
+                
+                
+                if isShowBottomCardLayout == false {
+                    backCardsLayout = UIImageView.init(frame: CGRect.init(x: CGFloat(self.samllCardsShowLeftOrRight) + CGFloat(index) * self.Width * 0.15 , y: 2 * screenScale, width: self.Width * 0.3, height: self.Height - screenScale * 3))
+                    
+                    
+                } else if isShowBottomCardLayout == true || CardNameModel.shared.isShowP1Front {
+                    backCardsLayout = UIImageView.init(frame: CGRect.init(x: self.Width * CGFloat(self.samllCardsShowLeftOrRight) + CGFloat(index) * self.Width * 0.15 , y: 2 * screenScale, width: self.Width * 0.3, height: self.Height - screenScale * 3))
+                    
+                    backCardsLayout.image = UIImage.init(named:value)
+                    
+                    index += 1
+                    
+                    addSubview(backCardsLayout)
+                }
             }
         }
     }
     
+    func removeCards() -> Void {
+        self.backCardsLayout.removeFromSuperview()
+    }
     
     override init(frame: CGRect) {
         super.init(frame: frame)
         
+        
+        
+
+    }
+    
+    /// 牛牛图片
+    lazy var niuniuImg: UIImageView = {
+        let d : UIImageView = UIImageView.init(frame: CGRect.init(x: 0, y: 0, width: self.Width, height: self.Height))
+        return d
+    }()
+    
+    
+
+    
+    override func layoutSubviews() {
+        super.layoutSubviews()
+        
+        /// 是否开始游戏
+        if RoomModel.shared.isGameBegin {
+            
+            if !isShowBottomCardLayout {
+                bigCardLayout.addCards(cardsArray: imgNames)
+                addSubview(bigCardLayout)
+            }
+            /// 尚需修改
+            addCards(cardsArray: imgNames)
+        }
         
         
         addSubview(hhhh)
@@ -245,28 +292,7 @@ class PeronheadInfoV: UIView {
         showWave.isHidden = true
         offLineImg.isHidden = true
         ownerImg.isHidden = true
-    }
-    
-    /// 牛牛图片
-    lazy var niuniuImg: UIImageView = {
-        let d : UIImageView = UIImageView.init(frame: CGRect.init(x: 0, y: 0, width: self.Width, height: self.Height))
-        return d
-    }()
-    
-    
-    override func layoutSubviews() {
-        super.layoutSubviews()
         
-        /// 是否开始游戏
-        if RoomModel.shared.isGameBegin {
-            
-            if !isShowBottomCardLayout {
-                bigCardLayout.addCards(cardsArray: imgNames)
-                addSubview(bigCardLayout)
-            }
-            /// 尚需修改
-            addCards(cardsArray: imgNames)
-        }
     }
     
     required init?(coder aDecoder: NSCoder) {

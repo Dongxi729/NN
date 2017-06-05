@@ -28,14 +28,7 @@ class RoomModel: NSObject {
     var canCheat = false
     
     /// 当前局数
-    var currentRounds : String = "0" {
-        didSet {
-            DispatchQueue.main.async {
-                UIApplication.shared.keyWindow?.rootViewController = GamingVC()
-                ScoreModel.shared.userScoreDic = []
-            }
-        }
-    }
+    var currentRounds : String = "0"
     
     /// 游戏人数 3/6人
     /// 开始规定的游戏人数
@@ -110,9 +103,11 @@ class RoomModel: NSObject {
     fileprivate var headURLArray : [String] = []
     var headUrlDic = [Int : String]()
     
+    
     /// 分数字典
     fileprivate var userScore : [String] = []
     var userScoreDic = [Int : String]()
+    var userReplaceDic = [Int : String]()
     
     /// 准备
     fileprivate var prepareArray : [String] = []
@@ -124,7 +119,6 @@ class RoomModel: NSObject {
     /// xml 当前游戏(还未开始的游戏房间的数据)
     var currentRoomPlayInfo : String = "" {
         didSet {
-            print("currentRoomPlayInfo",currentRoomPlayInfo)
             self.xmlAnalyse(xmlStr: currentRoomPlayInfo)
         }
     }
@@ -176,21 +170,21 @@ class RoomModel: NSObject {
             /// 拟定开好房间的总人数
             self.limitedPlayersNum = Int(user.attribute(forName: "rn")!.stringValue!)!
             
-            print("====房间号",self.roomNumber)
-            
-            print("=====self.gameType",self.gameType)
-            
-            print("=====self.wantCoins",self.wantCoins)
-            
-            print("====== 支付方式",self.payType)
-            
-            print("====== 总局数",self.gameRounds)
-            
-            print("====== 当前局数",self.currentRounds)
-            
-            print("====== 当前房间在线人数",self.currentPersonInRoom)
-            
-            print("====== 拟定创建好房间的总人数",self.limitedPlayersNum)
+//            print("====房间号",self.roomNumber)
+//            
+//            print("=====self.gameType",self.gameType)
+//            
+//            print("=====self.wantCoins",self.wantCoins)
+//            
+//            print("====== 支付方式",self.payType)
+//            
+//            print("====== 总局数",self.gameRounds)
+//            
+//            print("====== 当前局数",self.currentRounds)
+//            
+//            print("====== 当前房间在线人数",self.currentPersonInRoom)
+//            
+//            print("====== 拟定创建好房间的总人数",self.limitedPlayersNum)
         }
         
         let _users = try! doc.nodes(forXPath: "//M/ty/u") as! [DDXMLElement]
@@ -253,6 +247,8 @@ class RoomModel: NSObject {
                 headURLIndex += 1
             }
             
+
+            
             ///=========================== 分数
             
             let scoreStr = user.attribute(forName: "sc")?.stringValue
@@ -260,6 +256,7 @@ class RoomModel: NSObject {
             if scoreStr != nil {
                 self.userScore.append(scoreStr!)
             }
+            
             var scoreIndex = 0
             
             for ddd in self.userScore {
@@ -268,6 +265,20 @@ class RoomModel: NSObject {
                     userScoreDic.updateValue("----", forKey: headURLIndex)
                 } else {
                     userScoreDic.updateValue(ddd, forKey: headURLIndex)
+                }
+                
+                scoreIndex += 1
+            }
+            
+            
+            for ddd in self.userScore {
+                
+                self.userScore.remove(at: GetCurrenIndex.shared.currentUserIndex)
+                
+                if ddd.characters.count == 0 {
+                    userReplaceDic.updateValue("----", forKey: headURLIndex)
+                } else {
+                    userReplaceDic.updateValue(ddd, forKey: headURLIndex)
                 }
                 
                 scoreIndex += 1
@@ -297,8 +308,6 @@ class RoomModel: NSObject {
             if userUID != nil {
                 self.userId.append(userUID!)
             }
-            
-            print(userId)
         }
     }
 }

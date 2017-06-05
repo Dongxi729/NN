@@ -9,11 +9,62 @@
 import UIKit
 
 class GetCurrenIndex: NSObject {
-
+    
     var currentUserIndex = 0
     
     static let shared = GetCurrenIndex()
     
+    /// 用户剩余分数
+    fileprivate var leftReplaceScore : [Int] = []
+    
+    
+    /// 用户增加分数
+    fileprivate var userReplaceScoreDic : [Int] = []
+    
+    /// 牛牛纸牌
+    var niuniuReplaceArray : [String] = []
+    
+    
+    /// 用户增加分数
+    func userReplaceScore() -> [Int] {
+        
+        print("\((#file as NSString).lastPathComponent):(\(#line))\n")
+        var dic : [Int] = []
+        dic = [ScoreModel.shared.userScoreDic.remove(at: getCurrentIndex())]
+        return dic
+    }
+    
+    var markNN = true
+    
+    /// 牛牛纸牌
+    func niuniuFunc() -> [String] {
+        var dic : [String] = []
+        
+        DispatchQueue.once(token: "") {
+            
+            print("\((#file as NSString).lastPathComponent):(\(#line))\n")
+            
+            dic = [CardNameModel.shared.niuniuBackUpArray.remove(at: getCurrentIndex())]
+            
+        }
+        
+        
+        
+        
+        
+        return dic
+    }
+    
+    /// 用户剩余分数
+    func leftReplaceScoreFuns() -> [Int] {
+        
+        print("\((#file as NSString).lastPathComponent):(\(#line))\n")
+        var dic : [Int] = []
+        dic = [ScoreModel.shared.leftScore.remove(at: getCurrentIndex())]
+        return dic
+    }
+    
+    /// 获取对应用户所在的索引
     func getCurrentIndex() -> Int {
         /// 返回当前用户的分数位置(用户1)
         var userIndex1 = 0
@@ -30,5 +81,23 @@ class GetCurrenIndex: NSObject {
         }
         
         return currentUserIndex
+    }
+    
+    /// 用户2的数据
+    func p2ArrayWithoutP1() -> [String] {
+        
+        
+        /// 移除了第一个索引后的值
+        var newDic : [String] = []
+        
+        for (_,v) in RoomModel.shared.headUrlDic {
+            
+            if v != RoomModel.shared.headUrlDic[currentUserIndex] {
+                newDic.append(v)
+            }
+        }
+        
+        
+        return newDic
     }
 }

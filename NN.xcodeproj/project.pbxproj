@@ -78,11 +78,9 @@
 		2629EC051ECAFCA500616626 /* f0_nn9.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 2629EBF71ECAFCA500616626 /* f0_nn9.mp3 */; };
 		262E1C3A1EB1CBDE007CC745 /* CaptureScreenTool.swift in Sources */ = {isa = PBXBuildFile; fileRef = 262E1C391EB1CBDE007CC745 /* CaptureScreenTool.swift */; };
 		26315CD41ED28FA30026EC6B /* SendRequestModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26315CD31ED28FA30026EC6B /* SendRequestModel.swift */; };
-		26315CD61ED2932F0026EC6B /* RobOwnerModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26315CD51ED2932F0026EC6B /* RobOwnerModel.swift */; };
 		26315CD81ED293BA0026EC6B /* MarkChoose.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26315CD71ED293BA0026EC6B /* MarkChoose.swift */; };
 		26315CDA1ED293EA0026EC6B /* RobRoomOwner.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26315CD91ED293EA0026EC6B /* RobRoomOwner.swift */; };
 		26315CDC1ED2943C0026EC6B /* ScoreV.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26315CDB1ED2943C0026EC6B /* ScoreV.swift */; };
-		26315CDE1ED2D15F0026EC6B /* ReconnectModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26315CDD1ED2D15F0026EC6B /* ReconnectModel.swift */; };
 		263541A51EE031A9005C4927 /* GetCurrenIndex.swift in Sources */ = {isa = PBXBuildFile; fileRef = 263541A41EE031A9005C4927 /* GetCurrenIndex.swift */; };
 		26421EEE1EE15099000C9B25 /* OffLineV.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26421EED1EE15099000C9B25 /* OffLineV.swift */; };
 		26421EF01EE16718000C9B25 /* ConnectModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26421EEF1EE16718000C9B25 /* ConnectModel.swift */; };
@@ -107,7 +105,9 @@
 		2682558B1EC196C30080CCCD /* LoginRequestTool.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2682558A1EC196C30080CCCD /* LoginRequestTool.swift */; };
 		2682558D1EC19ECC0080CCCD /* LoginInfoLocal.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2682558C1EC19ECC0080CCCD /* LoginInfoLocal.swift */; };
 		26836AFB1EC1E2DB00061069 /* JoinRoomView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26836AFA1EC1E2DB00061069 /* JoinRoomView.swift */; };
+		2688ED691EE26C4800B69115 /* GameOverView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2688ED681EE26C4800B69115 /* GameOverView.swift */; };
 		26A2FD4E1ED6EF6700CAB137 /* ScoreModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26A2FD4D1ED6EF6700CAB137 /* ScoreModel.swift */; };
+		26A483391EE4ECF9007D977D /* GameV.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26A483381EE4ECF9007D977D /* GameV.swift */; };
 		26A487271EC0049E00E9A091 /* UIColor+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26A487261EC0049E00E9A091 /* UIColor+Extension.swift */; };
 		26A487291EC004F400E9A091 /* UIView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26A487281EC004F400E9A091 /* UIView+Extension.swift */; };
 		26A4872C1EC0060F00E9A091 /* AbortTool.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26A4872B1EC0060F00E9A091 /* AbortTool.swift */; };
@@ -289,11 +289,9 @@
 		2629EBF71ECAFCA500616626 /* f0_nn9.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = f0_nn9.mp3; path = "sound 2/f0_nn9.mp3"; sourceTree = "<group>"; };
 		262E1C391EB1CBDE007CC745 /* CaptureScreenTool.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CaptureScreenTool.swift; sourceTree = "<group>"; };
 		26315CD31ED28FA30026EC6B /* SendRequestModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SendRequestModel.swift; sourceTree = "<group>"; };
-		26315CD51ED2932F0026EC6B /* RobOwnerModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RobOwnerModel.swift; sourceTree = "<group>"; };
 		26315CD71ED293BA0026EC6B /* MarkChoose.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MarkChoose.swift; sourceTree = "<group>"; };
 		26315CD91ED293EA0026EC6B /* RobRoomOwner.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RobRoomOwner.swift; sourceTree = "<group>"; };
 		26315CDB1ED2943C0026EC6B /* ScoreV.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScoreV.swift; sourceTree = "<group>"; };
-		26315CDD1ED2D15F0026EC6B /* ReconnectModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReconnectModel.swift; sourceTree = "<group>"; };
 		263541A41EE031A9005C4927 /* GetCurrenIndex.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GetCurrenIndex.swift; sourceTree = "<group>"; };
 		26421EED1EE15099000C9B25 /* OffLineV.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OffLineV.swift; sourceTree = "<group>"; };
 		26421EEF1EE16718000C9B25 /* ConnectModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConnectModel.swift; sourceTree = "<group>"; };
@@ -318,7 +316,9 @@
 		2682558A1EC196C30080CCCD /* LoginRequestTool.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginRequestTool.swift; sourceTree = "<group>"; };
 		2682558C1EC19ECC0080CCCD /* LoginInfoLocal.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginInfoLocal.swift; sourceTree = "<group>"; };
 		26836AFA1EC1E2DB00061069 /* JoinRoomView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JoinRoomView.swift; sourceTree = "<group>"; };
+		2688ED681EE26C4800B69115 /* GameOverView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameOverView.swift; sourceTree = "<group>"; };
 		26A2FD4D1ED6EF6700CAB137 /* ScoreModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScoreModel.swift; sourceTree = "<group>"; };
+		26A483381EE4ECF9007D977D /* GameV.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameV.swift; sourceTree = "<group>"; };
 		26A487261EC0049E00E9A091 /* UIColor+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIColor+Extension.swift"; sourceTree = "<group>"; };
 		26A487281EC004F400E9A091 /* UIView+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIView+Extension.swift"; sourceTree = "<group>"; };
 		26A4872B1EC0060F00E9A091 /* AbortTool.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AbortTool.swift; sourceTree = "<group>"; };
@@ -696,6 +696,8 @@
 				26315CDB1ED2943C0026EC6B /* ScoreV.swift */,
 				26FB53A51ED81EC80046829F /* ShowGuessCoinsView.swift */,
 				26F5B5C61EE102B9004C4ADB /* ShowAndAlertV.swift */,
+				2688ED681EE26C4800B69115 /* GameOverView.swift */,
+				26A483381EE4ECF9007D977D /* GameV.swift */,
 			);
 			name = view;
 			sourceTree = "<group>";
@@ -721,8 +723,6 @@
 			isa = PBXGroup;
 			children = (
 				264A32D11EC598C7001405C4 /* RoomModel.swift */,
-				26315CD51ED2932F0026EC6B /* RobOwnerModel.swift */,
-				26315CDD1ED2D15F0026EC6B /* ReconnectModel.swift */,
 				26B878961ED3D8BC008A24E5 /* JoinRoomModel.swift */,
 				26B878981ED45A49008A24E5 /* CardNameModel.swift */,
 				26A2FD4D1ED6EF6700CAB137 /* ScoreModel.swift */,
@@ -1100,6 +1100,7 @@
 				2603D9711EADCD830069B132 /* ViewController.swift in Sources */,
 				2629EBE31ECADE1D00616626 /* SettingV.swift in Sources */,
 				26013DAF1EC1D20F00ACA99D /* ScrollText.m in Sources */,
+				26A483391EE4ECF9007D977D /* GameV.swift in Sources */,
 				260C66641EB23415006C119E /* POPAnimationExtras.mm in Sources */,
 				264A2CE91EC45F1F001B7F0E /* GamingVC.swift in Sources */,
 				260EBC221ECEC4F7003DD5CA /* CommonV.swift in Sources */,
@@ -1118,6 +1119,7 @@
 				26A487291EC004F400E9A091 /* UIView+Extension.swift in Sources */,
 				26D54AE71EC2BD6D00119FAA /* DDXMLElement.m in Sources */,
 				26F14F991ECAA2A7006844C9 /* FTNotificationIndicator.m in Sources */,
+				2688ED691EE26C4800B69115 /* GameOverView.swift in Sources */,
 				2682558B1EC196C30080CCCD /* LoginRequestTool.swift in Sources */,
 				26315CDC1ED2943C0026EC6B /* ScoreV.swift in Sources */,
 				262433661ECC5244003C41D1 /* SicComonCowLayout.swift in Sources */,
@@ -1128,7 +1130,6 @@
 				260EBC201ECE87A9003DD5CA /* ClockCountDown.swift in Sources */,
 				260EBC281ECECB14003DD5CA /* GameLeftCornerMsg.swift in Sources */,
 				262433681ECC527A003C41D1 /* SicCowLayout.swift in Sources */,
-				26315CD61ED2932F0026EC6B /* RobOwnerModel.swift in Sources */,
 				26836AFB1EC1E2DB00061069 /* JoinRoomView.swift in Sources */,
 				2657FD971EB860F900B92648 /* ControlVoice.swift in Sources */,
 				26D54B441EC2F0B500119FAA /* CreateRoomModel.swift in Sources */,
@@ -1190,7 +1191,6 @@
 				26FB53A81ED82EA30046829F /* DispatchQueue-Extension.swift in Sources */,
 				26D54B271EC2C11B00119FAA /* amrFileCodec.mm in Sources */,
 				268255811EC190550080CCCD /* LoginViewController.swift in Sources */,
-				26315CDE1ED2D15F0026EC6B /* ReconnectModel.swift in Sources */,
 				2603D9691EADCB6F0069B132 /* Common.swift in Sources */,
 				26F14F9B1ECAA2A7006844C9 /* FTProgressIndicator.m in Sources */,
 				26BC61301EB2EB6C00AE9BE1 /* CountDownBtn.swift in Sources */,

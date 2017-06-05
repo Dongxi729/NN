@@ -19,10 +19,6 @@ class ScoreModel: NSObject {
     /// 用户增加分数
     var userScoreDic : [Int] = []
     
-    /// 备份的用户增减分数
-    var backupUserDic : [Int] = []
-    
-    
     /// 游戏进行中的状态
     var gamingReciveType : String = ""
     
@@ -34,6 +30,7 @@ class ScoreModel: NSObject {
             }
         }
     }
+    
     
     
     static let shared = ScoreModel()
@@ -68,8 +65,10 @@ class ScoreModel: NSObject {
                 self.scoreCountDownScore = Int((user.attribute(forName: "igg")?.stringValue!)!)!
                 
                 userScoreDic.append(self.scoreCountDownScore)
-                backupUserDic.append(self.scoreCountDownScore)
+                
             }
+            
+            
             
             var leftScoreIndex = 0
             if (user.attribute(forName: "gg")?.stringValue!) != nil {
@@ -79,8 +78,10 @@ class ScoreModel: NSObject {
                 leftScoreIndex += 1
                 
                 leftScore.append(self.costScore)
-            }   
+            }
         }
+        
+        
         
         ///<M>
         //        <ty type="7">

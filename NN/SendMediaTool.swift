@@ -44,8 +44,6 @@ func testServer() {
             /// 缓存池数据
             let d = client.read(1024 * 10)
             
-            print("\((#file as NSString).lastPathComponent):(\(#line))\n",d as Any)
-            
             /// 绩溪县,.
             if d != nil {
                 byteAnalyse(ddd: d!)
@@ -63,6 +61,7 @@ func testServer() {
                     
                     /// 检查是否收到心跳包
                     AppDelegate.checkreceiveHeartInfo()
+                
                 }
                 
             } else {
@@ -99,8 +98,6 @@ func reportUID() -> Void {
     /// 上报用户信息
     reportTypeWithData(typeInt: 254, str: "<M><Nn id=\"\(LoginModel.shared.uid!)\" tk=\"\(LoginModel.shared.token!)\"/></M>")
     
-    print("\((#file as NSString).lastPathComponent):(\(#line))\n",LoginModel.shared.uid as Any)
-    print("\((#file as NSString).lastPathComponent):(\(#line))\n",LoginModel.shared.token as Any)
 }
 
 ///统一上报类型
@@ -262,9 +259,6 @@ func byteAnalyse(ddd : [Byte]) -> Void {
             /// 获取包头长度
             convertData.getBytes(&leng, length: convertData.length)
             
-            
-            print("leng :",leng)
-            
             bodyfun()
         } else {
             return
@@ -325,9 +319,8 @@ func bytesShwoFunc(_over : [Byte]) -> Void {
     let typpppp = bodyData.remove(at: 0)
     
     let dd = NSData.init(bytes: bodyData, length: bodyData.count)
-    print("\((#file as NSString).lastPathComponent):(\(#line))\n",typpppp)
+//    print("\((#file as NSString).lastPathComponent):(\(#line))\n",typpppp)
     
-    print("\((#file as NSString).lastPathComponent):(\(#line))\n",String.init(data: dd as Data, encoding: String.Encoding.utf8)!)
     
     /// 准备游戏
     if typpppp == 9 {
@@ -353,7 +346,6 @@ func bytesShwoFunc(_over : [Byte]) -> Void {
             RoomModel.shared.canCheat = true
         } else {
             RoomModel.shared.canCheat = false
-            print("=======")
         }
     }
     
@@ -491,10 +483,8 @@ func canCheat(analayseStr : String) -> Bool {
         if user.attribute(forName: "szc") != nil {
             canCheat = true
             
-            print("可以操作比")
         } else {
             canCheat = false
-            print("不能作弊")
         }
     }
     

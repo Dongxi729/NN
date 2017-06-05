@@ -27,7 +27,6 @@ class JoinRoomModel: NSObject {
     /// xml 当前游戏(还未开始的游戏房间的数据)
     var joinResultStr : String = "" {
         didSet {
-            print("currentRoomPlayInfo",joinResultStr)
             self.xmlAnalyse(xmlStr: joinResultStr)
         }
     }
@@ -48,7 +47,6 @@ class JoinRoomModel: NSObject {
                 
                 if user.attribute(forName: "su") != nil  {
                     let succesOFail = user.attribute(forName: "su")!.stringValue
-                    print("\((#file as NSString).lastPathComponent):(\(#line))\n",self.joinResult)
                     
                     if succesOFail == "false" {
                         self.joinResult = false
@@ -75,7 +73,6 @@ class JoinRoomModel: NSObject {
                 
                 if user.attribute(forName: "su") != nil {
                     let succesOFail = user.attribute(forName: "su")!.stringValue
-                    print("\((#file as NSString).lastPathComponent):(\(#line))\n",succesOFail as Any)
                     
                     
                     if succesOFail == "true" {

@@ -20,35 +20,9 @@ class CardNameModel: NSObject {
     static let shared = CardNameModel()
     
     
-    var isShowP1Front = false {
-        didSet {
-            
-            if self.isShowP1Front {
-                DispatchQueue.main.async {
-                    
-                    /// 移除在创建
-                    UIApplication.shared.keyWindow?.rootViewController?.view.removeFromSuperview()
-                    
-                    UIApplication.shared.keyWindow?.rootViewController = GamingVC()
-                }
-            }
-        }
-    }
+    var isShowP1Front = false
     
-    var P1Array : [String] = [] {
-        didSet {
-            
-            DispatchQueue.main.async {
-                
-                /// 移除在创建
-                
-                UIApplication.shared.keyWindow?.rootViewController?.view.removeFromSuperview()
-                
-                UIApplication.shared.keyWindow?.rootViewController = GamingVC()
-            }
-        }
-    }
-    
+    var P1Array : [String] = []
     
     var P2Array : [String] = []
     var P3Array : [String] = []
@@ -70,14 +44,15 @@ class CardNameModel: NSObject {
     /// 牛牛数组
     var niuniuArray : [String] = []
     
+    var niuniuBackUpArray : [String] = []
+    
     
     /// 是否收到结算分数标识
     var isreceivedCountScore = "false"
     
     var receiverStr : String = "" {
         didSet {
-            print("receiverStr",receiverStr)
-            
+
             self.xmlAnalyse(xmlStr: receiverStr)
         }
     }
@@ -152,7 +127,6 @@ class CardNameModel: NSObject {
             userIndex1 += 1
         }
         
-        print("\((#file as NSString).lastPathComponent):(\(#line))\n",currentUserIndex)
         
         switch userIndex1 {
         case 0:
@@ -193,6 +167,7 @@ class CardNameModel: NSObject {
         
         
         niuniuArray = []
+        niuniuBackUpArray = []
         
         self.isreceivedCountScore = "false"
         
@@ -247,7 +222,11 @@ class CardNameModel: NSObject {
             /// 牛牛
             if user.attribute(forName: "can")?.stringValue != nil {
                 niuniuArray.append((user.attribute(forName: "can")?.stringValue)!)
+                niuniuBackUpArray.append((user.attribute(forName: "can")?.stringValue)!)
             }
+            
+            
+            /// 除了当前用户外的牛牛数组
         }
         
         
@@ -330,6 +309,10 @@ class CardNameModel: NSObject {
         
         
         niuniuArray = contactName(cardsArray: niuniuArray, prefix: "niu")
+        niuniuBackUpArray = contactName(cardsArray: niuniuBackUpArray, prefix: "niu")
+    
+        
+        
     }
     
     
@@ -404,68 +387,6 @@ class CardNameModel: NSObject {
             }
         }
         
-        
-        return newDic
-    }
-    
-    
-    
-    /// 名字
-    func p2NameLabelWithoutP1() -> [String] {
-        /// 移除了第一个索引后的值
-        var newDic : [String] = []
-        
-        for (k,v) in RoomModel.shared.nameStr {
-            if k != currentUserIndex {
-                newDic.append(v)
-            }
-        }
-        
-        return newDic
-    }
-    
-    /// 分数
-    func P2CoinsLabel() -> [Int] {
-        /// 移除了第一个索引后的值
-        var newDic : [Int] = []
-        
-        for v in ScoreModel.shared.leftScore {
-            
-            if v != ScoreModel.shared.leftScore[currentUserIndex] {
-                newDic.append(v)
-            }
-        }
-        return newDic
-    }
-    
-    /// 牛牛纸牌
-    func P2NNArray() -> [String] {
-        /// 移除了第一个索引后的值
-        var newDic : [String] = []
-        
-        newDic = [CardNameModel.shared.niuniuArray.remove(at: currentUserIndex)]
-        
-        return newDic
-    }
-
-    
-    /// 标识
-    var userScoreMark = true
-    
-    /// 分数
-    func P2UseScore() -> [Int] {
-        /// 移除了第一个索引后的值
-        var newDic : [Int] = []
-        
-        if userScoreMark {
-            print("\((#file as NSString).lastPathComponent):(\(#line))\n",ScoreModel.shared.userScoreDic)
-            
-            newDic = [ScoreModel.shared.userScoreDic.remove(at: currentUserIndex)]
-            
-            print("\((#file as NSString).lastPathComponent):(\(#line))\n",newDic)
-            
-            userScoreMark = false
-        }
         
         return newDic
     }

@@ -50,9 +50,15 @@ class GamingVC: UIViewController {
         view.addSubview(f)
     }
     
-    /// 背景视图
+    /// 玩游戏的视图
     fileprivate lazy var bgV: GameBgV = {
         let d : GameBgV = GameBgV.init(frame: self.view.bounds)
+        return d
+    }()
+    
+    /// 测试mvc的视图
+    fileprivate lazy var mvcV: GameV = {
+        let d : GameV = GameV.init(frame: self.view.bounds)
         return d
     }()
     
@@ -81,7 +87,9 @@ class GamingVC: UIViewController {
 
         view.backgroundColor = UIColor.white
         
-        view.addSubview(bgV)
+//        view.addSubview(bgV)
  
+        
+        view.addSubview(mvcV)
     }
 }
