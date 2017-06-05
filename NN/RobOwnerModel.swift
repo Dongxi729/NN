@@ -20,17 +20,23 @@ class RobOwnerModel: NSObject {
         }
     }
     
+    /// 存放抢庄标
+    var isRobedArray : [Int] = []
+    
+    /// 是否准备
+    var isPrepare = false
+    
     /// 是否抢庄开始
     var isRobOrNot = false
     
     ///  <M>
-//    <ty type="1">
-//    <u id="47636852" bk="0"/>
-//    <u id="46911756" bk="0"/>
-//    <u id="0"/>
-//    </ty>
-//    <Nn/>
-//    </M>
+    //    <ty type="1">
+    //    <u id="47636852" bk="0"/>
+    //    <u id="46911756" bk="0"/>
+    //    <u id="0"/>
+    //    </ty>
+    //    <Nn/>
+    //    </M>
     
     /// 解析的xml字符串1
     fileprivate func xmlAnalyse(xmlStr : String) -> Void {
@@ -43,17 +49,41 @@ class RobOwnerModel: NSObject {
         //利用XPath来定位节点（XPath是XML语言中的定位语法，类似于数据库中的SQL功能）
         let users = try! doc.nodes(forXPath: "//M/ty/u") as! [DDXMLElement]
         for user in users {
-            if user.attribute(forName: "id") != nil {
-                let xxx = user.attribute(forName: "id")!.stringValue!
+            if user.attribute(forName: "bk") != nil {
+                let xxx = user.attribute(forName: "bk")!.stringValue!
                 print("\((#file as NSString).lastPathComponent):(\(#line))\n",xxx)
                 
-                if xxx == "0" {
-                    self.isRobOrNot = false
-                } else {
-                    self.isRobOrNot = true
+                /// 存入数组
+                self.isRobedArray.append(Int(xxx)!)
+                
+                print("\((#file as NSString).lastPathComponent):(\(#line))\n",self.isRobedArray)
+                
+                /// 判断添加进去是否达到房间人数
+                if self.isRobedArray.count == RoomModel.shared.currentPersonInRoom {
+                    print("\((#file as NSString).lastPathComponent):(\(#line))\n",self.isRobedArray)
+                    
+                    /// 取出当前的是否抢庄
+                    print("\((#file as NSString).lastPathComponent):(\(#line))\n",self.isRobedArray[GetCurrenIndex.shared.currentUserIndex])
+                    
+                    /// 判断是否是当前用户的枪庄标识
+                    /// 0 - 没开始抢
+                    /// 1 - 不抢
+                    /// 2 - 抢
+                    let ddd = self.isRobedArray[GetCurrenIndex.shared.currentUserIndex]
+                    
+                    if ddd == 0 {
+                       
+                        NotificationCenter.default.post(name: NSNotification.Name(rawValue: "isRobOrNot"), object: nil)
+                        
+                        self.isRobOrNot = false
+                        
+                    } else {
+                        self.isRobOrNot = true
+                    }
                 }
+                
+
             }
         }
     }
-
 }

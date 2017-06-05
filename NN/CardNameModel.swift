@@ -44,7 +44,6 @@ class CardNameModel: NSObject {
     /// 牛牛数组
     var niuniuArray : [String] = []
     
-    var niuniuBackUpArray : [String] = []
     
     
     /// 是否收到结算分数标识
@@ -167,7 +166,7 @@ class CardNameModel: NSObject {
         
         
         niuniuArray = []
-        niuniuBackUpArray = []
+        
         
         self.isreceivedCountScore = "false"
         
@@ -222,8 +221,8 @@ class CardNameModel: NSObject {
             /// 牛牛
             if user.attribute(forName: "can")?.stringValue != nil {
                 niuniuArray.append((user.attribute(forName: "can")?.stringValue)!)
-                niuniuBackUpArray.append((user.attribute(forName: "can")?.stringValue)!)
             }
+            
             
             
             /// 除了当前用户外的牛牛数组
@@ -310,10 +309,9 @@ class CardNameModel: NSObject {
         print("\((#file as NSString).lastPathComponent):(\(#line))\n",currentUbackCardsName)
         
         niuniuArray = contactName(cardsArray: niuniuArray, prefix: "niu")
-        niuniuBackUpArray = contactName(cardsArray: niuniuBackUpArray, prefix: "niu")
-    
         
-        
+        /// 发通知
+        NotificationCenter.default.post(name: NSNotification.Name(rawValue: "niuniuArray"), object: nil)
     }
     
     

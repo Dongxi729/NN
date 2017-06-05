@@ -19,6 +19,7 @@ class RobRoomOwner: UIView {
         return d
     }()
     
+    
     ///
     lazy var notRobV: UIButton = {
         let d : UIButton = UIButton.init(frame: CGRect.init(x: self.robBtn.RightX + self.Width * 0.2, y: 0, width: self.Width * 0.4, height: self.Height))
@@ -27,17 +28,25 @@ class RobRoomOwner: UIView {
         return d
     }()
     
+    
     /// events事件
     /// 抢庄事件
     @objc fileprivate func robSEL(sender : UIButton) {
         print("\((#file as NSString).lastPathComponent):(\(#line))\n")
         
+        self.isHidden = true
+        
         getRoomPower()
+    
     }
     
     @objc fileprivate func notRobSEL(sender : UIButton) {
         print("\((#file as NSString).lastPathComponent):(\(#line))\n")
+        
+        self.isHidden = true
+
         NotgetRoomPower()
+    
     }
     
     
@@ -48,11 +57,13 @@ class RobRoomOwner: UIView {
         
         addSubview(robBtn)
         addSubview(notRobV)
+    
     }
 
     
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
+    
     }
 }
 

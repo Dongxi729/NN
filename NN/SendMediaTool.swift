@@ -332,19 +332,25 @@ func bytesShwoFunc(_over : [Byte]) -> Void {
     /// 根据类型进行处理
     if typpppp == 8 {
         
+        /// 游戏中，发牌
         if testXML(analayseStr: String.init(data: dd as Data, encoding: String.Encoding.utf8)!).contains("4") {
             
             CardNameModel.shared.receiverStr = String.init(data: dd as Data, encoding: String.Encoding.utf8)!
             
-            /// 发出通知，告诉控制器视图，有值，才可以创建控件，不然，为空
-            NotificationCenter.default.post(name: NSNotification.Name(rawValue: "CardNameModelNotNIll"), object: nil)
+            /// 收到牌，证明已经开始游戏，赋值标识
+            RoomModel.shared.isGameBegin = true
+            
+            NotificationCenter.default.post(name: NSNotification.Name(rawValue: "isGameBegin"), object: nil)
         }
         
         RoomModel.shared.currentRoomPlayInfo = String.init(data: dd as Data, encoding: String.Encoding.utf8)!
         
-        if AnylasyseWithKey(analayseStr:String.init(data: dd as Data, encoding: String.Encoding.utf8)! , secondNode: "ty", withSepcifiedKey: "type").contains("7") {
+        if AnylasyseWithKey(analayseStr:String.init(data: dd as Data, encoding: String.Encoding.utf8)! , secondNode: "ty", withSepcifiedKey: "type").contains("0") {
             
             ScoreModel.shared.xmlStr = String.init(data: dd as Data, encoding: String.Encoding.utf8)!
+
+            print("\((#file as NSString).lastPathComponent):(\(#line))\n")
+
         }
         
         if canCheat(analayseStr:String.init(data: dd as Data, encoding: String.Encoding.utf8)!) {
@@ -358,7 +364,44 @@ func bytesShwoFunc(_over : [Byte]) -> Void {
             print("\((#file as NSString).lastPathComponent):(\(#line))\n",String.init(data: dd as Data, encoding: String.Encoding.utf8)!)
             
             RobOwnerModel.shared.receiveStr = String.init(data: dd as Data, encoding: String.Encoding.utf8)!
+            /// 已经准备
+            RobOwnerModel.shared.isPrepare = true
+            
+            /// 收到牌，证明已经开始游戏，赋值标识
+            RoomModel.shared.isGameBegin = false
+            
+            NotificationCenter.default.post(name: NSNotification.Name(rawValue: "beginRob"), object: nil)
         }
+        
+        /// 是否有积分
+        if testXML(analayseStr: String.init(data: dd as Data, encoding: String.Encoding.utf8)!).contains("3") {
+            print("\((#file as NSString).lastPathComponent):(\(#line))\n",String.init(data: dd as Data, encoding: String.Encoding.utf8)!)
+            
+            JIfenModel.shared.receiveStr = String.init(data: dd as Data, encoding: String.Encoding.utf8)!
+        
+            /// 收到牌，证明已经开始游戏，赋值标识
+            RoomModel.shared.isGameBegin = true
+            
+            NotificationCenter.default.post(name: NSNotification.Name(rawValue: "isGameBegin"), object: nil)
+        }
+        
+        /// 选出房主
+        if testXML(analayseStr: String.init(data: dd as Data, encoding: String.Encoding.utf8)!).contains("2") {
+            print("\((#file as NSString).lastPathComponent):(\(#line))\n",String.init(data: dd as Data, encoding: String.Encoding.utf8)!)
+            
+            RoomOwner.shared.receiveStr = String.init(data: dd as Data, encoding: String.Encoding.utf8)!
+        }
+ 
+        
+        /// 本轮游戏结束
+        if testXML(analayseStr: String.init(data: dd as Data, encoding: String.Encoding.utf8)!).contains("6") {
+            print("\((#file as NSString).lastPathComponent):(\(#line))\n",String.init(data: dd as Data, encoding: String.Encoding.utf8)!)
+            
+         
+            NotificationCenter.default.post(name: NSNotification.Name(rawValue: "GameOver"), object: nil)
+        }
+        
+
     }
     
     if typpppp == 254 {

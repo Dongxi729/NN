@@ -107,7 +107,7 @@ class RoomModel: NSObject {
     /// 分数字典
     fileprivate var userScore : [String] = []
     var userScoreDic = [Int : String]()
-    var userReplaceDic = [Int : String]()
+    
     
     /// 准备
     fileprivate var prepareArray : [String] = []
@@ -269,20 +269,7 @@ class RoomModel: NSObject {
                 
                 scoreIndex += 1
             }
-            
-            
-            for ddd in self.userScore {
-                
-                self.userScore.remove(at: GetCurrenIndex.shared.currentUserIndex)
-                
-                if ddd.characters.count == 0 {
-                    userReplaceDic.updateValue("----", forKey: headURLIndex)
-                } else {
-                    userReplaceDic.updateValue(ddd, forKey: headURLIndex)
-                }
-                
-                scoreIndex += 1
-            }
+        
             
             ///=========================== 准备
             let prepareStr = user.attribute(forName: "re")?.stringValue

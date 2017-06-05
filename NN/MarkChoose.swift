@@ -59,6 +59,8 @@ class MarkChoose: UIView {
         default:
             break
         }
+        
+        self.isHidden = true
     }
     
     required init?(coder aDecoder: NSCoder) {

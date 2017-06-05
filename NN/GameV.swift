@@ -10,6 +10,8 @@ import UIKit
 
 class GameV: UIView {
     
+    static let shared = GameV()
+    
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
@@ -97,16 +99,26 @@ class GameV: UIView {
     }
     
     /// 抢庄视图
-    fileprivate lazy var robOwner: RobRoomOwner = {
+    lazy var robOwner: RobRoomOwner = {
         let d : RobRoomOwner = RobRoomOwner.init(frame: CGRect.init(x: self.Width * 0.25, y: self.Height * 0.5 - self.Height * 0.05, width: self.Width * 0.5, height: self.Height * 0.1))
         d.layer.borderWidth = 1
         return d
     }()
     
+    /// 显示离线视图
     
+
+    /// 非庄家压分
+    fileprivate lazy var getCoins: MarkChoose = {
+        let d : MarkChoose = MarkChoose.init(frame: CGRect.init(x: self.Width * 0.5 - self.Width * 0.25, y: self.Height * 0.75 - self.Height * 0.123, width: SW * 0.5, height: SH * 0.25))
+        
+        return d
+    }()
     
     override init(frame: CGRect) {
+        
         super.init(frame: frame)
+        
         addSubview(alertAndShowV)
         
         addSubview(roomNumber)
@@ -115,6 +127,8 @@ class GameV: UIView {
         
         /// 抢庄视图
         addSubview(robOwner)
+        
+        addSubview(getCoins)
         
         RoomModel.shared.isGameBegin = true
         
@@ -142,6 +156,7 @@ class GameV: UIView {
         P1.isHidden = true
         P2.isHidden = true
         
+        
         ///抢庄视图
         robOwner.isHidden = true
         
@@ -150,10 +165,75 @@ class GameV: UIView {
 
         NotificationCenter.default.addObserver(self, selector: #selector(createGamingLayout), name: NSNotification.Name(rawValue: "CardNameModelNotNIll"), object: nil)
         
+        NotificationCenter.default.addObserver(self, selector: #selector(isRobOrNotSEL), name: NSNotification.Name(rawValue: "isRobOrNot"), object: nil)
+        
+//        niuniuArray
+        NotificationCenter.default.addObserver(self, selector: #selector(isRobOrNotSEL), name: NSNotification.Name(rawValue: "niuniuArray"), object: nil)
 
+        NotificationCenter.default.addObserver(self, selector: #selector(isGameBeginSEL), name: NSNotification.Name(rawValue: "isGameBegin"), object: nil)
+        
+//        GameOver
+        NotificationCenter.default.addObserver(self, selector: #selector(gameverSEL), name: NSNotification.Name(rawValue: "isGameBegin"), object: nil)
+        
+        /// 判断抢庄
+        NotificationCenter.default.addObserver(self, selector: #selector(isRobOrNotSEL), name: NSNotification.Name(rawValue: "beginRob"), object: nil)
+        
+        /// RoomOwner
+        NotificationCenter.default.addObserver(self, selector: #selector(isRobOrNotSEL), name: NSNotification.Name(rawValue: "RoomOwner"), object: nil)
+        
         createGamingLayout()
     }
     
+    /// 根据选择的房主进行判断
+    func chooseOwner() -> Void {
+        
+        NotificationCenter.default.removeObserver(self, name: NSNotification.Name(rawValue: "RoomOwner"), object: nil)
+        
+        /// 是房主就不显示积分
+        if RoomOwner.shared.ownerID != RoomModel.shared.userId[GetCurrenIndex.shared.currentUserIndex] {
+            self.getCoins.isHidden = false
+        }
+    }
+    
+    /// 游戏结束
+    func gameverSEL() -> Void {
+        createGamingLayout()
+    }
+    
+    /// 游戏开始时进行的动作
+    func isGameBeginSEL() {
+        NotificationCenter.default.removeObserver(self, name: NSNotification.Name(rawValue: "isGameBegin"), object: nil)
+        
+        print("\((#file as NSString).lastPathComponent):(\(#line))\n")
+        
+        /// 显示抢庄
+        if RoomModel.shared.isGameBegin {
+            self.startGameBtn.isHidden = true
+            self.robOwner.isHidden = true
+            self.getCoins.isHidden = true
+        }
+    }
+    
+    func showniuniuArraySEL() -> Void {
+        NotificationCenter.default.removeObserver(self, name: NSNotification.Name(rawValue: "niuniuArray"), object: nil)
+        createGamingLayout()
+    }
+    
+    /// 显示抢庄
+    func isRobOrNotSEL() -> Void {
+        
+        NotificationCenter.default.removeObserver(self, name: NSNotification.Name(rawValue: "beginRob"), object: nil)
+        
+        print("\((#file as NSString).lastPathComponent):(\(#line))\n")
+        
+        
+        if RobOwnerModel.shared.isRobOrNot == false {
+            self.robOwner.isHidden = false
+        }
+        
+        self.startGameBtn.isHidden = true
+        self.getCoins.isHidden = true
+    }
 }
 
 // MARK: - 创建布局
@@ -178,7 +258,6 @@ extension GameV {
                 downImgWith(url: headStr!, toView: self.P1.headImg)
             }
 
-            
             if CardNameModel.shared.currentUbackCardsName.count > 0 {
                 
                 P1.imgNames = CardNameModel.shared.currentUbackCardsName
@@ -212,14 +291,23 @@ extension GameV {
                 P1.isShowBottomCardLayout = true
             }
             
- 
             
             print("\((#file as NSString).lastPathComponent):(\(#line))\n",CardNameModel.shared.currentUbackCardsName)
             
-
+            /// 弹出错误掉网提示框
+            if GetCurrenIndex.shared.p2NameLabelWithoutP1().count == 0 {
+                let d = OffLineV.init(frame: CGRect.init(x: 0, y: 0, width: SW * 0.6, height: SH * 0.75))
+                
+                d.center = self.center
+                
+                addSubview(d)
+                return
+            }
+            
             /// 名字
             P1.nameLabel.text = RoomModel.shared.nameStr[GetCurrenIndex.shared.getCurrentIndex()]
             P2.nameLabel.text = GetCurrenIndex.shared.p2NameLabelWithoutP1()[0]
+            
             
             
             /// 下载头像
@@ -236,10 +324,11 @@ extension GameV {
             P2.isHidden = false
             P1.isHidden = false
             
+            print("\((#file as NSString).lastPathComponent):(\(#line))\n",RobOwnerModel.shared.isRobOrNot)
+            
             break
         default: break
         }
-        
     }
 }
 
@@ -247,7 +336,11 @@ extension GameV {
 extension GameV {
     /// 开始游戏说白了就是准备
     @objc fileprivate func beginGameSEL(sender : UIButton) {
+        
+        
+        
         sender.isHidden = true
+        
         print("===")
         
         /// 用户准备
@@ -260,21 +353,20 @@ extension GameV {
     override func layoutSubviews() {
         super.layoutSubviews()
         
-        
-        print("\((#file as NSString).lastPathComponent):(\(#line))\n",RoomModel.shared.isGameBegin)
-        
     }
 }
 
 // MARK: - 提示和亮牌
 extension GameV : ShowAndAlertVDelegate {
+    
+    /// 亮牌
     func showSEL() {
         showCardsSEL()
     }
     
+    /// 提示
     func alertSEL() {
         CardNameModel.shared.isShowP1Front = true
-        
         
         P1.imgNames = CardNameModel.shared.rightCurrentIndexCards()
         P1.addCards(cardsArray: CardNameModel.shared.rightCurrentIndexCards())

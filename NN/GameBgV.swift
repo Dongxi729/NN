@@ -931,4 +931,6 @@ extension GameBgV : ShowAndAlertVDelegate {
     func alertSEL() {
         CardNameModel.shared.isShowP1Front = true
     }
+
 }
+

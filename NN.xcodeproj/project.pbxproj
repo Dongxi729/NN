@@ -110,6 +110,8 @@
 		26A483391EE4ECF9007D977D /* GameV.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26A483381EE4ECF9007D977D /* GameV.swift */; };
 		26A4833B1EE54210007D977D /* TestViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26A4833A1EE54210007D977D /* TestViewController.swift */; };
 		26A4833D1EE56F3C007D977D /* RobOwnerModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26A4833C1EE56F3C007D977D /* RobOwnerModel.swift */; };
+		26A4833F1EE58DB2007D977D /* JIfenModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26A4833E1EE58DB2007D977D /* JIfenModel.swift */; };
+		26A483411EE58FE0007D977D /* RoomOwner.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26A483401EE58FE0007D977D /* RoomOwner.swift */; };
 		26A487271EC0049E00E9A091 /* UIColor+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26A487261EC0049E00E9A091 /* UIColor+Extension.swift */; };
 		26A487291EC004F400E9A091 /* UIView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26A487281EC004F400E9A091 /* UIView+Extension.swift */; };
 		26A4872C1EC0060F00E9A091 /* AbortTool.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26A4872B1EC0060F00E9A091 /* AbortTool.swift */; };
@@ -323,6 +325,8 @@
 		26A483381EE4ECF9007D977D /* GameV.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameV.swift; sourceTree = "<group>"; };
 		26A4833A1EE54210007D977D /* TestViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TestViewController.swift; sourceTree = "<group>"; };
 		26A4833C1EE56F3C007D977D /* RobOwnerModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RobOwnerModel.swift; sourceTree = "<group>"; };
+		26A4833E1EE58DB2007D977D /* JIfenModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JIfenModel.swift; sourceTree = "<group>"; };
+		26A483401EE58FE0007D977D /* RoomOwner.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RoomOwner.swift; sourceTree = "<group>"; };
 		26A487261EC0049E00E9A091 /* UIColor+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIColor+Extension.swift"; sourceTree = "<group>"; };
 		26A487281EC004F400E9A091 /* UIView+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIView+Extension.swift"; sourceTree = "<group>"; };
 		26A4872B1EC0060F00E9A091 /* AbortTool.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AbortTool.swift; sourceTree = "<group>"; };
@@ -734,6 +738,8 @@
 				263541A41EE031A9005C4927 /* GetCurrenIndex.swift */,
 				26421EEF1EE16718000C9B25 /* ConnectModel.swift */,
 				26A4833C1EE56F3C007D977D /* RobOwnerModel.swift */,
+				26A4833E1EE58DB2007D977D /* JIfenModel.swift */,
+				26A483401EE58FE0007D977D /* RoomOwner.swift */,
 			);
 			name = model;
 			sourceTree = "<group>";
@@ -1148,6 +1154,7 @@
 				26D54B2B1EC2C11B00119FAA /* WavConvert.m in Sources */,
 				2624336A1ECC89BD003C41D1 /* MusicTool.swift in Sources */,
 				260C66681EB23415006C119E /* POPBasicAnimation.mm in Sources */,
+				26A4833F1EE58DB2007D977D /* JIfenModel.swift in Sources */,
 				260ECA821EC1AF1F00058649 /* LoginModel.swift in Sources */,
 				264A2CE41EC4565A001B7F0E /* MarketV.swift in Sources */,
 				26CDFB4D1ECD975F00EF3846 /* PeronheadInfoV.swift in Sources */,
@@ -1212,6 +1219,7 @@
 				26D54B2A1EC2C11B00119FAA /* VoiceConverter.mm in Sources */,
 				26771ED01EC54DE300B61DBC /* TestMediaVC.swift in Sources */,
 				260C66621EB23415006C119E /* POPAnimation.mm in Sources */,
+				26A483411EE58FE0007D977D /* RoomOwner.swift in Sources */,
 				2603D9791EADD3AA0069B132 /* PersonMsgView.swift in Sources */,
 				26D2763E1EDE5FE9001138C6 /* TestMusicVC.swift in Sources */,
 				26CDFB511ECD97BF00EF3846 /* GameBgV.swift in Sources */,

@@ -35,25 +35,7 @@ class GetCurrenIndex: NSObject {
     }
     
     var markNN = true
-    
-    /// 牛牛纸牌
-    func niuniuFunc() -> [String] {
-        var dic : [String] = []
-        
-        DispatchQueue.once(token: "") {
-            
-            print("\((#file as NSString).lastPathComponent):(\(#line))\n")
-            
-            dic = [CardNameModel.shared.niuniuBackUpArray.remove(at: getCurrentIndex())]
-            
-        }
-        
-        
-        
-        
-        
-        return dic
-    }
+
     
     /// 用户剩余分数
     func leftReplaceScoreFuns() -> [Int] {
