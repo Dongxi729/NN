@@ -306,7 +306,8 @@ class CardNameModel: NSObject {
                                  currentUserIndexSEL()[2],
                                  "p0",
                                  "p0"]
-        
+
+        print("\((#file as NSString).lastPathComponent):(\(#line))\n",currentUbackCardsName)
         
         niuniuArray = contactName(cardsArray: niuniuArray, prefix: "niu")
         niuniuBackUpArray = contactName(cardsArray: niuniuBackUpArray, prefix: "niu")

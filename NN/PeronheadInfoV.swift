@@ -51,11 +51,11 @@ class PeronheadInfoV: UIView {
     lazy var nameLabel: UILabel = {
         let d : UILabel = UILabel.init(frame: CGRect.init(x: self.Width * 0.5, y: 2 * screenScale, width: self.Width * 0.5, height: self.Height * 0.4))
         //        d.text = "AJJJJ"
-        if !((LoginModel.shared.nickname?.isEmpty)!) {
-            //            d.text = LoginModel.shared.nickname
-        } else {
-            d.text = "AJJJJJ"
-        }
+        //        if !((LoginModel.shared.nickname?.isEmpty)!) {
+        //            //            d.text = LoginModel.shared.nickname
+        //        } else {
+        //            d.text = "AJJJJJ"
+        //        }
         
         d.textAlignment = .center
         d.font = UIFont(name: "SimHei", size: 8 * screenScale)
@@ -182,7 +182,9 @@ class PeronheadInfoV: UIView {
     
     /// 摆放纸牌
     func addCards(cardsArray : [String]) -> Void {
-
+        
+        print("\((#file as NSString).lastPathComponent):(\(#line))\n",isShowBottomCardLayout)
+        
         /// 提示的时候
         if CardNameModel.shared.isShowP1Front {
             
@@ -191,7 +193,7 @@ class PeronheadInfoV: UIView {
             backCardsLayout.isHidden = true
             
             for value in cardsArray {
-
+                
                 backCardsLayout.image = UIImage.init(named:value)
                 
                 addSubview(backCardsLayout)
@@ -201,7 +203,6 @@ class PeronheadInfoV: UIView {
             var index = 0
             for value in cardsArray {
                 
-                
                 if isShowBottomCardLayout == false {
                     backCardsLayout = UIImageView.init(frame: CGRect.init(x: CGFloat(self.samllCardsShowLeftOrRight) + CGFloat(index) * self.Width * 0.15 , y: 2 * screenScale, width: self.Width * 0.3, height: self.Height - screenScale * 3))
                     
@@ -209,9 +210,13 @@ class PeronheadInfoV: UIView {
                 } else if isShowBottomCardLayout == true || CardNameModel.shared.isShowP1Front {
                     backCardsLayout = UIImageView.init(frame: CGRect.init(x: self.Width * CGFloat(self.samllCardsShowLeftOrRight) + CGFloat(index) * self.Width * 0.15 , y: 2 * screenScale, width: self.Width * 0.3, height: self.Height - screenScale * 3))
                     
+                    print("\((#file as NSString).lastPathComponent):(\(#line))\n",value)
+                    
                     backCardsLayout.image = UIImage.init(named:value)
                     
                     index += 1
+                    
+                    print("\((#file as NSString).lastPathComponent):(\(#line))\n")
                     
                     addSubview(backCardsLayout)
                 }
@@ -219,16 +224,11 @@ class PeronheadInfoV: UIView {
         }
     }
     
-    func removeCards() -> Void {
-        self.backCardsLayout.removeFromSuperview()
-    }
     
     override init(frame: CGRect) {
         super.init(frame: frame)
         
-        
-        
-
+        print("\((#file as NSString).lastPathComponent):(\(#line))\n")
     }
     
     /// 牛牛图片
@@ -238,22 +238,8 @@ class PeronheadInfoV: UIView {
     }()
     
     
-
-    
     override func layoutSubviews() {
         super.layoutSubviews()
-        
-        /// 是否开始游戏
-        if RoomModel.shared.isGameBegin {
-            
-            if !isShowBottomCardLayout {
-                bigCardLayout.addCards(cardsArray: imgNames)
-                addSubview(bigCardLayout)
-            }
-            /// 尚需修改
-            addCards(cardsArray: imgNames)
-        }
-        
         
         addSubview(hhhh)
         addSubview(nameLabel)
@@ -292,6 +278,21 @@ class PeronheadInfoV: UIView {
         showWave.isHidden = true
         offLineImg.isHidden = true
         ownerImg.isHidden = true
+        
+        
+        
+        /// 是否开始游戏
+        if RoomModel.shared.isGameBegin {
+            
+            if !isShowBottomCardLayout {
+                bigCardLayout.addCards(cardsArray: imgNames)
+                addSubview(bigCardLayout)
+            }
+            /// 尚需修改
+            addCards(cardsArray: imgNames)
+        }
+        
+        
         
     }
     

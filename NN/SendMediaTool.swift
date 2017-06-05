@@ -333,6 +333,9 @@ func bytesShwoFunc(_over : [Byte]) -> Void {
         if testXML(analayseStr: String.init(data: dd as Data, encoding: String.Encoding.utf8)!).contains("4") {
             
             CardNameModel.shared.receiverStr = String.init(data: dd as Data, encoding: String.Encoding.utf8)!
+            
+            /// 发出通知，告诉控制器视图，有值，才可以创建控件，不然，为空
+            NotificationCenter.default.post(name: NSNotification.Name(rawValue: "CardNameModelNotNIll"), object: nil)
         }
         
         RoomModel.shared.currentRoomPlayInfo = String.init(data: dd as Data, encoding: String.Encoding.utf8)!

@@ -10,16 +10,6 @@ import UIKit
 
 class GameV: UIView {
     
-    
-    
-    lazy var textView: UITextView = {
-        let d : UITextView = UITextView.init(frame: CGRect.init(x: 0, y: 0, width: self.Width * 0.5, height: self.Height * 0.3))
-        d.backgroundColor = UIColor.randomColor()
-        return d
-    }()
-    
-    
-    
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
@@ -62,7 +52,6 @@ class GameV: UIView {
         return d
     }()
     
-    
     /// 开始游戏按钮
     fileprivate lazy var startGameBtn: CommonBtn = {
         let d : CommonBtn = CommonBtn.init(frame: CGRect.init(x: self.Width * 0.42, y: self.Height * 0.55, width: self.Width * 0.15, height: self.Height * 0.15))
@@ -89,52 +78,25 @@ class GameV: UIView {
         
         P1.imgNames = CardNameModel.shared.rightCurrentIndexCards()
         P1.addCards(cardsArray: CardNameModel.shared.rightCurrentIndexCards())
-        
-        
-    }
-    
-    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
-        P1.removeFromSuperview()
     }
     
     
-    override init(frame: CGRect) {
-        super.init(frame: frame)
-        
-        addSubview(textView)
-        
-        addSubview(alertBtn)
-        
-        self.textView.text = RoomModel.shared.currentRounds
-        
-        
-        /// 是否在游戏中
-        if RoomModel.shared.isGameBegin {
-            /// 改变游戏1、4玩家的位置
-            
-            P1 = PeronheadInfoV.init(frame: CGRect.init(x: self.Width * 0.15, y: self.Height * 0.8, width: self.Width * 0.18, height: self.Height * 0.15))
-            P4 = PeronheadInfoV.init(frame: CGRect.init(x: 0.6 * self.Width, y: 0.13 * self.Height, width: self.Width * 0.18, height: self.Height * 0.15))
-            
-        } else {
-            
-            P1 = PeronheadInfoV.init(frame: CGRect.init(x: self.Width * 0.45, y: self.Height * 0.8, width: self.Width * 0.18, height: self.Height * 0.15))
-            P4 = PeronheadInfoV.init(frame: CGRect.init(x: 0.45 * self.Width, y: 0.13 * self.Height, width: self.Width * 0.18, height: self.Height * 0.15))
-        }
-        
-        /// 开始按钮
-        addSubview(startGameBtn)
+    /// 创建用户位置
+    private func createUserPosition() -> Void {
+        print("\((#file as NSString).lastPathComponent):(\(#line))\n",RoomModel.shared.isGameBegin)
+
+    }
+    
+    /// 创建布局
+    func createGamingLayout() -> Void {
         
         
-        addSubview(P1)
-        addSubview(P2)
+        NotificationCenter.default.removeObserver(self, name: NSNotification.Name(rawValue: "createGamingLayout"), object: nil)
+
+
         
-        print("\((#file as NSString).lastPathComponent):(\(#line))\n",RoomModel.shared.currentPersonInRoom)
-        
-        /// 根据在线的人员数量进行控制
-        /// 准备完成后---是否开始游戏---开始游戏,
         
         switch RoomModel.shared.currentPersonInRoom {
-            
             
         case 1:
             P1.samllCardsShowLeftOrRight = -1
@@ -166,9 +128,6 @@ class GameV: UIView {
                 P1.imgNames = CardNameModel.shared.currentUbackCardsName
                 P1.addCards(cardsArray: CardNameModel.shared.currentUbackCardsName)
             }
-            
-            P1.isHidden = false
-            P2.isHidden = false
             break
         case 2:
             
@@ -180,10 +139,14 @@ class GameV: UIView {
             /// 六人牛牛的抢庄视图是否显示，当且仅当六人牛牛玩法为抢庄模式的时候显示。
             P2.isShowBottomCardLayout = true
             
-            /// 纸牌
+            /// 纸牌 不能提前创建，除非模型有值，才能创建
+            //////////////////////////////////////////////////
+            
             P1.imgNames = CardNameModel.shared.currentUbackCardsName
             P1.addCards(cardsArray: CardNameModel.shared.currentUbackCardsName)
+            P1.isShowBottomCardLayout = false
             
+            print("\((#file as NSString).lastPathComponent):(\(#line))\n",CardNameModel.shared.currentUbackCardsName)
             
             P2.imgNames = CardNameModel.shared.backCardsName
             
@@ -197,12 +160,47 @@ class GameV: UIView {
                 downImgWith(url: headStr2, toView: self.P2.headImg)
             }
             
-            P1.isHidden = false
-            P2.isHidden = false
-            
             break
         default: break
         }
+
+    }
+    
+    override init(frame: CGRect) {
+        super.init(frame: frame)
+        
+        addSubview(alertBtn)
+        
+        RoomModel.shared.isGameBegin = true
+        
+        /// 根据在线的人员数量进行控制
+        /// 准备完成后---是否开始游戏---开始游戏,
+        
+        
+        /// 是否在游戏中
+        if RoomModel.shared.isGameBegin {
+            /// 改变游戏1、4玩家的位置
+            
+            P1 = PeronheadInfoV.init(frame: CGRect.init(x: self.Width * 0.15, y: self.Height * 0.8, width: self.Width * 0.18, height: self.Height * 0.15))
+            P4 = PeronheadInfoV.init(frame: CGRect.init(x: 0.6 * self.Width, y: 0.13 * self.Height, width: self.Width * 0.18, height: self.Height * 0.15))
+            
+        } else {
+            
+            P1 = PeronheadInfoV.init(frame: CGRect.init(x: self.Width * 0.45, y: self.Height * 0.8, width: self.Width * 0.18, height: self.Height * 0.15))
+            P4 = PeronheadInfoV.init(frame: CGRect.init(x: 0.45 * self.Width, y: 0.13 * self.Height, width: self.Width * 0.18, height: self.Height * 0.15))
+        }
+        
+        /// 开始按钮
+        addSubview(startGameBtn)
+        
+        
+        DispatchQueue.main.async {
+            self.addSubview(self.P1)
+            self.addSubview(self.P2)
+        }
+        
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(createGamingLayout), name: NSNotification.Name(rawValue: "CardNameModelNotNIll"), object: nil)
     }
     
 }
@@ -225,6 +223,7 @@ extension GameV {
 extension GameV {
     override func layoutSubviews() {
         super.layoutSubviews()
+        
         
         print("\((#file as NSString).lastPathComponent):(\(#line))\n",RoomModel.shared.isGameBegin)
         
