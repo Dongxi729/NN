@@ -32,14 +32,7 @@ class RoomModel: NSObject {
     
     /// 游戏人数 3/6人
     /// 开始规定的游戏人数
-    var limitedPlayersNum : Int = 3 {
-        didSet {
-            
-            DispatchQueue.main.async {
-                UIApplication.shared.keyWindow?.rootViewController = GamingVC()
-            }
-        }
-    }
+    var limitedPlayersNum : Int = 3
     
     /// 当前房间所在人数
     var currentPersonInRoom : Int = 0
@@ -105,7 +98,7 @@ class RoomModel: NSObject {
     
     
     /// 分数字典
-    fileprivate var userScore : [String] = []
+    var userScore : [String] = []
     var userScoreDic = [Int : String]()
     
     
@@ -120,6 +113,7 @@ class RoomModel: NSObject {
     var currentRoomPlayInfo : String = "" {
         didSet {
             self.xmlAnalyse(xmlStr: currentRoomPlayInfo)
+            print("\((#file as NSString).lastPathComponent):(\(#line))\n",currentRoomPlayInfo)
         }
     }
     
@@ -130,7 +124,7 @@ class RoomModel: NSObject {
         
         //构造XML文档
         let doc = try! DDXMLDocument(data: data!, options:0)
-
+        
         //利用XPath来定位节点（XPath是XML语言中的定位语法，类似于数据库中的SQL功能）
         let users = try! doc.nodes(forXPath: "//M/tg") as! [DDXMLElement]
         for user in users {
@@ -170,21 +164,22 @@ class RoomModel: NSObject {
             /// 拟定开好房间的总人数
             self.limitedPlayersNum = Int(user.attribute(forName: "rn")!.stringValue!)!
             
-//            print("====房间号",self.roomNumber)
-//            
-//            print("=====self.gameType",self.gameType)
-//            
-//            print("=====self.wantCoins",self.wantCoins)
-//            
-//            print("====== 支付方式",self.payType)
-//            
-//            print("====== 总局数",self.gameRounds)
-//            
-//            print("====== 当前局数",self.currentRounds)
-//            
-//            print("====== 当前房间在线人数",self.currentPersonInRoom)
-//            
-//            print("====== 拟定创建好房间的总人数",self.limitedPlayersNum)
+            
+            print("====房间号",self.roomNumber)
+            
+            print("=====self.gameType",self.gameType)
+            
+            print("=====self.wantCoins",self.wantCoins)
+            
+            print("====== 支付方式",self.payType)
+            
+            print("====== 总局数",self.gameRounds)
+            
+            print("====== 当前局数",self.currentRounds)
+            
+            print("====== 当前房间在线人数",self.currentPersonInRoom)
+            
+            print("====== 拟定创建好房间的总人数",self.limitedPlayersNum)
         }
         
         let _users = try! doc.nodes(forXPath: "//M/ty/u") as! [DDXMLElement]
@@ -195,14 +190,14 @@ class RoomModel: NSObject {
         self.headURLArray = []
         self.userScore = []
         
-    
+        
         self.prepareArray = []
         
         self.userId = []
         
         for user in _users {
             
-
+            
             
             ///=========================== 名字解析成字典供后面使用,展示使用
             let resultStr = user.attribute(forName: "n")?.stringValue
@@ -247,15 +242,23 @@ class RoomModel: NSObject {
                 headURLIndex += 1
             }
             
-
+            
             
             ///=========================== 分数
-            
-            let scoreStr = user.attribute(forName: "sc")?.stringValue
+            let scoreStr = user.attribute(forName: "g")?.stringValue
             
             if scoreStr != nil {
                 self.userScore.append(scoreStr!)
             }
+            
+            if self.userScore.count == RoomModel.shared.currentPersonInRoom {
+                print("\((#file as NSString).lastPathComponent):(\(#line))\n",self.userScore)
+                
+                
+                /// 发出通知，说明房间里有人，可以进入游戏界面
+                NotificationCenter.default.post(name: NSNotification.Name(rawValue: "PlayersInRoom"), object: nil)
+            }
+            
             
             var scoreIndex = 0
             
@@ -269,7 +272,7 @@ class RoomModel: NSObject {
                 
                 scoreIndex += 1
             }
-        
+            
             
             ///=========================== 准备
             let prepareStr = user.attribute(forName: "re")?.stringValue
@@ -287,7 +290,7 @@ class RoomModel: NSObject {
                 
                 CardNameModel.shared.isShowP1Front = false
             }
-
+            
             /// 解析用户ID
             ///=========================== 准备
             let userUID = user.attribute(forName: "id")?.stringValue

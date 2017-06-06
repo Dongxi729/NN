@@ -23,15 +23,7 @@ class ScoreModel: NSObject {
     var gamingReciveType : String = ""
     
     /// 用户剩余分数
-    var leftScore : [Int] = [] {
-        didSet {
-            DispatchQueue.main.async {
-                UIApplication.shared.keyWindow?.rootViewController = GamingVC()
-            }
-        }
-    }
-    
-    
+    var leftScore : [Int] = []
     
     static let shared = ScoreModel()
     
@@ -79,6 +71,8 @@ class ScoreModel: NSObject {
                 
                 leftScore.append(self.costScore)
             }
+            
+            
         }
         
         

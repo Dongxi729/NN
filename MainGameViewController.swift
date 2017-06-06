@@ -103,7 +103,27 @@ class MainGameViewController: UIViewController {
         view.addSubview(mainView)
 
         view.addSubview(boradCastBgV)
+        
+        /// 收到通知 PlayersInRoom
+        NotificationCenter.default.addObserver(self, selector: #selector(enterGamingVSEL), name: NSNotification.Name(rawValue: "PlayersInRoom"), object: nil)
     }
+    
+    /// 进入游戏房间视图
+    func enterGamingVSEL() {
+        
+        /// 移除监听对象
+        NotificationCenter.default.removeObserver(self, name: NSNotification.Name(rawValue: "PlayersInRoom"), object: nil)
+        
+        /// 判断人数是否大于1
+        if RoomModel.shared.limitedPlayersNum >= 1 {
+            DispatchQueue.main.async {
+                UIApplication.shared.keyWindow?.rootViewController = GamingVC()
+            }
+        }
+        
+    }
+    
+    
     
     /// 广播栏目
     fileprivate lazy var boradCastBgV: BroadCastV = {

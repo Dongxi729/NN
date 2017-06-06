@@ -96,5 +96,18 @@ class GetCurrenIndex: NSObject {
         
         return newDic
     }
+
     
+    /// 用户当前分数
+    func currentUserScore() -> [String] {
+        print("\((#file as NSString).lastPathComponent):(\(#line))\n")
+        
+        var ddd : [String] = []
+        
+        ddd = [RoomModel.shared.userScore.remove(at: GetCurrenIndex.shared.getCurrentIndex())]
+        
+        print("\((#file as NSString).lastPathComponent):(\(#line))\n",ddd)
+        
+        return ddd
+    }
 }

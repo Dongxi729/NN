@@ -78,17 +78,12 @@ class GamingVC: UIViewController {
         return d
     }()
     
-
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         
         // Do any additional setup after loading the view.
 
         view.backgroundColor = UIColor.white
-        
-//        view.addSubview(bgV)
- 
         
         view.addSubview(mvcV)
     }

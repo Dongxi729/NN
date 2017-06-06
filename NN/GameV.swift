@@ -167,13 +167,7 @@ class GameV: UIView {
         
         NotificationCenter.default.addObserver(self, selector: #selector(isRobOrNotSEL), name: NSNotification.Name(rawValue: "isRobOrNot"), object: nil)
         
-//        niuniuArray
-        NotificationCenter.default.addObserver(self, selector: #selector(isRobOrNotSEL), name: NSNotification.Name(rawValue: "niuniuArray"), object: nil)
-
         NotificationCenter.default.addObserver(self, selector: #selector(isGameBeginSEL), name: NSNotification.Name(rawValue: "isGameBegin"), object: nil)
-        
-//        GameOver
-        NotificationCenter.default.addObserver(self, selector: #selector(gameverSEL), name: NSNotification.Name(rawValue: "isGameBegin"), object: nil)
         
         /// 判断抢庄
         NotificationCenter.default.addObserver(self, selector: #selector(isRobOrNotSEL), name: NSNotification.Name(rawValue: "beginRob"), object: nil)
@@ -181,7 +175,42 @@ class GameV: UIView {
         /// RoomOwner
         NotificationCenter.default.addObserver(self, selector: #selector(isRobOrNotSEL), name: NSNotification.Name(rawValue: "RoomOwner"), object: nil)
         
+        
+        /// 是否亮牌 isShowCard
+        NotificationCenter.default.addObserver(self, selector: #selector(isShowCardSEL), name: NSNotification.Name(rawValue: "isShowCard"), object: nil)
+        
+        /// 返回最新用户状态信息
+        NotificationCenter.default.addObserver(self, selector: #selector(showUserInfoSEL), name: NSNotification.Name(rawValue: "showUserInfo"), object: nil)
+        
         createGamingLayout()
+    }
+    
+    /// 返回最新用户信息
+    func showUserInfoSEL() {
+        NotificationCenter.default.removeObserver(self, name: NSNotification.Name(rawValue: "showUserInfo"), object: nil)
+        
+        self.getCoins.isHidden = true
+        /// 摆放正确用户位置
+    }
+    
+    /// 是否亮牌
+    func isShowCardSEL() {
+        
+        NotificationCenter.default.removeObserver(self, name: NSNotification.Name(rawValue: "isShowCard"), object: nil)
+        
+        /// 亮牌
+        if ShowCardModel.shared.isShowed {
+            self.P1.isHidden = true
+            self.P2.isHidden = true
+            self.robOwner.isHidden = true
+            self.startGameBtn.isHidden = false
+            self.getCoins.isHidden = false
+        /// 没亮牌
+        } else {
+            self.startGameBtn.isHidden = true
+            self.robOwner.isHidden = true
+            self.getCoins.isHidden = true
+        }
     }
     
     /// 根据选择的房主进行判断
@@ -205,8 +234,7 @@ class GameV: UIView {
         NotificationCenter.default.removeObserver(self, name: NSNotification.Name(rawValue: "isGameBegin"), object: nil)
         
         print("\((#file as NSString).lastPathComponent):(\(#line))\n")
-        
-        /// 显示抢庄
+       
         if RoomModel.shared.isGameBegin {
             self.startGameBtn.isHidden = true
             self.robOwner.isHidden = true
@@ -292,7 +320,10 @@ extension GameV {
             }
             
             
-            print("\((#file as NSString).lastPathComponent):(\(#line))\n",CardNameModel.shared.currentUbackCardsName)
+            /// 显示当前分数
+            P1.coinsLabel.text = String(RoomModel.shared.userScore[GetCurrenIndex.shared.getCurrentIndex()])
+            P2.coinsLabel.text = GetCurrenIndex.shared.currentUserScore()[0]
+
             
             /// 弹出错误掉网提示框
             if GetCurrenIndex.shared.p2NameLabelWithoutP1().count == 0 {
@@ -305,6 +336,8 @@ extension GameV {
             }
             
             /// 名字
+            print("\((#file as NSString).lastPathComponent):(\(#line))\n",RoomModel.shared.userScore)
+            
             P1.nameLabel.text = RoomModel.shared.nameStr[GetCurrenIndex.shared.getCurrentIndex()]
             P2.nameLabel.text = GetCurrenIndex.shared.p2NameLabelWithoutP1()[0]
             

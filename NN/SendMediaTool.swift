@@ -345,14 +345,17 @@ func bytesShwoFunc(_over : [Byte]) -> Void {
         
         RoomModel.shared.currentRoomPlayInfo = String.init(data: dd as Data, encoding: String.Encoding.utf8)!
         
+        /// 返回玩家信息状态
         if AnylasyseWithKey(analayseStr:String.init(data: dd as Data, encoding: String.Encoding.utf8)! , secondNode: "ty", withSepcifiedKey: "type").contains("0") {
             
-            ScoreModel.shared.xmlStr = String.init(data: dd as Data, encoding: String.Encoding.utf8)!
+            RoomModel.shared.currentRoomPlayInfo = String.init(data: dd as Data, encoding: String.Encoding.utf8)!
 
             print("\((#file as NSString).lastPathComponent):(\(#line))\n")
-
+            
+            NotificationCenter.default.post(name: NSNotification.Name(rawValue: "showUserInfo"), object: nil)
         }
-        
+
+        /// 显示当前用户是否可以作弊
         if canCheat(analayseStr:String.init(data: dd as Data, encoding: String.Encoding.utf8)!) {
             RoomModel.shared.canCheat = true
         } else {
@@ -399,6 +402,16 @@ func bytesShwoFunc(_over : [Byte]) -> Void {
             
          
             NotificationCenter.default.post(name: NSNotification.Name(rawValue: "GameOver"), object: nil)
+        }
+        
+        
+        /// 是否亮牌
+        if testXML(analayseStr: String.init(data: dd as Data, encoding: String.Encoding.utf8)!).contains("5") {
+            print("\((#file as NSString).lastPathComponent):(\(#line))\n",String.init(data: dd as Data, encoding: String.Encoding.utf8)!)
+
+            ShowCardModel.shared.receiveStr = String.init(data: dd as Data, encoding: String.Encoding.utf8)!
+            
+            NotificationCenter.default.post(name: NSNotification.Name(rawValue: "isShowCard"), object: nil)
         }
         
 

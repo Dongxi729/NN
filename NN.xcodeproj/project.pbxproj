@@ -76,6 +76,7 @@
 		2629EC031ECAFCA500616626 /* f0_nn7.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 2629EBF51ECAFCA500616626 /* f0_nn7.mp3 */; };
 		2629EC041ECAFCA500616626 /* f0_nn8.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 2629EBF61ECAFCA500616626 /* f0_nn8.mp3 */; };
 		2629EC051ECAFCA500616626 /* f0_nn9.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 2629EBF71ECAFCA500616626 /* f0_nn9.mp3 */; };
+		262B52981EE640BF002BAC8B /* ShowCardModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 262B52971EE640BF002BAC8B /* ShowCardModel.swift */; };
 		262E1C3A1EB1CBDE007CC745 /* CaptureScreenTool.swift in Sources */ = {isa = PBXBuildFile; fileRef = 262E1C391EB1CBDE007CC745 /* CaptureScreenTool.swift */; };
 		26315CD41ED28FA30026EC6B /* SendRequestModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26315CD31ED28FA30026EC6B /* SendRequestModel.swift */; };
 		26315CD81ED293BA0026EC6B /* MarkChoose.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26315CD71ED293BA0026EC6B /* MarkChoose.swift */; };
@@ -291,6 +292,7 @@
 		2629EBF51ECAFCA500616626 /* f0_nn7.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = f0_nn7.mp3; path = "sound 2/f0_nn7.mp3"; sourceTree = "<group>"; };
 		2629EBF61ECAFCA500616626 /* f0_nn8.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = f0_nn8.mp3; path = "sound 2/f0_nn8.mp3"; sourceTree = "<group>"; };
 		2629EBF71ECAFCA500616626 /* f0_nn9.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = f0_nn9.mp3; path = "sound 2/f0_nn9.mp3"; sourceTree = "<group>"; };
+		262B52971EE640BF002BAC8B /* ShowCardModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShowCardModel.swift; sourceTree = "<group>"; };
 		262E1C391EB1CBDE007CC745 /* CaptureScreenTool.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CaptureScreenTool.swift; sourceTree = "<group>"; };
 		26315CD31ED28FA30026EC6B /* SendRequestModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SendRequestModel.swift; sourceTree = "<group>"; };
 		26315CD71ED293BA0026EC6B /* MarkChoose.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MarkChoose.swift; sourceTree = "<group>"; };
@@ -740,6 +742,7 @@
 				26A4833C1EE56F3C007D977D /* RobOwnerModel.swift */,
 				26A4833E1EE58DB2007D977D /* JIfenModel.swift */,
 				26A483401EE58FE0007D977D /* RoomOwner.swift */,
+				262B52971EE640BF002BAC8B /* ShowCardModel.swift */,
 			);
 			name = model;
 			sourceTree = "<group>";
@@ -1213,6 +1216,7 @@
 				26D54AE81EC2BD6D00119FAA /* DDXMLNode.m in Sources */,
 				26421EEE1EE15099000C9B25 /* OffLineV.swift in Sources */,
 				2657FD9B1EB872C300B92648 /* ScaleView.swift in Sources */,
+				262B52981EE640BF002BAC8B /* ShowCardModel.swift in Sources */,
 				2657FDA11EB96F9300B92648 /* FontVC.swift in Sources */,
 				26BC613C1EB4253B00AE9BE1 /* CollectionViewCell.swift in Sources */,
 				26A4833D1EE56F3C007D977D /* RobOwnerModel.swift in Sources */,
