@@ -274,7 +274,7 @@ class GameV: UIView {
         
         
         ///抢庄视图
-        robOwner.isHidden = true
+//        robOwner.isHidden = true
         
         /// 开始按钮
         addSubview(startGameBtn)
@@ -327,12 +327,20 @@ class GameV: UIView {
             if CardNameModel.shared.currentUbackCardsName.count > 0 {
                 
                 print("\((#file as NSString).lastPathComponent):(\(#line))\n",CardNameModel.shared.currentUbackCardsName)
-                P1.isShowBottomCardLayout = false
-                P1.imgNames = CardNameModel.shared.currentUbackCardsName
-                P1.addCards(cardsArray: CardNameModel.shared.currentUbackCardsName)
+                self.robOwner.isHidden = true
+                self.startGameBtn.isHidden = true
+                self.getCoins.isHidden = true
                 
-                P2.imgNames = CardNameModel.shared.backCardsName
-                P2.isShowBottomCardLayout = true
+                DispatchQueue.main.async {
+//                    self.P1.isShowBottomCardLayout = false
+                    self.P1.imgNames = CardNameModel.shared.currentUbackCardsName
+                    self.P1.addCards(cardsArray: CardNameModel.shared.currentUbackCardsName)
+                    
+//                    self.P2.imgNames = CardNameModel.shared.backCardsName
+//                    self.P2.isShowBottomCardLayout = true
+                }
+                
+          
             } else {
                 P1.isShowBottomCardLayout = true
             }
@@ -355,7 +363,7 @@ class GameV: UIView {
                 P1.scoreImg.isHidden = false
                 P2.scoreImg.isHidden = false
                 
-                P1.scoreImg.abc(abc: String(P1.coinsLabel.text!), scoreType: type)
+                
                 
                 var type2 = 0
                 if Int(P2.coinsLabel.text!)! > 0 {
@@ -364,7 +372,12 @@ class GameV: UIView {
                     type2 = 2
                 }
                 
-                P2.scoreImg.abc(abc: String(P2.coinsLabel.text!), scoreType: type2)
+                
+                DispatchQueue.main.async {
+                    self.P1.scoreImg.abc(abc: String(self.P1.coinsLabel.text!), scoreType: type)
+                    self.P2.scoreImg.abc(abc: String(self.P2.coinsLabel.text!), scoreType: type2)
+                }
+                
             }
             
             
@@ -384,11 +397,17 @@ class GameV: UIView {
         self.getCoins.isHidden = true
         /// 摆放正确用户位置
         
-        showCardsSEL()
+        DispatchQueue.main.async {
+            self.showCardsSEL()
+        }
+        
+        
     }
     
     // MARK: - 是否亮牌
     func isShowCardSEL() {
+        
+        print("\((#file as NSString).lastPathComponent):(\(#line))\n")
         
         NotificationCenter.default.removeObserver(self, name: NSNotification.Name(rawValue: "isShowCard"), object: nil)
         
@@ -447,15 +466,22 @@ class GameV: UIView {
         
         print("\((#file as NSString).lastPathComponent):(\(#line))\n",RobOwnerModel.shared.isRobOrNot)
         
-        /// 没抢庄的话，显示抢庄视图
-        if RobOwnerModel.shared.isRobOrNot == false {
-            self.robOwner.isHidden = false
-            self.startGameBtn.isHidden = true
-            
-            /// 抢庄的话，显示积分视图
-        } else {
-            self.getCoins.isHidden = false
+        DispatchQueue.main.async {
+            /// 没抢庄的话，显示抢庄视图
+            if RobOwnerModel.shared.isRobOrNot == false {
+                self.robOwner.isHidden = false
+                self.startGameBtn.isHidden = true
+                
+                /// 抢庄的话，显示积分视图
+            } else {
+                self.getCoins.isHidden = false
+            }
         }
+        
+        
+        
+        
+        
     }
 }
 
@@ -495,20 +521,8 @@ extension GameV {
             P1.samllCardsShowLeftOrRight = -1
             
             P2.samllCardsShowLeftOrRight = 1
+
             
-            
-            /// 弹出错误掉网提示框
-            if GetCurrenIndex.shared.p2NameLabelWithoutP1().count == 0 {
-                let d = OffLineV.init(frame: CGRect.init(x: 0, y: 0, width: SW * 0.6, height: SH * 0.75))
-                
-                d.center = self.center
-                
-                addSubview(d)
-                return
-            }
-            
-            /// 名字
-            print("\((#file as NSString).lastPathComponent):(\(#line))\n",RoomModel.shared.userScore)
             
             P1.nameLabel.text = RoomModel.shared.nameStr[GetCurrenIndex.shared.getCurrentIndex()]
             P2.nameLabel.text = GetCurrenIndex.shared.p2NameLabelWithoutP1()[0]
@@ -528,8 +542,6 @@ extension GameV {
             
             P2.isHidden = false
             P1.isHidden = false
-            
-            print("\((#file as NSString).lastPathComponent):(\(#line))\n",RobOwnerModel.shared.isRobOrNot)
             
             break
         default: break
@@ -581,6 +593,5 @@ extension GameV {
         print("\((#file as NSString).lastPathComponent):(\(#line))\n")
         
         exitRoomEvent()
-        //        applierToDismiss()
     }
 }

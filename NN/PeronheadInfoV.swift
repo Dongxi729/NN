@@ -187,13 +187,30 @@ class PeronheadInfoV: UIView {
         /// 提示的时候
         if CardNameModel.shared.isShowP1Front {
 
-            backCardsLayout.isHidden = true
+            if backCardsLayout != nil {
+                backCardsLayout.isHidden = true
+            }
             
+            var index = 0
             for value in cardsArray {
                 
-                backCardsLayout.image = UIImage.init(named:value)
                 
-                addSubview(backCardsLayout)
+                if backCardsLayout != nil {
+                    backCardsLayout.image = UIImage.init(named:value)
+                    
+                    index += 1
+
+                } else {
+                    backCardsLayout = UIImageView.init(frame: CGRect.init(x: CGFloat(self.samllCardsShowLeftOrRight) + CGFloat(index) * self.Width * 0.15 , y: 2 * screenScale, width: self.Width * 0.3, height: self.Height - screenScale * 3))
+                    
+                }
+                
+                
+                DispatchQueue.main.async {
+                    self.addSubview(self.backCardsLayout)
+                }
+                
+                
                 
                 print("\((#file as NSString).lastPathComponent):(\(#line))\n")
             }
@@ -208,7 +225,11 @@ class PeronheadInfoV: UIView {
                 if isShowBottomCardLayout == false {
                     backCardsLayout = UIImageView.init(frame: CGRect.init(x: CGFloat(self.samllCardsShowLeftOrRight) + CGFloat(index) * self.Width * 0.15 , y: 2 * screenScale, width: self.Width * 0.3, height: self.Height - screenScale * 3))
                     
-                    addSubview(backCardsLayout)
+                    DispatchQueue.main.async {
+                        self.addSubview(self.backCardsLayout)
+                    }
+                    
+                    
                     
                 } else if isShowBottomCardLayout == true {
                     backCardsLayout = UIImageView.init(frame: CGRect.init(x: self.Width * CGFloat(self.samllCardsShowLeftOrRight) + CGFloat(index) * self.Width * 0.15 , y: 2 * screenScale, width: self.Width * 0.3, height: self.Height - screenScale * 3))
@@ -217,7 +238,11 @@ class PeronheadInfoV: UIView {
                     
                     index += 1
                     
-                    addSubview(backCardsLayout)
+                    DispatchQueue.main.async {
+                        self.addSubview(self.backCardsLayout)
+                    }
+                    
+                    
                     
                     print("\((#file as NSString).lastPathComponent):(\(#line))\n")
                 }

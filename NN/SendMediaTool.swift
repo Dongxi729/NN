@@ -471,6 +471,18 @@ func bytesShwoFunc(_over : [Byte]) -> Void {
         }
         
         
+        /// 比牌完后返回分数
+        /// 是否亮牌
+        if testXML(analayseStr: String.init(data: dd as Data, encoding: String.Encoding.utf8)!).contains("7") {
+            print("\((#file as NSString).lastPathComponent):(\(#line))\n",String.init(data: dd as Data, encoding: String.Encoding.utf8)!)
+            
+            RoomModel.shared.isGameBegin = true
+            
+            ShowCardModel.shared.receiveStr = String.init(data: dd as Data, encoding: String.Encoding.utf8)!
+            
+            NotificationCenter.default.post(name: NSNotification.Name(rawValue: "isShowCard"), object: nil)
+        }
+        
     }
     
     if typpppp == 254 {
