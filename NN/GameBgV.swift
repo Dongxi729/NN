@@ -510,8 +510,8 @@ class GameBgV: CommonV {
                     P1.niuniuImg.image = UIImage.init(named: CardNameModel.shared.niuniuArray[currentUserIndex])
                     P2.niuniuImg.image = UIImage.init(named: CardNameModel.shared.niuniuArray[currentUserIndex])
                     
-                    GetCurrenIndex.shared.markNN = true
-                    
+//                    GetCurrenIndex.shared.markNN = true
+//                    
                 }
             }
             

@@ -10,15 +10,6 @@ import UIKit
 
 class MainGameViewController: UIViewController {
     
-    /// 解散房间
-    lazy var dismissRoom: UIButton = {
-        let d : UIButton = UIButton.init(frame: CGRect.init(x: 200, y: 100, width: 100, height: 100))
-        d.backgroundColor = UIColor.randomColor()
-        d.addTarget(self, action: #selector(dismissRoomSEL), for: .touchUpInside)
-        d.setTitle("解散房间", for: .normal)
-        return d
-    }()
-    
     lazy var bgImg: UIImageView = {
         let d : UIImageView = UIImageView.init(frame: self.view.bounds)
         d.image = #imageLiteral(resourceName: "holl_bg")
@@ -62,11 +53,16 @@ class MainGameViewController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-
+        
         ConnectModel.shared.connectSEL()
     }
     
     
+    // MARK: - 跳出同意退出房间视图
+    lazy var exitRoomV: DismissRoom = {
+        let d : DismissRoom = DismissRoom.init(frame: CGRect.init(x: 0, y: 0, width: SW * 0.6, height: SH * 0.75))
+        return d
+    }()
     
     @objc fileprivate func inviteSEL() -> Void {
         let f : InviteV = InviteV.init(frame: CGRect.init(x: 0, y: 0, width: SW * 0.42, height: SW * 0.42))
@@ -84,6 +80,8 @@ class MainGameViewController: UIViewController {
         print("\((#file as NSString).lastPathComponent):(\(#line))\n","离线通知")
     }
     
+
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -95,18 +93,36 @@ class MainGameViewController: UIViewController {
         let add = UIButton.init(frame: CGRect.init(x: 30, y: 30, width: 100, height: 100))
         add.backgroundColor = UIColor.red
         
-       
+        
         add.addTarget(self, action: #selector(presenrView), for: .touchUpInside)
-       
+        
         view.addSubview(bgImg)
         
         view.addSubview(mainView)
-
+        
         view.addSubview(boradCastBgV)
         
         /// 收到通知 PlayersInRoom
         NotificationCenter.default.addObserver(self, selector: #selector(enterGamingVSEL), name: NSNotification.Name(rawValue: "PlayersInRoom"), object: nil)
+ 
+        
+        exitRoomV.center = view.center
+        view.addSubview(exitRoomV)
+        exitRoomV.isHidden = true
     }
+    
+    
+    // MARK: - 解散房间
+    func exitRoomRequestSEL() -> Void {
+        
+        
+        print("\((#file as NSString).lastPathComponent):(\(#line))\n")
+        NotificationCenter.default.removeObserver(self, name: NSNotification.Name(rawValue: "exitRoomRequest"), object: nil)
+        exitRoomV.isHidden = false
+        
+    }
+    
+    
     
     /// 进入游戏房间视图
     func enterGamingVSEL() {
@@ -131,17 +147,13 @@ class MainGameViewController: UIViewController {
         return d
     }()
     
-    func dismissRoomSEL() -> Void {
-        dismissRoomSocketEvent()
-    }
-
     
     func presenrView() -> Void {
         view.addSubview(presentView)
         
         presentView.center = view.center
     }
-
+    
 }
 
 
@@ -170,7 +182,6 @@ class BroadCastV: UIView {
         super.init(frame: frame)
         addSubview(bgV)
         addSubview(broadCastText)
-        
         
     }
     

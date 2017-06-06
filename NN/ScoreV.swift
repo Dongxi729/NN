@@ -4,7 +4,7 @@
 //
 //  Created by 郑东喜 on 2017/5/22.
 //  Copyright © 2017年 郑东喜. All rights reserved.
-//
+//  显示分数视图
 
 import UIKit
 

@@ -61,7 +61,7 @@ func testServer() {
                     
                     /// 检查是否收到心跳包
                     AppDelegate.checkreceiveHeartInfo()
-                
+                    
                 }
                 
             } else {
@@ -166,9 +166,16 @@ func sendText(sendStr : String) {
 }
 
 
+// MARK: - 退出房间
+func exitRoomEvent() -> Void {
+    /// <M><ty tc="true"/></M>
+    reportTypeWithData(typeInt: 85, str: "<M><ty tc='true'/></M>")
+}
+
 // MARK: - 解散房间
-func dismissRoomSocketEvent() -> Void {
-    reportTypeWithData(typeInt: 90, str: "<M><ty ms=\"解散房间\"/></M>")
+func dismissRoomEvent() -> Void {
+    /// <M><ty tc="true"/></M>
+    reportTypeWithData(typeInt: 85, str: "<M><ty tc='true'/></M>")
 }
 
 // MARK: - 加入房间
@@ -201,7 +208,7 @@ func reportCreateRoomTypeWith(roomType : Int,rounds : Int,players : Int,payType 
 }
 
 func reportCreateSixCommonRoomTypeWith(roomType : Int,rounds : Int,players : Int,payType : Int,coinsNum : Int) -> Void {
-
+    
     let roomType = "<M><ty gt=\"\(roomType)\" ii=\"\(rounds)\" rn=\"\(players)\" py=\"\(payType)\" ss=\"\(coinsNum)\"/></M>"
     
     /// 添加发送的文字
@@ -329,6 +336,37 @@ func bytesShwoFunc(_over : [Byte]) -> Void {
         ScoreModel.shared.gamingReciveType = "9"
     }
     
+    /// 接收退出房间
+    if typpppp == 85 {
+        /// 解析里头的值
+        ///  <M>
+        //        <Nn/>
+        //        <ty su="true" ms="退出成功"/>
+        //        </M>
+        if AnylasyseWithKey(analayseStr: String.init(data: dd as Data, encoding: String.Encoding.utf8)!, secondNode: "ty", withSepcifiedKey: "ms").contains("退出成功") {
+            /// 返回大厅
+            backToholl()
+        }
+        
+        if AnylasyseWithKey(analayseStr: String.init(data: dd as Data, encoding: String.Encoding.utf8)!, secondNode: "ty", withSepcifiedKey: "ms").contains("申请解散房间") {
+            print("\((#file as NSString).lastPathComponent):(\(#line))\n")
+            
+            DismissRoomModel.shared.receiveStr = String.init(data: dd as Data, encoding: String.Encoding.utf8)!
+            
+            NotificationCenter.default.post(name: NSNotification.Name(rawValue: "exitRoomRequest"), object: nil)
+        }
+        
+    }
+    
+    /// 申请解散房间
+    /// 解散房间
+    if typpppp == 86 {
+        if AnylasyseWithKey(analayseStr: String.init(data: dd as Data, encoding: String.Encoding.utf8)!, secondNode: "ty", withSepcifiedKey: "ms").contains("有用户申请解散房间，是否同意") {
+            GetDismissModel.shared.receiveStr = String.init(data: dd as Data, encoding: String.Encoding.utf8)!
+        }
+        NotificationCenter.default.post(name: NSNotification.Name(rawValue: "AgreeToDismissNoti"), object: nil)
+    }
+    
     /// 根据类型进行处理
     if typpppp == 8 {
         
@@ -347,12 +385,12 @@ func bytesShwoFunc(_over : [Byte]) -> Void {
         if AnylasyseWithKey(analayseStr:String.init(data: dd as Data, encoding: String.Encoding.utf8)! , secondNode: "ty", withSepcifiedKey: "type").contains("0") {
             
             RoomModel.shared.currentRoomPlayInfo = String.init(data: dd as Data, encoding: String.Encoding.utf8)!
-
+            
             print("\((#file as NSString).lastPathComponent):(\(#line))\n")
             
             NotificationCenter.default.post(name: NSNotification.Name(rawValue: "showUserInfo"), object: nil)
         }
-
+        
         /// 显示当前用户是否可以作弊
         if canCheat(analayseStr:String.init(data: dd as Data, encoding: String.Encoding.utf8)!) {
             RoomModel.shared.canCheat = true
@@ -379,7 +417,7 @@ func bytesShwoFunc(_over : [Byte]) -> Void {
             print("\((#file as NSString).lastPathComponent):(\(#line))\n",String.init(data: dd as Data, encoding: String.Encoding.utf8)!)
             
             JIfenModel.shared.receiveStr = String.init(data: dd as Data, encoding: String.Encoding.utf8)!
-        
+            
             /// 收到牌，证明已经开始游戏，赋值标识
             RoomModel.shared.isGameBegin = true
             
@@ -395,13 +433,13 @@ func bytesShwoFunc(_over : [Byte]) -> Void {
             /// RoomOwner
             NotificationCenter.default.post(name: NSNotification.Name(rawValue: "RoomOwner"), object: nil)
         }
- 
+        
         
         /// 本轮游戏结束
         if testXML(analayseStr: String.init(data: dd as Data, encoding: String.Encoding.utf8)!).contains("6") {
             print("\((#file as NSString).lastPathComponent):(\(#line))\n",String.init(data: dd as Data, encoding: String.Encoding.utf8)!)
             
-         
+            
             NotificationCenter.default.post(name: NSNotification.Name(rawValue: "GameOver"), object: nil)
         }
         
@@ -409,7 +447,7 @@ func bytesShwoFunc(_over : [Byte]) -> Void {
         /// 是否亮牌
         if testXML(analayseStr: String.init(data: dd as Data, encoding: String.Encoding.utf8)!).contains("5") {
             print("\((#file as NSString).lastPathComponent):(\(#line))\n",String.init(data: dd as Data, encoding: String.Encoding.utf8)!)
-
+            
             RoomModel.shared.isGameBegin = true
             
             ShowCardModel.shared.receiveStr = String.init(data: dd as Data, encoding: String.Encoding.utf8)!
@@ -417,7 +455,7 @@ func bytesShwoFunc(_over : [Byte]) -> Void {
             NotificationCenter.default.post(name: NSNotification.Name(rawValue: "isShowCard"), object: nil)
         }
         
-
+        
     }
     
     if typpppp == 254 {
@@ -445,6 +483,8 @@ func bytesShwoFunc(_over : [Byte]) -> Void {
     if typpppp == 255 {
         
     }
+    
+
     
     /// 解散房间
     if typpppp == 90 {
@@ -590,4 +630,23 @@ func showCardsFunc() {
 // MARK: - 作弊功能
 func cheatSEL() {
     reportTypeWithData(typeInt: 88, str: "<M><ty szz ='true'/></M>")
+}
+
+
+// MARK: - 投票解散房间同意
+///<M><ty jst ="1/2"/></M>
+func agreeToDismiss() {
+    reportTypeWithData(typeInt: 86, str: "<M><ty jst ='1'/></M>")
+}
+
+// MARK: - 投票解散房间不同意
+///<M><ty jst ="1/2"/></M>
+func disagreeToDismiss() {
+    reportTypeWithData(typeInt: 86, str: "<M><ty jst ='2'/></M>")
+}
+
+// MARK: - 申请人发起申请
+///<M><ty jst ="1/2"/></M>
+func applierToDismiss() {
+    reportTypeWithData(typeInt: 86, str: "<M><ty js ='true'/></M>")
 }

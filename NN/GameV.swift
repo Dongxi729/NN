@@ -55,6 +55,31 @@ class GameV: UIView {
         return d
     }()
     
+    // MARK: - 背景按钮
+    fileprivate lazy var bgVImg: UIImageView = {
+        let d : UIImageView = UIImageView.init(frame: self.bounds)
+        d.image = #imageLiteral(resourceName: "gamePrepareBgV")
+        
+        d.contentMode = UIViewContentMode.scaleAspectFit
+        
+        return d
+    }()
+    
+    // MARK: - 右上角视图
+    lazy var rightImgView: UIImageView = {
+        let d : UIImageView = UIImageView.init(frame: CGRect.init(x: self.Width * 0.85, y: 0, width: self.Width * 0.15, height: self.Height * 0.15))
+        d.image = #imageLiteral(resourceName: "room_toprightan")
+        
+        d.isUserInteractionEnabled = true
+        
+        let tapGes = UITapGestureRecognizer.init(target: self, action: #selector(dismissSEL))
+        d.addGestureRecognizer(tapGes)
+        
+        d.contentMode = UIViewContentMode.scaleAspectFit
+        return d
+    }()
+    
+    
     // MARK: - 开始游戏按钮
     fileprivate lazy var startGameBtn: CommonBtn = {
         let d : CommonBtn = CommonBtn.init(frame: CGRect.init(x: self.Width * 0.42, y: self.Height * 0.55, width: self.Width * 0.15, height: self.Height * 0.15))
@@ -78,6 +103,25 @@ class GameV: UIView {
         d.backgroundColor = UIColor.randomColor()
         d.addTarget(self, action: #selector(testShow), for: .touchUpInside)
         d.setTitle("提示", for: .normal)
+        return d
+    }()
+    
+    // MARK: - 局数
+    fileprivate lazy var roundsNumLabel: UILabel = {
+        let d : UILabel = UILabel.init(frame: CGRect.init(x: 0, y: self.Height * 0.13, width: self.Width * 0.1, height: self.Height * 0.045))
+        d.layer.borderWidth = 1
+        
+        
+        if !RoomModel.shared.currentRounds.isEmpty && !RoomModel.shared.gameRounds.isEmpty {
+            d.text = RoomModel.shared.currentRounds + "/" + RoomModel.shared.gameRounds
+        } else {
+            d.text = String(15) + "/" + String(20)
+        }
+        
+        d.textAlignment = .center
+        d.adjustsFontSizeToFitWidth = true
+        d.font = UIFont(name: "SimHei", size: 9 * screenScale)
+        d.textColor = UIColor.white
         return d
     }()
     
@@ -106,7 +150,42 @@ class GameV: UIView {
         return d
     }()
     
-    /// 显示离线视图
+    /// 房间号
+    fileprivate lazy var roomNoImgV: UIImageView = {
+        let d : UIImageView = UIImageView.init(frame: CGRect.init(x: 0, y: 0, width: self.Width * 0.08, height: self.Height * 0.065))
+        d.image = #imageLiteral(resourceName: "roomName")
+        d.contentMode = UIViewContentMode.scaleAspectFit
+        return d
+    }()
+    
+    /// 当前时间
+    fileprivate lazy var currentTime: UILabel = {
+        let d : UILabel = UILabel.init(frame: CGRect.init(x: 0, y: 0.0665760869565217 * self.Height, width: SW * 0.134, height: SH * 0.05))
+        d.textColor = UIColor.white
+        d.textAlignment = .center
+        d.layer.borderWidth = 1
+        d.font = UIFont(name: "SimHei", size: 9 * screenScale)
+        return d
+    }()
+    
+    /// 房间号
+    fileprivate lazy var rooID: UILabel = {
+        let d : UILabel = UILabel.init(frame: CGRect.init(x: self.roomNoImgV.RightX, y: 0, width: self.Width * 0.073, height: self.roomNoImgV.Height))
+        d.font = UIFont(name: "SimHei", size: 8 * screenScale)
+        
+        d.textAlignment = .left
+        
+        d.textColor = UIColor.colorWithHexString("713600")
+        //        d.text = "1468"
+        
+        if RoomModel.shared.roomNumber != nil {
+            d.text = String(RoomModel.shared.roomNumber)
+        } else {
+            d.text = "1111111"
+        }
+        return d
+    }()
+    
     
     
     // MARK: - 非庄家压分
@@ -116,15 +195,52 @@ class GameV: UIView {
         return d
     }()
     
+    /// 显示解散视图
+    func showXXX() -> Void {
+        let d = DismissRoom.init(frame: CGRect.init(x: 0, y: 0, width: SW * 0.6, height: SH * 0.75))
+        d.center = self.center
+        
+        DispatchQueue.main.async {
+            self.addSubview(d)
+        }
+        
+        NotificationCenter.default.removeObserver(self, name: NSNotification.Name(rawValue: "exitRoomRequest"), object: nil)
+    }
+    
+    /// 显示同意、不同意解散视图
+    func showXXX() -> Void {
+        let d = DismissRoom.init(frame: CGRect.init(x: 0, y: 0, width: SW * 0.6, height: SH * 0.75))
+        d.center = self.center
+        
+        DispatchQueue.main.async {
+            self.addSubview(d)
+        }
+        
+        NotificationCenter.default.removeObserver(self, name: NSNotification.Name(rawValue: "AgreeToDismissNoti"), object: nil)
+        
+    }
+    
     override init(frame: CGRect) {
         
         super.init(frame: frame)
+        
+        addSubview(bgVImg)
+        
+        addSubview(roomNoImgV)
+        
+        addSubview(currentTime)
+        
+        addSubview(rooID)
+        
+        addSubview(roundsNumLabel)
         
         addSubview(alertAndShowV)
         
         addSubview(roomNumber)
         
         addSubview(alertBtn)
+        
+        addSubview(rightImgView)
         
         /// 抢庄视图
         addSubview(robOwner)
@@ -181,8 +297,23 @@ class GameV: UIView {
         
         /// 返回最新用户状态信息
         NotificationCenter.default.addObserver(self, selector: #selector(showUserInfoSEL), name: NSNotification.Name(rawValue: "showUserInfo"), object: nil)
-
+        
+        
+        /// 解散房间 exitRoomRequest
+        NotificationCenter.default.addObserver(self, selector: #selector(showXXX), name: NSNotification.Name(rawValue: "exitRoomRequest"), object: nil)
+        
+        
+        /// 同意 不同意 AgreeToDismissNoti
+        NotificationCenter.default.addObserver(self, selector: #selector(AgreeToDismissNotiSEL), name: NSNotification.Name(rawValue: "AgreeToDismissNoti"), object: nil)
+        
         createGamingLayout()
+    }
+    
+    // MARK: - 显示同意不同意
+    func AgreeToDismissNotiSEL() -> Void {
+        NotificationCenter.default.removeObserver(self, name: NSNotification.Name(rawValue: "AgreeToDismissNoti"), object: nil)
+        
+        
     }
     
     
@@ -201,11 +332,6 @@ class GameV: UIView {
             
             P2.samllCardsShowLeftOrRight = 1
             
-            /// 打开才显示
-//            P2.isShowBottomCardLayout = true
-//
-//            P1.isShowBottomCardLayout = true
-            
             /// 玩家1是否有牌
             if CardNameModel.shared.currentUbackCardsName.count > 0 {
                 
@@ -223,15 +349,40 @@ class GameV: UIView {
             
             /// 检查分数数组是否为空
             if RoomModel.shared.userScore.count > 0 {
-                /// 显示当前分数
-                P1.coinsLabel.text = String(RoomModel.shared.userScore[GetCurrenIndex.shared.getCurrentIndex()])
-                P2.coinsLabel.text = GetCurrenIndex.shared.currentUserScore()[0]
+                
+                //                P1.coinsLabel.text = String(RoomModel.shared.userScore[GetCurrenIndex.shared.getCurrentIndex()])
+                //                P2.coinsLabel.text = String(GetCurrenIndex.shared.currentUserScore()[0])
+                
+                var type = 0
+                if Int(P1.coinsLabel.text!)! > 0 {
+                    type = 1
+                } else {
+                    type = 2
+                }
+                
+                /// 显示增减的分数不隐藏
+                P1.scoreImg.isHidden = false
+                P2.scoreImg.isHidden = false
+                
+                P1.scoreImg.abc(abc: String(P1.coinsLabel.text!), scoreType: type)
+                
+                var type2 = 0
+                if Int(P2.coinsLabel.text!)! > 0 {
+                    type2 = 1
+                } else {
+                    type2 = 2
+                }
+                
+                P2.scoreImg.abc(abc: String(P2.coinsLabel.text!), scoreType: type2)
             }
             
-
+            
+            
+            
+            
             break
         default:
-             break
+            break
         }
     }
     
@@ -267,7 +418,7 @@ class GameV: UIView {
     
     /// 根据选择的房主积分显示
     func chooseOwnerSEL() -> Void {
-
+        
         /// 是房主就不显示积分
         if RoomOwner.shared.ownerID != RoomModel.shared.userId[GetCurrenIndex.shared.currentUserIndex] {
             self.getCoins.isHidden = false
@@ -355,17 +506,6 @@ extension GameV {
             P2.samllCardsShowLeftOrRight = 1
             
             
-            /// 纸牌 不能提前创建，除非模型有值，才能创建
-            //////////////////////////////////////////////////
-            
-
-            
-            
-            /// 显示当前分数
-            P1.coinsLabel.text = String(RoomModel.shared.userScore[GetCurrenIndex.shared.getCurrentIndex()])
-            P2.coinsLabel.text = GetCurrenIndex.shared.currentUserScore()[0]
-            
-            
             /// 弹出错误掉网提示框
             if GetCurrenIndex.shared.p2NameLabelWithoutP1().count == 0 {
                 let d = OffLineV.init(frame: CGRect.init(x: 0, y: 0, width: SW * 0.6, height: SH * 0.75))
@@ -393,7 +533,7 @@ extension GameV {
                 downImgWith(url: headStr!, toView: self.P1.headImg)
                 downImgWith(url: headStr2, toView: self.P2.headImg)
             }
-
+            
             
             P2.isHidden = false
             P1.isHidden = false
@@ -424,7 +564,6 @@ extension GameV {
 extension GameV {
     override func layoutSubviews() {
         super.layoutSubviews()
-        
     }
 }
 
@@ -442,5 +581,15 @@ extension GameV : ShowAndAlertVDelegate {
         
         P1.imgNames = CardNameModel.shared.rightCurrentIndexCards()
         P1.addCards(cardsArray: CardNameModel.shared.rightCurrentIndexCards())
+    }
+}
+
+// MARK: - 申请退出房间
+extension GameV {
+    func dismissSEL() {
+        print("\((#file as NSString).lastPathComponent):(\(#line))\n")
+        
+        exitRoomEvent()
+        //        applierToDismiss()
     }
 }

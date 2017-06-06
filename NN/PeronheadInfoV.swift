@@ -272,6 +272,8 @@ class PeronheadInfoV: UIView {
         
         addSubview(scoreImg)
         
+        scoreImg.isHidden = true
+        
         /// 牛牛图片
         addSubview(niuniuImg)
         

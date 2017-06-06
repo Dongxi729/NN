@@ -77,6 +77,9 @@
 		2629EC041ECAFCA500616626 /* f0_nn8.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 2629EBF61ECAFCA500616626 /* f0_nn8.mp3 */; };
 		2629EC051ECAFCA500616626 /* f0_nn9.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 2629EBF71ECAFCA500616626 /* f0_nn9.mp3 */; };
 		262B52981EE640BF002BAC8B /* ShowCardModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 262B52971EE640BF002BAC8B /* ShowCardModel.swift */; };
+		262B529B1EE6AEC3002BAC8B /* RightImgView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 262B529A1EE6AEC3002BAC8B /* RightImgView.swift */; };
+		262B529D1EE6B7DE002BAC8B /* DismissRoom.swift in Sources */ = {isa = PBXBuildFile; fileRef = 262B529C1EE6B7DE002BAC8B /* DismissRoom.swift */; };
+		262B529F1EE6BAC9002BAC8B /* DismissRoomModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 262B529E1EE6BAC9002BAC8B /* DismissRoomModel.swift */; };
 		262E1C3A1EB1CBDE007CC745 /* CaptureScreenTool.swift in Sources */ = {isa = PBXBuildFile; fileRef = 262E1C391EB1CBDE007CC745 /* CaptureScreenTool.swift */; };
 		26315CD41ED28FA30026EC6B /* SendRequestModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26315CD31ED28FA30026EC6B /* SendRequestModel.swift */; };
 		26315CD81ED293BA0026EC6B /* MarkChoose.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26315CD71ED293BA0026EC6B /* MarkChoose.swift */; };
@@ -154,6 +157,8 @@
 		26D54B3B1EC2C71800119FAA /* SwiftSocket.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 26D54B341EC2C55F00119FAA /* SwiftSocket.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		26D54B3E1EC2C7D000119FAA /* cccc.png in Resources */ = {isa = PBXBuildFile; fileRef = 26D54B3D1EC2C7D000119FAA /* cccc.png */; };
 		26D54B441EC2F0B500119FAA /* CreateRoomModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26D54B431EC2F0B500119FAA /* CreateRoomModel.swift */; };
+		26E40F1D1EE6D9E600C643F0 /* GetDismissModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26E40F1C1EE6D9E600C643F0 /* GetDismissModel.swift */; };
+		26E40F1F1EE6DCBC00C643F0 /* ReceiveDismissToAgree.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26E40F1E1EE6DCBC00C643F0 /* ReceiveDismissToAgree.swift */; };
 		26F14F8A1ECA95EE006844C9 /* ShareView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26F14F891ECA95EE006844C9 /* ShareView.swift */; };
 		26F14F981ECAA2A7006844C9 /* FTIndicator.m in Sources */ = {isa = PBXBuildFile; fileRef = 26F14F8D1ECAA2A7006844C9 /* FTIndicator.m */; };
 		26F14F991ECAA2A7006844C9 /* FTNotificationIndicator.m in Sources */ = {isa = PBXBuildFile; fileRef = 26F14F901ECAA2A7006844C9 /* FTNotificationIndicator.m */; };
@@ -293,6 +298,9 @@
 		2629EBF61ECAFCA500616626 /* f0_nn8.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = f0_nn8.mp3; path = "sound 2/f0_nn8.mp3"; sourceTree = "<group>"; };
 		2629EBF71ECAFCA500616626 /* f0_nn9.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = f0_nn9.mp3; path = "sound 2/f0_nn9.mp3"; sourceTree = "<group>"; };
 		262B52971EE640BF002BAC8B /* ShowCardModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShowCardModel.swift; sourceTree = "<group>"; };
+		262B529A1EE6AEC3002BAC8B /* RightImgView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RightImgView.swift; sourceTree = "<group>"; };
+		262B529C1EE6B7DE002BAC8B /* DismissRoom.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DismissRoom.swift; sourceTree = "<group>"; };
+		262B529E1EE6BAC9002BAC8B /* DismissRoomModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DismissRoomModel.swift; sourceTree = "<group>"; };
 		262E1C391EB1CBDE007CC745 /* CaptureScreenTool.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CaptureScreenTool.swift; sourceTree = "<group>"; };
 		26315CD31ED28FA30026EC6B /* SendRequestModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SendRequestModel.swift; sourceTree = "<group>"; };
 		26315CD71ED293BA0026EC6B /* MarkChoose.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MarkChoose.swift; sourceTree = "<group>"; };
@@ -383,6 +391,8 @@
 		26D54B361EC2C5F800119FAA /* SocketVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SocketVC.swift; path = ../SocketVC.swift; sourceTree = "<group>"; };
 		26D54B3D1EC2C7D000119FAA /* cccc.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = cccc.png; sourceTree = "<group>"; };
 		26D54B431EC2F0B500119FAA /* CreateRoomModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreateRoomModel.swift; sourceTree = "<group>"; };
+		26E40F1C1EE6D9E600C643F0 /* GetDismissModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GetDismissModel.swift; sourceTree = "<group>"; };
+		26E40F1E1EE6DCBC00C643F0 /* ReceiveDismissToAgree.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReceiveDismissToAgree.swift; sourceTree = "<group>"; };
 		26F14F891ECA95EE006844C9 /* ShareView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShareView.swift; sourceTree = "<group>"; };
 		26F14F8C1ECAA2A7006844C9 /* FTIndicator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FTIndicator.h; sourceTree = "<group>"; };
 		26F14F8D1ECAA2A7006844C9 /* FTIndicator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FTIndicator.m; sourceTree = "<group>"; };
@@ -544,6 +554,8 @@
 				26F14F9F1ECAC785006844C9 /* ScoreView.swift */,
 				2629EBE21ECADE1D00616626 /* SettingV.swift */,
 				26421EED1EE15099000C9B25 /* OffLineV.swift */,
+				262B529C1EE6B7DE002BAC8B /* DismissRoom.swift */,
+				26E40F1E1EE6DCBC00C643F0 /* ReceiveDismissToAgree.swift */,
 			);
 			name = view;
 			sourceTree = "<group>";
@@ -708,6 +720,7 @@
 				26F5B5C61EE102B9004C4ADB /* ShowAndAlertV.swift */,
 				2688ED681EE26C4800B69115 /* GameOverView.swift */,
 				26A483381EE4ECF9007D977D /* GameV.swift */,
+				262B529A1EE6AEC3002BAC8B /* RightImgView.swift */,
 			);
 			name = view;
 			sourceTree = "<group>";
@@ -743,6 +756,8 @@
 				26A4833E1EE58DB2007D977D /* JIfenModel.swift */,
 				26A483401EE58FE0007D977D /* RoomOwner.swift */,
 				262B52971EE640BF002BAC8B /* ShowCardModel.swift */,
+				262B529E1EE6BAC9002BAC8B /* DismissRoomModel.swift */,
+				26E40F1C1EE6D9E600C643F0 /* GetDismissModel.swift */,
 			);
 			name = model;
 			sourceTree = "<group>";
@@ -1127,6 +1142,7 @@
 				260C666A1EB23415006C119E /* POPCustomAnimation.mm in Sources */,
 				26D54B331EC2C50500119FAA /* AvdioTool.swift in Sources */,
 				264A32D21EC598C7001405C4 /* RoomModel.swift in Sources */,
+				262B529B1EE6AEC3002BAC8B /* RightImgView.swift in Sources */,
 				26B878991ED45A49008A24E5 /* CardNameModel.swift in Sources */,
 				26CFB6E11EC2FC2E00327748 /* CreateV.swift in Sources */,
 				26D54B151EC2C0E700119FAA /* VoicieControl.swift in Sources */,
@@ -1142,6 +1158,7 @@
 				26F14F9E1ECAA785006844C9 /* HowToPlayV.swift in Sources */,
 				26CDFB4F1ECD977700EF3846 /* RightV.swift in Sources */,
 				2603D96F1EADCD440069B132 /* CustomAlertView.swift in Sources */,
+				262B529F1EE6BAC9002BAC8B /* DismissRoomModel.swift in Sources */,
 				260C66651EB23415006C119E /* POPAnimationRuntime.mm in Sources */,
 				260EBC201ECE87A9003DD5CA /* ClockCountDown.swift in Sources */,
 				260EBC281ECECB14003DD5CA /* GameLeftCornerMsg.swift in Sources */,
@@ -1174,7 +1191,9 @@
 				26F14F8A1ECA95EE006844C9 /* ShareView.swift in Sources */,
 				264A2CE61EC45D21001B7F0E /* ChatV.swift in Sources */,
 				26D54AE51EC2BD6D00119FAA /* DDXML.swift in Sources */,
+				26E40F1F1EE6DCBC00C643F0 /* ReceiveDismissToAgree.swift in Sources */,
 				260C666E1EB23415006C119E /* POPMath.mm in Sources */,
+				26E40F1D1EE6D9E600C643F0 /* GetDismissModel.swift in Sources */,
 				2603D95C1EADCA3C0069B132 /* WXTool.swift in Sources */,
 				264A32CF1EC58485001405C4 /* XMLTool.swift in Sources */,
 				26D54B311EC2C42800119FAA /* ServerSendMsg.swift in Sources */,
@@ -1197,6 +1216,7 @@
 				2682558D1EC19ECC0080CCCD /* LoginInfoLocal.swift in Sources */,
 				26D54B371EC2C5F800119FAA /* SocketVC.swift in Sources */,
 				26F14FA01ECAC785006844C9 /* ScoreView.swift in Sources */,
+				262B529D1EE6B7DE002BAC8B /* DismissRoom.swift in Sources */,
 				2603D95B1EADCA3C0069B132 /* WXApiManager.m in Sources */,
 				266EC2031EBC854000AEA31C /* TimerLabel.swift in Sources */,
 				260EBC241ECEC564003DD5CA /* CardsLayout.swift in Sources */,

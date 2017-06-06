@@ -24,28 +24,7 @@ class GetCurrenIndex: NSObject {
     /// 牛牛纸牌
     var niuniuReplaceArray : [String] = []
     
-    
-    /// 用户增加分数
-    func userReplaceScore() -> [Int] {
-        
-        print("\((#file as NSString).lastPathComponent):(\(#line))\n")
-        var dic : [Int] = []
-        dic = [ScoreModel.shared.userScoreDic.remove(at: getCurrentIndex())]
-        return dic
-    }
-    
-    var markNN = true
 
-    
-    /// 用户剩余分数
-    func leftReplaceScoreFuns() -> [Int] {
-        
-        print("\((#file as NSString).lastPathComponent):(\(#line))\n")
-        var dic : [Int] = []
-        dic = [ScoreModel.shared.leftScore.remove(at: getCurrentIndex())]
-        return dic
-    }
-    
     /// 获取对应用户所在的索引
     func getCurrentIndex() -> Int {
         /// 返回当前用户的分数位置(用户1)
@@ -97,17 +76,21 @@ class GetCurrenIndex: NSObject {
         return newDic
     }
     
-
-
+    
+    
     
     /// 用户当前分数
     func currentUserScore() -> [String] {
-        print("\((#file as NSString).lastPathComponent):(\(#line))\n")
+        
+        print("\((#file as NSString).lastPathComponent):(\(#line))\n",RoomModel.shared.userScore)
         
         var ddd : [String] = []
         
-        ddd = [RoomModel.shared.userScore.remove(at: GetCurrenIndex.shared.getCurrentIndex())]
-        
+        for value in RoomModel.shared.userScore {
+            if value != RoomModel.shared.userScore[GetCurrenIndex.shared.getCurrentIndex()] {
+                ddd.append(value)
+            }
+        }
         print("\((#file as NSString).lastPathComponent):(\(#line))\n",ddd)
         
         return ddd
