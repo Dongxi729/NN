@@ -208,9 +208,8 @@ class GameV: UIView {
     }
     
     /// 显示同意、不同意解散视图
-    func showXXX() -> Void {
-        let d = DismissRoom.init(frame: CGRect.init(x: 0, y: 0, width: SW * 0.6, height: SH * 0.75))
-        d.center = self.center
+    func AgreeToDismissNotiSEL() -> Void {
+        let d = ReceiveDismissToAgree.init(frame: CGRect.init(x: 0, y: 0, width: SW * 0.6, height: SH * 0.75))
         
         DispatchQueue.main.async {
             self.addSubview(d)
@@ -308,14 +307,6 @@ class GameV: UIView {
         
         createGamingLayout()
     }
-    
-    // MARK: - 显示同意不同意
-    func AgreeToDismissNotiSEL() -> Void {
-        NotificationCenter.default.removeObserver(self, name: NSNotification.Name(rawValue: "AgreeToDismissNoti"), object: nil)
-        
-        
-    }
-    
     
     // MARK: - 收到牌，创建布局
     func showCardsSEL() -> Void {

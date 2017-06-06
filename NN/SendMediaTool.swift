@@ -90,6 +90,17 @@ func testServer() {
 /// 返回大厅
 public func backToholl() {
     UIApplication.shared.keyWindow?.rootViewController?.view.removeFromSuperview()
+  
+    print("\((#file as NSString).lastPathComponent):(\(#line))\n",UIApplication.shared.keyWindow?.rootViewController?.view.subviews.last)
+    
+    if NSStringFromClass((UIApplication.shared.keyWindow?.rootViewController?.view.subviews.last?.classForCoder)!).contains("GameV") {
+        UIApplication.shared.keyWindow?.rootViewController?.view.subviews.last?.removeFromSuperview()
+        
+        print("\((#file as NSString).lastPathComponent):(\(#line))\n")
+    }
+    
+    print("\((#file as NSString).lastPathComponent):(\(#line))\n",UIApplication.shared.keyWindow?.rootViewController?.view.subviews.last)
+
 }
 
 // MARK: - 上报用户信息
@@ -343,7 +354,9 @@ func bytesShwoFunc(_over : [Byte]) -> Void {
         //        <Nn/>
         //        <ty su="true" ms="退出成功"/>
         //        </M>
-        if AnylasyseWithKey(analayseStr: String.init(data: dd as Data, encoding: String.Encoding.utf8)!, secondNode: "ty", withSepcifiedKey: "ms").contains("退出成功") {
+        if AnylasyseWithKey(analayseStr: String.init(data: dd as Data, encoding: String.Encoding.utf8)!, secondNode: "ty", withSepcifiedKey: "su") == "true" {
+            
+            print("\((#file as NSString).lastPathComponent):(\(#line))\n")
             /// 返回大厅
             backToholl()
         }
@@ -355,7 +368,6 @@ func bytesShwoFunc(_over : [Byte]) -> Void {
             
             NotificationCenter.default.post(name: NSNotification.Name(rawValue: "exitRoomRequest"), object: nil)
         }
-        
     }
     
     /// 申请解散房间
@@ -364,6 +376,9 @@ func bytesShwoFunc(_over : [Byte]) -> Void {
         if AnylasyseWithKey(analayseStr: String.init(data: dd as Data, encoding: String.Encoding.utf8)!, secondNode: "ty", withSepcifiedKey: "ms").contains("有用户申请解散房间，是否同意") {
             GetDismissModel.shared.receiveStr = String.init(data: dd as Data, encoding: String.Encoding.utf8)!
         }
+        
+        print("\((#file as NSString).lastPathComponent):(\(#line))\n")
+        
         NotificationCenter.default.post(name: NSNotification.Name(rawValue: "AgreeToDismissNoti"), object: nil)
     }
     

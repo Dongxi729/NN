@@ -128,7 +128,9 @@ class MainGameViewController: UIViewController {
     func enterGamingVSEL() {
         
         /// 移除监听对象
-        NotificationCenter.default.removeObserver(self, name: NSNotification.Name(rawValue: "PlayersInRoom"), object: nil)
+//        NotificationCenter.default.removeObserver(self, name: NSNotification.Name(rawValue: "PlayersInRoom"), object: nil)
+        
+        print("\((#file as NSString).lastPathComponent):(\(#line))\n")
         
         /// 判断人数是否大于1
         if RoomModel.shared.limitedPlayersNum >= 1 {

@@ -8,7 +8,7 @@
 
 import UIKit
 
-class ReceiveDismissToAgree: NSObject {
+class ReceiveDismissToAgree: UIView {
     
     lazy var descLabel: UILabel = {
         let d : UILabel = UILabel.init(frame: CGRect.init(x: 0, y: 0, width: 100, height: 100))
@@ -25,6 +25,7 @@ class ReceiveDismissToAgree: NSObject {
         d.addGestureRecognizer(tapGes)
         return d
     }()
+    
     
     /// 不同意
     lazy var confirmBtn: UIButton = {
