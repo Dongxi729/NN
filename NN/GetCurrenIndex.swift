@@ -96,6 +96,8 @@ class GetCurrenIndex: NSObject {
         
         return newDic
     }
+    
+
 
     
     /// 用户当前分数

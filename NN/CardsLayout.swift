@@ -67,7 +67,7 @@ class CardsLayout : CommonV {
         print("\((#file as NSString).lastPathComponent):(\(#line))\n")
         
         /// 亮牌
-        showCardsSEL()
+        showCardsFunc()
     }
     
     /// 显示

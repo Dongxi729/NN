@@ -208,7 +208,7 @@ class GameBgV: CommonV {
     
     /// 测试--- 亮牌
     @objc fileprivate func showCardsRequest() {
-        showCardsSEL()
+        showCardsFunc()
     }
     
     /// 右上角视图
@@ -925,7 +925,7 @@ extension GameBgV : RightDownVDelegate {
 
 extension GameBgV : ShowAndAlertVDelegate {
     func showSEL() {
-        showCardsSEL()
+        showCardsFunc()
     }
     
     func alertSEL() {

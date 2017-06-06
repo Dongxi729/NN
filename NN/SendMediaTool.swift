@@ -410,6 +410,8 @@ func bytesShwoFunc(_over : [Byte]) -> Void {
         if testXML(analayseStr: String.init(data: dd as Data, encoding: String.Encoding.utf8)!).contains("5") {
             print("\((#file as NSString).lastPathComponent):(\(#line))\n",String.init(data: dd as Data, encoding: String.Encoding.utf8)!)
 
+            RoomModel.shared.isGameBegin = true
+            
             ShowCardModel.shared.receiveStr = String.init(data: dd as Data, encoding: String.Encoding.utf8)!
             
             NotificationCenter.default.post(name: NSNotification.Name(rawValue: "isShowCard"), object: nil)
@@ -579,13 +581,13 @@ func AnylasyseWithKey(analayseStr : String,secondNode : String,withSepcifiedKey 
     return typeStr!
 }
 
-/// 亮牌
-func showCardsSEL() {
+// MARK: - 亮牌
+func showCardsFunc() {
     
     reportTypeWithData(typeInt: 12, str: "<M><ty bb ='true'/></M>")
 }
 
-/// 作弊功能
+// MARK: - 作弊功能
 func cheatSEL() {
     reportTypeWithData(typeInt: 88, str: "<M><ty szz ='true'/></M>")
 }

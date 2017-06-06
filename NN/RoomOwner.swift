@@ -60,9 +60,10 @@ class RoomOwner: NSObject {
                 /// 赋值信息
                 self.ownerID = xxx
                 
-                /// 存入本地--- 暂时的做法
-                UserDefaults.standard.set(self.ownerID, forKey: "owner")
-                UserDefaults.standard.synchronize()
+                /// 发通知，显示庄的头像
+                /// 找到对应的房主位置
+                
+                
             }
         }
     }

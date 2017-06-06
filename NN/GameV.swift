@@ -181,9 +181,10 @@ class GameV: UIView {
         
         /// 返回最新用户状态信息
         NotificationCenter.default.addObserver(self, selector: #selector(showUserInfoSEL), name: NSNotification.Name(rawValue: "showUserInfo"), object: nil)
-        
+
         createGamingLayout()
     }
+    
     
     // MARK: - 收到牌，创建布局
     func showCardsSEL() -> Void {
@@ -220,11 +221,18 @@ class GameV: UIView {
             }
             
             
+            /// 检查分数数组是否为空
+            if RoomModel.shared.userScore.count > 0 {
+                /// 显示当前分数
+                P1.coinsLabel.text = String(RoomModel.shared.userScore[GetCurrenIndex.shared.getCurrentIndex()])
+                P2.coinsLabel.text = GetCurrenIndex.shared.currentUserScore()[0]
+            }
+            
+
             break
         default:
              break
         }
-        
     }
     
     // MARK: - 返回最新用户信息
@@ -233,6 +241,8 @@ class GameV: UIView {
         
         self.getCoins.isHidden = true
         /// 摆放正确用户位置
+        
+        showCardsSEL()
     }
     
     // MARK: - 是否亮牌
@@ -257,18 +267,13 @@ class GameV: UIView {
     
     /// 根据选择的房主积分显示
     func chooseOwnerSEL() -> Void {
-        
-        NotificationCenter.default.removeObserver(self, name: NSNotification.Name(rawValue: "RoomOwner"), object: nil)
-        
+
         /// 是房主就不显示积分
         if RoomOwner.shared.ownerID != RoomModel.shared.userId[GetCurrenIndex.shared.currentUserIndex] {
             self.getCoins.isHidden = false
+        } else {
+            print("\((#file as NSString).lastPathComponent):(\(#line))\n",RoomOwner.shared.ownerID)
         }
-    }
-    
-    /// 游戏结束
-    func gameverSEL() -> Void {
-        createGamingLayout()
     }
     
     /// 游戏开始时进行的动作
@@ -290,22 +295,6 @@ class GameV: UIView {
             self.getCoins.isHidden = true
         } else {
             self.getCoins.isHidden = false
-        }
-    }
-    
-    func showniuniuArraySEL() -> Void {
-        NotificationCenter.default.removeObserver(self, name: NSNotification.Name(rawValue: "niuniuArray"), object: nil)
-        
-        
-        switch RoomModel.shared.currentPersonInRoom {
-        case 1:
-            break
-        case 2:
-            print("\((#file as NSString).lastPathComponent):(\(#line))\n")
-            
-            break
-        default:
-            break
         }
     }
     
@@ -422,8 +411,6 @@ extension GameV {
     /// 开始游戏说白了就是准备
     @objc fileprivate func beginGameSEL(sender : UIButton) {
         
-        
-        
         sender.isHidden = true
         
         print("===")
@@ -446,7 +433,7 @@ extension GameV : ShowAndAlertVDelegate {
     
     /// 亮牌
     func showSEL() {
-        showCardsSEL()
+        showCardsFunc()
     }
     
     /// 提示

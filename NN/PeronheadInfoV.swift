@@ -31,7 +31,7 @@ class PeronheadInfoV: UIView {
         return d
     }()
     
-    /// 抢
+    // MARK: - 抢
     lazy var robImg: UIImageView = {
         let d : UIImageView = UIImageView.init(frame: self.finishImg.frame)
         d.image = #imageLiteral(resourceName: "personRob")
@@ -39,7 +39,7 @@ class PeronheadInfoV: UIView {
         return d
     }()
     
-    /// 不抢
+    // MARK: - 不抢
     lazy var notRobImg: UIImageView = {
         let d : UIImageView = UIImageView.init(frame: self.finishImg.frame)
         d.image = #imageLiteral(resourceName: "personNotRob")
@@ -47,7 +47,7 @@ class PeronheadInfoV: UIView {
         return d
     }()
     
-    /// 名字
+    // MARK: - 名字
     lazy var nameLabel: UILabel = {
         let d : UILabel = UILabel.init(frame: CGRect.init(x: self.Width * 0.5, y: 2 * screenScale, width: self.Width * 0.5, height: self.Height * 0.4))
         
@@ -64,7 +64,7 @@ class PeronheadInfoV: UIView {
         return d
     }()
     
-    /// 剩余分数
+    // MARK: - 剩余分数
     lazy var coinsLabel: UILabel = {
         let d : UILabel = UILabel.init(frame: CGRect.init(x: self.Width * 0.5, y: self.nameLabel.BottomY + 2 * screenScale, width: self.Width * 0.5, height: self.Height * 0.4))
         
@@ -81,7 +81,7 @@ class PeronheadInfoV: UIView {
     }()
     
     
-    /// 头像
+    // MARK: - 头像
     lazy var headImg: UIImageView = {
         let d : UIImageView = UIImageView.init(frame: CGRect.init(x: 3 * screenScale, y: 1 * screenScale, width:  self.Width * 0.43, height: self.Width * 0.42))
         d.backgroundColor = UIColor.gray
@@ -89,7 +89,7 @@ class PeronheadInfoV: UIView {
         return d
     }()
     
-    /// 整体背景
+    // MARK: - 整体背景
     fileprivate lazy var hhhh: UIImageView = {
         let d : UIImageView = UIImageView.init(frame: self.bounds)
         d.image = #imageLiteral(resourceName: "headInfoBgV")
@@ -97,7 +97,7 @@ class PeronheadInfoV: UIView {
         return d
     }()
     
-    /// 显示底部打纸牌
+    // MARK: - 显示底部打纸牌
     lazy var bigCardLayout: CardsLayout = {
         let d : CardsLayout = CardsLayout.init(frame: CGRect.init(x: self.hhhh.RightX, y: -self.Height * 0.45, width: self.Width * 3, height: self.Height * 1.45))
         d.isUserInteractionEnabled = true
@@ -105,7 +105,7 @@ class PeronheadInfoV: UIView {
     }()
     
     
-    /// 波形图片
+    // MARK: - 波形图片
     fileprivate lazy var showWave: UIImageView = {
         let d : UIImageView = UIImageView.init(frame: CGRect.init(x: self.Width * 0.25, y: 0, width: self.Width * 0.25, height: self.Height * 0.5))
         d.image = #imageLiteral(resourceName: "peopleTalk")
@@ -114,7 +114,7 @@ class PeronheadInfoV: UIView {
         return d
     }()
     
-    /// 离线图标
+    // MARK: - 离线图标
     fileprivate lazy var offLineImg: UIImageView = {
         let d : UIImageView = UIImageView.init(frame: CGRect.init(x: self.Width * 0.25, y: 0, width: self.Width * 0.25, height: self.Height * 0.25))
         d.image = #imageLiteral(resourceName: "offLine")
@@ -122,7 +122,7 @@ class PeronheadInfoV: UIView {
         return d
     }()
     
-    /// 庄主图标
+    // MARK: - 庄主图标
     fileprivate lazy var ownerImg: UIImageView = {
         let d : UIImageView = UIImageView.init(frame: CGRect.init(x: self.Width * 0.25, y: 2 * screenScale, width: self.Width * 0.25, height: self.Height * 0.25))
         d.image = #imageLiteral(resourceName: "owner")
@@ -194,6 +194,8 @@ class PeronheadInfoV: UIView {
                 backCardsLayout.image = UIImage.init(named:value)
                 
                 addSubview(backCardsLayout)
+                
+                print("\((#file as NSString).lastPathComponent):(\(#line))\n")
             }
             
             /// 重置标识
@@ -216,16 +218,19 @@ class PeronheadInfoV: UIView {
                     index += 1
                     
                     addSubview(backCardsLayout)
+                    
+                    print("\((#file as NSString).lastPathComponent):(\(#line))\n")
                 }
             }
         }
     }
     
     
+    
     override init(frame: CGRect) {
         super.init(frame: frame)
-        
     }
+    
     
     // MARK: - 牛牛图片
     lazy var niuniuImg: UIImageView = {
@@ -236,6 +241,8 @@ class PeronheadInfoV: UIView {
     
     override func layoutSubviews() {
         super.layoutSubviews()
+        
+        
         
         addSubview(hhhh)
         addSubview(nameLabel)
@@ -289,9 +296,6 @@ class PeronheadInfoV: UIView {
             /// 尚需修改
             addCards(cardsArray: imgNames)
         }
-        
-        
-        
     }
     
     required init?(coder aDecoder: NSCoder) {
