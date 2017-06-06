@@ -298,6 +298,8 @@ class RoomModel: NSObject {
             if userUID != nil {
                 self.userId.append(userUID!)
             }
+            
+            print("\((#file as NSString).lastPathComponent):(\(#line))\n",self.userId)
         }
     }
 }

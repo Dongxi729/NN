@@ -340,10 +340,8 @@ func bytesShwoFunc(_over : [Byte]) -> Void {
             /// 收到牌，证明已经开始游戏，赋值标识
             RoomModel.shared.isGameBegin = true
             
-            NotificationCenter.default.post(name: NSNotification.Name(rawValue: "isGameBegin"), object: nil)
+            NotificationCenter.default.post(name: NSNotification.Name(rawValue: "showCards"), object: nil)
         }
-        
-        RoomModel.shared.currentRoomPlayInfo = String.init(data: dd as Data, encoding: String.Encoding.utf8)!
         
         /// 返回玩家信息状态
         if AnylasyseWithKey(analayseStr:String.init(data: dd as Data, encoding: String.Encoding.utf8)! , secondNode: "ty", withSepcifiedKey: "type").contains("0") {
@@ -393,6 +391,9 @@ func bytesShwoFunc(_over : [Byte]) -> Void {
             print("\((#file as NSString).lastPathComponent):(\(#line))\n",String.init(data: dd as Data, encoding: String.Encoding.utf8)!)
             
             RoomOwner.shared.receiveStr = String.init(data: dd as Data, encoding: String.Encoding.utf8)!
+            
+            /// RoomOwner
+            NotificationCenter.default.post(name: NSNotification.Name(rawValue: "RoomOwner"), object: nil)
         }
  
         

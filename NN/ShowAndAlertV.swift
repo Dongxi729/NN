@@ -39,7 +39,6 @@ class  ShowAndAlertV: UIView {
     ///////交互事件
     /// 提示
     @objc fileprivate func alertSEL() {
-        print("\((#file as NSString).lastPathComponent):(\(#line))\n")
 //        CardNameModel.shared.isShowP1Front = true
         self.delegate?.alertSEL()
         

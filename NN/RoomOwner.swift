@@ -59,6 +59,10 @@ class RoomOwner: NSObject {
                 
                 /// 赋值信息
                 self.ownerID = xxx
+                
+                /// 存入本地--- 暂时的做法
+                UserDefaults.standard.set(self.ownerID, forKey: "owner")
+                UserDefaults.standard.synchronize()
             }
         }
     }

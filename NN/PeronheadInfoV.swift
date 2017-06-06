@@ -170,17 +170,18 @@ class PeronheadInfoV: UIView {
     /// 开关关闭牛牛图片
     var isNinNiuShow = false
     
-    /// 添加分数图片
+    // MARK: - 添加分数图片
     func addScoreImg(str : String,type : Int) -> Void {
         scoreImg.abc(abc: str, scoreType: type)
     }
     
-    /// 添加牛牛图片
+    // MARK: - 添加牛牛图片
     func addNNimg(str imgName:String) -> Void {
         self.niuniuImg.image = UIImage.init(named: imgName)
     }
     
-    /// 摆放纸牌
+
+    // MARK: - 摆放纸牌
     func addCards(cardsArray : [String]) -> Void {
         
         /// 提示的时候
@@ -205,6 +206,7 @@ class PeronheadInfoV: UIView {
                 if isShowBottomCardLayout == false {
                     backCardsLayout = UIImageView.init(frame: CGRect.init(x: CGFloat(self.samllCardsShowLeftOrRight) + CGFloat(index) * self.Width * 0.15 , y: 2 * screenScale, width: self.Width * 0.3, height: self.Height - screenScale * 3))
                     
+                    addSubview(backCardsLayout)
                     
                 } else if isShowBottomCardLayout == true {
                     backCardsLayout = UIImageView.init(frame: CGRect.init(x: self.Width * CGFloat(self.samllCardsShowLeftOrRight) + CGFloat(index) * self.Width * 0.15 , y: 2 * screenScale, width: self.Width * 0.3, height: self.Height - screenScale * 3))
@@ -225,7 +227,7 @@ class PeronheadInfoV: UIView {
         
     }
     
-    /// 牛牛图片
+    // MARK: - 牛牛图片
     lazy var niuniuImg: UIImageView = {
         let d : UIImageView = UIImageView.init(frame: CGRect.init(x: 0, y: 0, width: self.Width, height: self.Height))
         return d

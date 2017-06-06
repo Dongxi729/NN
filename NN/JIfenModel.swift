@@ -23,7 +23,8 @@ class JIfenModel: NSObject {
     /// 存放抢庄标
     var isJifenArray : [Int] = []
     
-
+    /// 显示积分
+    var isShowJifenV = false
     
     /// 是否抢庄开始
     var isRobOrNot = false
@@ -61,18 +62,21 @@ class JIfenModel: NSObject {
                 
                 /// 判断添加进去是否达到房间人数
                 if self.isJifenArray.count == RoomModel.shared.currentPersonInRoom {
-                    print("\((#file as NSString).lastPathComponent):(\(#line))\n",self.isJifenArray)
+                    var index = 0
+                    for value in self.isJifenArray {
+                        if value == 0 {
+                            index += 1
+                        }
+                    }
                     
-                    /// 取出当前的是否抢庄
-                    print("\((#file as NSString).lastPathComponent):(\(#line))\n",self.isJifenArray[GetCurrenIndex.shared.currentUserIndex])
+                    print("\((#file as NSString).lastPathComponent):(\(#line))\n",index)
                     
-                    /// 判断是否是当前用户的是否( ⊙ o ⊙ )压积分
-                    /// 0 - 没开始抢
-                    /// 10
-                    /// 15
-                    /// 20
-                    let ddd = self.isJifenArray[GetCurrenIndex.shared.currentUserIndex]
-                    
+                    /// 如果取出压分的值都为0 的话，说明压根就没选分数过，但是还是不知道房主是谁
+                    if index == RoomModel.shared.currentPersonInRoom {
+                        self.isShowJifenV = true
+                    } else {
+                        self.isShowJifenV = false
+                    }
                 }
             }
         }
