@@ -90,17 +90,10 @@ func testServer() {
 /// 返回大厅
 public func backToholl() {
     UIApplication.shared.keyWindow?.rootViewController?.view.removeFromSuperview()
-  
-    print("\((#file as NSString).lastPathComponent):(\(#line))\n",UIApplication.shared.keyWindow?.rootViewController?.view.subviews.last)
     
     if NSStringFromClass((UIApplication.shared.keyWindow?.rootViewController?.view.subviews.last?.classForCoder)!).contains("GameV") {
         UIApplication.shared.keyWindow?.rootViewController?.view.subviews.last?.removeFromSuperview()
-        
-        print("\((#file as NSString).lastPathComponent):(\(#line))\n")
     }
-    
-    print("\((#file as NSString).lastPathComponent):(\(#line))\n",UIApplication.shared.keyWindow?.rootViewController?.view.subviews.last)
-
 }
 
 // MARK: - 上报用户信息
@@ -382,6 +375,17 @@ func bytesShwoFunc(_over : [Byte]) -> Void {
         NotificationCenter.default.post(name: NSNotification.Name(rawValue: "AgreeToDismissNoti"), object: nil)
     }
     
+    /// 收到最后成绩---用户最后统计数据
+    if typpppp == 20 {
+        
+        FinialScoreModel.shared.receiveStr = String.init(data: dd as Data, encoding: String.Encoding.utf8)!
+        
+        print("\((#file as NSString).lastPathComponent):(\(#line))\n")
+        
+        NotificationCenter.default.post(name: NSNotification.Name(rawValue: "FinialScoreNotifi"), object: nil)
+        
+    }
+    
     /// 根据类型进行处理
     if typpppp == 8 {
         
@@ -511,7 +515,7 @@ func bytesShwoFunc(_over : [Byte]) -> Void {
         
     }
     
-
+    
     
     /// 解散房间
     if typpppp == 90 {
@@ -520,7 +524,7 @@ func bytesShwoFunc(_over : [Byte]) -> Void {
             print("\((#file as NSString).lastPathComponent):(\(#line))\n","解散房间")
             
             DispatchQueue.main.async {
-                backToholl()
+//                backToholl()
             }
             
             /// 清空roomModel中的字典模型

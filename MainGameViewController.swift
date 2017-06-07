@@ -80,7 +80,11 @@ class MainGameViewController: UIViewController {
         print("\((#file as NSString).lastPathComponent):(\(#line))\n","离线通知")
     }
     
-
+    // MARK: - 显示成绩视图
+    fileprivate lazy var showFinalScoreV: FinalScoreV = {
+        let d : FinalScoreV = FinalScoreV.init(frame: self.view.bounds)
+        return d
+    }()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -109,8 +113,22 @@ class MainGameViewController: UIViewController {
         exitRoomV.center = view.center
         view.addSubview(exitRoomV)
         exitRoomV.isHidden = true
+        
+        /// 显示最后成绩视图
+//        FinialScoreNotifi
+        NotificationCenter.default.addObserver(self, selector: #selector(FinialScoreNotifiSEL), name: NSNotification.Name(rawValue: "FinialScoreNotifi"), object: nil)
     }
     
+    
+    // MARK: - 显示成绩视图
+    func FinialScoreNotifiSEL(){
+        
+        DispatchQueue.main.async {
+            UIApplication.shared.keyWindow?.rootViewController = ScoreViewController()
+        }
+        
+        print("\((#file as NSString).lastPathComponent):(\(#line))\n")
+    }
     
     // MARK: - 解散房间
     func exitRoomRequestSEL() -> Void {

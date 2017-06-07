@@ -4,7 +4,7 @@
 //
 //  Created by 郑东喜 on 2017/6/7.
 //  Copyright © 2017年 郑东喜. All rights reserved.
-//
+//  最后成绩视图
 
 import UIKit
 
@@ -26,7 +26,12 @@ class FinalScoreV: CommonV {
         
         addSubview(singleV)
         
-        singleV.showImgs(countInt: 3)
+        /// 判读模型中是有值--- 显示用户成绩视图个数
+        if FinialScoreModel.shared.fangzhuArray.count > 0 {
+            singleV.showImgs(countInt: FinialScoreModel.shared.fangzhuArray.count)
+        }
+        
+        
         self.backgroundColor = UIColor.colorWithHexString("7F7F7F", alpha: 0.8)
     }
     
@@ -57,10 +62,8 @@ class FinalScoreV: CommonV {
     func confirmSEL(sender : UIButton) -> Void {
         print("\((#file as NSString).lastPathComponent):(\(#line))\n")
         
-        let d = UIImageView.init(frame: self.bounds)
-        d.image = d.screenShot()
-        addSubview(d)
-        
+        /// 移除当前视图
+        self.removeFromSuperview()
     }
     
     /// 分享按钮事件
