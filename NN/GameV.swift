@@ -195,13 +195,23 @@ class GameV: UIView {
         return d
     }()
     
+    // MARK: - 显示解散视图
+    lazy var showDismissV: DismissRoom = {
+        let d : DismissRoom = DismissRoom.init(frame: CGRect.init(x: 0, y: 0, width: self.Width * 0.6, height: self.Height * 0.75))
+        return d
+    }()
+    
+    // MARK: - 显示不同意、同意解散视图
+    lazy var showDissmissAgeeeOrDisagreeV: ReceiveDismissToAgree = {
+        let d : ReceiveDismissToAgree = ReceiveDismissToAgree.init(frame: CGRect.init(x: 0, y: 0, width: self.Width * 0.6, height: self.Height * 0.75))
+        return d
+    }()
+    
     /// 显示解散视图
     func showXXX() -> Void {
-        let d = DismissRoom.init(frame: CGRect.init(x: 0, y: 0, width: SW * 0.6, height: SH * 0.75))
-        d.center = self.center
-        
         DispatchQueue.main.async {
-            self.addSubview(d)
+            self.showDismissV.center = self.center
+            self.addSubview(self.showDismissV)
         }
         
         NotificationCenter.default.removeObserver(self, name: NSNotification.Name(rawValue: "exitRoomRequest"), object: nil)
@@ -209,10 +219,13 @@ class GameV: UIView {
     
     /// 显示同意、不同意解散视图
     func AgreeToDismissNotiSEL() -> Void {
-        let d = ReceiveDismissToAgree.init(frame: CGRect.init(x: 0, y: 0, width: SW * 0.6, height: SH * 0.75))
+
         
         DispatchQueue.main.async {
-            self.addSubview(d)
+            
+            self.showDismissV.removeFromSuperview()
+            self.showDissmissAgeeeOrDisagreeV.center = self.center
+            self.addSubview(self.showDissmissAgeeeOrDisagreeV)
         }
         
         NotificationCenter.default.removeObserver(self, name: NSNotification.Name(rawValue: "AgreeToDismissNoti"), object: nil)
@@ -332,12 +345,12 @@ class GameV: UIView {
                 self.getCoins.isHidden = true
                 
                 DispatchQueue.main.async {
-//                    self.P1.isShowBottomCardLayout = false
+                    self.P1.isShowBottomCardLayout = false
                     self.P1.imgNames = CardNameModel.shared.currentUbackCardsName
                     self.P1.addCards(cardsArray: CardNameModel.shared.currentUbackCardsName)
                     
-//                    self.P2.imgNames = CardNameModel.shared.backCardsName
-//                    self.P2.isShowBottomCardLayout = true
+                    self.P2.imgNames = CardNameModel.shared.backCardsName
+                    self.P2.isShowBottomCardLayout = true
                 }
                 
           
@@ -477,11 +490,7 @@ class GameV: UIView {
                 self.getCoins.isHidden = false
             }
         }
-        
-        
-        
-        
-        
+       
     }
 }
 

@@ -25,6 +25,11 @@ class ViewController: UIViewController {
         return d
     }()
     
+    lazy var showDismissV: DismissRoom = {
+        let d : DismissRoom = DismissRoom.init(frame: CGRect.init(x: 0, y: 0, width: 400, height: 300))
+        return d
+    }()
+    
     //QQTool
     var wxTool = WXTool()
     
@@ -35,6 +40,7 @@ class ViewController: UIViewController {
         view.backgroundColor = UIColor.white
         
         view.addSubview(centerBtn)
+        
         
         
         //支付按钮
@@ -65,6 +71,8 @@ class ViewController: UIViewController {
         view.addSubview(wxLogin)
         view.addSubview(wxShare)
         view.addSubview(wxPay)
+        showDismissV.center = view.center
+        view.addSubview(showDismissV)
     }
     
     //支付

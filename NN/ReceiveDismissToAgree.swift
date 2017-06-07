@@ -9,12 +9,7 @@
 import UIKit
 
 class ReceiveDismissToAgree: UIView {
-    
-    lazy var descLabel: UILabel = {
-        let d : UILabel = UILabel.init(frame: CGRect.init(x: 0, y: 0, width: 100, height: 100))
-        d.text = "是否同意解散房间"
-        return d
-    }()
+
     
     /// 同意
     lazy var cancelBtn: UIButton = {
@@ -26,6 +21,21 @@ class ReceiveDismissToAgree: UIView {
         return d
     }()
     
+    // MARK: - 玩家退出
+    lazy var userExitLabel: UILabel = {
+        let d : UILabel = UILabel.init(frame: CGRect.init(x:self.Width * 0.315 , y: self.Height * 0.15, width: self.Width * 0.35, height: self.Height * 0.2))
+        d.text = "玩家2223"
+        d.font = UIFont(name: "SimHei", size: 12 * screenScale)
+        return d
+    }()
+    
+    // MARK: - descImg
+    lazy var descImg: UIImageView = {
+        let d : UIImageView = UIImageView.init(frame: CGRect.init(x: self.Width * 0.2, y: self.Height * 0.3, width: self.Width * 0.6, height: self.Height * 0.5))
+        d.contentMode = UIViewContentMode.scaleAspectFit
+        d.image = #imageLiteral(resourceName: "applyToDismissDesc")
+        return d
+    }()
     
     /// 不同意
     lazy var confirmBtn: UIButton = {
@@ -65,7 +75,8 @@ class ReceiveDismissToAgree: UIView {
         DispatchQueue.main.async {
             self.addSubview(self.confirmBtn)
             self.addSubview(self.cancelBtn)
-            self.addSubview(self.descLabel)
+            self.addSubview(self.descImg)
+            self.addSubview(self.userExitLabel)
         }
         
         

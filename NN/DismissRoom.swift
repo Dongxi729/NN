@@ -10,11 +10,15 @@ import UIKit
 
 class DismissRoom: UIView {
 
-    lazy var descLabel: UILabel = {
-        let d : UILabel = UILabel.init(frame: CGRect.init(x: 0, y: 0, width: 100, height: 100))
-        d.text = "是否解散房间"
+    
+    // MARK: - descImg
+    lazy var descImg: UIImageView = {
+        let d : UIImageView = UIImageView.init(frame: CGRect.init(x: self.Width * 0.2, y: self.Height * 0.2, width: self.Width * 0.6, height: self.Height * 0.5))
+        d.contentMode = UIViewContentMode.scaleAspectFit
+        d.image = #imageLiteral(resourceName: "talkToDismissDesc")
         return d
     }()
+    
     
     /// 确定按钮
     lazy var cancelBtn: UIButton = {
@@ -29,7 +33,7 @@ class DismissRoom: UIView {
     /// 取消按钮
     lazy var confirmBtn: UIButton = {
         let d : UIButton = UIButton.init(frame: CGRect.init(x: self.Width * 0.5, y: self.Height * 0.6, width: self.Width * 0.5, height: self.Height * 0.3))
-        d.setImage(#imageLiteral(resourceName: "alert_03"), for: .normal)
+        d.setImage(#imageLiteral(resourceName: "talkToDismiss"), for: .normal)
         
         d.isUserInteractionEnabled = true
         let tapGes = UITapGestureRecognizer.init(target: self, action: #selector(confirmSEL))
@@ -64,10 +68,8 @@ class DismissRoom: UIView {
         DispatchQueue.main.async {
             self.addSubview(self.confirmBtn)
             self.addSubview(self.cancelBtn)
-            self.addSubview(self.descLabel)
+            self.addSubview(self.descImg)
         }
-        
-        
     }
     
     
