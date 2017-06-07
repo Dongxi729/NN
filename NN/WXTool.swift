@@ -357,7 +357,6 @@ extension WXTool {
             req.scene = Int32(WXScene(rawValue: UInt32(shareType)).rawValue)
             WXApi.send(req)
         }
-        
     }
     
     /// 自定义微信分享
@@ -387,25 +386,61 @@ extension WXTool {
             //描述
             message.description = desc
             
-            
-            //            do {
-            //                let img = try UIImage.init(data: Data.init(contentsOf: URL.init(string:imgUrl)!))
-            //
-            //                let compresImage = UIImageJPEGRepresentation(img!, 0.1) as Data!
-            //
-            //                message.setThumbImage(UIImage.init(data: compresImage!))
-            //
-            //            } catch {
-            //
-            //                return
-            //            }
-            
             message.setThumbImage(UIImage.init(named: "shareImg"))
             
-//            let ext =  WXWebpageObject()
-//            ext.webpageUrl = imgUrl
+            //            let ext =  WXWebpageObject()
+            //            ext.webpageUrl = imgUrl
             
-//            message.mediaObject = ext
+            //            message.mediaObject = ext
+            
+            let req =  SendMessageToWXReq()
+            req.bText = false
+            req.message = message
+            req.scene = Int32(WXScene(rawValue: UInt32(shareType)).rawValue)
+            WXApi.send(req)
+        }
+    }
+    
+    
+    ///UIGraphicsBeginImageContextWithOptions(frame.size, false, 0)
+    //    layer.render(in: UIGraphicsGetCurrentContext()!)
+    //    let image = UIGraphicsGetImageFromCurrentImageContext()
+    //    UIGraphicsEndImageContext()
+    
+    func xxxxxx(title : String,desc : String,link : String,imgUrl : String,shareType : Int) -> Void {
+        
+        if WXApi.isWXAppInstalled() == false {
+            
+            CustomAlertView.shared.alertWithTitle(strTitle: "未安装微信或版本不支持")
+            
+        } else {
+            
+            let message =  WXMediaMessage()
+            
+            //标题
+            message.title = title
+            
+            //描述
+            message.description = desc
+            ///  屏幕宽度、高度不为0
+            guard frame.size.height > 0 && frame.size.width > 0 else {
+                
+                return
+            }
+            
+            UIGraphicsBeginImageContextWithOptions(frame.size, false, 0)
+            layer.render(in: UIGraphicsGetCurrentContext()!)
+            let image = UIGraphicsGetImageFromCurrentImageContext()
+            UIGraphicsEndImageContext()
+            
+            
+            message.setThumbImage(image)
+            
+            
+            let ext =  WXWebpageObject()
+            ext.webpageUrl = imgUrl
+            
+            message.mediaObject = ext
             
             let req =  SendMessageToWXReq()
             req.bText = false

@@ -25,8 +25,8 @@ class ViewController: UIViewController {
         return d
     }()
     
-    lazy var showDismissV: DismissRoom = {
-        let d : DismissRoom = DismissRoom.init(frame: CGRect.init(x: 0, y: 0, width: 400, height: 300))
+    lazy var showDismissV: FinalScoreV = {
+        let d : FinalScoreV = FinalScoreV.init(frame: self.view.bounds)
         return d
     }()
     
@@ -106,6 +106,7 @@ class ViewController: UIViewController {
             let alertVC = UIAlertController.init(title: "提示", message: "分享至", preferredStyle: .actionSheet)
             alertVC.addAction(UIAlertAction.init(title: "好友", style: .default, handler: { (false) in
                 self.wxTool.shareText(title: "测试", desc: "就是测试", link: "www.baidu.com", imgUrl: "http://upload-images.jianshu.io/upload_images/906389-1ca000d41787f8f5.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240", shareType: 0)
+                
             }))
             
             alertVC.addAction(UIAlertAction.init(title: "朋友圈", style: .default, handler: { (false) in
@@ -114,6 +115,12 @@ class ViewController: UIViewController {
             
             alertVC.addAction(UIAlertAction.init(title: "收藏", style: .default, handler: { (false) in
                 self.wxTool.shareText(title: "测试", desc: "就是测试", link: "www.baidu.com", imgUrl: "http://upload-images.jianshu.io/upload_images/906389-1ca000d41787f8f5.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240", shareType: 2)
+            }))
+            
+            alertVC.addAction(UIAlertAction.init(title: "收藏", style: .default, handler: { (false) in
+                let im = UIImageView.init(frame: self.view.bounds)
+                im.image = im.screenShot()
+                self.view.addSubview(im)
             }))
             
             alertVC.addAction(UIAlertAction.init(title: "取消", style: .destructive, handler: { (false) in

@@ -110,6 +110,11 @@
 		2682558D1EC19ECC0080CCCD /* LoginInfoLocal.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2682558C1EC19ECC0080CCCD /* LoginInfoLocal.swift */; };
 		26836AFB1EC1E2DB00061069 /* JoinRoomView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26836AFA1EC1E2DB00061069 /* JoinRoomView.swift */; };
 		2688ED691EE26C4800B69115 /* GameOverView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2688ED681EE26C4800B69115 /* GameOverView.swift */; };
+		2694F5491EE7A06600C0FEB6 /* FinalScoreV.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2694F5481EE7A06600C0FEB6 /* FinalScoreV.swift */; };
+		2694F54F1EE7D1DF00C0FEB6 /* ScreenShotViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2694F54E1EE7D1DF00C0FEB6 /* ScreenShotViewController.swift */; };
+		2694F5511EE7D28B00C0FEB6 /* FinialScoreModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2694F5501EE7D28B00C0FEB6 /* FinialScoreModel.swift */; };
+		2694F5541EE7D3C400C0FEB6 /* SingleSCoreV.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2694F5531EE7D3C400C0FEB6 /* SingleSCoreV.swift */; };
+		2694F5561EE7D3E300C0FEB6 /* ScorePersonInfoV.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2694F5551EE7D3E300C0FEB6 /* ScorePersonInfoV.swift */; };
 		26A2FD4E1ED6EF6700CAB137 /* ScoreModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26A2FD4D1ED6EF6700CAB137 /* ScoreModel.swift */; };
 		26A483391EE4ECF9007D977D /* GameV.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26A483381EE4ECF9007D977D /* GameV.swift */; };
 		26A4833B1EE54210007D977D /* TestViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26A4833A1EE54210007D977D /* TestViewController.swift */; };
@@ -331,6 +336,11 @@
 		2682558C1EC19ECC0080CCCD /* LoginInfoLocal.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginInfoLocal.swift; sourceTree = "<group>"; };
 		26836AFA1EC1E2DB00061069 /* JoinRoomView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JoinRoomView.swift; sourceTree = "<group>"; };
 		2688ED681EE26C4800B69115 /* GameOverView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameOverView.swift; sourceTree = "<group>"; };
+		2694F5481EE7A06600C0FEB6 /* FinalScoreV.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FinalScoreV.swift; sourceTree = "<group>"; };
+		2694F54E1EE7D1DF00C0FEB6 /* ScreenShotViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScreenShotViewController.swift; sourceTree = "<group>"; };
+		2694F5501EE7D28B00C0FEB6 /* FinialScoreModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FinialScoreModel.swift; sourceTree = "<group>"; };
+		2694F5531EE7D3C400C0FEB6 /* SingleSCoreV.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SingleSCoreV.swift; sourceTree = "<group>"; };
+		2694F5551EE7D3E300C0FEB6 /* ScorePersonInfoV.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScorePersonInfoV.swift; sourceTree = "<group>"; };
 		26A2FD4D1ED6EF6700CAB137 /* ScoreModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScoreModel.swift; sourceTree = "<group>"; };
 		26A483381EE4ECF9007D977D /* GameV.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameV.swift; sourceTree = "<group>"; };
 		26A4833A1EE54210007D977D /* TestViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TestViewController.swift; sourceTree = "<group>"; };
@@ -721,6 +731,7 @@
 				2688ED681EE26C4800B69115 /* GameOverView.swift */,
 				26A483381EE4ECF9007D977D /* GameV.swift */,
 				262B529A1EE6AEC3002BAC8B /* RightImgView.swift */,
+				2694F5521EE7D36100C0FEB6 /* finalResultScoreV */,
 			);
 			name = view;
 			sourceTree = "<group>";
@@ -758,6 +769,7 @@
 				262B52971EE640BF002BAC8B /* ShowCardModel.swift */,
 				262B529E1EE6BAC9002BAC8B /* DismissRoomModel.swift */,
 				26E40F1C1EE6D9E600C643F0 /* GetDismissModel.swift */,
+				2694F5501EE7D28B00C0FEB6 /* FinialScoreModel.swift */,
 			);
 			name = model;
 			sourceTree = "<group>";
@@ -839,6 +851,16 @@
 			name = joinRoom;
 			sourceTree = "<group>";
 		};
+		2694F5521EE7D36100C0FEB6 /* finalResultScoreV */ = {
+			isa = PBXGroup;
+			children = (
+				2694F5481EE7A06600C0FEB6 /* FinalScoreV.swift */,
+				2694F5531EE7D3C400C0FEB6 /* SingleSCoreV.swift */,
+				2694F5551EE7D3E300C0FEB6 /* ScorePersonInfoV.swift */,
+			);
+			name = finalResultScoreV;
+			sourceTree = "<group>";
+		};
 		26A4872A1EC0050700E9A091 /* tool */ = {
 			isa = PBXGroup;
 			children = (
@@ -846,6 +868,7 @@
 				2657FDBD1EB9B95400B92648 /* PlayCommon.swift */,
 				26013DB01EC1D21400ACA99D /* labelScroll */,
 				26A4872B1EC0060F00E9A091 /* AbortTool.swift */,
+				2694F54E1EE7D1DF00C0FEB6 /* ScreenShotViewController.swift */,
 				266EC2021EBC854000AEA31C /* TimerLabel.swift */,
 				26D54B141EC2C0E700119FAA /* VoicieControl.swift */,
 				26BC612F1EB2EB6C00AE9BE1 /* CountDownBtn.swift */,
@@ -1124,6 +1147,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				26D54AE61EC2BD6D00119FAA /* DDXMLDocument.m in Sources */,
+				2694F5541EE7D3C400C0FEB6 /* SingleSCoreV.swift in Sources */,
 				260C66711EB23415006C119E /* POPVector.mm in Sources */,
 				263541A51EE031A9005C4927 /* GetCurrenIndex.swift in Sources */,
 				26FB53A61ED81EC80046829F /* ShowGuessCoinsView.swift in Sources */,
@@ -1163,6 +1187,7 @@
 				260EBC201ECE87A9003DD5CA /* ClockCountDown.swift in Sources */,
 				260EBC281ECECB14003DD5CA /* GameLeftCornerMsg.swift in Sources */,
 				262433681ECC527A003C41D1 /* SicCowLayout.swift in Sources */,
+				2694F5491EE7A06600C0FEB6 /* FinalScoreV.swift in Sources */,
 				26836AFB1EC1E2DB00061069 /* JoinRoomView.swift in Sources */,
 				2657FD971EB860F900B92648 /* ControlVoice.swift in Sources */,
 				26D54B441EC2F0B500119FAA /* CreateRoomModel.swift in Sources */,
@@ -1180,6 +1205,7 @@
 				26CDFB4D1ECD975F00EF3846 /* PeronheadInfoV.swift in Sources */,
 				2657FDBA1EB982E100B92648 /* DeskCards.swift in Sources */,
 				26CDFB561ECDB83700EF3846 /* TimeUpdateVC.swift in Sources */,
+				2694F54F1EE7D1DF00C0FEB6 /* ScreenShotViewController.swift in Sources */,
 				26CAF9BD1EB4C219003065B8 /* LabelRepeat.swift in Sources */,
 				26A4872C1EC0060F00E9A091 /* AbortTool.swift in Sources */,
 				26D54B2F1EC2C36900119FAA /* SendMediaTool.swift in Sources */,
@@ -1195,6 +1221,7 @@
 				260C666E1EB23415006C119E /* POPMath.mm in Sources */,
 				26E40F1D1EE6D9E600C643F0 /* GetDismissModel.swift in Sources */,
 				2603D95C1EADCA3C0069B132 /* WXTool.swift in Sources */,
+				2694F5511EE7D28B00C0FEB6 /* FinialScoreModel.swift in Sources */,
 				264A32CF1EC58485001405C4 /* XMLTool.swift in Sources */,
 				26D54B311EC2C42800119FAA /* ServerSendMsg.swift in Sources */,
 				260C666D1EB23415006C119E /* POPLayerExtras.mm in Sources */,
@@ -1217,6 +1244,7 @@
 				26D54B371EC2C5F800119FAA /* SocketVC.swift in Sources */,
 				26F14FA01ECAC785006844C9 /* ScoreView.swift in Sources */,
 				262B529D1EE6B7DE002BAC8B /* DismissRoom.swift in Sources */,
+				2694F5561EE7D3E300C0FEB6 /* ScorePersonInfoV.swift in Sources */,
 				2603D95B1EADCA3C0069B132 /* WXApiManager.m in Sources */,
 				266EC2031EBC854000AEA31C /* TimerLabel.swift in Sources */,
 				260EBC241ECEC564003DD5CA /* CardsLayout.swift in Sources */,
