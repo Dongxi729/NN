@@ -59,8 +59,10 @@ class SingleSCoreV: UIView {
             /// 玩家ID
             scoreVImg.playerIDLabel.text = FinialScoreModel.shared.playerIDArray[valueIndex]
             
-            /// 头像
-            downImgWith(url: FinialScoreModel.shared.headImgURLArray[valueIndex], toView: scoreVImg.headImg)
+        
+                /// 头像
+            downImgWith(url: FinialScoreModel.shared.headImgURLArray[valueIndex], toView: self.scoreVImg.headImg)
+
             
             /// 判断显示房主图标
             if FinialScoreModel.shared.fangzhuArray[valueIndex] == "1" {

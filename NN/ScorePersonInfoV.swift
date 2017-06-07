@@ -13,7 +13,6 @@ class ScorePersonInfoV: UIView {
     // MARK: - 用户游戏视图头像
     lazy var headImg: UIImageView = {
         let d : UIImageView = UIImageView.init(frame: CGRect.init(x: self.Width * 0.33, y: self.Height * 0.05, width: self.Width * 0.35, height: self.Width * 0.35))
-        d.image = #imageLiteral(resourceName: "commBtn")
         d.layer.borderWidth = 1
         d.contentMode = UIViewContentMode.scaleAspectFit
         
@@ -134,9 +133,6 @@ class ScorePersonInfoV: UIView {
         addSubview(tpCountLabel)
         addSubview(winCountLabel)
         addSubview(niuniuCountLabel)
-        
-        /// 隐藏头像
-        headImg.isHidden = true
         
         /// 隐藏大赢家
         showBigWinner.isHidden = true

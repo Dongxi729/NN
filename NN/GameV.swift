@@ -446,7 +446,6 @@ class GameV: UIView {
         if RoomOwner.shared.ownerID != RoomModel.shared.userId[GetCurrenIndex.shared.currentUserIndex] {
             self.getCoins.isHidden = false
         } else {
-            print("\((#file as NSString).lastPathComponent):(\(#line))\n",RoomOwner.shared.ownerID)
         }
     }
     

@@ -42,8 +42,6 @@ class DismissRoomModel: NSObject {
             if user.attribute(forName: "ti") != nil {
                 let timer = Int((user.attribute(forName: "ti")?.stringValue!)!)
                 self.countDownTimer = timer
-                
-                print("\((#file as NSString).lastPathComponent):(\(#line))\n",self.countDownTimer)
             }
         }
     }
