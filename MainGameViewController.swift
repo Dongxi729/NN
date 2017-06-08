@@ -124,7 +124,10 @@ class MainGameViewController: UIViewController {
     func FinialScoreNotifiSEL(){
         
         DispatchQueue.main.async {
+            
+            
             UIApplication.shared.keyWindow?.rootViewController = ScoreViewController()
+            
         }
         
         print("\((#file as NSString).lastPathComponent):(\(#line))\n")
@@ -153,7 +156,12 @@ class MainGameViewController: UIViewController {
         /// 判断人数是否大于1
         if RoomModel.shared.limitedPlayersNum >= 1 {
             DispatchQueue.main.async {
-                UIApplication.shared.keyWindow?.rootViewController = GamingVC()
+                
+                /// 判断标识，只有为真的时候才可以进入房间
+                if RoomModel.shared.shouldEnterRoomMark {
+                    UIApplication.shared.keyWindow?.rootViewController = GamingVC()
+                }
+                
             }
         }
         

@@ -95,16 +95,7 @@ class GameV: UIView {
         d.text = String(RoomModel.shared.roomNumber) + RoomModel.shared.currentRounds
         return d
     }()
-    
-    
-    // MARK: - 提示
-    lazy var alertBtn: UIButton = {
-        let d : UIButton = UIButton.init(frame: CGRect.init(x: 0, y: self.Height * 0.7, width: 100, height: 50))
-        d.backgroundColor = UIColor.randomColor()
-        d.addTarget(self, action: #selector(testShow), for: .touchUpInside)
-        d.setTitle("提示", for: .normal)
-        return d
-    }()
+
     
     // MARK: - 局数
     fileprivate lazy var roundsNumLabel: UILabel = {
@@ -132,16 +123,6 @@ class GameV: UIView {
         sd.delegate = self
         return sd
     }()
-    
-    
-    /// 测试--- 提示
-    @objc fileprivate func testShow() {
-        
-        CardNameModel.shared.isShowP1Front = true
-        
-        P1.imgNames = CardNameModel.shared.rightCurrentIndexCards()
-        P1.addCards(cardsArray: CardNameModel.shared.rightCurrentIndexCards())
-    }
     
     // MARK: - 抢庄视图
     lazy var robOwner: RobRoomOwner = {
@@ -249,8 +230,6 @@ class GameV: UIView {
         addSubview(alertAndShowV)
         
         addSubview(roomNumber)
-        
-        addSubview(alertBtn)
         
         addSubview(rightImgView)
         

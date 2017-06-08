@@ -209,10 +209,6 @@ class PeronheadInfoV: UIView {
                 DispatchQueue.main.async {
                     self.addSubview(self.backCardsLayout)
                 }
-                
-                
-                
-                print("\((#file as NSString).lastPathComponent):(\(#line))\n")
             }
             
             /// 重置标识
@@ -224,12 +220,7 @@ class PeronheadInfoV: UIView {
                 
                 if isShowBottomCardLayout == false {
                     backCardsLayout = UIImageView.init(frame: CGRect.init(x: CGFloat(self.samllCardsShowLeftOrRight) + CGFloat(index) * self.Width * 0.15 , y: 2 * screenScale, width: self.Width * 0.3, height: self.Height - screenScale * 3))
-                    
-                    DispatchQueue.main.async {
-                        self.addSubview(self.backCardsLayout)
-                    }
-                    
-                    
+
                     
                 } else if isShowBottomCardLayout == true {
                     backCardsLayout = UIImageView.init(frame: CGRect.init(x: self.Width * CGFloat(self.samllCardsShowLeftOrRight) + CGFloat(index) * self.Width * 0.15 , y: 2 * screenScale, width: self.Width * 0.3, height: self.Height - screenScale * 3))
@@ -241,9 +232,6 @@ class PeronheadInfoV: UIView {
                     DispatchQueue.main.async {
                         self.addSubview(self.backCardsLayout)
                     }
-                    
-                    
-                    
                     print("\((#file as NSString).lastPathComponent):(\(#line))\n")
                 }
             }

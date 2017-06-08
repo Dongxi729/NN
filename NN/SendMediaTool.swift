@@ -524,7 +524,9 @@ func bytesShwoFunc(_over : [Byte]) -> Void {
             print("\((#file as NSString).lastPathComponent):(\(#line))\n","解散房间")
             
             DispatchQueue.main.async {
-//                backToholl()
+                backToholl()
+                
+                RoomModel.shared.shouldEnterRoomMark = true
             }
             
             /// 清空roomModel中的字典模型

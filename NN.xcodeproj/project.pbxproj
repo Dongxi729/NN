@@ -67,7 +67,6 @@
 		2629EBFA1ECAFCA500616626 /* f0_nn10.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 2629EBEC1ECAFCA500616626 /* f0_nn10.mp3 */; };
 		2629EBFB1ECAFCA500616626 /* f0_nn103.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 2629EBED1ECAFCA500616626 /* f0_nn103.mp3 */; };
 		2629EBFC1ECAFCA500616626 /* f0_nn105.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 2629EBEE1ECAFCA500616626 /* f0_nn105.mp3 */; };
-		2629EBFD1ECAFCA500616626 /* f0_nn106.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 2629EBEF1ECAFCA500616626 /* f0_nn106.mp3 */; };
 		2629EBFE1ECAFCA500616626 /* f0_nn2.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 2629EBF01ECAFCA500616626 /* f0_nn2.mp3 */; };
 		2629EBFF1ECAFCA500616626 /* f0_nn3.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 2629EBF11ECAFCA500616626 /* f0_nn3.mp3 */; };
 		2629EC001ECAFCA500616626 /* f0_nn4.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 2629EBF21ECAFCA500616626 /* f0_nn4.mp3 */; };
@@ -294,7 +293,6 @@
 		2629EBEC1ECAFCA500616626 /* f0_nn10.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = f0_nn10.mp3; path = "sound 2/f0_nn10.mp3"; sourceTree = "<group>"; };
 		2629EBED1ECAFCA500616626 /* f0_nn103.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = f0_nn103.mp3; path = "sound 2/f0_nn103.mp3"; sourceTree = "<group>"; };
 		2629EBEE1ECAFCA500616626 /* f0_nn105.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = f0_nn105.mp3; path = "sound 2/f0_nn105.mp3"; sourceTree = "<group>"; };
-		2629EBEF1ECAFCA500616626 /* f0_nn106.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = f0_nn106.mp3; path = "sound 2/f0_nn106.mp3"; sourceTree = "<group>"; };
 		2629EBF01ECAFCA500616626 /* f0_nn2.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = f0_nn2.mp3; path = "sound 2/f0_nn2.mp3"; sourceTree = "<group>"; };
 		2629EBF11ECAFCA500616626 /* f0_nn3.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = f0_nn3.mp3; path = "sound 2/f0_nn3.mp3"; sourceTree = "<group>"; };
 		2629EBF21ECAFCA500616626 /* f0_nn4.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = f0_nn4.mp3; path = "sound 2/f0_nn4.mp3"; sourceTree = "<group>"; };
@@ -673,7 +671,6 @@
 				2629EBEC1ECAFCA500616626 /* f0_nn10.mp3 */,
 				2629EBED1ECAFCA500616626 /* f0_nn103.mp3 */,
 				2629EBEE1ECAFCA500616626 /* f0_nn105.mp3 */,
-				2629EBEF1ECAFCA500616626 /* f0_nn106.mp3 */,
 				2629EBF01ECAFCA500616626 /* f0_nn2.mp3 */,
 				2629EBF11ECAFCA500616626 /* f0_nn3.mp3 */,
 				2629EBF21ECAFCA500616626 /* f0_nn4.mp3 */,
@@ -1128,7 +1125,6 @@
 				2603D9421EADC8D20069B132 /* Assets.xcassets in Resources */,
 				2629EBFE1ECAFCA500616626 /* f0_nn2.mp3 in Resources */,
 				26F14F9A1ECAA2A7006844C9 /* FTProgressIndicator.bundle in Resources */,
-				2629EBFD1ECAFCA500616626 /* f0_nn106.mp3 in Resources */,
 				2629EC001ECAFCA500616626 /* f0_nn4.mp3 in Resources */,
 				2629EBF81ECAFCA500616626 /* f0_nn0.mp3 in Resources */,
 				2629EBFC1ECAFCA500616626 /* f0_nn105.mp3 in Resources */,

@@ -109,6 +109,9 @@ class RoomModel: NSObject {
     /// 用户ID
     var userUIDS : [String] = []
     
+    /// 是否进入房间
+    var shouldEnterRoomMark = true
+    
     /// xml 当前游戏(还未开始的游戏房间的数据)
     var currentRoomPlayInfo : String = "" {
         didSet {
@@ -257,6 +260,7 @@ class RoomModel: NSObject {
                 
                 /// 发出通知，说明房间里有人，可以进入游戏界面
                 NotificationCenter.default.post(name: NSNotification.Name(rawValue: "PlayersInRoom"), object: nil)
+                
             }
             
             

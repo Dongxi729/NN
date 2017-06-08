@@ -82,7 +82,9 @@ class GamingVC: UIViewController {
         super.viewDidLoad()
         
         // Do any additional setup after loading the view.
-
+        
+        /// 改变房间模型的标识，防止重复刷新游戏界面
+        RoomModel.shared.shouldEnterRoomMark = false
         view.backgroundColor = UIColor.white
         
         view.addSubview(mvcV)
