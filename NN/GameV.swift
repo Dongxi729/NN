@@ -188,30 +188,11 @@ class GameV: UIView {
         return d
     }()
     
-    /// 显示解散视图
-    func showXXX() -> Void {
-        DispatchQueue.main.async {
-            self.showDismissV.center = self.center
-            self.addSubview(self.showDismissV)
-        }
-        
-        NotificationCenter.default.removeObserver(self, name: NSNotification.Name(rawValue: "exitRoomRequest"), object: nil)
-    }
-    
-    /// 显示同意、不同意解散视图
-    func AgreeToDismissNotiSEL() -> Void {
-
-        
-        DispatchQueue.main.async {
-            
-            self.showDismissV.removeFromSuperview()
-            self.showDissmissAgeeeOrDisagreeV.center = self.center
-            self.addSubview(self.showDissmissAgeeeOrDisagreeV)
-        }
-        
-        NotificationCenter.default.removeObserver(self, name: NSNotification.Name(rawValue: "AgreeToDismissNoti"), object: nil)
-        
-    }
+    // MARK: - 继续视图
+    lazy var continuePlayV: ContinuePlayGameV = {
+        let d : ContinuePlayGameV = ContinuePlayGameV.init(frame: CGRect.init(x: 0, y: 0, width: self.Width * 0.6, height: self.Height * 0.75))
+        return d
+    }()
     
     override init(frame: CGRect) {
         
@@ -263,41 +244,30 @@ class GameV: UIView {
         
         P1.isHidden = true
         P2.isHidden = true
-        
-        
-        ///抢庄视图
-//        robOwner.isHidden = true
-        
+
         /// 开始按钮
         addSubview(startGameBtn)
         
-        NotificationCenter.default.addObserver(self, selector: #selector(createGamingLayout), name: NSNotification.Name(rawValue: "CardNameModelNotNIll"), object: nil)
-        
-        /// 收到纸牌
-        NotificationCenter.default.addObserver(self, selector: #selector(showCardsSEL), name: NSNotification.Name(rawValue: "showCards"), object: nil)
-        
-        /// 判断抢庄
-        NotificationCenter.default.addObserver(self, selector: #selector(isRobOrNotSEL), name: NSNotification.Name(rawValue: "beginRob"), object: nil)
-        
-        /// RoomOwner 选出房主
-        NotificationCenter.default.addObserver(self, selector: #selector(chooseOwnerSEL), name: NSNotification.Name(rawValue: "RoomOwner"), object: nil)
-        
-        
-        /// 是否亮牌 isShowCard
-        NotificationCenter.default.addObserver(self, selector: #selector(isShowCardSEL), name: NSNotification.Name(rawValue: "isShowCard"), object: nil)
-        
-        /// 返回最新用户状态信息
-        NotificationCenter.default.addObserver(self, selector: #selector(showUserInfoSEL), name: NSNotification.Name(rawValue: "showUserInfo"), object: nil)
-        
-        
-        /// 解散房间 exitRoomRequest
-        NotificationCenter.default.addObserver(self, selector: #selector(showXXX), name: NSNotification.Name(rawValue: "exitRoomRequest"), object: nil)
-        
-        
-        /// 同意 不同意 AgreeToDismissNoti
-        NotificationCenter.default.addObserver(self, selector: #selector(AgreeToDismissNotiSEL), name: NSNotification.Name(rawValue: "AgreeToDismissNoti"), object: nil)
         
         createGamingLayout()
+        
+        /// 监听通知
+        addNotifiListen()
+        
+        /// 添加显示牛牛图标和播放音乐视图
+//        addSubview(showNIUNIUViewWhtiMusic)
+        
+    }
+    
+    // MARK: - 显示牛牛的视图界面
+    lazy var showNIUNIUViewWhtiMusic: ShowNIUNIUV = {
+        let d : ShowNIUNIUV = ShowNIUNIUV.init(frame: self.bounds)
+        return d
+    }()
+    
+    // MARK: - 本轮游戏结束
+    func GameOverSEL() {
+//        showNIUNIUViewWhtiMusic.niuniuSongsName = 
     }
     
     // MARK: - 收到牌，创建布局
@@ -372,10 +342,7 @@ class GameV: UIView {
                 
             }
             
-            
-            
-            
-            
+
             break
         default:
             break
@@ -580,5 +547,72 @@ extension GameV {
         print("\((#file as NSString).lastPathComponent):(\(#line))\n")
         
         exitRoomEvent()
+    }
+}
+
+// MARK: - 监听的通知
+extension GameV {
+    func addNotifiListen() {
+        NotificationCenter.default.addObserver(self, selector: #selector(createGamingLayout), name: NSNotification.Name(rawValue: "CardNameModelNotNIll"), object: nil)
+        
+        /// 收到纸牌
+        NotificationCenter.default.addObserver(self, selector: #selector(showCardsSEL), name: NSNotification.Name(rawValue: "showCards"), object: nil)
+        
+        /// 判断抢庄
+        NotificationCenter.default.addObserver(self, selector: #selector(isRobOrNotSEL), name: NSNotification.Name(rawValue: "beginRob"), object: nil)
+        
+        /// RoomOwner 选出房主
+        NotificationCenter.default.addObserver(self, selector: #selector(chooseOwnerSEL), name: NSNotification.Name(rawValue: "RoomOwner"), object: nil)
+        
+        
+        /// 是否亮牌 isShowCard
+        NotificationCenter.default.addObserver(self, selector: #selector(isShowCardSEL), name: NSNotification.Name(rawValue: "isShowCard"), object: nil)
+        
+        /// 返回最新用户状态信息
+        NotificationCenter.default.addObserver(self, selector: #selector(showUserInfoSEL), name: NSNotification.Name(rawValue: "showUserInfo"), object: nil)
+        
+        
+        /// 解散房间 exitRoomRequest
+        NotificationCenter.default.addObserver(self, selector: #selector(showXXX), name: NSNotification.Name(rawValue: "exitRoomRequest"), object: nil)
+        
+        
+        /// 同意 不同意 AgreeToDismissNoti
+        NotificationCenter.default.addObserver(self, selector: #selector(AgreeToDismissNotiSEL), name: NSNotification.Name(rawValue: "AgreeToDismissNoti"), object: nil)
+        
+        /// 接收通知移除视图
+        NotificationCenter.default.addObserver(self, selector: #selector(continuePlaySEL), name: NSNotification.Name(rawValue: "disagreeToDismiss"), object: nil)
+    }
+    
+    // MARK: - 显示解散视图
+    @objc fileprivate func showXXX() -> Void {
+        DispatchQueue.main.async {
+            self.showDismissV.center = self.center
+            self.addSubview(self.showDismissV)
+        }
+        
+        NotificationCenter.default.removeObserver(self, name: NSNotification.Name(rawValue: "exitRoomRequest"), object: nil)
+    }
+    
+    // MARK: - 显示同意、不同意解散视图
+    @objc fileprivate func AgreeToDismissNotiSEL() -> Void {
+
+        DispatchQueue.main.async {
+            
+            self.showDismissV.removeFromSuperview()
+            self.showDissmissAgeeeOrDisagreeV.center = self.center
+            self.addSubview(self.showDissmissAgeeeOrDisagreeV)
+        }
+        
+        NotificationCenter.default.removeObserver(self, name: NSNotification.Name(rawValue: "AgreeToDismissNoti"), object: nil)
+    }
+    
+    // MARK: - 显示继续视图
+    @objc fileprivate func continuePlaySEL() {
+        DispatchQueue.main.async {
+            
+            self.showDissmissAgeeeOrDisagreeV.removeFromSuperview()
+            self.continuePlayV.center = self.center
+            self.addSubview(self.continuePlayV)
+        }
     }
 }

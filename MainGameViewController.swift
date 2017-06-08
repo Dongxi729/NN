@@ -54,7 +54,9 @@ class MainGameViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
-        ConnectModel.shared.connectSEL()
+        if connectSuccess == false {
+            ConnectModel.shared.connectSEL()
+        }
     }
     
     
@@ -108,15 +110,17 @@ class MainGameViewController: UIViewController {
         
         /// 收到通知 PlayersInRoom
         NotificationCenter.default.addObserver(self, selector: #selector(enterGamingVSEL), name: NSNotification.Name(rawValue: "PlayersInRoom"), object: nil)
- 
+        
         
         exitRoomV.center = view.center
         view.addSubview(exitRoomV)
         exitRoomV.isHidden = true
         
         /// 显示最后成绩视图
-//        FinialScoreNotifi
+        //        FinialScoreNotifi
         NotificationCenter.default.addObserver(self, selector: #selector(FinialScoreNotifiSEL), name: NSNotification.Name(rawValue: "FinialScoreNotifi"), object: nil)
+        /// NotificationCenter.default.removeObserver(self, name: NSNotification.Name(rawValue: "exitRoomRequest"), object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(exitRoomRequestSEL), name: NSNotification.Name(rawValue: "exitRoomRequest"), object: nil)
     }
     
     
@@ -149,7 +153,7 @@ class MainGameViewController: UIViewController {
     func enterGamingVSEL() {
         
         /// 移除监听对象
-//        NotificationCenter.default.removeObserver(self, name: NSNotification.Name(rawValue: "PlayersInRoom"), object: nil)
+        //        NotificationCenter.default.removeObserver(self, name: NSNotification.Name(rawValue: "PlayersInRoom"), object: nil)
         
         print("\((#file as NSString).lastPathComponent):(\(#line))\n")
         
@@ -158,9 +162,8 @@ class MainGameViewController: UIViewController {
             DispatchQueue.main.async {
                 
                 /// 判断标识，只有为真的时候才可以进入房间
-                if RoomModel.shared.shouldEnterRoomMark {
-                    UIApplication.shared.keyWindow?.rootViewController = GamingVC()
-                }
+                
+                UIApplication.shared.keyWindow?.rootViewController = GamingVC()
                 
             }
         }

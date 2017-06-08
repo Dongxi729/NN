@@ -30,6 +30,9 @@ fileprivate var bodyBytesAny:[Byte] = [Byte]()
 
 var reportUser = true
 
+// MARK: - 链接成功
+var connectSuccess = false
+
 // MARK: - 连接服务器
 func testServer() {
     
@@ -61,8 +64,10 @@ func testServer() {
                     
                     /// 检查是否收到心跳包
                     AppDelegate.checkreceiveHeartInfo()
-                    
                 }
+                
+                /// 链接成功
+                connectSuccess = true
                 
             } else {
                 
@@ -89,10 +94,10 @@ func testServer() {
 
 /// 返回大厅
 public func backToholl() {
-    UIApplication.shared.keyWindow?.rootViewController?.view.removeFromSuperview()
-    
-    if NSStringFromClass((UIApplication.shared.keyWindow?.rootViewController?.view.subviews.last?.classForCoder)!).contains("GameV") {
-        UIApplication.shared.keyWindow?.rootViewController?.view.subviews.last?.removeFromSuperview()
+    UIApplication.shared.keyWindow?.removeFromSuperview()
+
+    DispatchQueue.main.async {
+        UIApplication.shared.keyWindow?.rootViewController = MainGameViewController()
     }
 }
 
@@ -458,6 +463,7 @@ func bytesShwoFunc(_over : [Byte]) -> Void {
         if testXML(analayseStr: String.init(data: dd as Data, encoding: String.Encoding.utf8)!).contains("6") {
             print("\((#file as NSString).lastPathComponent):(\(#line))\n",String.init(data: dd as Data, encoding: String.Encoding.utf8)!)
             
+           
             
             NotificationCenter.default.post(name: NSNotification.Name(rawValue: "GameOver"), object: nil)
         }
@@ -499,8 +505,6 @@ func bytesShwoFunc(_over : [Byte]) -> Void {
     if typpppp == 0 {
         /// 发送心跳包
         AppDelegate.startSendAliveMsg()
-        
-        
     }
     
     /// 房间无
@@ -515,7 +519,13 @@ func bytesShwoFunc(_over : [Byte]) -> Void {
         
     }
     
-    
+    /// 有玩家不同意解散房间
+    if typpppp == 87 {
+        NotificationCenter.default.post(name: NSNotification.Name(rawValue: "disagreeToDismiss"), object: nil)
+        
+        print("\((#file as NSString).lastPathComponent):(\(#line))\n",UIApplication.shared.keyWindow?.subviews)
+        print("\((#file as NSString).lastPathComponent):(\(#line))\n",UIApplication.shared.keyWindow?.rootViewController?.view.subviews.last)
+    }
     
     /// 解散房间
     if typpppp == 90 {
@@ -525,8 +535,7 @@ func bytesShwoFunc(_over : [Byte]) -> Void {
             
             DispatchQueue.main.async {
                 backToholl()
-                
-                RoomModel.shared.shouldEnterRoomMark = true
+
             }
             
             /// 清空roomModel中的字典模型
@@ -643,7 +652,6 @@ func AnylasyseWithKey(analayseStr : String,secondNode : String,withSepcifiedKey 
     //构造XML文档
     let doc = try! DDXMLDocument(data: data!, options:0)
     
-    
     let users = try! doc.nodes(forXPath: "//M/\(secondNode)") as! [DDXMLElement]
     
     var typeStr : String?
@@ -669,13 +677,13 @@ func cheatSEL() {
 // MARK: - 投票解散房间同意
 ///<M><ty jst ="1/2"/></M>
 func agreeToDismiss() {
-    reportTypeWithData(typeInt: 86, str: "<M><ty jst ='1'/></M>")
+    reportTypeWithData(typeInt: 86, str: "<M><ty jst ='2'/></M>")
 }
 
 // MARK: - 投票解散房间不同意
 ///<M><ty jst ="1/2"/></M>
 func disagreeToDismiss() {
-    reportTypeWithData(typeInt: 86, str: "<M><ty jst ='2'/></M>")
+    reportTypeWithData(typeInt: 86, str: "<M><ty jst ='1'/></M>")
 }
 
 // MARK: - 申请人发起申请

@@ -92,6 +92,7 @@
 		264A2CE91EC45F1F001B7F0E /* GamingVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 264A2CE81EC45F1F001B7F0E /* GamingVC.swift */; };
 		264A32CF1EC58485001405C4 /* XMLTool.swift in Sources */ = {isa = PBXBuildFile; fileRef = 264A32CE1EC58485001405C4 /* XMLTool.swift */; };
 		264A32D21EC598C7001405C4 /* RoomModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 264A32D11EC598C7001405C4 /* RoomModel.swift */; };
+		264C0A3F1EE9360B0060540E /* ContinuePlayGameV.swift in Sources */ = {isa = PBXBuildFile; fileRef = 264C0A3E1EE9360B0060540E /* ContinuePlayGameV.swift */; };
 		2657FD971EB860F900B92648 /* ControlVoice.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2657FD961EB860F900B92648 /* ControlVoice.swift */; };
 		2657FD991EB8642C00B92648 /* ViewAnimation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2657FD981EB8642C00B92648 /* ViewAnimation.swift */; };
 		2657FD9B1EB872C300B92648 /* ScaleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2657FD9A1EB872C300B92648 /* ScaleView.swift */; };
@@ -115,6 +116,7 @@
 		2694F5541EE7D3C400C0FEB6 /* SingleSCoreV.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2694F5531EE7D3C400C0FEB6 /* SingleSCoreV.swift */; };
 		2694F5561EE7D3E300C0FEB6 /* ScorePersonInfoV.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2694F5551EE7D3E300C0FEB6 /* ScorePersonInfoV.swift */; };
 		2694F55A1EE7F59B00C0FEB6 /* ScoreViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2694F5591EE7F59B00C0FEB6 /* ScoreViewController.swift */; };
+		269FF8371EE8F9F00034E49F /* ShowNIUNIUV.swift in Sources */ = {isa = PBXBuildFile; fileRef = 269FF8361EE8F9F00034E49F /* ShowNIUNIUV.swift */; };
 		26A2FD4E1ED6EF6700CAB137 /* ScoreModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26A2FD4D1ED6EF6700CAB137 /* ScoreModel.swift */; };
 		26A483391EE4ECF9007D977D /* GameV.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26A483381EE4ECF9007D977D /* GameV.swift */; };
 		26A4833B1EE54210007D977D /* TestViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26A4833A1EE54210007D977D /* TestViewController.swift */; };
@@ -318,6 +320,7 @@
 		264A2CE81EC45F1F001B7F0E /* GamingVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GamingVC.swift; sourceTree = "<group>"; };
 		264A32CE1EC58485001405C4 /* XMLTool.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = XMLTool.swift; sourceTree = "<group>"; };
 		264A32D11EC598C7001405C4 /* RoomModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RoomModel.swift; sourceTree = "<group>"; };
+		264C0A3E1EE9360B0060540E /* ContinuePlayGameV.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContinuePlayGameV.swift; sourceTree = "<group>"; };
 		2657FD961EB860F900B92648 /* ControlVoice.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ControlVoice.swift; sourceTree = "<group>"; };
 		2657FD981EB8642C00B92648 /* ViewAnimation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewAnimation.swift; sourceTree = "<group>"; };
 		2657FD9A1EB872C300B92648 /* ScaleView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScaleView.swift; sourceTree = "<group>"; };
@@ -341,6 +344,7 @@
 		2694F5531EE7D3C400C0FEB6 /* SingleSCoreV.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SingleSCoreV.swift; sourceTree = "<group>"; };
 		2694F5551EE7D3E300C0FEB6 /* ScorePersonInfoV.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScorePersonInfoV.swift; sourceTree = "<group>"; };
 		2694F5591EE7F59B00C0FEB6 /* ScoreViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScoreViewController.swift; sourceTree = "<group>"; };
+		269FF8361EE8F9F00034E49F /* ShowNIUNIUV.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShowNIUNIUV.swift; sourceTree = "<group>"; };
 		26A2FD4D1ED6EF6700CAB137 /* ScoreModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScoreModel.swift; sourceTree = "<group>"; };
 		26A483381EE4ECF9007D977D /* GameV.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameV.swift; sourceTree = "<group>"; };
 		26A4833A1EE54210007D977D /* TestViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TestViewController.swift; sourceTree = "<group>"; };
@@ -566,6 +570,7 @@
 				26421EED1EE15099000C9B25 /* OffLineV.swift */,
 				262B529C1EE6B7DE002BAC8B /* DismissRoom.swift */,
 				26E40F1E1EE6DCBC00C643F0 /* ReceiveDismissToAgree.swift */,
+				264C0A3E1EE9360B0060540E /* ContinuePlayGameV.swift */,
 			);
 			name = view;
 			sourceTree = "<group>";
@@ -713,6 +718,7 @@
 		264A2CEA1EC45F3D001B7F0E /* view */ = {
 			isa = PBXGroup;
 			children = (
+				269FF8351EE8F9DD0034E49F /* showNNImg */,
 				264A2CE51EC45D21001B7F0E /* ChatV.swift */,
 				262433611ECBF46F003C41D1 /* InviteV.swift */,
 				26CDFB4A1ECD972900EF3846 /* RightDownV.swift */,
@@ -859,6 +865,14 @@
 				2694F5551EE7D3E300C0FEB6 /* ScorePersonInfoV.swift */,
 			);
 			name = finalResultScoreV;
+			sourceTree = "<group>";
+		};
+		269FF8351EE8F9DD0034E49F /* showNNImg */ = {
+			isa = PBXGroup;
+			children = (
+				269FF8361EE8F9F00034E49F /* ShowNIUNIUV.swift */,
+			);
+			name = showNNImg;
 			sourceTree = "<group>";
 		};
 		26A4872A1EC0050700E9A091 /* tool */ = {
@@ -1231,6 +1245,7 @@
 				260C666C1EB23415006C119E /* POPGeometry.mm in Sources */,
 				26421EF01EE16718000C9B25 /* ConnectModel.swift in Sources */,
 				2657FD9D1EB8809100B92648 /* DelayTimerTool.swift in Sources */,
+				269FF8371EE8F9F00034E49F /* ShowNIUNIUV.swift in Sources */,
 				260C666B1EB23415006C119E /* POPDecayAnimation.mm in Sources */,
 				26D54B2E1EC2C36900119FAA /* TImerTool.swift in Sources */,
 				2657FD991EB8642C00B92648 /* ViewAnimation.swift in Sources */,
@@ -1245,6 +1260,7 @@
 				26F14FA01ECAC785006844C9 /* ScoreView.swift in Sources */,
 				262B529D1EE6B7DE002BAC8B /* DismissRoom.swift in Sources */,
 				2694F5561EE7D3E300C0FEB6 /* ScorePersonInfoV.swift in Sources */,
+				264C0A3F1EE9360B0060540E /* ContinuePlayGameV.swift in Sources */,
 				2603D95B1EADCA3C0069B132 /* WXApiManager.m in Sources */,
 				266EC2031EBC854000AEA31C /* TimerLabel.swift in Sources */,
 				260EBC241ECEC564003DD5CA /* CardsLayout.swift in Sources */,

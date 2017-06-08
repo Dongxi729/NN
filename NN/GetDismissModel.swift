@@ -19,8 +19,10 @@ class GetDismissModel: NSObject {
             self.xmlAnalyse(xmlStr: receiveStr!)
         }
     }
+    // MARK: - 提出申请的用户
+    var requestDismissUser : String?
     
-    /// 倒计时
+    // MARK: - 倒计时
     var countDownTimer : Int?
     
     //    <M>
@@ -45,10 +47,16 @@ class GetDismissModel: NSObject {
         //利用XPath来定位节点（XPath是XML语言中的定位语法，类似于数据库中的SQL功能）
         let users = try! doc.nodes(forXPath: "//M/ty") as! [DDXMLElement]
         for user in users {
+            /// 倒计时时间长度
             if user.attribute(forName: "ti") != nil {
                 let timer = Int((user.attribute(forName: "ti")?.stringValue!)!)
                 self.countDownTimer = timer
+            }
             
+            ///提出申请的用户ID
+            if user.attribute(forName: "sid") != nil {
+                self.requestDismissUser = user.attribute(forName: "sid")!.stringValue!
+                print("\((#file as NSString).lastPathComponent):(\(#line))\n",self.requestDismissUser)
             }
         }
     }
