@@ -94,8 +94,7 @@ func testServer() {
 
 /// 返回大厅
 public func backToholl() {
-    UIApplication.shared.keyWindow?.removeFromSuperview()
-
+//    UIApplication.shared.keyWindow?.removeFromSuperview()
     DispatchQueue.main.async {
         UIApplication.shared.keyWindow?.rootViewController = MainGameViewController()
     }
@@ -462,9 +461,7 @@ func bytesShwoFunc(_over : [Byte]) -> Void {
         /// 本轮游戏结束
         if testXML(analayseStr: String.init(data: dd as Data, encoding: String.Encoding.utf8)!).contains("6") {
             print("\((#file as NSString).lastPathComponent):(\(#line))\n",String.init(data: dd as Data, encoding: String.Encoding.utf8)!)
-            
            
-            
             NotificationCenter.default.post(name: NSNotification.Name(rawValue: "GameOver"), object: nil)
         }
         
@@ -522,9 +519,6 @@ func bytesShwoFunc(_over : [Byte]) -> Void {
     /// 有玩家不同意解散房间
     if typpppp == 87 {
         NotificationCenter.default.post(name: NSNotification.Name(rawValue: "disagreeToDismiss"), object: nil)
-        
-        print("\((#file as NSString).lastPathComponent):(\(#line))\n",UIApplication.shared.keyWindow?.subviews)
-        print("\((#file as NSString).lastPathComponent):(\(#line))\n",UIApplication.shared.keyWindow?.rootViewController?.view.subviews.last)
     }
     
     /// 解散房间

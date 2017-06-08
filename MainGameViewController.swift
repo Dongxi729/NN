@@ -8,6 +8,8 @@
 
 import UIKit
 
+var ddddd = false
+
 class MainGameViewController: UIViewController {
     
     lazy var bgImg: UIImageView = {
@@ -162,8 +164,12 @@ class MainGameViewController: UIViewController {
             DispatchQueue.main.async {
                 
                 /// 判断标识，只有为真的时候才可以进入房间
+                if ddddd {
+                    UIApplication.shared.keyWindow?.rootViewController = GamingVC()
+                }
                 
-                UIApplication.shared.keyWindow?.rootViewController = GamingVC()
+                
+                print("\((#file as NSString).lastPathComponent):(\(#line))\n")
                 
             }
         }

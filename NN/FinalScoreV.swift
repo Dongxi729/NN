@@ -60,10 +60,16 @@ class FinalScoreV: CommonV {
     }()
     
     func confirmSEL(sender : UIButton) -> Void {
-        print("\((#file as NSString).lastPathComponent):(\(#line))\n")
-        
         /// 移除当前视图
         self.removeFromSuperview()
+        
+        /// 返回大厅
+//        backToholl()
+        UIApplication.shared.keyWindow?.removeFromSuperview()
+        
+        DispatchQueue.main.async {
+            UIApplication.shared.keyWindow?.rootViewController = MainGameViewController()
+        }
     }
     
     /// 分享按钮事件

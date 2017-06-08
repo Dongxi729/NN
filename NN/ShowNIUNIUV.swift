@@ -19,8 +19,9 @@ class ShowNIUNIUV: UIView {
     // MARK: - 显示牛牛的歌词名字
     var niuniuSongsName : [String] = [] {
         didSet {
+            print("\((#file as NSString).lastPathComponent):(\(#line))\n",niuniuSongsName)
             NotificationCenter.default.addObserver(self, selector: #selector(listenPlayEnded), name: NSNotification.Name(rawValue: "PlayEnded"), object: nil)
-            playMusicSongs(index: 0)
+            playMusicSongs(index: playINdex)
         }
     }
     
@@ -37,6 +38,7 @@ class ShowNIUNIUV: UIView {
         super.init(frame: frame)
         
         addSubview(confirmBtn)
+
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -80,6 +82,7 @@ class ShowNIUNIUV: UIView {
             break
 
         default:
+            print("\((#file as NSString).lastPathComponent):(\(#line))\n")
             break
         }
         

@@ -14,9 +14,7 @@ class ScoreViewController: UIViewController {
         let d : FinalScoreV = FinalScoreV.init(frame: self.view.bounds)
         return d
     }()
-    
-    
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
 

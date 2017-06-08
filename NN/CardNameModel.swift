@@ -19,7 +19,7 @@ class CardNameModel: NSObject {
     
     static let shared = CardNameModel()
     
-    
+    // MARK: - 是否显示
     var isShowP1Front = false
     
     var P1Array : [String] = []
@@ -30,7 +30,7 @@ class CardNameModel: NSObject {
     var P5Array : [String] = []
     var P6Array : [String] = []
     
-    // 背面纸牌
+    // MARK: - 背面纸牌
     var backCardsName : [String] = ["p0",
                                     "p0",
                                     "p0",
@@ -38,13 +38,14 @@ class CardNameModel: NSObject {
                                     "p0",
                                     "p0"]
     
-    // 当前玩家默认隐藏2张
+    // MARK: - 当前玩家默认隐藏2张
     var currentUbackCardsName : [String] = []
     
-    /// 牛牛数组
+    // MARK: - 牛牛数组
     var niuniuArray : [String] = []
     
-    
+    // MARK: - 牛牛处理数组
+    var niuniuDealArray : [String] = []
     
     /// 是否收到结算分数标识
     var isreceivedCountScore = "false"
@@ -167,6 +168,8 @@ class CardNameModel: NSObject {
         
         niuniuArray = []
         
+        niuniuDealArray = []
+        
         
         self.isreceivedCountScore = "false"
         
@@ -221,10 +224,44 @@ class CardNameModel: NSObject {
             /// 牛牛
             if user.attribute(forName: "can")?.stringValue != nil {
                 niuniuArray.append((user.attribute(forName: "can")?.stringValue)!)
+                
+                print("\((#file as NSString).lastPathComponent):(\(#line))\n",RoomModel.shared.currentPersonInRoom)
+                
+                /// 如果达到了当前人间数
+//                if niuniuArray.count == RoomModel.shared.currentPersonInRoom {
+//                    niuniuDealArray.append(niuniuNameConvertToSongsName(songsName: niuniuArray[GetCurrenIndex.shared.getCurrentIndex()]))
+//
+//                    for value in niuniuArray {
+//                        if value != niuniuArray[GetCurrenIndex.shared.getCurrentIndex()] {
+//                            niuniuDealArray.append(niuniuNameConvertToSongsName(songsName: value))
+//                        }
+//                    }
+//                }
+                
+                
+                
+                if niuniuArray.count == RoomModel.shared.currentPersonInRoom {
+                    
+                    niuniuDealArray.insert((niuniuNameConvertToSongsName(songsName: niuniuArray[GetCurrenIndex.shared.getCurrentIndex()])), at: 0)
+            
+                    var idex = 0
+                    for calue in niuniuArray {
+                        
+                        idex += 1
+                        
+                        print("\((#file as NSString).lastPathComponent):(\(#line))\n",GetCurrenIndex.shared.getCurrentIndex())
+                        print("\((#file as NSString).lastPathComponent):(\(#line))\n",idex)
+                        if idex != GetCurrenIndex.shared.getCurrentIndex() + 1 {
+                            
+                            print("\((#file as NSString).lastPathComponent):(\(#line))\n",calue)
+                            niuniuDealArray.append(niuniuNameConvertToSongsName(songsName: calue))
+                        }
+                    }
+                    
+                    print("\((#file as NSString).lastPathComponent):(\(#line))\n",niuniuArray)
+                    print("\((#file as NSString).lastPathComponent):(\(#line))\n",niuniuDealArray)
+                }
             }
-            
-            
-            
             /// 除了当前用户外的牛牛数组
         }
         
@@ -388,5 +425,60 @@ class CardNameModel: NSObject {
         
         
         return newDic
+    }
+}
+
+// MARK: - 牛牛转为音乐
+extension CardNameModel {
+    
+    func niuniuNameConvertToSongsName(songsName : String) -> String {
+        var str : String = ""
+        
+        switch songsName {
+        case "0":
+            str = "f0_nn0"
+            break
+        case "1":
+            str = "f0_nn1"
+            break
+        case "2":
+            str = "f0_nn2"
+            break
+        case "3":
+            str = "f0_nn3"
+            break
+        case "4":
+            str = "f0_nn4"
+            break
+        case "5":
+            str = "f0_nn5"
+            break
+        case "6":
+            str = "f0_nn6"
+            break
+        case "7":
+            str = "f0_nn7"
+            break
+        case "8":
+            str = "f0_nn8"
+            break
+        case "9":
+            str = "f0_nn9"
+            break
+        case "10":
+            str = "f0_nn10"
+            break
+        case "12":
+            str = "f0_nn103"
+            break
+        case "11":
+            str = "f0_nn105"
+            break
+            
+        default:
+            break
+        }
+        
+        return str
     }
 }

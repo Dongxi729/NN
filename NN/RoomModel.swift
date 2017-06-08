@@ -259,6 +259,8 @@ class RoomModel: NSObject {
                 /// 发出通知，说明房间里有人，可以进入游戏界面
                 NotificationCenter.default.post(name: NSNotification.Name(rawValue: "PlayersInRoom"), object: nil)
                 
+                ddddd = true
+                
             }
             
             

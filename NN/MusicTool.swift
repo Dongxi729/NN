@@ -16,7 +16,7 @@ class MusicTool: NSObject {
     //初始化音频播放对象，将音频播放对象，作为试图控制器的类的属性
     
     var audioPlayer:AVAudioPlayer = AVAudioPlayer()
-   
+    
     static let shared = MusicTool()
     
     
@@ -75,17 +75,18 @@ class MusicTool: NSObject {
             let soundUrl = URL(fileURLWithPath: path!)
             
             try audioPlayer = AVAudioPlayer(contentsOf:soundUrl)
+            audioPlayer.delegate = self
             //为音频播放做好准备
             audioPlayer.prepareToPlay()
             //设置音量
-//            audioPlayer.volume = 0.2
-//            audioPlayer.numberOfLoops = -1
+            //            audioPlayer.volume = 0.2
+            //            audioPlayer.numberOfLoops = -1
             audioPlayer.play()
             
         }catch{
             print(error)
         }
-
+        
     }
     
     
@@ -108,14 +109,24 @@ class MusicTool: NSObject {
             //为音频播放做好准备
             audioPlayer.prepareToPlay()
             //设置音量
-
+            
             audioPlayer.stop()
             
         }catch{
             print(error)
         }
-    
+        
     }
     
     
+}
+
+extension MusicTool : AVAudioPlayerDelegate {
+    func audioPlayerDidFinishPlaying(_ player: AVAudioPlayer, successfully flag: Bool) {
+        print("\((#file as NSString).lastPathComponent):(\(#line))\n")
+        
+        /// 播放完毕
+        NotificationCenter.default.post(name: NSNotification.Name(rawValue: "PlayEnded"), object: nil)
+        
+    }
 }

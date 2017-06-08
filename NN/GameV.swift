@@ -194,6 +194,12 @@ class GameV: UIView {
         return d
     }()
     
+    // MARK: - 显示牛牛图片
+    lazy var showMusicAndNNImg: ShowNIUNIUV = {
+        let d : ShowNIUNIUV = ShowNIUNIUV.init(frame: self.bounds)
+        return d
+    }()
+    
     override init(frame: CGRect) {
         
         super.init(frame: frame)
@@ -241,9 +247,11 @@ class GameV: UIView {
         
         addSubview(P1)
         addSubview(P2)
+        addSubview(P3)
         
         P1.isHidden = true
         P2.isHidden = true
+        P3.isHidden = true
 
         /// 开始按钮
         addSubview(startGameBtn)
@@ -255,19 +263,23 @@ class GameV: UIView {
         addNotifiListen()
         
         /// 添加显示牛牛图标和播放音乐视图
-//        addSubview(showNIUNIUViewWhtiMusic)
+        addSubview(showMusicAndNNImg)
+        showMusicAndNNImg.isHidden = true
         
+        print("\((#file as NSString).lastPathComponent):(\(#line))\n",RoomModel.shared.gameType)
+        
+        /// 判断当前房间是六人还是通比
+        if RoomModel.shared.gameType == "通比牛牛" {
+            self.getCoins.isHidden = true
+            self.robOwner.isHidden = true
+        }
     }
-    
-    // MARK: - 显示牛牛的视图界面
-    lazy var showNIUNIUViewWhtiMusic: ShowNIUNIUV = {
-        let d : ShowNIUNIUV = ShowNIUNIUV.init(frame: self.bounds)
-        return d
-    }()
     
     // MARK: - 本轮游戏结束
     func GameOverSEL() {
-//        showNIUNIUViewWhtiMusic.niuniuSongsName = 
+        showMusicAndNNImg.isHidden = false
+        showMusicAndNNImg.niuniuSongsName = CardNameModel.shared.niuniuDealArray
+        print("\((#file as NSString).lastPathComponent):(\(#line))\n")
     }
     
     // MARK: - 收到牌，创建布局
@@ -311,9 +323,6 @@ class GameV: UIView {
             /// 检查分数数组是否为空
             if RoomModel.shared.userScore.count > 0 {
                 
-                //                P1.coinsLabel.text = String(RoomModel.shared.userScore[GetCurrenIndex.shared.getCurrentIndex()])
-                //                P2.coinsLabel.text = String(GetCurrenIndex.shared.currentUserScore()[0])
-                
                 var type = 0
                 if Int(P1.coinsLabel.text!)! > 0 {
                     type = 1
@@ -344,6 +353,88 @@ class GameV: UIView {
             
 
             break
+        case 3:
+            /// 设置摆放纸牌位置
+            P1.samllCardsShowLeftOrRight = -1
+            
+            P2.samllCardsShowLeftOrRight = 1
+            
+            P3.samllCardsShowLeftOrRight = 1
+
+            
+            /// 玩家1是否有牌
+            if CardNameModel.shared.currentUbackCardsName.count > 0 {
+                
+                print("\((#file as NSString).lastPathComponent):(\(#line))\n",CardNameModel.shared.currentUbackCardsName)
+                self.robOwner.isHidden = true
+                self.startGameBtn.isHidden = true
+                self.getCoins.isHidden = true
+                
+                DispatchQueue.main.async {
+                    self.P1.isShowBottomCardLayout = false
+                    self.P1.imgNames = CardNameModel.shared.currentUbackCardsName
+                    self.P1.addCards(cardsArray: CardNameModel.shared.currentUbackCardsName)
+                    
+                    
+                    self.P2.imgNames = CardNameModel.shared.backCardsName
+                    self.P2.isShowBottomCardLayout = true
+                    
+                    self.P3.imgNames = CardNameModel.shared.backCardsName
+                    self.P3.isShowBottomCardLayout = true
+                }
+                
+                
+            } else {
+                P1.isShowBottomCardLayout = true
+            }
+            
+            
+            /// 检查分数数组是否为空
+            if RoomModel.shared.userScore.count > 0 {
+                
+                var type = 0
+                if Int(P1.coinsLabel.text!)! > 0 {
+                    type = 1
+                } else {
+                    type = 2
+                }
+                
+                /// 显示增减的分数不隐藏
+                P1.scoreImg.isHidden = false
+                P2.scoreImg.isHidden = false
+                P3.scoreImg.isHidden = false
+                
+                
+                
+                var type2 = 0
+                if Int(P2.coinsLabel.text!)! > 0 {
+                    type2 = 1
+                } else {
+                    type2 = 2
+                }
+                
+                
+                var type3 = 0
+                if Int(P3.coinsLabel.text!)! > 0 {
+                    type3 = 1
+                } else {
+                    type3 = 2
+                }
+                
+                
+                
+                DispatchQueue.main.async {
+                    self.P1.scoreImg.abc(abc: String(self.P1.coinsLabel.text!), scoreType: type)
+                    self.P2.scoreImg.abc(abc: String(self.P2.coinsLabel.text!), scoreType: type2)
+                    self.P3.scoreImg.abc(abc: String(self.P3.coinsLabel.text!), scoreType: type3)
+
+                }
+                
+            }
+            
+            
+            break
+
         default:
             break
         }
@@ -374,6 +465,7 @@ class GameV: UIView {
         if ShowCardModel.shared.isShowed {
             self.P1.isHidden = true
             self.P2.isHidden = true
+            self.P3.isHidden = true
             self.robOwner.isHidden = true
             self.startGameBtn.isHidden = false
             self.getCoins.isHidden = false
@@ -435,7 +527,6 @@ class GameV: UIView {
                 self.getCoins.isHidden = false
             }
         }
-       
     }
 }
 
@@ -447,8 +538,6 @@ extension GameV {
         
         NotificationCenter.default.removeObserver(self, name: NSNotification.Name(rawValue: "createGamingLayout"), object: nil)
         
-        
-        print("\((#file as NSString).lastPathComponent):(\(#line))\n",RoomModel.shared.currentPersonInRoom)
         
         switch RoomModel.shared.currentPersonInRoom {
             
@@ -477,9 +566,9 @@ extension GameV {
             P2.samllCardsShowLeftOrRight = 1
 
             
-            
             P1.nameLabel.text = RoomModel.shared.nameStr[GetCurrenIndex.shared.getCurrentIndex()]
             P2.nameLabel.text = GetCurrenIndex.shared.p2NameLabelWithoutP1()[0]
+
             
             
             
@@ -491,8 +580,46 @@ extension GameV {
                 
                 downImgWith(url: headStr!, toView: self.P1.headImg)
                 downImgWith(url: headStr2, toView: self.P2.headImg)
+
             }
+
+            P2.isHidden = false
+            P1.isHidden = false
             
+            break
+            
+        case 3:
+            
+            /// 设置摆放纸牌位置
+            P1.samllCardsShowLeftOrRight = -1
+            
+            P2.samllCardsShowLeftOrRight = 1
+            P3.samllCardsShowLeftOrRight = 1
+
+            
+            
+            P1.nameLabel.text = RoomModel.shared.nameStr[GetCurrenIndex.shared.getCurrentIndex()]
+            P2.nameLabel.text = GetCurrenIndex.shared.p2NameLabelWithoutP1()[0]
+            P3.nameLabel.text = GetCurrenIndex.shared.p2NameLabelWithoutP1()[1]
+            
+            
+            
+            
+            /// 下载头像
+            DispatchQueue.main.async {
+                
+                let headStr = RoomModel.shared.headUrlDic[GetCurrenIndex.shared.currentUserIndex]
+                let headStr2 = GetCurrenIndex.shared.p2ArrayWithoutP1()[0]
+                let headStr3 = GetCurrenIndex.shared.p2ArrayWithoutP1()[1]
+
+                
+                downImgWith(url: headStr!, toView: self.P1.headImg)
+                downImgWith(url: headStr2, toView: self.P2.headImg)
+                downImgWith(url: headStr3, toView: self.P3.headImg)
+
+                
+            }
+            P3.isHidden = false
             
             P2.isHidden = false
             P1.isHidden = false
@@ -581,6 +708,9 @@ extension GameV {
         
         /// 接收通知移除视图
         NotificationCenter.default.addObserver(self, selector: #selector(continuePlaySEL), name: NSNotification.Name(rawValue: "disagreeToDismiss"), object: nil)
+        
+        /// 游戏结束
+        NotificationCenter.default.addObserver(self, selector: #selector(GameOverSEL), name: NSNotification.Name(rawValue: "GameOver"), object: nil)
     }
     
     // MARK: - 显示解散视图

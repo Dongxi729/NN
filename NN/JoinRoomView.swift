@@ -10,6 +10,22 @@ import UIKit
 
 class JoinRoomView: UIView {
     
+    
+    
+    override init(frame: CGRect) {
+        super.init(frame: frame)
+        
+        
+        addSubview(bgImgV)
+        self.addSubview(collV)
+        
+        
+        /// 加入房间
+        addSubview(titleLabel)
+        
+        addSubview(tfPassBgV)
+    }
+    
     lazy var tfPassBgV: UIImageView = {
         let d : UIImageView = UIImageView.init(frame: CGRect.init(x: commonMargin * 2, y: self.Height * 0.15, width: self.Width - 4 * commonMargin, height: self.Height * 0.15))
         d.image = #imageLiteral(resourceName: "joinKey")
@@ -30,7 +46,7 @@ class JoinRoomView: UIView {
         return d
     }()
     
-    // MARK: - 背景视图
+    
     fileprivate lazy var bgImgV: UIImageView = {
         let d : UIImageView = UIImageView.init(frame: self.frame)
         d.image = #imageLiteral(resourceName: "joinRoomBg")
@@ -40,14 +56,14 @@ class JoinRoomView: UIView {
     @objc fileprivate func enjoyRoom() -> Void {
     }
     
-    // MARK: - 标题
+    /// 标题
     lazy var titleLabel: UILabel = {
         let d : UILabel = UILabel.init(frame: CGRect.init(x: 0, y: 0, width: self.frame.width, height: 30))
         d.textAlignment = .center
         return d
     }()
     
-    // MARK: - 九宫格
+    /// 九宫格
     lazy var collV: UICollectionView = {
         
         let layout = UICollectionViewFlowLayout.init()
@@ -81,40 +97,24 @@ class JoinRoomView: UIView {
         return d
     }()
     
-    // MARK: - 文字
+    /// 文字
     var dataSource : [String] = ["1","2","3","4","5","6","7","8","9","充数","0","删除"]
     
-    // MARK: - 图片数组
+    /// 图片
     var imgName : [String] = ["1","2","3","4","5","6","7","8","9","delLastWord","0","clear"]
     
-    // MARK: - 密码输入视图控制
+    /// 密码输入视图控制
     var dddd :[UIView] = []
     
-    // MARK: - 索引
+    
     var texIndex : Int = 0
     
     
-    // MARK: - 记录密码
-    var valueRecord : [String] = []
-    
-    
-    var labelView : addLabelView = addLabelView()
-    
-    override init(frame: CGRect) {
-        super.init(frame: frame)
-        
-        
-        addSubview(bgImgV)
-        self.addSubview(collV)
-        
-        
-        /// 加入房间
-        addSubview(titleLabel)
-        
-        addSubview(tfPassBgV)
-        
-        print("\((#file as NSString).lastPathComponent):(\(#line))\n",labelView.subviews)
-        
+    /// 记录密码
+    var valueRecord : [String] = [] {
+        didSet {
+            
+        }
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -151,13 +151,16 @@ extension JoinRoomView : UICollectionViewDataSource,UICollectionViewDelegateFlow
         
         let selecttext = dataSource[indexPath.row]
         
-        
-        
         /// 添加数据
-        labelView = addLabelView.init(frame: CGRect.init(x: CGFloat(CGFloat(self.Width * CGFloat(0.08)) + self.Width / 5 * CGFloat(texIndex)) , y: self.Height * 0.12, width: self.frame.width / 4.95 - self.Width * 0.03, height: 64))
+        
+        let d = addLabelView.init(frame: CGRect.init(x: CGFloat(self.Width / 4 * CGFloat(texIndex)), y: self.Height * 0.12, width: self.frame.width / 4, height: 64))
+        
+        
         
         if selecttext == "删除" {
             self.texIndex = dddd.count
+            
+            print("\((#file as NSString).lastPathComponent):(\(#line))\n",texIndex)
             
             if dddd.count > 0 {
                 self.subviews.last?.removeFromSuperview()
@@ -181,10 +184,10 @@ extension JoinRoomView : UICollectionViewDataSource,UICollectionViewDelegateFlow
             if texIndex <= 4 && dddd.count < 4 {
                 
                 if selecttext != "充数" {
-                    labelView.labelText(dd: selecttext)
+                    d.labelText(dd: selecttext)
                     
-                    self.addSubview(labelView)
-                    dddd.append(labelView)
+                    self.addSubview(d)
+                    dddd.append(d)
                     valueRecord.append(selecttext)
                     
                     if valueRecord.count == 4 {
@@ -247,14 +250,12 @@ extension JoinRoomView : UICollectionViewDataSource,UICollectionViewDelegateFlow
 }
 
 
-// MARK: - label视图
+
 class addLabelView: UIView {
     
     lazy var la: UILabel = {
         let d : UILabel = UILabel.init(frame: self.bounds)
         d.textAlignment = .center
-        d.font = UIFont(name: "SimHei", size: 16 * screenScale)
-        d.textColor = UIColor.colorWithHexString("7F7F7F")
         return d
     }()
     
@@ -264,7 +265,6 @@ class addLabelView: UIView {
     
     override init(frame: CGRect) {
         super.init(frame: frame)
-        self.layer.borderWidth = 1
         
         addSubview(la)
     }
