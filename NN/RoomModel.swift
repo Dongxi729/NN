@@ -114,7 +114,6 @@ class RoomModel: NSObject {
     var currentRoomPlayInfo : String = "" {
         didSet {
             self.xmlAnalyse(xmlStr: currentRoomPlayInfo)
-            print("\((#file as NSString).lastPathComponent):(\(#line))\n",currentRoomPlayInfo)
         }
     }
     
@@ -166,21 +165,21 @@ class RoomModel: NSObject {
             self.limitedPlayersNum = Int(user.attribute(forName: "rn")!.stringValue!)!
             
             
-            print("====房间号",self.roomNumber)
-            
-            print("=====self.gameType",self.gameType)
-            
-            print("=====self.wantCoins",self.wantCoins)
-            
-            print("====== 支付方式",self.payType)
-            
-            print("====== 总局数",self.gameRounds)
-            
-            print("====== 当前局数",self.currentRounds)
-            
-            print("====== 当前房间在线人数",self.currentPersonInRoom)
-            
-            print("====== 拟定创建好房间的总人数",self.limitedPlayersNum)
+//            print("====房间号",self.roomNumber)
+//            
+//            print("=====self.gameType",self.gameType)
+//            
+//            print("=====self.wantCoins",self.wantCoins)
+//            
+//            print("====== 支付方式",self.payType)
+//            
+//            print("====== 总局数",self.gameRounds)
+//            
+//            print("====== 当前局数",self.currentRounds)
+//            
+//            print("====== 当前房间在线人数",self.currentPersonInRoom)
+//            
+//            print("====== 拟定创建好房间的总人数",self.limitedPlayersNum)
         }
         
         let _users = try! doc.nodes(forXPath: "//M/ty/u") as! [DDXMLElement]
@@ -251,18 +250,7 @@ class RoomModel: NSObject {
             if scoreStr != nil {
                 self.userScore.append(scoreStr!)
             }
-            
-            if self.userScore.count == RoomModel.shared.currentPersonInRoom {
-                print("\((#file as NSString).lastPathComponent):(\(#line))\n",self.userScore)
-                
-                
-                /// 发出通知，说明房间里有人，可以进入游戏界面
-                NotificationCenter.default.post(name: NSNotification.Name(rawValue: "PlayersInRoom"), object: nil)
-                
-                ddddd = true
-                
-            }
-            
+
             
             var scoreIndex = 0
             
@@ -302,8 +290,6 @@ class RoomModel: NSObject {
             if userUID != nil {
                 self.userId.append(userUID!)
             }
-            
-            print("\((#file as NSString).lastPathComponent):(\(#line))\n",self.userId)
         }
     }
 }

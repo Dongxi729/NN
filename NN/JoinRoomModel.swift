@@ -28,6 +28,8 @@ class JoinRoomModel: NSObject {
     var joinResultStr : String = "" {
         didSet {
             self.xmlAnalyse(xmlStr: joinResultStr)
+            
+            print("\((#file as NSString).lastPathComponent):(\(#line))\n",joinResultStr)
         }
     }
     
@@ -48,8 +50,15 @@ class JoinRoomModel: NSObject {
                 if user.attribute(forName: "su") != nil  {
                     let succesOFail = user.attribute(forName: "su")!.stringValue
                     
+                    print("\((#file as NSString).lastPathComponent):(\(#line))\n",succesOFail as Any)
+                    
+                    /// 创建成功
                     if succesOFail == "false" {
                         self.joinResult = false
+                    } else {
+                        /// 改变进入房间标识
+                        dddd = false
+                        print("\((#file as NSString).lastPathComponent):(\(#line))\n")
                     }
                     
                     if user.attribute(forName: "ms") != nil {

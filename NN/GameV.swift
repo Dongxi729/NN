@@ -712,7 +712,7 @@ extension GameV {
         NotificationCenter.default.addObserver(self, selector: #selector(isShowCardSEL), name: NSNotification.Name(rawValue: "isShowCard"), object: nil)
         
         /// 返回最新用户状态信息
-        NotificationCenter.default.addObserver(self, selector: #selector(showUserInfoSEL), name: NSNotification.Name(rawValue: "showUserInfo"), object: nil)
+//        NotificationCenter.default.addObserver(self, selector: #selector(showUserInfoSEL), name: NSNotification.Name(rawValue: "showUserInfo"), object: nil)
         
         
         /// 解散房间 exitRoomRequest
@@ -746,13 +746,16 @@ extension GameV {
         DispatchQueue.main.async {
             /// 隐藏协商视图
             self.showDismissV.isHidden = true
+
+            if LoginModel.shared.uid == GetDismissModel.shared.requestDismissUser {
+                self.showDissmissAgeeeOrDisagreeV.confirmBtn.isEnabled = false
+            }
+
             
-            /// 显示同意一起解散视图
+            /// 显示同意一起解散视图    
             self.showDissmissAgeeeOrDisagreeV.isHidden = false
             self.showDissmissAgeeeOrDisagreeV.userExitLabel.text = GetDismissModel.shared.requestDismissUser
         }
-        
-//        NotificationCenter.default.removeObserver(self, name: NSNotification.Name(rawValue: "AgreeToDismissNoti"), object: nil)
     }
     
     // MARK: - 显示继续视图

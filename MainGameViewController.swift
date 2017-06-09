@@ -8,7 +8,7 @@
 
 import UIKit
 
-var ddddd = false
+var dddd = false
 
 class MainGameViewController: UIViewController {
     
@@ -146,36 +146,22 @@ class MainGameViewController: UIViewController {
         print("\((#file as NSString).lastPathComponent):(\(#line))\n")
         NotificationCenter.default.removeObserver(self, name: NSNotification.Name(rawValue: "exitRoomRequest"), object: nil)
         exitRoomV.isHidden = false
-        
     }
-    
-    
     
     /// 进入游戏房间视图
     func enterGamingVSEL() {
-        
-        /// 移除监听对象
-        //        NotificationCenter.default.removeObserver(self, name: NSNotification.Name(rawValue: "PlayersInRoom"), object: nil)
-        
-        print("\((#file as NSString).lastPathComponent):(\(#line))\n")
-        
+
         /// 判断人数是否大于1
-        if RoomModel.shared.limitedPlayersNum >= 1 {
+        if RoomModel.shared.limitedPlayersNum >= 1 && dddd == false {
             DispatchQueue.main.async {
+                UIApplication.shared.keyWindow?.rootViewController = GamingVC()
                 
-                /// 判断标识，只有为真的时候才可以进入房间
-                if ddddd {
-                    UIApplication.shared.keyWindow?.rootViewController = GamingVC()
-                }
+                print("\((#file as NSString).lastPathComponent):(\(#line))\n","==========键入主界面")
                 
-                
-                print("\((#file as NSString).lastPathComponent):(\(#line))\n")
-                
+                dddd = true
             }
         }
-        
     }
-    
     
     
     /// 广播栏目

@@ -38,7 +38,6 @@ class ShowNIUNIUV: UIView {
         super.init(frame: frame)
         
         addSubview(confirmBtn)
-
     }
     
     required init?(coder aDecoder: NSCoder) {

@@ -92,11 +92,15 @@ func testServer() {
 }
 
 
-/// 返回大厅
+/// 返回大厅 改变进入房间标识
 public func backToholl() {
 //    UIApplication.shared.keyWindow?.removeFromSuperview()
     DispatchQueue.main.async {
         UIApplication.shared.keyWindow?.rootViewController = MainGameViewController()
+        
+        
+        ///改变进入房间标识
+        dddd = false
     }
 }
 
@@ -387,7 +391,6 @@ func bytesShwoFunc(_over : [Byte]) -> Void {
         print("\((#file as NSString).lastPathComponent):(\(#line))\n")
         
         NotificationCenter.default.post(name: NSNotification.Name(rawValue: "FinialScoreNotifi"), object: nil)
-        
     }
     
     /// 根据类型进行处理
@@ -411,7 +414,7 @@ func bytesShwoFunc(_over : [Byte]) -> Void {
             
             print("\((#file as NSString).lastPathComponent):(\(#line))\n")
             
-            NotificationCenter.default.post(name: NSNotification.Name(rawValue: "showUserInfo"), object: nil)
+            NotificationCenter.default.post(name: NSNotification.Name(rawValue: "PlayersInRoom"), object: nil)
         }
         
         /// 显示当前用户是否可以作弊
@@ -463,6 +466,8 @@ func bytesShwoFunc(_over : [Byte]) -> Void {
             print("\((#file as NSString).lastPathComponent):(\(#line))\n",String.init(data: dd as Data, encoding: String.Encoding.utf8)!)
            
             NotificationCenter.default.post(name: NSNotification.Name(rawValue: "GameOver"), object: nil)
+            /// 改变标识 ，时界面重新刷新
+            dddd = false
         }
         
         
@@ -506,7 +511,8 @@ func bytesShwoFunc(_over : [Byte]) -> Void {
     
     /// 房间无
     if typpppp == 7 {
-        
+
+        print("\((#file as NSString).lastPathComponent):(\(#line))\n",String.init(data: dd as Data, encoding: String.Encoding.utf8)!)
         JoinRoomModel.shared.joinResultStr = String.init(data: dd as Data, encoding: String.Encoding.utf8)!
         
     }
@@ -547,6 +553,11 @@ func bytesShwoFunc(_over : [Byte]) -> Void {
         print("\((#file as NSString).lastPathComponent):(\(#line))\n",AnylasyseWithKey(analayseStr: String.init(data: dd as Data, encoding: String.Encoding.utf8)!, secondNode: "ty", withSepcifiedKey: "ms"))
         
         let alertMsg = AnylasyseWithKey(analayseStr: String.init(data: dd as Data, encoding: String.Encoding.utf8)!, secondNode: "ty", withSepcifiedKey: "ms")
+        
+        /// 创建成功，改变标识，进入游戏主界面
+        if AnylasyseWithKey(analayseStr: String.init(data: dd as Data, encoding: String.Encoding.utf8)!, secondNode: "ty", withSepcifiedKey: "ms").contains("创建成功") {
+            dddd = false
+        }
         
         
         FTIndicator.showToastMessage(alertMsg)

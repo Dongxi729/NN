@@ -71,6 +71,7 @@ class ReceiveDismissToAgree: UIView {
         /// 提出解散申请
         agreeToDismiss()
     }
+
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -80,9 +81,8 @@ class ReceiveDismissToAgree: UIView {
             self.addSubview(self.cancelBtn)
             self.addSubview(self.descImg)
             self.addSubview(self.userExitLabel)
-        }
-        
 
+        }
     }
     
 

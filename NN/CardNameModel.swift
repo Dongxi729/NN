@@ -52,7 +52,7 @@ class CardNameModel: NSObject {
     
     var receiverStr : String = "" {
         didSet {
-
+            
             self.xmlAnalyse(xmlStr: receiverStr)
         }
     }
@@ -184,8 +184,6 @@ class CardNameModel: NSObject {
         for _user in marks {
             if _user.attribute(forName: "type")?.stringValue != nil {
                 self.isreceivedCountScore = (_user.attribute(forName: "type")?.stringValue!)!
-                
-                print("\((#file as NSString).lastPathComponent):(\(#line))\n",self.isreceivedCountScore)
             }
         }
         
@@ -225,25 +223,10 @@ class CardNameModel: NSObject {
             if user.attribute(forName: "can")?.stringValue != nil {
                 niuniuArray.append((user.attribute(forName: "can")?.stringValue)!)
                 
-                print("\((#file as NSString).lastPathComponent):(\(#line))\n",RoomModel.shared.currentPersonInRoom)
-                
-                /// 如果达到了当前人间数
-//                if niuniuArray.count == RoomModel.shared.currentPersonInRoom {
-//                    niuniuDealArray.append(niuniuNameConvertToSongsName(songsName: niuniuArray[GetCurrenIndex.shared.getCurrentIndex()]))
-//
-//                    for value in niuniuArray {
-//                        if value != niuniuArray[GetCurrenIndex.shared.getCurrentIndex()] {
-//                            niuniuDealArray.append(niuniuNameConvertToSongsName(songsName: value))
-//                        }
-//                    }
-//                }
-                
-                
-                
                 if niuniuArray.count == RoomModel.shared.currentPersonInRoom {
                     
                     niuniuDealArray.insert((niuniuNameConvertToSongsName(songsName: niuniuArray[GetCurrenIndex.shared.getCurrentIndex()])), at: 0)
-            
+                    
                     var idex = 0
                     for calue in niuniuArray {
                         
@@ -257,9 +240,6 @@ class CardNameModel: NSObject {
                             niuniuDealArray.append(niuniuNameConvertToSongsName(songsName: calue))
                         }
                     }
-                    
-                    print("\((#file as NSString).lastPathComponent):(\(#line))\n",niuniuArray)
-                    print("\((#file as NSString).lastPathComponent):(\(#line))\n",niuniuDealArray)
                 }
             }
             /// 除了当前用户外的牛牛数组
@@ -342,7 +322,7 @@ class CardNameModel: NSObject {
                                  currentUserIndexSEL()[2],
                                  "p0",
                                  "p0"]
-
+        
         print("\((#file as NSString).lastPathComponent):(\(#line))\n",currentUbackCardsName)
         
         niuniuArray = contactName(cardsArray: niuniuArray, prefix: "niu")
@@ -411,7 +391,7 @@ class CardNameModel: NSObject {
     
     /// 用户2的数据
     func p2ArrayWithoutP1() -> [String] {
-    
+        
         
         /// 移除了第一个索引后的值
         var newDic : [String] = []

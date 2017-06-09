@@ -35,23 +35,20 @@ class CountDownBtn: UIButton {
     ///   - title: 标题
     ///   - superView: 添加到的视图
     ///   - descc: 描述
-    func initwith(superView:UIView,descc : Int) ->
-        Void {
-            
-            canContinue = true
-            
-            i = descc
-            
-            self.setTitle("\(descc)", for: UIControlState.normal)
-            //            self.titleLabel?.adjustsFontSizeToFitWidth = true
-            //            self.backgroundColor=UIColor.lightGray
-            self.isEnabled=false
-            timer = Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(tiemrBengin), userInfo: self, repeats: true)
-            
-            superView.addSubview(self)
-            
-            self.isUserInteractionEnabled = true
-            
+    func initwith(superView:UIView,descc : Int) -> Void {
+        
+        canContinue = true
+        
+        i = descc
+        
+        self.setTitle("\(descc)", for: UIControlState.normal)
+        self.isEnabled=false
+        timer = Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(tiemrBengin), userInfo: self, repeats: true)
+        
+        superView.addSubview(self)
+        
+        self.isUserInteractionEnabled = true
+        
     }
     
     
@@ -89,7 +86,6 @@ class CountDownBtn: UIButton {
             //            self.isEnabled = true
             
             i = NUMSS
-            
         }
     }
     
@@ -122,7 +118,7 @@ class CountDownBtn: UIButton {
     
     override init(frame: CGRect) {
         super.init(frame: frame)
-        self.titleLabel?.font = UIFont(name: "SimHei", size: 12 * screenScale)
+        self.titleLabel?.font = UIFont(name: "SimHei", size: 10 * screenScale)
         self.titleLabel?.textAlignment = .center
         self.titleLabel?.textColor = UIColor.black
     }
