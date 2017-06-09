@@ -52,7 +52,7 @@ class DismissRoom: UIView {
     // MARK: - 取消
     func cancelSEL() -> Void {
         print("\((#file as NSString).lastPathComponent):(\(#line))\n")
-        self.removeFromSuperview()
+        self.isHidden = true
     }
     
     // MARK: - 解散

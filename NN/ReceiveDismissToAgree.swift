@@ -24,7 +24,8 @@ class ReceiveDismissToAgree: UIView {
     // MARK: - 玩家退出
     lazy var userExitLabel: UILabel = {
         let d : UILabel = UILabel.init(frame: CGRect.init(x:self.Width * 0.315 , y: self.Height * 0.15, width: self.Width * 0.35, height: self.Height * 0.2))
-        d.text = "玩家" + GetDismissModel.shared.requestDismissUser!
+        
+        
         d.font = UIFont(name: "SimHei", size: 12 * screenScale)
         return d
     }()
@@ -61,7 +62,7 @@ class ReceiveDismissToAgree: UIView {
         print("\((#file as NSString).lastPathComponent):(\(#line))\n")
         disagreeToDismiss()
         
-        removeFromSuperview()
+        isHidden = true
     }
     
     // MARK: - 解散

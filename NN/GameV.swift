@@ -95,7 +95,7 @@ class GameV: UIView {
         d.text = String(RoomModel.shared.roomNumber) + RoomModel.shared.currentRounds
         return d
     }()
-
+    
     
     // MARK: - 局数
     fileprivate lazy var roundsNumLabel: UILabel = {
@@ -245,14 +245,19 @@ class GameV: UIView {
         }
         
         
+        /// 添加视图
         addSubview(P1)
         addSubview(P2)
         addSubview(P3)
         
+        /// 对亮牌和提示进行显示和隐藏
+        P2.bigCardLayout.alertBtn.isHidden = true
+        P2.bigCardLayout.showCardBtn.isHidden = true
+        
         P1.isHidden = true
         P2.isHidden = true
         P3.isHidden = true
-
+        
         /// 开始按钮
         addSubview(startGameBtn)
         
@@ -266,12 +271,23 @@ class GameV: UIView {
         addSubview(showMusicAndNNImg)
         showMusicAndNNImg.isHidden = true
         
-        print("\((#file as NSString).lastPathComponent):(\(#line))\n",RoomModel.shared.gameType)
         
         /// 判断当前房间是六人还是通比
         if RoomModel.shared.gameType == "通比牛牛" {
             self.getCoins.isHidden = true
             self.robOwner.isHidden = true
+        }
+        
+        
+        /// 解散房间  d.text = "玩家" + GetDismissModel.shared.requestDismissUser!
+        DispatchQueue.main.async {
+            self.showDismissV.center = self.center
+            self.addSubview(self.showDismissV)
+            self.showDismissV.isHidden = true
+            
+            self.showDissmissAgeeeOrDisagreeV.center = self.center
+            self.addSubview(self.showDissmissAgeeeOrDisagreeV)
+            self.showDissmissAgeeeOrDisagreeV.isHidden = true
         }
     }
     
@@ -311,12 +327,12 @@ class GameV: UIView {
                     self.P1.addCards(cardsArray: CardNameModel.shared.currentUbackCardsName)
                     
                     self.P2.imgNames = CardNameModel.shared.backCardsName
-                    self.P2.isShowBottomCardLayout = true
+                    //                    self.P2.isShowBottomCardLayout = true
                 }
                 
-          
+                
             } else {
-                P1.isShowBottomCardLayout = true
+                //                P1.isShowBottomCardLayout = true
             }
             
             
@@ -334,8 +350,6 @@ class GameV: UIView {
                 P1.scoreImg.isHidden = false
                 P2.scoreImg.isHidden = false
                 
-                
-                
                 var type2 = 0
                 if Int(P2.coinsLabel.text!)! > 0 {
                     type2 = 1
@@ -351,7 +365,7 @@ class GameV: UIView {
                 
             }
             
-
+            
             break
         case 3:
             /// 设置摆放纸牌位置
@@ -360,7 +374,7 @@ class GameV: UIView {
             P2.samllCardsShowLeftOrRight = 1
             
             P3.samllCardsShowLeftOrRight = 1
-
+            
             
             /// 玩家1是否有牌
             if CardNameModel.shared.currentUbackCardsName.count > 0 {
@@ -377,7 +391,7 @@ class GameV: UIView {
                     
                     
                     self.P2.imgNames = CardNameModel.shared.backCardsName
-                    self.P2.isShowBottomCardLayout = true
+                    //                    self.P2.isShowBottomCardLayout = true
                     
                     self.P3.imgNames = CardNameModel.shared.backCardsName
                     self.P3.isShowBottomCardLayout = true
@@ -427,14 +441,14 @@ class GameV: UIView {
                     self.P1.scoreImg.abc(abc: String(self.P1.coinsLabel.text!), scoreType: type)
                     self.P2.scoreImg.abc(abc: String(self.P2.coinsLabel.text!), scoreType: type2)
                     self.P3.scoreImg.abc(abc: String(self.P3.coinsLabel.text!), scoreType: type3)
-
+                    
                 }
                 
             }
             
             
             break
-
+            
         default:
             break
         }
@@ -499,8 +513,6 @@ class GameV: UIView {
             self.getCoins.isHidden = true
         }
         
-        print("\((#file as NSString).lastPathComponent):(\(#line))\n",RoomModel.shared.userId[GetCurrenIndex.shared.currentUserIndex])
-        
         if RoomOwner.shared.ownerID == RoomModel.shared.userId[GetCurrenIndex.shared.currentUserIndex] {
             print("\((#file as NSString).lastPathComponent):(\(#line))\n")
             self.getCoins.isHidden = true
@@ -564,11 +576,11 @@ extension GameV {
             P1.samllCardsShowLeftOrRight = -1
             
             P2.samllCardsShowLeftOrRight = 1
-
+            
             
             P1.nameLabel.text = RoomModel.shared.nameStr[GetCurrenIndex.shared.getCurrentIndex()]
             P2.nameLabel.text = GetCurrenIndex.shared.p2NameLabelWithoutP1()[0]
-
+            
             
             
             
@@ -580,9 +592,9 @@ extension GameV {
                 
                 downImgWith(url: headStr!, toView: self.P1.headImg)
                 downImgWith(url: headStr2, toView: self.P2.headImg)
-
+                
             }
-
+            
             P2.isHidden = false
             P1.isHidden = false
             
@@ -595,7 +607,7 @@ extension GameV {
             
             P2.samllCardsShowLeftOrRight = 1
             P3.samllCardsShowLeftOrRight = 1
-
+            
             
             
             P1.nameLabel.text = RoomModel.shared.nameStr[GetCurrenIndex.shared.getCurrentIndex()]
@@ -611,12 +623,12 @@ extension GameV {
                 let headStr = RoomModel.shared.headUrlDic[GetCurrenIndex.shared.currentUserIndex]
                 let headStr2 = GetCurrenIndex.shared.p2ArrayWithoutP1()[0]
                 let headStr3 = GetCurrenIndex.shared.p2ArrayWithoutP1()[1]
-
+                
                 
                 downImgWith(url: headStr!, toView: self.P1.headImg)
                 downImgWith(url: headStr2, toView: self.P2.headImg)
                 downImgWith(url: headStr3, toView: self.P3.headImg)
-
+                
                 
             }
             P3.isHidden = false
@@ -674,6 +686,10 @@ extension GameV {
         print("\((#file as NSString).lastPathComponent):(\(#line))\n")
         
         exitRoomEvent()
+        DispatchQueue.main.async {
+            self.showDismissV.isHidden = false
+        }
+        
     }
 }
 
@@ -715,32 +731,36 @@ extension GameV {
     
     // MARK: - 显示解散视图
     @objc fileprivate func showXXX() -> Void {
-        DispatchQueue.main.async {
-            self.showDismissV.center = self.center
-            self.addSubview(self.showDismissV)
-        }
+
+        
+        print("\((#file as NSString).lastPathComponent):(\(#line))\n")
         
         NotificationCenter.default.removeObserver(self, name: NSNotification.Name(rawValue: "exitRoomRequest"), object: nil)
     }
     
     // MARK: - 显示同意、不同意解散视图
     @objc fileprivate func AgreeToDismissNotiSEL() -> Void {
-
+        
+        print("\((#file as NSString).lastPathComponent):(\(#line))\n")
+        
         DispatchQueue.main.async {
+            /// 隐藏协商视图
+            self.showDismissV.isHidden = true
             
-            self.showDismissV.removeFromSuperview()
-            self.showDissmissAgeeeOrDisagreeV.center = self.center
-            self.addSubview(self.showDissmissAgeeeOrDisagreeV)
+            /// 显示同意一起解散视图
+            self.showDissmissAgeeeOrDisagreeV.isHidden = false
+            self.showDissmissAgeeeOrDisagreeV.userExitLabel.text = GetDismissModel.shared.requestDismissUser
         }
         
-        NotificationCenter.default.removeObserver(self, name: NSNotification.Name(rawValue: "AgreeToDismissNoti"), object: nil)
+//        NotificationCenter.default.removeObserver(self, name: NSNotification.Name(rawValue: "AgreeToDismissNoti"), object: nil)
     }
     
     // MARK: - 显示继续视图
     @objc fileprivate func continuePlaySEL() {
         DispatchQueue.main.async {
             
-            self.showDissmissAgeeeOrDisagreeV.removeFromSuperview()
+            self.showDissmissAgeeeOrDisagreeV.isHidden = true
+            
             self.continuePlayV.center = self.center
             self.addSubview(self.continuePlayV)
         }

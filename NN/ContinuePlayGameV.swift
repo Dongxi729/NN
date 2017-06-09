@@ -15,7 +15,9 @@ class ContinuePlayGameV: UIView {
     lazy var descImg: CommonLabel = {
         let d : CommonLabel = CommonLabel.init(frame: CGRect.init(x: self.Width * 0.2, y: self.Height * 0.2, width: self.Width * 0.6, height: self.Height * 0.5))
         d.text = "有玩家不同意解散房间"
-        d.textColor = UIColor.colorWithHexString("7F7F7F")
+        d.textColor = UIColor.brown
+        d.font = UIFont(name: "SimHei", size: 12 * screenScale)
+        d.textAlignment = .center
         return d
     }()
     

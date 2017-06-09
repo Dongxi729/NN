@@ -35,7 +35,7 @@ class CardsLayout : CommonV {
     }
     
     /// 亮牌
-    fileprivate lazy var alertBtn: UIButton = {
+    lazy var alertBtn: UIButton = {
         let d : UIButton = UIButton.init(frame: CGRect.init(x: self.Width * 0.75, y: 2 * screenScale, width: self.Width * 0.25, height: self.Height * 0.5))
         d.layer.borderWidth = 1
         
@@ -45,7 +45,7 @@ class CardsLayout : CommonV {
     }()
     
     /// 提示
-    fileprivate lazy var showCardBtn: UIButton = {
+    lazy var showCardBtn: UIButton = {
         let d : UIButton = UIButton.init(frame: CGRect.init(x: self.Width * 0.75, y: self.alertBtn.BottomY, width: self.Width * 0.25, height: self.Height * 0.5))
         d.setImage(#imageLiteral(resourceName: "roomShowCard"), for: .normal)
         d.addTarget(self, action: #selector(showSEL(sender:)), for: .touchUpInside)
@@ -58,6 +58,8 @@ class CardsLayout : CommonV {
         /// 根据游戏状态隐藏提示、亮牌按钮
         addSubview(alertBtn)
         addSubview(showCardBtn)
+        
+        
         
     }
     
@@ -82,8 +84,6 @@ class CardsLayout : CommonV {
     /// [3: "pb3", 2: "pbJ", 4: "pc3", 0: "pb4", 1: "pa7"]
     func addCards(cardsArray : [String]) -> Void {
         
-        var dixName = cardsArray
-        
         var index : Int = 0
         
         for value in cardsArray {
@@ -102,6 +102,7 @@ class CardsLayout : CommonV {
         super.init(frame: frame)
         
         self.isUserInteractionEnabled = true
+
     }
     
     required init?(coder aDecoder: NSCoder) {
