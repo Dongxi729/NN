@@ -36,10 +36,14 @@ class ShowCardModel: NSObject {
     // MARK: - 用户增加的分数
     var addScore : [String] = []
     
+    // MARK: - 用户增加的分数
+    var leftScoreReplace : [String] = []
+    
     fileprivate func xmlAnalyse(xmlStr : String) -> Void {
         
         leftScore = []
         addScore = []
+        leftScoreReplace = []
         
         //获取xml文件内容
         let data = xmlStr.data(using: String.Encoding.utf8)
@@ -61,8 +65,7 @@ class ShowCardModel: NSObject {
                 
                 if addScore.count == RoomModel.shared.currentPersonInRoom {
                     
-                    /// 发通知，近分数动画展示
-                    NotificationCenter.default.post(name: NSNotification.Name(rawValue: "showScoreNotifi"), object: nil)
+                    
                     let dformatter = DateFormatter()
                     dformatter.dateFormat = "yyyy年MM月dd日 HH:mm:ss"
                     
@@ -81,6 +84,36 @@ class ShowCardModel: NSObject {
                     dformatter.dateFormat = "yyyy年MM月dd日 HH:mm:ss"
                     
                     print("当前日期时间：\(dformatter.string(from: Date()))","\((#file as NSString).lastPathComponent):(\(#line))\n",self.leftScore)
+                    
+                    leftScoreReplace.insert(addScore[GetCurrenIndex.shared.getCurrentIndex()], at: 0)
+                    
+                    var idex = 0
+                    for calue in addScore {
+                        
+                        idex += 1
+                        if idex != GetCurrenIndex.shared.getCurrentIndex() + 1 {
+                            
+                            leftScoreReplace.append(calue)
+                            
+                            let dformatter = DateFormatter()
+                            dformatter.dateFormat = "yyyy年MM月dd日 HH:mm:ss"
+                            
+                            print("当前日期时间：\(dformatter.string(from: Date()))","\((#file as NSString).lastPathComponent):(\(#line))\n",leftScoreReplace)
+                            
+                            if leftScoreReplace.count == RoomModel.shared.currentPersonInRoom {
+                                UserDefaults.standard.set(leftScoreReplace, forKey: "用户剩余分数")
+                                UserDefaults.standard.synchronize()
+                                
+                                /// 发通知，近分数动画展示
+                                NotificationCenter.default.post(name: NSNotification.Name(rawValue: "showScoreNotifi"), object: nil)
+                                
+                                let dformatter = DateFormatter()
+                                dformatter.dateFormat = "yyyy年MM月dd日 HH:mm:ss"
+                                
+                                print("当前日期时间：\(dformatter.string(from: Date()))","\((#file as NSString).lastPathComponent):(\(#line))\n")
+                            }
+                        }
+                    }
                 }
             }
         }

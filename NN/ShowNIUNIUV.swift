@@ -44,7 +44,7 @@ class ShowNIUNIUV: UIView {
     }
     
     // MARK: - 添加的分数图标
-    var scoreImg = UIImageView()
+    var scoreImg = ScoreV()
     
     // MARK: - 播放分数
     func playScore() {
@@ -57,16 +57,32 @@ class ShowNIUNIUV: UIView {
             
             for _ in self.rects {
                 
-                self.scoreImg = UIImageView.init(frame: self.rects[index])
-                self.scoreImg.backgroundColor = UIColor.randomColor()
-                self.addSubview(self.scoreImg)
-                index += 1
-                
                 let dformatter = DateFormatter()
                 dformatter.dateFormat = "yyyy年MM月dd日 HH:mm:ss"
                 
-                print("当前日期时间：\(dformatter.string(from: Date()))","\((#file as NSString).lastPathComponent):(\(#line))\n",index)
+                print("当前日期时间：\(dformatter.string(from: Date()))","\((#file as NSString).lastPathComponent):(\(#line))\n",UserDefaults.standard.object(forKey: "用户剩余分数"))
+               
+                guard let xxx = UserDefaults.standard.object(forKey: "用户剩余分数") as? [String] else {
+                    let dformatter = DateFormatter()
+                    dformatter.dateFormat = "yyyy年MM月dd日 HH:mm:ss"
+                    
+                    print("当前日期时间：\(dformatter.string(from: Date()))","\((#file as NSString).lastPathComponent):(\(#line))\n","本地分数剩余存储为空")
+                    return
+                }
                 
+                var type = 0
+                if Int(xxx[index])! > 0 {
+                    type = 1
+                } else {
+                    type = 2
+                }
+                
+                self.scoreImg = ScoreV.init(frame: self.rects[index])
+                self.scoreImg.backgroundColor = UIColor.randomColor()
+                self.scoreImg.abc(abc: xxx[index], scoreType: type)
+                self.addSubview(self.scoreImg)
+                index += 1
+            
                 if index == RoomModel.shared.currentPersonInRoom {
                     break
                 }
