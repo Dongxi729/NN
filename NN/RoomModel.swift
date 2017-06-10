@@ -92,6 +92,10 @@ class RoomModel: NSObject {
     
     // MARK: - 分数字典
     var userScore : [String] = []
+    
+    // MARK: - 用户原始的分数
+    var userScoreCalued : [String] = []
+    
     var userScoreDic = [Int : String]()
     
     
@@ -195,6 +199,8 @@ class RoomModel: NSObject {
         
         self.userId = []
         
+        self.userScoreCalued = []
+        
         for user in _users {
             
             
@@ -249,7 +255,39 @@ class RoomModel: NSObject {
             
             if scoreStr != nil {
                 self.userScore.append(scoreStr!)
+                
+                /// 添加当前局数的用户的原始分数
+                if self.userScore.count == currentPersonInRoom {
+                    
+                    userScoreCalued.insert(userScore[GetCurrenIndex.shared.getCurrentIndex()], at: 0)
+                    
+                    let dformatter = DateFormatter()
+                    dformatter.dateFormat = "yyyy年MM月dd日 HH:mm:ss"
+                    
+                    print("当前日期时间：\(dformatter.string(from: Date()))","\((#file as NSString).lastPathComponent):(\(#line))\n",userScoreCalued[0])
+                    
+                    var idex = 0
+                    for calue in userScore {
+                        idex += 1
+                        if idex != GetCurrenIndex.shared.getCurrentIndex() + 1 {
+                            userScoreCalued.append(calue)
+                            if userScoreCalued.count == currentPersonInRoom {
+
+                                UserDefaults.standard.set(userScoreCalued, forKey: "用户原始分数")
+                                UserDefaults.standard.synchronize()
+
+                                print("当前日期时间：\(dformatter.string(from: Date()))","\((#file as NSString).lastPathComponent):(\(#line))\n",userScoreCalued)
+                                
+                                /// 发通知，显示分数文字
+                                NotificationCenter.default.post(name: NSNotification.Name(rawValue: "ShowScoretext"), object: nil)
+                                
+                            }
+                        }
+                    }
+                }
             }
+            
+            
             
             
             var scoreIndex = 0
@@ -264,6 +302,8 @@ class RoomModel: NSObject {
                 
                 scoreIndex += 1
             }
+            
+            
             
             
             ///=========================== 准备

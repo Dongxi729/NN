@@ -355,36 +355,6 @@ class GameV: UIView {
                 }
             }
             
-            /// 检查分数数组是否为空
-            if RoomModel.shared.userScore.count > 0 {
-                
-                var type = 0
-                if Int(P1.coinsLabel.text!)! > 0 {
-                    type = 1
-                } else {
-                    type = 2
-                }
-                
-                /// 显示增减的分数不隐藏
-                P1.scoreImg.isHidden = false
-                P2.scoreImg.isHidden = false
-                
-                var type2 = 0
-                if Int(P2.coinsLabel.text!)! > 0 {
-                    type2 = 1
-                } else {
-                    type2 = 2
-                }
-                
-                
-                DispatchQueue.main.async {
-                    self.P1.scoreImg.abc(abc: String(self.P1.coinsLabel.text!), scoreType: type)
-                    self.P2.scoreImg.abc(abc: String(self.P2.coinsLabel.text!), scoreType: type2)
-                }
-                
-                print("\((#file as NSString).lastPathComponent):(\(#line))\n")
-            }
-            
             
             break
         case 3:
@@ -421,51 +391,6 @@ class GameV: UIView {
             } else {
                 P1.isShowBottomCardLayout = true
             }
-            
-            
-            /// 检查分数数组是否为空
-            if RoomModel.shared.userScore.count > 0 {
-                
-                var type = 0
-                if Int(P1.coinsLabel.text!)! > 0 {
-                    type = 1
-                } else {
-                    type = 2
-                }
-                
-                /// 显示增减的分数不隐藏
-                P1.scoreImg.isHidden = false
-                P2.scoreImg.isHidden = false
-                P3.scoreImg.isHidden = false
-                
-                
-                
-                var type2 = 0
-                if Int(P2.coinsLabel.text!)! > 0 {
-                    type2 = 1
-                } else {
-                    type2 = 2
-                }
-                
-                
-                var type3 = 0
-                if Int(P3.coinsLabel.text!)! > 0 {
-                    type3 = 1
-                } else {
-                    type3 = 2
-                }
-                
-                
-                
-                DispatchQueue.main.async {
-                    self.P1.scoreImg.abc(abc: String(self.P1.coinsLabel.text!), scoreType: type)
-                    self.P2.scoreImg.abc(abc: String(self.P2.coinsLabel.text!), scoreType: type2)
-                    self.P3.scoreImg.abc(abc: String(self.P3.coinsLabel.text!), scoreType: type3)
-                    
-                }
-            }
-            
-            
             break
             
         default:
@@ -632,6 +557,17 @@ extension GameV {
             
             print("\((#file as NSString).lastPathComponent):(\(#line))\n")
             
+            /// Q取出本地用户分数存储的值
+            guard let userScore = UserDefaults.standard.object(forKey: "用户原始分数") as? [String] else {
+                
+                return
+            }
+
+
+            P1.coinsLabel.text = userScore[0]
+            P2.coinsLabel.text = userScore[1]
+            print("=====分数")
+            
             break
             
         case 3:
@@ -767,6 +703,36 @@ extension GameV {
         
         /// 播放分数图片
         NotificationCenter.default.addObserver(self, selector: #selector(showScoreNotifiSEL), name: NSNotification.Name(rawValue: "showScoreNotifi"), object: nil)
+        
+        /// 显示分数 ShowScoretext
+        NotificationCenter.default.addObserver(self, selector: #selector(showOriginalScoreSEL), name: NSNotification.Name(rawValue: "ShowScoretext"), object: nil)
+    }
+    
+    // MARK: - 显示分数
+    @objc fileprivate func showOriginalScoreSEL() {
+    
+        let dformatter = DateFormatter()
+        dformatter.dateFormat = "yyyy年MM月dd日 HH:mm:ss"
+        
+        print("当前日期时间：\(dformatter.string(from: Date()))","\((#file as NSString).lastPathComponent):(\(#line))\n","显示分数")
+        
+        guard let userScore = UserDefaults.standard.object(forKey: "用户剩余分数") as? [String] else {
+            return
+        }
+        
+        switch RoomModel.shared.currentPersonInRoom {
+        case 1:
+            P1.coinsLabel.text = userScore[0]
+            break
+        case 2:
+            P1.coinsLabel.text = userScore[0]
+            P2.coinsLabel.text = userScore[1]
+
+            break
+            
+        default:
+            break
+        }
     }
     
     // MARK: - 播放纸牌分数

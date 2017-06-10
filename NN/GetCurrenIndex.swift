@@ -90,22 +90,4 @@ class GetCurrenIndex: NSObject {
         }
         return ddd
     }
-    
-    
-    // MARK: - 用户当前分数
-    func currentUserScore() -> [String] {
-        
-        print("\((#file as NSString).lastPathComponent):(\(#line))\n",RoomModel.shared.userScore)
-        
-        var ddd : [String] = []
-        
-        for value in RoomModel.shared.userScore {
-            if value != RoomModel.shared.userScore[GetCurrenIndex.shared.getCurrentIndex()] {
-                ddd.append(value)
-            }
-        }
-        print("\((#file as NSString).lastPathComponent):(\(#line))\n",ddd)
-        
-        return ddd
-    }
 }
