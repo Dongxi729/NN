@@ -23,7 +23,6 @@ class CardNameModel: NSObject {
     var isShowP1Front = false
     
     var P1Array : [String] = []
-    
     var P2Array : [String] = []
     var P3Array : [String] = []
     var P4Array : [String] = []
@@ -315,6 +314,25 @@ class CardNameModel: NSObject {
         P5Array = getImgName(sss: P6Array)
         
         
+        if niuniuArray.count == RoomModel.shared.currentPersonInRoom {
+            
+            niuniuDealArray.insert((niuniuNameConvertToSongsName(songsName: niuniuArray[GetCurrenIndex.shared.getCurrentIndex()])), at: 0)
+            
+            var idex = 0
+            for calue in niuniuArray {
+                
+                idex += 1
+                
+                print("\((#file as NSString).lastPathComponent):(\(#line))\n",GetCurrenIndex.shared.getCurrentIndex())
+                print("\((#file as NSString).lastPathComponent):(\(#line))\n",idex)
+                if idex != GetCurrenIndex.shared.getCurrentIndex() + 1 {
+                    
+                    print("\((#file as NSString).lastPathComponent):(\(#line))\n",calue)
+                    niuniuDealArray.append(niuniuNameConvertToSongsName(songsName: calue))
+                }
+            }
+        }
+
         
         /// 当前玩家默认只显示前三张纸牌
         currentUbackCardsName = [currentUserIndexSEL()[0],
@@ -329,6 +347,9 @@ class CardNameModel: NSObject {
         
         /// 发通知
         NotificationCenter.default.post(name: NSNotification.Name(rawValue: "niuniuArray"), object: nil)
+        
+        
+        
     }
     
     

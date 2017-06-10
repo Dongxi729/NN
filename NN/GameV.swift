@@ -262,6 +262,7 @@ class GameV: UIView {
         addSubview(P1)
         addSubview(P2)
         addSubview(P3)
+
         
         /// 对亮牌和提示进行显示和隐藏
         P2.bigCardLayout.alertBtn.isHidden = true
@@ -350,8 +351,6 @@ class GameV: UIView {
                     self.P1.isShowBottomCardLayout = false
                     self.P1.imgNames = CardNameModel.shared.currentUbackCardsName
                     self.P1.addCards(cardsArray: CardNameModel.shared.currentUbackCardsName)
-                    
-                    self.P2.imgNames = CardNameModel.shared.backCardsName
                 }
             }
             
@@ -636,7 +635,18 @@ extension GameV : ShowAndAlertVDelegate {
     
     /// 亮牌
     func showSEL() {
-        showCardsFunc()
+
+        switch RoomModel.shared.currentPersonInRoom {
+        case 1:
+            break
+        case 2:
+            P1.imgNames = [CardNameModel.shared.niuniuDealArray[0]]
+            P1.addCards(cardsArray: [CardNameModel.shared.niuniuDealArray[0]])
+            P2.addrightCards(cardsArray: [CardNameModel.shared.niuniuDealArray[1]])
+            break
+        default:
+            break
+        }
     }
     
     /// 提示
@@ -706,11 +716,43 @@ extension GameV {
         
         /// 显示分数 ShowScoretext
         NotificationCenter.default.addObserver(self, selector: #selector(showOriginalScoreSEL), name: NSNotification.Name(rawValue: "ShowScoretext"), object: nil)
+        
+        /// 显示牛牛纸牌 niuniuArray
+        NotificationCenter.default.addObserver(self, selector: #selector(niuniuArraySEL), name: NSNotification.Name(rawValue: "niuniuArray"), object: nil)
     }
+    
+    // MARK: - 显示牛牛纸牌
+    @objc fileprivate func niuniuArraySEL() {
+
+        switch RoomModel.shared.currentPersonInRoom {
+        case 1:
+            break
+        case 2:
+            DispatchQueue.main.async {
+                CardNameModel.shared.isShowP1Front = true
+                self.P1.imgNames = CardNameModel.shared.currentUbackCardsName
+                self.P1.addCards(cardsArray: CardNameModel.shared.currentUbackCardsName)
+
+                print("ddddddddddddddddddddd")
+                self.P2.samllCardsShowLeftOrRight = 1
+                self.P2.addrightCards(cardsArray: CardNameModel.shared.backCardsName)
+                
+            }
+            break
+        default:
+            break
+        }
+        
+        
+        
+    }
+    
     
     // MARK: - 显示分数
     @objc fileprivate func showOriginalScoreSEL() {
     
+        NotificationCenter.default.removeObserver(self, name: NSNotification.Name(rawValue: "ShowScoretext"), object: nil)
+        
         let dformatter = DateFormatter()
         dformatter.dateFormat = "yyyy年MM月dd日 HH:mm:ss"
         

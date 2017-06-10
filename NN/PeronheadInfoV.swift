@@ -180,13 +180,13 @@ class PeronheadInfoV: UIView {
         self.niuniuImg.image = UIImage.init(named: imgName)
     }
     
-
+    
     // MARK: - 摆放纸牌
     func addCards(cardsArray : [String]) -> Void {
         
         /// 提示的时候
         if CardNameModel.shared.isShowP1Front {
-
+            
             if backCardsLayout != nil {
                 backCardsLayout.isHidden = true
             }
@@ -199,7 +199,7 @@ class PeronheadInfoV: UIView {
                     backCardsLayout.image = UIImage.init(named:value)
                     
                     index += 1
-
+                    
                 } else {
                     backCardsLayout = UIImageView.init(frame: CGRect.init(x: CGFloat(self.samllCardsShowLeftOrRight) + CGFloat(index) * self.Width * 0.15 , y: 2 * screenScale, width: self.Width * 0.3, height: self.Height - screenScale * 3))
                 }
@@ -219,11 +219,11 @@ class PeronheadInfoV: UIView {
                 
                 if isShowBottomCardLayout == false {
                     backCardsLayout = UIImageView.init(frame: CGRect.init(x: CGFloat(self.samllCardsShowLeftOrRight) + CGFloat(index) * self.Width * 0.15 , y: 2 * screenScale, width: self.Width * 0.3, height: self.Height - screenScale * 3))
-
+                    
                     
                 } else if isShowBottomCardLayout == true {
                     backCardsLayout = UIImageView.init(frame: CGRect.init(x: self.Width * CGFloat(self.samllCardsShowLeftOrRight) + CGFloat(index) * self.Width * 0.15 , y: 2 * screenScale, width: self.Width * 0.3, height: self.Height - screenScale * 3))
-
+                    
                     backCardsLayout.image = UIImage.init(named:value)
                     
                     index += 1
@@ -237,6 +237,35 @@ class PeronheadInfoV: UIView {
         }
     }
     
+    func addrightCards(cardsArray : [String]) -> Void {
+//        var index = 0
+//        for value in cardsArray {
+//            
+//        print("当前日期时间：\(dformatter.string(from: Date()))","\((#file as NSString).lastPathComponent):(\(#line))\n",index)
+//
+//           backCardsLayout = UIImageView.CGFloat(self.samllCardsShowLeftOrRight) + CGFloat(index) * self.Width * 0.15 , y: 2 * screenScale, width: self.Width * 0.3, height: self.Height - screenScale * 3))
+//            
+//            backCardsLayout.image = UIImage.init(named:value)
+//            
+//            index += 1
+//
+//            DispatchQueue.main.async {
+//                self.addSubview(self.backCardsLayout)
+//            }
+//            print("\((#file as NSString).lastPathComponent):(\(#line))\n")
+//        }
+        
+        var indexxxx = 0
+        for _ in 0..<5 {
+            let d =  UIImageView.init(frame: CGRect.init(x:self.Width * CGFloat(samllCardsShowLeftOrRight) + CGFloat(indexxxx) * self.Width * 0.15 , y: 2 * screenScale, width: self.Width * 0.3, height: self.Height - screenScale * 3))
+            d.contentMode = UIViewContentMode.scaleAspectFit
+            d.image = UIImage.init(named: cardsArray[indexxxx])
+            d.backgroundColor = UIColor.randomColor()
+            addSubview(d)
+            indexxxx += 1
+        }
+        
+    }
     
     
     override init(frame: CGRect) {
@@ -258,7 +287,7 @@ class PeronheadInfoV: UIView {
         
         addSubview(hhhh)
         addSubview(nameLabel)
-    
+        
         
         addSubview(coinsLabel)
         addSubview(showWave)
