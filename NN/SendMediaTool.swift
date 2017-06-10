@@ -484,8 +484,6 @@ func bytesShwoFunc(_over : [Byte]) -> Void {
             RoomModel.shared.isGameBegin = true
             
             ShowCardModel.shared.receiveStr = String.init(data: dd as Data, encoding: String.Encoding.utf8)!
-            
-            NotificationCenter.default.post(name: NSNotification.Name(rawValue: "isShowCard"), object: nil)
         }
         
         
@@ -497,8 +495,6 @@ func bytesShwoFunc(_over : [Byte]) -> Void {
             RoomModel.shared.isGameBegin = true
             
             ShowCardModel.shared.receiveStr = String.init(data: dd as Data, encoding: String.Encoding.utf8)!
-            
-            NotificationCenter.default.post(name: NSNotification.Name(rawValue: "isShowCard"), object: nil)
         }
         
     }

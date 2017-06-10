@@ -28,19 +28,52 @@ class ShowNIUNIUV: UIView {
         }
     }
     
-    // MARK: - 确定按钮
-    fileprivate lazy var confirmBtn: UIButton = {
-        let d : UIButton = UIButton.init(frame: CGRect.init(x: 0, y: 0, width: screenScale * 100, height: 20 * screenScale))
-        d.backgroundColor = UIColor.red
-        d.addTarget(self, action: #selector(hideSELF(sender:)), for: .touchUpInside)
-        d.center = (UIApplication.shared.keyWindow?.rootViewController?.view.center)!
-        return d
-    }()
+    
+    // MARK: - 位置坐标
+    var rects : [CGRect] = [CGRect.init(x: SW * 0.15, y: SH * 0.8, width: SW * 0.18, height: SH * 0.15),
+                            CGRect.init(x: SW * 0.06, y: SH * 0.56, width: SW * 0.18, height: SH * 0.15),
+                            CGRect.init(x: SW * 0.06, y: SH * 0.35, width: SW * 0.18, height: SH * 0.15),
+                            CGRect.init(x: 0.45 * SW, y: 0.13 * SH, width: SW * 0.18, height: SH * 0.15),
+                            CGRect.init(x: SW * 0.8, y: SH * 0.35, width: SW * 0.18, height: SH * 0.15),
+                            CGRect.init(x: SW * 0.8, y: SH * 0.55, width: SW * 0.18, height: SH * 0.15)]
     
     override init(frame: CGRect) {
         super.init(frame: frame)
+        let dformatter = DateFormatter()
+        dformatter.dateFormat = "yyyy年MM月dd日 HH:mm:ss"
+    }
+    
+    // MARK: - 添加的分数图标
+    var scoreImg = UIImageView()
+    
+    // MARK: - 播放分数
+    func playScore() {
+
+        DispatchQueue.main.async {
+            
+            NotificationCenter.default.removeObserver(self, name: NSNotification.Name(rawValue: "showScoreNotifi"), object: nil)
+            
+            var index = 0
+            
+            for _ in self.rects {
+                
+                self.scoreImg = UIImageView.init(frame: self.rects[index])
+                self.scoreImg.backgroundColor = UIColor.randomColor()
+                self.addSubview(self.scoreImg)
+                index += 1
+                
+                let dformatter = DateFormatter()
+                dformatter.dateFormat = "yyyy年MM月dd日 HH:mm:ss"
+                
+                print("当前日期时间：\(dformatter.string(from: Date()))","\((#file as NSString).lastPathComponent):(\(#line))\n",index)
+                
+                if index == RoomModel.shared.currentPersonInRoom {
+                    break
+                }
+            }
+            
+        }
         
-        addSubview(confirmBtn)
     }
     
     required init?(coder aDecoder: NSCoder) {

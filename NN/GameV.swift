@@ -56,7 +56,7 @@ class GameV: UIView {
     }()
     
     // MARK: - 位置坐标
-    var rects : [CGRect] = [CGRect.init(x: SW * 0.06, y: SH * 0.56, width: SW * 0.18, height: SH * 0.15),
+    var rects : [CGRect] = [CGRect.init(x: SW * 0.45, y: SH * 0.8, width: SW * 0.18, height: SH * 0.15),
                             CGRect.init(x: SW * 0.06, y: SH * 0.56, width: SW * 0.18, height: SH * 0.15),
                             CGRect.init(x: SW * 0.06, y: SH * 0.35, width: SW * 0.18, height: SH * 0.15),
                             CGRect.init(x: 0.45 * SW, y: 0.13 * SH, width: SW * 0.18, height: SH * 0.15),
@@ -377,10 +377,10 @@ class GameV: UIView {
                 }
                 
                 
-                //                DispatchQueue.main.async {
-                //                    self.P1.scoreImg.abc(abc: String(self.P1.coinsLabel.text!), scoreType: type)
-                //                    self.P2.scoreImg.abc(abc: String(self.P2.coinsLabel.text!), scoreType: type2)
-                //                }
+                DispatchQueue.main.async {
+                    self.P1.scoreImg.abc(abc: String(self.P1.coinsLabel.text!), scoreType: type)
+                    self.P2.scoreImg.abc(abc: String(self.P2.coinsLabel.text!), scoreType: type2)
+                }
                 
                 print("\((#file as NSString).lastPathComponent):(\(#line))\n")
             }
@@ -470,43 +470,6 @@ class GameV: UIView {
             
         default:
             break
-        }
-    }
-    
-    // MARK: - 返回最新用户信息
-    func showUserInfoSEL() {
-        NotificationCenter.default.removeObserver(self, name: NSNotification.Name(rawValue: "showUserInfo"), object: nil)
-        
-        self.getCoins.isHidden = true
-        /// 摆放正确用户位置
-        
-        DispatchQueue.main.async {
-            self.showCardsSEL()
-        }
-        
-        
-    }
-    
-    // MARK: - 是否亮牌
-    func isShowCardSEL() {
-        
-        print("\((#file as NSString).lastPathComponent):(\(#line))\n")
-        
-        NotificationCenter.default.removeObserver(self, name: NSNotification.Name(rawValue: "isShowCard"), object: nil)
-        
-        /// 亮牌
-        if ShowCardModel.shared.isShowed {
-            self.P1.isHidden = true
-            self.P2.isHidden = true
-            self.P3.isHidden = true
-            self.robOwner.isHidden = true
-            self.startGameBtn.isHidden = false
-            self.getCoins.isHidden = true
-            /// 没亮牌
-        } else {
-            self.startGameBtn.isHidden = true
-            self.robOwner.isHidden = true
-            self.getCoins.isHidden = true
         }
     }
     
@@ -719,9 +682,7 @@ extension GameV {
     @objc fileprivate func beginGameSEL(sender : UIButton) {
         
         sender.isHidden = true
-        
-        print("===")
-        
+
         /// 用户准备
         playPrepare()
     }
@@ -780,7 +741,6 @@ extension GameV {
         
         
         /// 是否亮牌 isShowCard
-        NotificationCenter.default.addObserver(self, selector: #selector(isShowCardSEL), name: NSNotification.Name(rawValue: "isShowCard"), object: nil)
         
         
         /// 解散房间 exitRoomRequest
@@ -805,6 +765,18 @@ extension GameV {
         /// 是否准备
         NotificationCenter.default.addObserver(self, selector: #selector(preparedSEL), name: NSNotification.Name(rawValue: "prepared"), object: nil)
         
+        /// 播放分数图片
+        NotificationCenter.default.addObserver(self, selector: #selector(showScoreNotifiSEL), name: NSNotification.Name(rawValue: "showScoreNotifi"), object: nil)
+    }
+    
+    // MARK: - 播放纸牌分数
+    @objc fileprivate func showScoreNotifiSEL() {
+        let dformatter = DateFormatter()
+        dformatter.dateFormat = "yyyy年MM月dd日 HH:mm:ss"
+        
+        print("当前日期时间：\(dformatter.string(from: Date()))","\((#file as NSString).lastPathComponent):(\(#line))\n")
+        
+        showMusicAndNNImg.playScore()
     }
     
     // MARK: - 是否准备
