@@ -230,6 +230,7 @@ class GameV: UIView {
         
         /// 抢庄视图
         addSubview(robOwner)
+        robOwner.isHidden = true
         
         /// 积分视图
         addSubview(getCoins)
@@ -302,24 +303,17 @@ class GameV: UIView {
             self.showDissmissAgeeeOrDisagreeV.isHidden = true
         }
         
-//        
-//        /// 显示积分视图？？？
-//        if RoomOwner.shared.ownerID != nil {
-//            /// 如果是房主的话、不显示积分视图
-//            
-//            
-//            
-//            self.robOwner.isHidden = true
-//            self.startGameBtn.isHidden = true
-//            
-//            if RoomOwner.shared.ownerID != LoginModel.shared.uid {
-//                
-//                self.getCoins.isHidden = false
-//            }
-//        }
-        
         /// 头像
         addSubview(headIMg)
+        
+        /// 显示房主头像
+        if RoomOwner.shared.ownerID != nil {
+            let dformatter = DateFormatter()
+            dformatter.dateFormat = "yyyy年MM月dd日 HH:mm:ss"
+            
+            print("当前日期时间：\(dformatter.string(from: Date()))","\((#file as NSString).lastPathComponent):(\(#line))\n")
+            
+        }
     }
     
     // MARK: - 本轮游戏结束
@@ -383,10 +377,10 @@ class GameV: UIView {
                 }
                 
                 
-//                DispatchQueue.main.async {
-//                    self.P1.scoreImg.abc(abc: String(self.P1.coinsLabel.text!), scoreType: type)
-//                    self.P2.scoreImg.abc(abc: String(self.P2.coinsLabel.text!), scoreType: type2)
-//                }
+                //                DispatchQueue.main.async {
+                //                    self.P1.scoreImg.abc(abc: String(self.P1.coinsLabel.text!), scoreType: type)
+                //                    self.P2.scoreImg.abc(abc: String(self.P2.coinsLabel.text!), scoreType: type2)
+                //                }
                 
                 print("\((#file as NSString).lastPathComponent):(\(#line))\n")
             }
@@ -519,6 +513,7 @@ class GameV: UIView {
     // MARK: - 头像
     lazy var headIMg: UIImageView = {
         let d : UIImageView = UIImageView.init()
+        d.contentMode = UIViewContentMode.scaleAspectFit
         d.image = #imageLiteral(resourceName: "owner")
         return d
     }()
@@ -530,47 +525,42 @@ class GameV: UIView {
             print("\((#file as NSString).lastPathComponent):(\(#line))\n","选出房主")
             print("\((#file as NSString).lastPathComponent):(\(#line))\n",RoomOwner.shared.ownerID as Any)
             /// 是房主就不显示积分
-//            if RoomOwner.shared.ownerID != RoomModel.shared.userId[GetCurrenIndex.shared.currentUserIndex] {
-//                //// 遍历房主所在的索引位置
-//                var fangZhuIndex = 0
-//                for value in GetCurrenIndex.shared.reverseRoomID() {
-//                    
-//                    print("\((#file as NSString).lastPathComponent):(\(#line))\n",value)
-//                    
-//                    print("\((#file as NSString).lastPathComponent):(\(#line))\n",fangZhuIndex)
-//                    if value == RoomOwner.shared.ownerID {
-//                        fangZhuIndex += 1
-//                        break
-//                    }
-//                    fangZhuIndex += 1
-//                }
-//                print("\((#file as NSString).lastPathComponent):(\(#line))\n",fangZhuIndex)
-//                
-//                // 显示对应的房间
-//                self.headIMg.frame = self.rects[fangZhuIndex]
-//                self.headIMg.isHidden = false
-//            } else {
-//                //// 遍历房主所在的索引位置
-//                var fangZhuIndex = 0
-//                for value in GetCurrenIndex.shared.reverseRoomID() {
-//                    if value == RoomOwner.shared.ownerID {
-//                        fangZhuIndex += 1
-//                        break
-//                    }
-//                    fangZhuIndex += 1
-//                }
-//                
-//                print("\((#file as NSString).lastPathComponent):(\(#line))\n",fangZhuIndex)
-//                
-//                // 显示对应的房间
-//                self.headIMg.frame = self.rects[fangZhuIndex]
-//                self.headIMg.isHidden = false
-//                self.getCoins.isHidden = true
-//                
-//                print("\((#file as NSString).lastPathComponent):(\(#line))\n",fangZhuIndex)
-//            }
-            
-            RoomOwner.shared.ownerID = nil
+            if RoomOwner.shared.ownerID != RoomModel.shared.userId[GetCurrenIndex.shared.currentUserIndex] {
+                //// 遍历房主所在的索引位置
+                var fangZhuIndex = 0
+                for value in GetCurrenIndex.shared.reverseRoomID() {
+
+                    if value != RoomOwner.shared.ownerID {
+                        fangZhuIndex += 1
+                    } else {
+                        break
+                    }
+                }
+                print("\((#file as NSString).lastPathComponent):(\(#line))\n",fangZhuIndex)
+
+                // 显示对应的房间
+                self.headIMg.frame = self.rects[fangZhuIndex]
+                self.headIMg.isHidden = false
+            } else {
+                //// 遍历房主所在的索引位置
+                var fangZhuIndex = 0
+                for value in GetCurrenIndex.shared.reverseRoomID() {
+                    if value != RoomOwner.shared.ownerID {
+                        fangZhuIndex += 1
+                    } else {
+                        break
+                    }
+                }
+
+                print("\((#file as NSString).lastPathComponent):(\(#line))\n",fangZhuIndex)
+
+                // 显示对应的房间
+                self.headIMg.frame = self.rects[fangZhuIndex]
+                self.headIMg.isHidden = false
+                self.getCoins.isHidden = true
+
+                print("\((#file as NSString).lastPathComponent):(\(#line))\n",fangZhuIndex)
+            }
         }
     }
     
@@ -596,6 +586,8 @@ class GameV: UIView {
     
     /// 显示抢庄
     func isRobOrNotSEL() -> Void {
+        
+        print("\((#file as NSString).lastPathComponent):(\(#line))\n")
         
         NotificationCenter.default.removeObserver(self, name: NSNotification.Name(rawValue: "beginRob"), object: nil)
         
@@ -673,7 +665,7 @@ extension GameV {
                 self.P2.isHidden = false
                 self.P1.isHidden = false
             }
-
+            
             
             print("\((#file as NSString).lastPathComponent):(\(#line))\n")
             
@@ -790,9 +782,6 @@ extension GameV {
         /// 是否亮牌 isShowCard
         NotificationCenter.default.addObserver(self, selector: #selector(isShowCardSEL), name: NSNotification.Name(rawValue: "isShowCard"), object: nil)
         
-        /// 返回最新用户状态信息
-        //        NotificationCenter.default.addObserver(self, selector: #selector(showUserInfoSEL), name: NSNotification.Name(rawValue: "showUserInfo"), object: nil)
-        
         
         /// 解散房间 exitRoomRequest
         NotificationCenter.default.addObserver(self, selector: #selector(showXXX), name: NSNotification.Name(rawValue: "exitRoomRequest"), object: nil)
@@ -845,7 +834,7 @@ extension GameV {
             print("\((#file as NSString).lastPathComponent):(\(#line))\n")
         }
         
-                NotificationCenter.default.removeObserver(self, name: NSNotification.Name(rawValue: "prepared"), object: nil)
+        NotificationCenter.default.removeObserver(self, name: NSNotification.Name(rawValue: "prepared"), object: nil)
     }
     
     // MARK: - 下一局开始
