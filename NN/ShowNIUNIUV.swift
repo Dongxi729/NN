@@ -14,6 +14,9 @@ class ShowNIUNIUV: UIView {
     // MARK: - 隐藏当前视图
     @objc fileprivate func hideSELF(sender : UIButton) -> Void {
         self.removeFromSuperview()
+        
+        /// 发出通知，通知下一局开始
+        NotificationCenter.default.post(name: NSNotification.Name(rawValue: "NextRoundStart"), object: nil)
     }
 
     // MARK: - 显示牛牛的歌词名字

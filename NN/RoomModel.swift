@@ -15,108 +15,108 @@ class RoomModel: NSObject {
     
     static let shared = RoomModel()
     
-    /// 游戏类型 1： 六人牛牛  通比牛牛
+    // MARK: - 游戏类型 1： 六人牛牛  通比牛牛
     var gameType : String = "1"
     
-    /// 六人牛牛玩法模式
+    // MARK: - 六人牛牛玩法模式
     var sixGameType : String = "1"
     
-    /// 游戏局数 10 、 20 、 30
+    // MARK: - 游戏局数 10 、 20 、 30
     var gameRounds : String = "10"
     
-    /// 是否可以作弊
+    // MARK: - 是否可以作弊
     var canCheat = false
     
-    /// 当前局数
+    // MARK: - 当前局数
     var currentRounds : String = "0"
     
-    /// 游戏人数 3/6人
-    /// 开始规定的游戏人数
+    // MARK: - 开始规定的游戏人数
     var limitedPlayersNum : Int = 3
     
-    /// 当前房间所在人数
+    // MARK: - 当前房间所在人数
     var currentPersonInRoom : Int = 0
     
-    /// 积分
+    // MARK: - 积分
     var wantCoins : String = "5"
     
-    /// 支付方式 : 房主平摊、房主结算
+    // MARK: - 支付方式 : 房主平摊、房主结算
     var payType : String = "1"
     
-    /// 用户ID
+    // MARK: - 用户ID
     var userId : [String] = []
     
-    
-    
-    /// 是否准备
-    var isReady = false
-    
-    /// 准备人员数量
+    // MARK: - 准备人员数量
     var readPlayerCount : Int = 0
     
-    /// 游戏是否开始
+    // MARK: - 游戏是否开始
     var isGameBegin = false
     
-    /// 是否抢庄
+    // MARK: - 是否抢庄
     var isRobRoomOwner = true
     
-    /// 是否显示波纹
+    // MARK: - 是否显示波纹
     var isShowWave = false
     
-    /// 是否离线
+    // MARK: - 是否离线
     var isOffLine = false
     
-    /// 是否庄主
+    // MARK: - 是否庄主
     var isOwner = false
     
-    /// 是否准备好
+    // MARK: - 是否准备好
     var isPrepared = false
     
-    /// 是否完成比牌
+    // MARK: - 是否完成比牌
     var isCardsChoosed = false
     
-    /// 是否邀请朋友
+    // MARK: - 是否邀请朋友
     var isInvitedFri = false
     
-    /// 开局所用分数
+    // MARK: - 开局所用分数
     var scoreCount : String!
     
-    /// 房间号
+    // MARK: - 房间号
     var roomNumber : Int!
     
-    /// 加入房间使用的房间号
+    // MARK: - 加入房间使用的房间号
     var joinRoomNumber : [String] = []
     
-    /// 名字字典
+    // MARK: - 名字字典
     fileprivate var userName : [String] = []
     var nameStr = [Int : String]()
     
-    /// 头像字典
-    
+    // MARK: - 头像字典
     fileprivate var headURLArray : [String] = []
     var headUrlDic = [Int : String]()
     
     
-    /// 分数字典
+    // MARK: - 分数字典
     var userScore : [String] = []
     var userScoreDic = [Int : String]()
     
     
-    /// 准备
-    fileprivate var prepareArray : [String] = []
+    // MARK: - 准备
+    var prepareArray : [String] = []
     var prepareDic = [Int : String]()
+
     
-    /// 用户ID
-    var userUIDS : [String] = []
-    
-    
-    /// xml 当前游戏(还未开始的游戏房间的数据)
+    // MARK: - xml 当前游戏(还未开始的游戏房间的数据)
     var currentRoomPlayInfo : String = "" {
         didSet {
             self.xmlAnalyse(xmlStr: currentRoomPlayInfo)
         }
     }
     
+    
+    ///  <M>
+    //    <tg rm="3800" gt="1" ii="10" tii="5" rn="3" py="1" pyn="25" ss="0" rnw="2"/>
+    //    <ty type="0">
+    //    <u id="46911756" h="http://wx.qlogo.cn/mmopen/Q3auHgzwzM5eia0u1RooDmyq7owxXPicPnibeO3P9NYicZ2IbjNNsXkJicrNGSPEBiaialL9bFia3XXu7PXSeIujp3I90W79Eqh2qfiamLDc8uSZRt0Y/0" n="阿东^_^^_^^_^" g="-30" re="true"/>
+    //    <u id="47636852" h="http://wx.qlogo.cn/mmopen/hNkYyIa5szztHlicbHJgUzSGOxgVaicia6VibnRInkcic9Jy5XBhLfLoZ9WUE4lwTvDovNHLZPE631OtaUv3R3bnE4w5UcPSMsmgA/0" n="黯" g="30" re="false"/>
+    //    <u id="0"/>
+    //    </ty>
+    //    <Nn szc="true"/>
+    //    </M>
     /// 解析的xml字符串1
     fileprivate func xmlAnalyse(xmlStr : String) -> Void {
         //获取xml文件内容
@@ -165,21 +165,21 @@ class RoomModel: NSObject {
             self.limitedPlayersNum = Int(user.attribute(forName: "rn")!.stringValue!)!
             
             
-//            print("====房间号",self.roomNumber)
-//            
-//            print("=====self.gameType",self.gameType)
-//            
-//            print("=====self.wantCoins",self.wantCoins)
-//            
-//            print("====== 支付方式",self.payType)
-//            
-//            print("====== 总局数",self.gameRounds)
-//            
-//            print("====== 当前局数",self.currentRounds)
-//            
-//            print("====== 当前房间在线人数",self.currentPersonInRoom)
-//            
-//            print("====== 拟定创建好房间的总人数",self.limitedPlayersNum)
+            print("====房间号",self.roomNumber)
+            
+            print("=====self.gameType",self.gameType)
+            
+            print("=====self.wantCoins",self.wantCoins)
+            
+            print("====== 支付方式",self.payType)
+            
+            print("====== 总局数",self.gameRounds)
+            
+            print("====== 当前局数",self.currentRounds)
+            
+            print("====== 当前房间在线人数",self.currentPersonInRoom)
+            
+            print("====== 拟定创建好房间的总人数",self.limitedPlayersNum)
         }
         
         let _users = try! doc.nodes(forXPath: "//M/ty/u") as! [DDXMLElement]
@@ -250,7 +250,7 @@ class RoomModel: NSObject {
             if scoreStr != nil {
                 self.userScore.append(scoreStr!)
             }
-
+            
             
             var scoreIndex = 0
             
@@ -272,6 +272,14 @@ class RoomModel: NSObject {
             if prepareStr != nil {
                 self.prepareArray.append(prepareStr!)
             }
+            
+            if prepareArray.count == RoomModel.shared.currentPersonInRoom {
+                print("\((#file as NSString).lastPathComponent):(\(#line))\n",self.prepareArray)
+                
+                /// 发通知、显示玩家准备状态-prepared
+                NotificationCenter.default.post(name: NSNotification.Name(rawValue: "prepared"), object: nil)
+            }
+            
             var prepareIndex = 0
             
             for ddd in self.prepareArray {

@@ -58,7 +58,7 @@ class JIfenModel: NSObject {
                 /// 存入数组
                 self.isJifenArray.append(Int(xxx)!)
                 
-                print("\((#file as NSString).lastPathComponent):(\(#line))\n",self.isJifenArray)
+                
                 
                 /// 判断添加进去是否达到房间人数
                 if self.isJifenArray.count == RoomModel.shared.currentPersonInRoom {
@@ -70,6 +70,8 @@ class JIfenModel: NSObject {
                     }
                     
                     print("\((#file as NSString).lastPathComponent):(\(#line))\n",index)
+                    
+                    print("\((#file as NSString).lastPathComponent):(\(#line))\n",self.isJifenArray)
                     
                     /// 如果取出压分的值都为0 的话，说明压根就没选分数过，但是还是不知道房主是谁
                     if index == RoomModel.shared.currentPersonInRoom {

@@ -40,6 +40,10 @@ class RobOwnerModel: NSObject {
     
     /// 解析的xml字符串1
     fileprivate func xmlAnalyse(xmlStr : String) -> Void {
+        
+        /// 初始化
+        isRobedArray = []
+        
         //获取xml文件内容
         let data = xmlStr.data(using: String.Encoding.utf8)
         

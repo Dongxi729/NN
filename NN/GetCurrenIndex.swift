@@ -14,18 +14,18 @@ class GetCurrenIndex: NSObject {
     
     static let shared = GetCurrenIndex()
     
-    /// 用户剩余分数
+    // MARK: - 用户剩余分数
     fileprivate var leftReplaceScore : [Int] = []
     
     
-    /// 用户增加分数
+    // MARK: - 用户增加分数
     fileprivate var userReplaceScoreDic : [Int] = []
     
-    /// 牛牛纸牌
+    // MARK: - 牛牛纸牌
     var niuniuReplaceArray : [String] = []
     
 
-    /// 获取对应用户所在的索引
+    // MARK: - 获取对应用户所在的索引
     func getCurrentIndex() -> Int {
         /// 返回当前用户的分数位置(用户1)
         var userIndex1 = 0
@@ -44,7 +44,7 @@ class GetCurrenIndex: NSObject {
         return currentUserIndex
     }
     
-    /// 用户2的数据
+    // MARK: - 用户2的数据
     func p2ArrayWithoutP1() -> [String] {
         
         
@@ -62,7 +62,7 @@ class GetCurrenIndex: NSObject {
         return newDic
     }
     
-    /// 名字
+    // MARK: - 名字
     func p2NameLabelWithoutP1() -> [String] {
         /// 移除了第一个索引后的值
         var newDic : [String] = []
@@ -77,9 +77,22 @@ class GetCurrenIndex: NSObject {
     }
     
     
+    // MARK: - 重新排序房主ID
+    func reverseRoomID() -> [String] {
+        var ddd : [String] = []
+        
+        ddd.append(RoomModel.shared.userId[getCurrentIndex()])
+        
+        for value in RoomModel.shared.userId {
+            if value != RoomModel.shared.userId[getCurrentIndex()] {
+                ddd.append(value)
+            }
+        }
+        return ddd
+    }
     
     
-    /// 用户当前分数
+    // MARK: - 用户当前分数
     func currentUserScore() -> [String] {
         
         print("\((#file as NSString).lastPathComponent):(\(#line))\n",RoomModel.shared.userScore)

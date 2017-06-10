@@ -326,6 +326,9 @@ func bodyfun() {
 
 var final = NSData()
 
+// MARK: - 发牌状态
+var serverSendType = 0
+
 // MARK: - 解析好的赋值操作
 func bytesShwoFunc(_over : [Byte]) -> Void {
     
@@ -336,6 +339,9 @@ func bytesShwoFunc(_over : [Byte]) -> Void {
     
     /// 类型
     let typpppp = bodyData.remove(at: 0)
+    
+    /// 赋值状态
+    serverSendType = Int(typpppp)
     
     let dd = NSData.init(bytes: bodyData, length: bodyData.count)
     print("\((#file as NSString).lastPathComponent):(\(#line))\n",typpppp)

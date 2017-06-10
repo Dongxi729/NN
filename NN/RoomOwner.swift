@@ -54,14 +54,11 @@ class RoomOwner: NSObject {
         
         for user in users {
             if user.attribute(forName: "id") != nil {
-                let xxx = user.attribute(forName: "id")!.stringValue!
-                print("\((#file as NSString).lastPathComponent):(\(#line))\n",xxx)
+                self.ownerID = user.attribute(forName: "id")!.stringValue!
+                print("\((#file as NSString).lastPathComponent):(\(#line))\n",self.ownerID)
                 
-                /// 赋值信息
-                self.ownerID = xxx
-                
-                /// 发通知，显示庄的头像
-                /// 找到对应的房主位置
+                /// 发通知，
+                NotificationCenter.default.post(name: NSNotification.Name(rawValue: "RoomOnwer"), object: nil)
                 
                 
             }
