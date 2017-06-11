@@ -103,6 +103,8 @@ class ShowNIUNIUV: UIView {
     var imgs : CommonNNImg!
     
     @objc fileprivate func listenPlayEnded() -> Void {
+        
+        
     
         /// 绘制牛牛纸牌的位置
         

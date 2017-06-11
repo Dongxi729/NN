@@ -635,14 +635,25 @@ extension GameV : ShowAndAlertVDelegate {
     
     /// 亮牌
     func showSEL() {
+        
+        
+        showCardsFunc()
 
         switch RoomModel.shared.currentPersonInRoom {
         case 1:
             break
         case 2:
-            P1.imgNames = [CardNameModel.shared.niuniuDealArray[0]]
-            P1.addCards(cardsArray: [CardNameModel.shared.niuniuDealArray[0]])
-            P2.addrightCards(cardsArray: [CardNameModel.shared.niuniuDealArray[1]])
+            CardNameModel.shared.isShowP1Front = true
+            
+            P1.imgNames = CardNameModel.shared.rightCurrentIndexCards()
+            P1.addCards(cardsArray: CardNameModel.shared.rightCurrentIndexCards())
+            
+            P2.samllCardsShowLeftOrRight = 1
+            
+            P2.addrightCards(cardsArray: CardNameModel.shared.allUserCardsNames[1])
+            
+            print("===============")
+
             break
         default:
             break

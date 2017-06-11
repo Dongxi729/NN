@@ -238,38 +238,37 @@ class PeronheadInfoV: UIView {
     }
     
     func addrightCards(cardsArray : [String]) -> Void {
-//        var index = 0
-//        for value in cardsArray {
-//            
-//        print("当前日期时间：\(dformatter.string(from: Date()))","\((#file as NSString).lastPathComponent):(\(#line))\n",index)
-//
-//           backCardsLayout = UIImageView.CGFloat(self.samllCardsShowLeftOrRight) + CGFloat(index) * self.Width * 0.15 , y: 2 * screenScale, width: self.Width * 0.3, height: self.Height - screenScale * 3))
-//            
-//            backCardsLayout.image = UIImage.init(named:value)
-//            
-//            index += 1
-//
-//            DispatchQueue.main.async {
-//                self.addSubview(self.backCardsLayout)
-//            }
-//            print("\((#file as NSString).lastPathComponent):(\(#line))\n")
-//        }
+
+        
+//        otherUserCardLayout.isHidden = false
         
         var indexxxx = 0
         for _ in 0..<5 {
-            let d =  UIImageView.init(frame: CGRect.init(x:self.Width * CGFloat(samllCardsShowLeftOrRight) + CGFloat(indexxxx) * self.Width * 0.15 , y: 2 * screenScale, width: self.Width * 0.3, height: self.Height - screenScale * 3))
-            d.contentMode = UIViewContentMode.scaleAspectFit
-            d.image = UIImage.init(named: cardsArray[indexxxx])
-            d.backgroundColor = UIColor.randomColor()
-            addSubview(d)
+            otherUserCardLayout =  UIImageView.init(frame: CGRect.init(x:self.Width * CGFloat(samllCardsShowLeftOrRight) + CGFloat(indexxxx) * self.Width * 0.15 , y: 2 * screenScale, width: self.Width * 0.3, height: self.Height - screenScale * 3))
+            otherUserCardLayout.image = UIImage.init(named: cardsArray[indexxxx])
             indexxxx += 1
+            
+            if otherUserCardLayout.frame.width != 0 {
+                addSubview(otherUserCardLayout)
+            }
         }
-        
     }
     
     
+    var otherUserCardLayout = UIImageView()
+    
     override init(frame: CGRect) {
         super.init(frame: frame)
+
+        let indexxxx = 0
+        for _ in 0..<5 {
+            otherUserCardLayout =  UIImageView.init(frame: CGRect.init(x:self.Width * CGFloat(samllCardsShowLeftOrRight) + CGFloat(indexxxx) * self.Width * 0.15 , y: 2 * screenScale, width: self.Width * 0.3, height: self.Height - screenScale * 3))
+            otherUserCardLayout.contentMode = UIViewContentMode.scaleAspectFit
+//            d.image = UIImage.init(named: cardsArray[indexxxx])
+            otherUserCardLayout.backgroundColor = UIColor.randomColor()
+ 
+            addSubview(otherUserCardLayout)
+        }
     }
     
     

@@ -36,9 +36,15 @@ class CardNameModel: NSObject {
                                     "p0",
                                     "p0",
                                     "p0"]
+    // MARK: - 所有用户的纸牌
+    var allUserCardsNames : [[String]] = []
     
     // MARK: - 当前玩家默认隐藏2张
     var currentUbackCardsName : [String] = []
+    
+    
+    // MARK: - 用户当前的正确纸牌
+    var userRightCardsNameWithoutHidden : [String] = []
     
     // MARK: - 牛牛数组
     var niuniuArray : [String] = []
@@ -105,7 +111,7 @@ class CardNameModel: NSObject {
         return cardsArray
     }
     
-    /// 当前用户的索引
+    /// 正确用户索引的纸牌
     func rightCurrentIndexCards() -> [String] {
         
         let cardsArray : [String] = []
@@ -311,7 +317,9 @@ class CardNameModel: NSObject {
         P3Array = getImgName(sss: P3Array)
         P4Array = getImgName(sss: P4Array)
         P5Array = getImgName(sss: P5Array)
-        P5Array = getImgName(sss: P6Array)
+        P6Array = getImgName(sss: P6Array)
+        
+        
         
         
         if niuniuArray.count == RoomModel.shared.currentPersonInRoom {
@@ -332,7 +340,7 @@ class CardNameModel: NSObject {
                 }
             }
         }
-
+        
         
         /// 当前玩家默认只显示前三张纸牌
         currentUbackCardsName = [currentUserIndexSEL()[0],
@@ -341,7 +349,43 @@ class CardNameModel: NSObject {
                                  "p0",
                                  "p0"]
         
-        print("\((#file as NSString).lastPathComponent):(\(#line))\n",currentUbackCardsName)
+        
+        //// 将所有收到的纸牌未处理的直接添加到一起
+        var allUnDealedCardsName : [[String]] = []
+        allUnDealedCardsName.append(P1Array)
+        allUnDealedCardsName.append(P2Array)
+        allUnDealedCardsName.append(P3Array)
+        allUnDealedCardsName.append(P4Array)
+        allUnDealedCardsName.append(P5Array)
+        allUnDealedCardsName.append(P6Array)
+        let dformatter = DateFormatter()
+        dformatter.dateFormat = "HH:mm:ss"
+        
+        print("\(dformatter.string(from: Date()))","\((#file as NSString).lastPathComponent):(\(#line))\n",allUnDealedCardsName)
+        
+        /// 用户1正确的纸牌
+        let P1CardsName = [currentUserIndexSEL()[0],
+                           currentUserIndexSEL()[1],
+                           currentUserIndexSEL()[2],
+                           currentUserIndexSEL()[3],
+                           currentUserIndexSEL()[4]]
+        
+        /// 添加所有用户的纸牌
+        allUserCardsNames.insert(P1CardsName, at: 0)            //// 当前玩家的纸牌
+        
+        
+        print("\(dformatter.string(from: Date()))","\((#file as NSString).lastPathComponent):(\(#line))\n",allUserCardsNames)
+
+        var idex = 0
+        for calue in allUnDealedCardsName {
+            
+            idex += 1
+            if idex != GetCurrenIndex.shared.getCurrentIndex() + 1 {
+                allUserCardsNames.append(calue)
+            }
+        }
+        
+        print("-----",allUserCardsNames)
         
         niuniuArray = contactName(cardsArray: niuniuArray, prefix: "niu")
         
