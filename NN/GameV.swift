@@ -262,7 +262,7 @@ class GameV: UIView {
         addSubview(P1)
         addSubview(P2)
         addSubview(P3)
-
+        
         
         /// 对亮牌和提示进行显示和隐藏
         P2.bigCardLayout.alertBtn.isHidden = true
@@ -416,7 +416,7 @@ class GameV: UIView {
                 //// 遍历房主所在的索引位置
                 var fangZhuIndex = 0
                 for value in GetCurrenIndex.shared.reverseRoomID() {
-
+                    
                     if value != RoomOwner.shared.ownerID {
                         fangZhuIndex += 1
                     } else {
@@ -424,7 +424,7 @@ class GameV: UIView {
                     }
                 }
                 print("\((#file as NSString).lastPathComponent):(\(#line))\n",fangZhuIndex)
-
+                
                 // 显示对应的房间
                 self.headIMg.frame = self.rects[fangZhuIndex]
                 self.headIMg.isHidden = false
@@ -438,14 +438,14 @@ class GameV: UIView {
                         break
                     }
                 }
-
+                
                 print("\((#file as NSString).lastPathComponent):(\(#line))\n",fangZhuIndex)
-
+                
                 // 显示对应的房间
                 self.headIMg.frame = self.rects[fangZhuIndex]
                 self.headIMg.isHidden = false
                 self.getCoins.isHidden = true
-
+                
                 print("\((#file as NSString).lastPathComponent):(\(#line))\n",fangZhuIndex)
             }
         }
@@ -533,9 +533,6 @@ extension GameV {
             P1.nameLabel.text = RoomModel.shared.nameStr[GetCurrenIndex.shared.getCurrentIndex()]
             P2.nameLabel.text = GetCurrenIndex.shared.p2NameLabelWithoutP1()[0]
             
-            
-            
-            
             /// 下载头像
             DispatchQueue.main.async {
                 
@@ -544,28 +541,28 @@ extension GameV {
                 
                 downImgWith(url: headStr!, toView: self.P1.headImg)
                 downImgWith(url: headStr2, toView: self.P2.headImg)
-                
             }
             
             DispatchQueue.main.async {
                 
                 self.P2.isHidden = false
                 self.P1.isHidden = false
-            }
-            
-            
-            print("\((#file as NSString).lastPathComponent):(\(#line))\n")
-            
-            /// Q取出本地用户分数存储的值
-            guard let userScore = UserDefaults.standard.object(forKey: "用户原始分数") as? [String] else {
                 
-                return
+                
+                
+                print("\((#file as NSString).lastPathComponent):(\(#line))\n")
+                
+                /// Q取出本地用户分数存储的值
+                guard let userScore = UserDefaults.standard.object(forKey: "用户原始分数") as? [String] else {
+                    
+                    return
+                }
+                
+                
+                self.P1.coinsLabel.text = userScore[0]
+                self.P2.coinsLabel.text = userScore[1]
+
             }
-
-
-            P1.coinsLabel.text = userScore[0]
-            P2.coinsLabel.text = userScore[1]
-            print("=====分数")
             
             break
             
@@ -617,7 +614,7 @@ extension GameV {
     @objc fileprivate func beginGameSEL(sender : UIButton) {
         
         sender.isHidden = true
-
+        
         /// 用户准备
         playPrepare()
     }
@@ -638,7 +635,7 @@ extension GameV : ShowAndAlertVDelegate {
         
         
         
-
+        
         switch RoomModel.shared.currentPersonInRoom {
         case 1:
             break
@@ -650,12 +647,16 @@ extension GameV : ShowAndAlertVDelegate {
             P1.imgNames = CardNameModel.shared.rightCurrentIndexCards()
             P1.addCards(cardsArray: CardNameModel.shared.rightCurrentIndexCards())
             
-            P2.samllCardsShowLeftOrRight = 1
             
-            P2.addrightCards(cardsArray: CardNameModel.shared.allUserCardsNames[1])
+                P2.samllCardsShowLeftOrRight = 1
+                
+                P2.addrightCards(cardsArray: CardNameModel.shared.allUserCardsNames[1])
+                
+                print("===============")
             
-            print("===============")
-
+            
+           
+            
             break
         default:
             break
@@ -736,7 +737,7 @@ extension GameV {
     
     // MARK: - 显示牛牛纸牌
     @objc fileprivate func niuniuArraySEL() {
-
+        
         switch RoomModel.shared.currentPersonInRoom {
         case 1:
             break
@@ -745,7 +746,7 @@ extension GameV {
                 CardNameModel.shared.isShowP1Front = true
                 self.P1.imgNames = CardNameModel.shared.currentUbackCardsName
                 self.P1.addCards(cardsArray: CardNameModel.shared.currentUbackCardsName)
-
+                
                 print("ddddddddddddddddddddd")
                 self.P2.samllCardsShowLeftOrRight = 1
                 self.P2.addrightCards(cardsArray: CardNameModel.shared.backCardsName)
@@ -763,7 +764,7 @@ extension GameV {
     
     // MARK: - 显示分数
     @objc fileprivate func showOriginalScoreSEL() {
-    
+        
         NotificationCenter.default.removeObserver(self, name: NSNotification.Name(rawValue: "ShowScoretext"), object: nil)
         
         let dformatter = DateFormatter()
@@ -782,7 +783,7 @@ extension GameV {
         case 2:
             P1.coinsLabel.text = userScore[0]
             P2.coinsLabel.text = userScore[1]
-
+            
             break
             
         default:
@@ -802,9 +803,6 @@ extension GameV {
     
     // MARK: - 是否准备
     @objc fileprivate func preparedSEL() {
-        print("\((#file as NSString).lastPathComponent):(\(#line))\n","准备后，显示抢庄shitu")
-        print("\((#file as NSString).lastPathComponent):(\(#line))\n",RoomModel.shared.prepareArray.count)
-        print("\((#file as NSString).lastPathComponent):(\(#line))\n",RoomModel.shared.prepareArray)
         
         if RoomModel.shared.prepareArray.count == RoomModel.shared.currentPersonInRoom {
             
@@ -812,20 +810,50 @@ extension GameV {
             self.robOwner.isHidden = true
             self.getCoins.isHidden = true
             
-            print("\((#file as NSString).lastPathComponent):(\(#line))\n",RoomModel.shared.prepareArray[GetCurrenIndex.shared.getCurrentIndex()])
+            print("\((#file as NSString).lastPathComponent):(\(#line))\n",RoomModel.shared.prepareArrayDealed[0])
             
             DispatchQueue.main.async {
-                if RoomModel.shared.prepareArray[GetCurrenIndex.shared.getCurrentIndex()] == "true" {
+
+                
+                /// 根据在线人数进行判断
+                switch RoomModel.shared.currentPersonInRoom {
+                case 1:
+                    break
+                case 2:
+                    if RoomModel.shared.prepareArrayDealed[0] == "true" {
+                        self.startGameBtn.isHidden = true
+                        
+                        self.P1.prepareImg.isHidden = false
+                        
+                    } else {
+                        self.startGameBtn.isHidden = false
+                        
+                        self.P1.prepareImg.isHidden = true
+                    }
                     
-                    self.startGameBtn.isHidden = true
-                } else {
+                    let dformatter = DateFormatter()
+                    dformatter.dateFormat = "HH:mm:ss"
                     
-                    self.startGameBtn.isHidden = false
+                    print("\(dformatter.string(from: Date()))","\((#file as NSString).lastPathComponent):(\(#line))\n",RoomModel.shared.prepareArrayDealed[1])
+                    
+                    if RoomModel.shared.prepareArrayDealed[1] == "true" {
+
+                        self.P2.prepareImg.isHidden = false
+                        
+                    } else {
+                        
+                        self.P2.prepareImg.isHidden = true
+                    }
+                    break
+                default:
+                    break
                 }
             }
             
-            print("\((#file as NSString).lastPathComponent):(\(#line))\n")
+            
         }
+        
+        
         
         NotificationCenter.default.removeObserver(self, name: NSNotification.Name(rawValue: "prepared"), object: nil)
     }

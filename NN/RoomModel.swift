@@ -101,6 +101,11 @@ class RoomModel: NSObject {
     
     // MARK: - 准备
     var prepareArray : [String] = []
+    
+    // MARK: - 整理过的准备
+    var prepareArrayDealed : [String] = []
+    
+    
     var prepareDic = [Int : String]()
 
     
@@ -110,18 +115,7 @@ class RoomModel: NSObject {
             self.xmlAnalyse(xmlStr: currentRoomPlayInfo)
         }
     }
-    
-    
-    ///  <M>
-    //    <tg rm="3800" gt="1" ii="10" tii="5" rn="3" py="1" pyn="25" ss="0" rnw="2"/>
-    //    <ty type="0">
-    //    <u id="46911756" h="http://wx.qlogo.cn/mmopen/Q3auHgzwzM5eia0u1RooDmyq7owxXPicPnibeO3P9NYicZ2IbjNNsXkJicrNGSPEBiaialL9bFia3XXu7PXSeIujp3I90W79Eqh2qfiamLDc8uSZRt0Y/0" n="阿东^_^^_^^_^" g="-30" re="true"/>
-    //    <u id="47636852" h="http://wx.qlogo.cn/mmopen/hNkYyIa5szztHlicbHJgUzSGOxgVaicia6VibnRInkcic9Jy5XBhLfLoZ9WUE4lwTvDovNHLZPE631OtaUv3R3bnE4w5UcPSMsmgA/0" n="黯" g="30" re="false"/>
-    //    <u id="0"/>
-    //    </ty>
-    //    <Nn szc="true"/>
-    //    </M>
-    /// 解析的xml字符串1
+
     fileprivate func xmlAnalyse(xmlStr : String) -> Void {
         //获取xml文件内容
         let data = xmlStr.data(using: String.Encoding.utf8)
@@ -200,6 +194,8 @@ class RoomModel: NSObject {
         self.userId = []
         
         self.userScoreCalued = []
+        
+        
         
         for user in _users {
             
@@ -311,10 +307,26 @@ class RoomModel: NSObject {
             
             if prepareStr != nil {
                 self.prepareArray.append(prepareStr!)
+                
+                /// 进行当前正确的准备投放
+                if prepareArray.count == RoomModel.shared.currentPersonInRoom {
+                    prepareArrayDealed.insert(prepareArray[GetCurrenIndex.shared.getCurrentIndex()], at: 0)
+                    
+                    
+                    
+                    var idex = 0
+                    for calue in prepareArray {
+                        
+                        idex += 1
+                        if idex != GetCurrenIndex.shared.getCurrentIndex() + 1 {
+                            prepareArrayDealed.append(calue)
+                            print("=====",prepareArrayDealed)
+                        }
+                    }
+                }
             }
             
             if prepareArray.count == RoomModel.shared.currentPersonInRoom {
-                print("\((#file as NSString).lastPathComponent):(\(#line))\n",self.prepareArray)
                 
                 /// 发通知、显示玩家准备状态-prepared
                 NotificationCenter.default.post(name: NSNotification.Name(rawValue: "prepared"), object: nil)
