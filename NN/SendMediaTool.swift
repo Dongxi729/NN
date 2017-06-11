@@ -461,6 +461,7 @@ func bytesShwoFunc(_over : [Byte]) -> Void {
             print("\((#file as NSString).lastPathComponent):(\(#line))\n",String.init(data: dd as Data, encoding: String.Encoding.utf8)!)
             
             RoomOwner.shared.receiveStr = String.init(data: dd as Data, encoding: String.Encoding.utf8)!
+
             
             /// RoomOwner
             NotificationCenter.default.post(name: NSNotification.Name(rawValue: "RoomOwner"), object: nil)

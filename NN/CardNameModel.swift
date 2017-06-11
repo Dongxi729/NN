@@ -175,6 +175,7 @@ class CardNameModel: NSObject {
         
         niuniuDealArray = []
         
+        allUserCardsNames = []
         
         self.isreceivedCountScore = "false"
         

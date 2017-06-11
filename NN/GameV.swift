@@ -56,7 +56,7 @@ class GameV: UIView {
     }()
     
     // MARK: - 位置坐标
-    var rects : [CGRect] = [CGRect.init(x: SW * 0.45, y: SH * 0.8, width: SW * 0.18, height: SH * 0.15),
+    var rects : [CGRect] = [CGRect.init(x: SW * 0.15, y: SH * 0.8, width: SW * 0.18, height: SH * 0.15),
                             CGRect.init(x: SW * 0.06, y: SH * 0.56, width: SW * 0.18, height: SH * 0.15),
                             CGRect.init(x: SW * 0.06, y: SH * 0.35, width: SW * 0.18, height: SH * 0.15),
                             CGRect.init(x: 0.45 * SW, y: 0.13 * SH, width: SW * 0.18, height: SH * 0.15),
@@ -307,12 +307,12 @@ class GameV: UIView {
         /// 头像
         addSubview(headIMg)
         
-        /// 显示房主头像
+        /// 重连--显示房主头像
         if RoomOwner.shared.ownerID != nil {
-            let dformatter = DateFormatter()
-            dformatter.dateFormat = "yyyy年MM月dd日 HH:mm:ss"
             
-            print("当前日期时间：\(dformatter.string(from: Date()))","\((#file as NSString).lastPathComponent):(\(#line))\n")
+            self.chooseOwnerSEL()
+            
+            self.isGameBeginSEL()
             
         }
     }
@@ -417,6 +417,8 @@ class GameV: UIView {
                 var fangZhuIndex = 0
                 for value in GetCurrenIndex.shared.reverseRoomID() {
                     
+                    print("房主ID",fangZhuIndex)
+                    
                     if value != RoomOwner.shared.ownerID {
                         fangZhuIndex += 1
                     } else {
@@ -428,10 +430,17 @@ class GameV: UIView {
                 // 显示对应的房间
                 self.headIMg.frame = self.rects[fangZhuIndex]
                 self.headIMg.isHidden = false
+                
+                
+                self.startGameBtn.isHidden = true
+            
+                RoomOwner.shared.ownerID = nil
             } else {
                 //// 遍历房主所在的索引位置
                 var fangZhuIndex = 0
                 for value in GetCurrenIndex.shared.reverseRoomID() {
+                    print("房主ID",fangZhuIndex)
+                    
                     if value != RoomOwner.shared.ownerID {
                         fangZhuIndex += 1
                     } else {
@@ -447,6 +456,8 @@ class GameV: UIView {
                 self.getCoins.isHidden = true
                 
                 print("\((#file as NSString).lastPathComponent):(\(#line))\n",fangZhuIndex)
+                
+                RoomOwner.shared.ownerID = nil
             }
         }
     }
@@ -649,8 +660,17 @@ extension GameV : ShowAndAlertVDelegate {
             
             
                 P2.samllCardsShowLeftOrRight = 1
-                
-                P2.addrightCards(cardsArray: CardNameModel.shared.allUserCardsNames[1])
+            
+            let dformatter = DateFormatter()
+            dformatter.dateFormat = "HH:mm:ss"
+            
+            print("\(dformatter.string(from: Date()))","\((#file as NSString).lastPathComponent):(\(#line))\n",CardNameModel.shared.allUserCardsNames.count)
+            
+            if CardNameModel.shared.allUserCardsNames.count == 6 {
+                    self.P2.addrightCards(cardsArray: CardNameModel.shared.allUserCardsNames[1])
+            }
+            
+            
                 
                 print("===============")
             
@@ -747,7 +767,6 @@ extension GameV {
                 self.P1.imgNames = CardNameModel.shared.currentUbackCardsName
                 self.P1.addCards(cardsArray: CardNameModel.shared.currentUbackCardsName)
                 
-                print("ddddddddddddddddddddd")
                 self.P2.samllCardsShowLeftOrRight = 1
                 self.P2.addrightCards(cardsArray: CardNameModel.shared.backCardsName)
                 
@@ -812,6 +831,10 @@ extension GameV {
             
             print("\((#file as NSString).lastPathComponent):(\(#line))\n",RoomModel.shared.prepareArrayDealed[0])
             
+            /// 移除通知 prepared
+            NotificationCenter.default.removeObserver(self, name: NSNotification.Name(rawValue: "prepared"), object: nil)
+            
+            
             DispatchQueue.main.async {
 
                 
@@ -820,42 +843,41 @@ extension GameV {
                 case 1:
                     break
                 case 2:
-                    if RoomModel.shared.prepareArrayDealed[0] == "true" {
-                        self.startGameBtn.isHidden = true
+                    
+                    DispatchQueue.main.async {
+                        if RoomModel.shared.prepareArrayDealed[0] == "true" {
+                            self.startGameBtn.isHidden = true
+                            
+                            self.P1.prepareImg.isHidden = false
+                            
+                        } else {
+                            self.startGameBtn.isHidden = false
+                            
+                            self.P1.prepareImg.isHidden = true
+                        }
                         
-                        self.P1.prepareImg.isHidden = false
+                        let dformatter = DateFormatter()
+                        dformatter.dateFormat = "HH:mm:ss"
                         
-                    } else {
-                        self.startGameBtn.isHidden = false
+                        print("\(dformatter.string(from: Date()))","\((#file as NSString).lastPathComponent):(\(#line))\n",RoomModel.shared.prepareArrayDealed[1])
                         
-                        self.P1.prepareImg.isHidden = true
+                        if RoomModel.shared.prepareArrayDealed[1] == "true" {
+                            
+                            self.P2.prepareImg.isHidden = false
+                            
+                        } else {
+                            
+                            self.P2.prepareImg.isHidden = true
+                        }
                     }
                     
-                    let dformatter = DateFormatter()
-                    dformatter.dateFormat = "HH:mm:ss"
-                    
-                    print("\(dformatter.string(from: Date()))","\((#file as NSString).lastPathComponent):(\(#line))\n",RoomModel.shared.prepareArrayDealed[1])
-                    
-                    if RoomModel.shared.prepareArrayDealed[1] == "true" {
-
-                        self.P2.prepareImg.isHidden = false
-                        
-                    } else {
-                        
-                        self.P2.prepareImg.isHidden = true
-                    }
+                
                     break
                 default:
                     break
                 }
             }
-            
-            
         }
-        
-        
-        
-        NotificationCenter.default.removeObserver(self, name: NSNotification.Name(rawValue: "prepared"), object: nil)
     }
     
     // MARK: - 下一局开始
@@ -881,16 +903,9 @@ extension GameV {
             if RoomOwner.shared.ownerID != LoginModel.shared.uid {
                 
                 self.getCoins.isHidden = false
-                
-                
-                
-                /// 将房主ID归零
-                RoomOwner.shared.ownerID = nil
             }
             NotificationCenter.default.removeObserver(self, name: NSNotification.Name(rawValue: "RoomOnwer"), object: nil)
         }
-        
-        
     }
     
     // MARK: - 显示解散视图

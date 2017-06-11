@@ -128,15 +128,18 @@ class RoomModel: NSObject {
         for user in users {
             
             /// 游戏类型
-            let gameType = user.attribute(forName: "gt")!.stringValue!
-            
-            self.sixGameType = gameType
-            
-            if gameType < "5" {
-                self.gameType = "六人牛牛"
-            } else {
-                self.gameType = "通比牛牛"
+            if user.attribute(forName: "gt") != nil {
+                let gameType = user.attribute(forName: "gt")!.stringValue!
+                
+                self.sixGameType = gameType
+                
+                if gameType < "5" {
+                    self.gameType = "六人牛牛"
+                } else {
+                    self.gameType = "通比牛牛"
+                }
             }
+            
             
             /// 房间号
             self.roomNumber = Int(user.attribute(forName: "rm")!.stringValue!)
@@ -194,7 +197,7 @@ class RoomModel: NSObject {
         self.userId = []
         
         self.userScoreCalued = []
-        
+        self.prepareArrayDealed = []
         
         
         for user in _users {
@@ -202,81 +205,104 @@ class RoomModel: NSObject {
             
             
             ///=========================== 名字解析成字典供后面使用,展示使用
-            let resultStr = user.attribute(forName: "n")?.stringValue
-            
-            if resultStr != nil {
-                self.userName.append(resultStr!)
-            }
-            /// 索引
-            var index = 0
-            
-            
-            for ddd in self.userName {
+            if user.attribute(forName: "n") != nil {
+                let resultStr = user.attribute(forName: "n")?.stringValue
                 
-                if ddd.characters.count == 0 {
-                    nameStr.updateValue("  ", forKey: index)
-                } else {
-                    nameStr.updateValue(ddd, forKey: index)
+                if resultStr != nil {
+                    self.userName.append(resultStr!)
                 }
+                /// 索引
+                var index = 0
                 
                 
-                index += 1
+                for ddd in self.userName {
+                    
+                    if ddd.characters.count == 0 {
+                        nameStr.updateValue("  ", forKey: index)
+                    } else {
+                        nameStr.updateValue(ddd, forKey: index)
+                    }
+                    
+                    
+                    index += 1
+                }
             }
+            
             
             ///=========================== 头像地址
-            let headUrlStr = user.attribute(forName: "h")?.stringValue
-            
-            if headUrlStr != nil {
-                self.headURLArray.append(headUrlStr!)
-            }
-            
-            /// 索引
-            var headURLIndex = 0
-            
-            for ddd in self.headURLArray {
+            if user.attribute(forName: "h") != nil {
+                let headUrlStr = user.attribute(forName: "h")?.stringValue
                 
-                if ddd.characters.count == 0 {
-                    headUrlDic.updateValue("https://10.url.cn/eth/ajNVdqHZLLAkicdgzTMWjbuuFd5oRpJKlfdlmymtAuHhzSOBXKENUPzKUO7picLoqFdt5H03dw64k/", forKey: headURLIndex)
-                } else {
-                    headUrlDic.updateValue(ddd, forKey: headURLIndex)
+                if headUrlStr != nil {
+                    self.headURLArray.append(headUrlStr!)
                 }
                 
-                headURLIndex += 1
+                /// 索引
+                var headURLIndex = 0
+                
+                for ddd in self.headURLArray {
+                    
+                    if ddd.characters.count == 0 {
+                        headUrlDic.updateValue("https://10.url.cn/eth/ajNVdqHZLLAkicdgzTMWjbuuFd5oRpJKlfdlmymtAuHhzSOBXKENUPzKUO7picLoqFdt5H03dw64k/", forKey: headURLIndex)
+                    } else {
+                        headUrlDic.updateValue(ddd, forKey: headURLIndex)
+                    }
+                    
+                    headURLIndex += 1
+                }
+                
+                var scoreIndex = 0
+                
+                for ddd in self.userScore {
+                    
+                    if ddd.characters.count == 0 {
+                        userScoreDic.updateValue("----", forKey: headURLIndex)
+                    } else {
+                        userScoreDic.updateValue(ddd, forKey: headURLIndex)
+                    }
+                    
+                    scoreIndex += 1
+                }
+                
             }
+            
             
             
             
             ///=========================== 分数
-            let scoreStr = user.attribute(forName: "g")?.stringValue
-            
-            if scoreStr != nil {
-                self.userScore.append(scoreStr!)
+            if user.attribute(forName: "g") != nil {
                 
-                /// 添加当前局数的用户的原始分数
-                if self.userScore.count == currentPersonInRoom {
+                let scoreStr = user.attribute(forName: "g")?.stringValue
+                
+                if scoreStr != nil {
+                    self.userScore.append(scoreStr!)
                     
-                    userScoreCalued.insert(userScore[GetCurrenIndex.shared.getCurrentIndex()], at: 0)
-                    
-                    let dformatter = DateFormatter()
-                    dformatter.dateFormat = "yyyy年MM月dd日 HH:mm:ss"
-                    
-                    print("当前日期时间：\(dformatter.string(from: Date()))","\((#file as NSString).lastPathComponent):(\(#line))\n",userScoreCalued[0])
-                    
-                    var idex = 0
-                    for calue in userScore {
-                        idex += 1
-                        if idex != GetCurrenIndex.shared.getCurrentIndex() + 1 {
-                            userScoreCalued.append(calue)
-                            if userScoreCalued.count == currentPersonInRoom {
-
-                                UserDefaults.standard.set(userScoreCalued, forKey: "用户原始分数")
-                                UserDefaults.standard.synchronize()
-
-                                print("当前日期时间：\(dformatter.string(from: Date()))","\((#file as NSString).lastPathComponent):(\(#line))\n",userScoreCalued)
-                                
-                                /// 发通知，显示分数文字
-                                NotificationCenter.default.post(name: NSNotification.Name(rawValue: "ShowScoretext"), object: nil)
-                                
+                    /// 添加当前局数的用户的原始分数
+                    if self.userScore.count == currentPersonInRoom {
+                        
+                        userScoreCalued.insert(userScore[GetCurrenIndex.shared.getCurrentIndex()], at: 0)
+                        
+                        let dformatter = DateFormatter()
+                        dformatter.dateFormat = "yyyy年MM月dd日 HH:mm:ss"
+                        
+                        print("当前日期时间：\(dformatter.string(from: Date()))","\((#file as NSString).lastPathComponent):(\(#line))\n",userScoreCalued[0])
+                        
+                        var idex = 0
+                        for calue in userScore {
+                            idex += 1
+                            if idex != GetCurrenIndex.shared.getCurrentIndex() + 1 {
+                                userScoreCalued.append(calue)
+                                if userScoreCalued.count == currentPersonInRoom {
+                                    
+                                    UserDefaults.standard.set(userScoreCalued, forKey: "用户原始分数")
+                                    UserDefaults.standard.synchronize()
+                                    
+                                    print("当前日期时间：\(dformatter.string(from: Date()))","\((#file as NSString).lastPathComponent):(\(#line))\n",userScoreCalued)
+                                    
+                                    /// 发通知，显示分数文字
+                                    NotificationCenter.default.post(name: NSNotification.Name(rawValue: "ShowScoretext"), object: nil)
+                                    
+                                }
                             }
                         }
                     }
@@ -286,51 +312,48 @@ class RoomModel: NSObject {
             
             
             
-            var scoreIndex = 0
             
-            for ddd in self.userScore {
-                
-                if ddd.characters.count == 0 {
-                    userScoreDic.updateValue("----", forKey: headURLIndex)
-                } else {
-                    userScoreDic.updateValue(ddd, forKey: headURLIndex)
-                }
-                
-                scoreIndex += 1
-            }
             
+     
             
             
             
             ///=========================== 准备
-            let prepareStr = user.attribute(forName: "re")?.stringValue
-            
-            if prepareStr != nil {
-                self.prepareArray.append(prepareStr!)
+            if user.attribute(forName: "re") != nil {
+                let prepareStr = user.attribute(forName: "re")?.stringValue
                 
-                /// 进行当前正确的准备投放
-                if prepareArray.count == RoomModel.shared.currentPersonInRoom {
-                    prepareArrayDealed.insert(prepareArray[GetCurrenIndex.shared.getCurrentIndex()], at: 0)
+                if prepareStr != nil {
+                    self.prepareArray.append(prepareStr!)
                     
-                    
-                    
-                    var idex = 0
-                    for calue in prepareArray {
+                    /// 进行当前正确的准备投放
+                    if prepareArray.count == RoomModel.shared.currentPersonInRoom {
+                        prepareArrayDealed.insert(prepareArray[GetCurrenIndex.shared.getCurrentIndex()], at: 0)
                         
-                        idex += 1
-                        if idex != GetCurrenIndex.shared.getCurrentIndex() + 1 {
-                            prepareArrayDealed.append(calue)
-                            print("=====",prepareArrayDealed)
+                        
+                        
+                        var idex = 0
+                        for calue in prepareArray {
+                            
+                            idex += 1
+                            if idex != GetCurrenIndex.shared.getCurrentIndex() + 1 {
+                                prepareArrayDealed.append(calue)
+                                print("=====",prepareArrayDealed)
+                                
+                                
+                                if prepareArrayDealed.count == RoomModel.shared.currentPersonInRoom {
+                                    
+                                    /// 发通知、显示玩家准备状态-prepared
+                                    NotificationCenter.default.post(name: NSNotification.Name(rawValue: "prepared"), object: nil)
+                                }
+                            }
                         }
                     }
                 }
             }
             
-            if prepareArray.count == RoomModel.shared.currentPersonInRoom {
-                
-                /// 发通知、显示玩家准备状态-prepared
-                NotificationCenter.default.post(name: NSNotification.Name(rawValue: "prepared"), object: nil)
-            }
+            
+            
+            
             
             var prepareIndex = 0
             
@@ -345,11 +368,14 @@ class RoomModel: NSObject {
             
             /// 解析用户ID
             ///=========================== 准备
-            let userUID = user.attribute(forName: "id")?.stringValue
-            
-            if userUID != nil {
-                self.userId.append(userUID!)
+            if user.attribute(forName: "id") != nil {
+                let userUID = user.attribute(forName: "id")?.stringValue
+                
+                if userUID != nil {
+                    self.userId.append(userUID!)
+                }
             }
+          
         }
     }
 }
