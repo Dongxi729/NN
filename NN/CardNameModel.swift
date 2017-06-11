@@ -236,13 +236,15 @@ class CardNameModel: NSObject {
                     for calue in niuniuArray {
                         
                         idex += 1
-                        
-                        print("\((#file as NSString).lastPathComponent):(\(#line))\n",GetCurrenIndex.shared.getCurrentIndex())
-                        print("\((#file as NSString).lastPathComponent):(\(#line))\n",idex)
+
                         if idex != GetCurrenIndex.shared.getCurrentIndex() + 1 {
                             
                             print("\((#file as NSString).lastPathComponent):(\(#line))\n",calue)
                             niuniuDealArray.append(niuniuNameConvertToSongsName(songsName: calue))
+                            
+                            
+                                print("===========",niuniuDealArray)
+                            
                         }
                     }
                 }
@@ -322,24 +324,24 @@ class CardNameModel: NSObject {
         
         
         
-        if niuniuArray.count == RoomModel.shared.currentPersonInRoom {
-            
-            niuniuDealArray.insert((niuniuNameConvertToSongsName(songsName: niuniuArray[GetCurrenIndex.shared.getCurrentIndex()])), at: 0)
-            
-            var idex = 0
-            for calue in niuniuArray {
-                
-                idex += 1
-                
-                print("\((#file as NSString).lastPathComponent):(\(#line))\n",GetCurrenIndex.shared.getCurrentIndex())
-                print("\((#file as NSString).lastPathComponent):(\(#line))\n",idex)
-                if idex != GetCurrenIndex.shared.getCurrentIndex() + 1 {
-                    
-                    print("\((#file as NSString).lastPathComponent):(\(#line))\n",calue)
-                    niuniuDealArray.append(niuniuNameConvertToSongsName(songsName: calue))
-                }
-            }
-        }
+//        if niuniuArray.count == RoomModel.shared.currentPersonInRoom {
+//            
+//            niuniuDealArray.insert((niuniuNameConvertToSongsName(songsName: niuniuArray[GetCurrenIndex.shared.getCurrentIndex()])), at: 0)
+//            
+//            var idex = 0
+//            for calue in niuniuArray {
+//                
+//                idex += 1
+//                
+//                print("\((#file as NSString).lastPathComponent):(\(#line))\n",GetCurrenIndex.shared.getCurrentIndex())
+//                print("\((#file as NSString).lastPathComponent):(\(#line))\n",idex)
+//                if idex != GetCurrenIndex.shared.getCurrentIndex() + 1 {
+//                    
+//                    print("\((#file as NSString).lastPathComponent):(\(#line))\n",calue)
+//                    niuniuDealArray.append(niuniuNameConvertToSongsName(songsName: calue))
+//                }
+//            }
+//        }
         
         
         /// 当前玩家默认只显示前三张纸牌

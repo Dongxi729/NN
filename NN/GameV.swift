@@ -637,12 +637,14 @@ extension GameV : ShowAndAlertVDelegate {
     func showSEL() {
         
         
-        showCardsFunc()
+        
 
         switch RoomModel.shared.currentPersonInRoom {
         case 1:
             break
         case 2:
+            
+            showCardsFunc()
             CardNameModel.shared.isShowP1Front = true
             
             P1.imgNames = CardNameModel.shared.rightCurrentIndexCards()
