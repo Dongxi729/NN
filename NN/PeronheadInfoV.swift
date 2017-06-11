@@ -238,9 +238,6 @@ class PeronheadInfoV: UIView {
     }
     
     func addrightCards(cardsArray : [String]) -> Void {
-
-        
-//        otherUserCardLayout.isHidden = false
         
         var indexxxx = 0
         for _ in 0..<5 {
