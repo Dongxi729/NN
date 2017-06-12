@@ -670,7 +670,7 @@ extension GameV {
             
             DispatchQueue.main.async {
                 self.P1.nameLabel.text = RoomModel.shared.nameStr[GetCurrenIndex.shared.getCurrentIndex()]
-                self.P2.nameLabel.text = RoomModel.shared.nameStrDealed[1]
+                self.P2.nameLabel.text = GetCurrenIndex.shared.naeLbel()[1]
                 
                 downImgWith(url: RoomModel.shared.headUrlDic[GetCurrenIndex.shared.currentUserIndex]!, toView: self.P1.headImg)
                 downImgWith(url: RoomModel.shared.headURLArrayDealed[1], toView: self.P2.headImg)
@@ -679,13 +679,9 @@ extension GameV {
                 self.P2.isHidden = false
                 self.P1.isHidden = false
                 /// Q取出本地用户分数存储的值
-                guard let userScore = UserDefaults.standard.object(forKey: "用户原始分数") as? [String] else {
-                    
-                    return
-                }
-                
-                self.P1.coinsLabel.text = userScore[0]
-                self.P2.coinsLabel.text = userScore[1]
+
+                self.P1.coinsLabel.text = RoomModel.shared.userScore[GetCurrenIndex.shared.getCurrentIndex()]
+                self.P2.coinsLabel.text = GetCurrenIndex.shared.scoreee()[1]
             }
             
             break
@@ -700,36 +696,23 @@ extension GameV {
             
             
             P1.nameLabel.text = RoomModel.shared.nameStr[GetCurrenIndex.shared.getCurrentIndex()]
-            P2.nameLabel.text = GetCurrenIndex.shared.p2NameLabelWithoutP1()[0]
-            P3.nameLabel.text = GetCurrenIndex.shared.p2NameLabelWithoutP1()[1]
+            P2.nameLabel.text = GetCurrenIndex.shared.naeLbel()[1]
+            P3.nameLabel.text = GetCurrenIndex.shared.naeLbel()[2]
             
             /// 下载头像
             DispatchQueue.main.async {
-                
-                let headStr = RoomModel.shared.headUrlDic[GetCurrenIndex.shared.currentUserIndex]
-                let headStr2 = GetCurrenIndex.shared.p2ArrayWithoutP1()[0]
-                let headStr3 = GetCurrenIndex.shared.p2ArrayWithoutP1()[1]
-                
-                
-                downImgWith(url: headStr!, toView: self.P1.headImg)
-                downImgWith(url: headStr2, toView: self.P2.headImg)
-                downImgWith(url: headStr3, toView: self.P3.headImg)
-                
-                
-            }
-            DispatchQueue.main.async {
+                downImgWith(url: RoomModel.shared.headUrlDic[GetCurrenIndex.shared.currentUserIndex]!, toView: self.P1.headImg)
+                downImgWith(url: RoomModel.shared.headURLArrayDealed[1], toView: self.P2.headImg)
+                downImgWith(url: RoomModel.shared.headURLArrayDealed[2], toView: self.P3.headImg)
+
+
                 self.P3.isHidden = false
                 self.P2.isHidden = false
                 self.P1.isHidden = false
-                /// Q取出本地用户分数存储的值
-                guard let userScore = UserDefaults.standard.object(forKey: "用户原始分数") as? [String] else {
-                    
-                    return
-                }
                 
-                self.P1.coinsLabel.text = userScore[0]
-                self.P2.coinsLabel.text = userScore[1]
-                self.P3.coinsLabel.text = userScore[2]
+                self.P1.coinsLabel.text = RoomModel.shared.userScore[GetCurrenIndex.shared.getCurrentIndex()]
+                self.P2.coinsLabel.text = GetCurrenIndex.shared.scoreee()[1]
+                self.P3.coinsLabel.text = GetCurrenIndex.shared.scoreee()[2]
             }
             break
         case 4:
@@ -744,39 +727,26 @@ extension GameV {
             
             
             P1.nameLabel.text = RoomModel.shared.nameStr[GetCurrenIndex.shared.getCurrentIndex()]
-            P2.nameLabel.text = GetCurrenIndex.shared.p2NameLabelWithoutP1()[0]
-            P3.nameLabel.text = GetCurrenIndex.shared.p2NameLabelWithoutP1()[1]
-            P4.nameLabel.text = GetCurrenIndex.shared.p2NameLabelWithoutP1()[2]
+            P2.nameLabel.text = GetCurrenIndex.shared.naeLbel()[1]
+            P3.nameLabel.text = GetCurrenIndex.shared.naeLbel()[2]
+            P4.nameLabel.text = GetCurrenIndex.shared.naeLbel()[3]
             
             /// 下载头像
             DispatchQueue.main.async {
+                downImgWith(url: RoomModel.shared.headUrlDic[GetCurrenIndex.shared.currentUserIndex]!, toView: self.P1.headImg)
+                downImgWith(url: RoomModel.shared.headURLArrayDealed[1], toView: self.P2.headImg)
+                downImgWith(url: RoomModel.shared.headURLArrayDealed[2], toView: self.P3.headImg)
+                downImgWith(url: RoomModel.shared.headURLArrayDealed[3], toView: self.P4.headImg)
                 
-                let headStr = RoomModel.shared.headUrlDic[GetCurrenIndex.shared.currentUserIndex]
-                let headStr2 = GetCurrenIndex.shared.p2ArrayWithoutP1()[0]
-                let headStr3 = GetCurrenIndex.shared.p2ArrayWithoutP1()[1]
-                let headStr4 = GetCurrenIndex.shared.p2ArrayWithoutP1()[2]
-                
-                
-                downImgWith(url: headStr!, toView: self.P1.headImg)
-                downImgWith(url: headStr2, toView: self.P2.headImg)
-                downImgWith(url: headStr3, toView: self.P3.headImg)
-                downImgWith(url: headStr4, toView: self.P4.headImg)
-            }
-            DispatchQueue.main.async {
                 self.P4.isHidden = false
                 self.P3.isHidden = false
                 self.P2.isHidden = false
                 self.P1.isHidden = false
-                /// Q取出本地用户分数存储的值
-                guard let userScore = UserDefaults.standard.object(forKey: "用户原始分数") as? [String] else {
-                    
-                    return
-                }
                 
-                self.P1.coinsLabel.text = userScore[0]
-                self.P2.coinsLabel.text = userScore[1]
-                self.P3.coinsLabel.text = userScore[2]
-                self.P4.coinsLabel.text = userScore[3]
+                self.P1.coinsLabel.text = RoomModel.shared.userScore[GetCurrenIndex.shared.getCurrentIndex()]
+                self.P2.coinsLabel.text = GetCurrenIndex.shared.scoreee()[1]
+                self.P3.coinsLabel.text = GetCurrenIndex.shared.scoreee()[2]
+                self.P4.coinsLabel.text = GetCurrenIndex.shared.scoreee()[3]
             }
             break
             
@@ -790,47 +760,32 @@ extension GameV {
             P4.samllCardsShowLeftOrRight = -1
             P5.samllCardsShowLeftOrRight = -1
             
-            
-            
+
             P1.nameLabel.text = RoomModel.shared.nameStr[GetCurrenIndex.shared.getCurrentIndex()]
-            P2.nameLabel.text = GetCurrenIndex.shared.p2NameLabelWithoutP1()[0]
-            P3.nameLabel.text = GetCurrenIndex.shared.p2NameLabelWithoutP1()[1]
-            P4.nameLabel.text = GetCurrenIndex.shared.p2NameLabelWithoutP1()[2]
-            P5.nameLabel.text = GetCurrenIndex.shared.p2NameLabelWithoutP1()[3]
+            P2.nameLabel.text = GetCurrenIndex.shared.naeLbel()[1]
+            P3.nameLabel.text = GetCurrenIndex.shared.naeLbel()[2]
+            P4.nameLabel.text = GetCurrenIndex.shared.naeLbel()[3]
+            P5.nameLabel.text = GetCurrenIndex.shared.naeLbel()[4]
             
             /// 下载头像
             DispatchQueue.main.async {
+                downImgWith(url: RoomModel.shared.headUrlDic[GetCurrenIndex.shared.currentUserIndex]!, toView: self.P1.headImg)
+                downImgWith(url: RoomModel.shared.headURLArrayDealed[1], toView: self.P2.headImg)
+                downImgWith(url: RoomModel.shared.headURLArrayDealed[2], toView: self.P3.headImg)
+                downImgWith(url: RoomModel.shared.headURLArrayDealed[3], toView: self.P4.headImg)
+                downImgWith(url: RoomModel.shared.headURLArrayDealed[4], toView: self.P5.headImg)
                 
-                let headStr = RoomModel.shared.headUrlDic[GetCurrenIndex.shared.currentUserIndex]
-                let headStr2 = GetCurrenIndex.shared.p2ArrayWithoutP1()[0]
-                let headStr3 = GetCurrenIndex.shared.p2ArrayWithoutP1()[1]
-                let headStr4 = GetCurrenIndex.shared.p2ArrayWithoutP1()[2]
-                let headStr5 = GetCurrenIndex.shared.p2ArrayWithoutP1()[3]
-                
-                
-                downImgWith(url: headStr!, toView: self.P1.headImg)
-                downImgWith(url: headStr2, toView: self.P2.headImg)
-                downImgWith(url: headStr3, toView: self.P3.headImg)
-                downImgWith(url: headStr4, toView: self.P4.headImg)
-                downImgWith(url: headStr5, toView: self.P5.headImg)
-            }
-            DispatchQueue.main.async {
                 self.P5.isHidden = false
                 self.P4.isHidden = false
                 self.P3.isHidden = false
                 self.P2.isHidden = false
                 self.P1.isHidden = false
-                /// Q取出本地用户分数存储的值
-                guard let userScore = UserDefaults.standard.object(forKey: "用户原始分数") as? [String] else {
-                    
-                    return
-                }
                 
-                self.P1.coinsLabel.text = userScore[0]
-                self.P2.coinsLabel.text = userScore[1]
-                self.P3.coinsLabel.text = userScore[2]
-                self.P4.coinsLabel.text = userScore[3]
-                self.P5.coinsLabel.text = userScore[4]
+                self.P1.coinsLabel.text = RoomModel.shared.userScore[GetCurrenIndex.shared.getCurrentIndex()]
+                self.P2.coinsLabel.text = GetCurrenIndex.shared.scoreee()[1]
+                self.P3.coinsLabel.text = GetCurrenIndex.shared.scoreee()[2]
+                self.P4.coinsLabel.text = GetCurrenIndex.shared.scoreee()[3]
+                self.P5.coinsLabel.text = GetCurrenIndex.shared.scoreee()[4]
             }
             break
             
@@ -846,52 +801,35 @@ extension GameV {
             P6.samllCardsShowLeftOrRight = -1
             
             
-            
-            
             P1.nameLabel.text = RoomModel.shared.nameStr[GetCurrenIndex.shared.getCurrentIndex()]
-            P2.nameLabel.text = GetCurrenIndex.shared.p2NameLabelWithoutP1()[0]
-            P3.nameLabel.text = GetCurrenIndex.shared.p2NameLabelWithoutP1()[1]
-            P4.nameLabel.text = GetCurrenIndex.shared.p2NameLabelWithoutP1()[2]
-            P5.nameLabel.text = GetCurrenIndex.shared.p2NameLabelWithoutP1()[3]
-            P6.nameLabel.text = GetCurrenIndex.shared.p2NameLabelWithoutP1()[4]
+            P2.nameLabel.text = GetCurrenIndex.shared.naeLbel()[1]
+            P3.nameLabel.text = GetCurrenIndex.shared.naeLbel()[2]
+            P4.nameLabel.text = GetCurrenIndex.shared.naeLbel()[3]
+            P5.nameLabel.text = GetCurrenIndex.shared.naeLbel()[4]
+            P6.nameLabel.text = GetCurrenIndex.shared.naeLbel()[5]
             
             /// 下载头像
             DispatchQueue.main.async {
+                downImgWith(url: RoomModel.shared.headUrlDic[GetCurrenIndex.shared.currentUserIndex]!, toView: self.P1.headImg)
+                downImgWith(url: RoomModel.shared.headURLArrayDealed[1], toView: self.P2.headImg)
+                downImgWith(url: RoomModel.shared.headURLArrayDealed[2], toView: self.P3.headImg)
+                downImgWith(url: RoomModel.shared.headURLArrayDealed[3], toView: self.P4.headImg)
+                downImgWith(url: RoomModel.shared.headURLArrayDealed[4], toView: self.P5.headImg)
+                downImgWith(url: RoomModel.shared.headURLArrayDealed[5], toView: self.P5.headImg)
                 
-                let headStr = RoomModel.shared.headUrlDic[GetCurrenIndex.shared.currentUserIndex]
-                let headStr2 = GetCurrenIndex.shared.p2ArrayWithoutP1()[0]
-                let headStr3 = GetCurrenIndex.shared.p2ArrayWithoutP1()[1]
-                let headStr4 = GetCurrenIndex.shared.p2ArrayWithoutP1()[2]
-                let headStr5 = GetCurrenIndex.shared.p2ArrayWithoutP1()[3]
-                let headStr6 = GetCurrenIndex.shared.p2ArrayWithoutP1()[4]
-                
-                
-                downImgWith(url: headStr!, toView: self.P1.headImg)
-                downImgWith(url: headStr2, toView: self.P2.headImg)
-                downImgWith(url: headStr3, toView: self.P3.headImg)
-                downImgWith(url: headStr4, toView: self.P4.headImg)
-                downImgWith(url: headStr5, toView: self.P5.headImg)
-                downImgWith(url: headStr6, toView: self.P6.headImg)
-            }
-            DispatchQueue.main.async {
-                self.P6.isHidden = false
                 self.P5.isHidden = false
+                self.P6.isHidden = false
                 self.P4.isHidden = false
                 self.P3.isHidden = false
                 self.P2.isHidden = false
                 self.P1.isHidden = false
-                /// Q取出本地用户分数存储的值
-                guard let userScore = UserDefaults.standard.object(forKey: "用户原始分数") as? [String] else {
-                    
-                    return
-                }
                 
-                self.P1.coinsLabel.text = userScore[0]
-                self.P2.coinsLabel.text = userScore[1]
-                self.P3.coinsLabel.text = userScore[2]
-                self.P4.coinsLabel.text = userScore[3]
-                self.P5.coinsLabel.text = userScore[4]
-                self.P6.coinsLabel.text = userScore[5]
+                self.P1.coinsLabel.text = RoomModel.shared.userScore[GetCurrenIndex.shared.getCurrentIndex()]
+                self.P2.coinsLabel.text = GetCurrenIndex.shared.scoreee()[1]
+                self.P3.coinsLabel.text = GetCurrenIndex.shared.scoreee()[2]
+                self.P4.coinsLabel.text = GetCurrenIndex.shared.scoreee()[3]
+                self.P5.coinsLabel.text = GetCurrenIndex.shared.scoreee()[4]
+                self.P6.coinsLabel.text = GetCurrenIndex.shared.scoreee()[5]
             }
             break
         default: break
@@ -1110,28 +1048,13 @@ extension GameV {
         NotificationCenter.default.addObserver(self, selector: #selector(niuniuArraySEL), name: NSNotification.Name(rawValue: "niuniuArray"), object: nil)
         
         /// 实时人数 currentPersonInRoom
-        NotificationCenter.default.addObserver(self, selector: #selector(currentPersonInRoomSEL(userInfo:)), name: NSNotification.Name(rawValue: "currentPersonInRoom"), object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(currentPersonInRoomSEL), name: NSNotification.Name(rawValue: "currentPersonInRoom"), object: nil)
     }
     
     // MARK: - 人数变更
-    @objc fileprivate func currentPersonInRoomSEL(userInfo : NSNotification) {
-        print("人数xinxi",userInfo.userInfo as Any)
-        
-        guard let usrName = userInfo.userInfo as? [AnyHashable : Any] else {
-            return
-        }
-        var nameAr: [String] = usrName["nameStr"] as! [String]
-        
-        switch RoomModel.shared.currentPersonInRoom {
-        case 1:
-            break
-        case 2:
-            P1.nameLabel.text = nameAr[0]
-            P2.nameLabel.text = nameAr[1]
-            break
-        default:
-            break
-        }
+    @objc fileprivate func currentPersonInRoomSEL() {
+        print("人数xinxi")
+
         
         createGamingLayout()
     }

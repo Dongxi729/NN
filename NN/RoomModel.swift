@@ -82,7 +82,7 @@ class RoomModel: NSObject {
     var joinRoomNumber : [String] = []
     
     // MARK: - 名字字典
-    fileprivate var userName : [String] = []
+    var userName : [String] = []
     var nameStr = [Int : String]()
     
     // MARK: - 处理过的名字
@@ -226,13 +226,9 @@ class RoomModel: NSObject {
                 
                 if resultStr != nil {
                     self.userName.append(resultStr!)
-
+                } else {
                     if userName.count == RoomModel.shared.currentPersonInRoom {
-                        
-                        print("userrName",userName)
-                        print("index",GetCurrenIndex.shared.getCurrentIndex())
-                        
-                        
+
                         nameStrDealed.insert(userName[GetCurrenIndex.shared.getCurrentIndex()], at: 0)
                         
                         var idex = 0

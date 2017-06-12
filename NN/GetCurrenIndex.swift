@@ -90,4 +90,50 @@ class GetCurrenIndex: NSObject {
         }
         return ddd
     }
+    
+    // MARK: - 用户名
+    func naeLbel() -> [String] {
+        
+        var dddddddd : [String] = []
+        
+        if RoomModel.shared.userName.count == RoomModel.shared.currentPersonInRoom {
+            
+            dddddddd.insert(RoomModel.shared.userName[GetCurrenIndex.shared.getCurrentIndex()], at: 0)
+            
+            var idex = 0
+            for calue in RoomModel.shared.userName {
+                
+                idex += 1
+                
+                if idex != GetCurrenIndex.shared.getCurrentIndex() + 1 {
+                    
+                    dddddddd.append(calue)
+                }
+            }
+        }
+        return dddddddd
+    }
+    
+    // MARK: - 分数
+    func scoreee() -> [String] {
+        
+        var dddddddd : [String] = []
+        
+        if RoomModel.shared.userScore.count == RoomModel.shared.currentPersonInRoom {
+            
+            dddddddd.insert(RoomModel.shared.userName[GetCurrenIndex.shared.getCurrentIndex()], at: 0)
+            
+            var idex = 0
+            for calue in RoomModel.shared.userScore {
+                
+                idex += 1
+                
+                if idex != GetCurrenIndex.shared.getCurrentIndex() + 1 {
+                    
+                    dddddddd.append(calue)
+                }
+            }
+        }
+        return dddddddd
+    }
 }
