@@ -79,7 +79,6 @@ class ShowNIUNIUV: UIView {
             case 0:
                 jifenV.leftOrRight = -1
                 jifenV.two = -1
-                    print("积分",String(JIfenModel.shared.jifenAtrrayDealed[0]))
 
                 jifenV.jifenNums.text = String(JIfenModel.shared.jifenAtrrayDealed[0])
                 break
@@ -87,7 +86,7 @@ class ShowNIUNIUV: UIView {
                 jifenV.leftOrRight = -1
                 jifenV.two = -1
                 
-                    jifenV.jifenNums.text = String(JIfenModel.shared.jifenAtrrayDealed[1])
+                jifenV.jifenNums.text = String(JIfenModel.shared.jifenAtrrayDealed[1])
                 
                 break
             case 2:

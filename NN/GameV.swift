@@ -277,9 +277,12 @@ class GameV: UIView {
         addSubview(P5)
         addSubview(P6)
         
-        
+        alertAndShowV.isHidden = true
         
         /// 对亮牌和提示进行显示和隐藏
+        P1.bigCardLayout.alertBtn.isHidden = true
+        P1.bigCardLayout.showCardBtn.isHidden = true
+        
         P2.bigCardLayout.alertBtn.isHidden = true
         P2.bigCardLayout.showCardBtn.isHidden = true
         
@@ -390,6 +393,8 @@ class GameV: UIView {
                     self.P1.isShowBottomCardLayout = false
                     self.P1.imgNames = CardNameModel.shared.currentUbackCardsName
                     self.P1.addCards(cardsArray: CardNameModel.shared.currentUbackCardsName)
+                    
+                    
                 }
             }
             break
@@ -946,13 +951,6 @@ extension GameV {
     }
 }
 
-// MARK: - 根据游戏状态,判断玩家1 和玩家4 的位置
-extension GameV {
-    override func layoutSubviews() {
-        super.layoutSubviews()
-    }
-}
-
 // MARK: - 提示和亮牌
 extension GameV : ShowAndAlertVDelegate {
     
@@ -977,6 +975,10 @@ extension GameV : ShowAndAlertVDelegate {
 
             if CardNameModel.shared.allUserCardsNames.count == 6 {
                 self.P2.addrightCards(cardsArray: CardNameModel.shared.allUserCardsNames[1])
+                
+                
+                
+                
             }
             
             break
@@ -1167,6 +1169,14 @@ extension GameV {
                 
                 self.P2.samllCardsShowLeftOrRight = 1
                 self.P2.addrightCards(cardsArray: CardNameModel.shared.backCardsName)
+                
+                DispatchQueue.main.async {
+                    /// 对亮牌和提示进行显示和隐藏
+                    self.P1.bigCardLayout.alertBtn.isHidden = false
+                    self.P1.bigCardLayout.showCardBtn.isHidden = false
+                    
+                    self.alertAndShowV.isHidden = false
+                }
                 
             }
             break
