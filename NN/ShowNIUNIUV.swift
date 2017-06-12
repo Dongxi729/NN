@@ -56,17 +56,8 @@ class ShowNIUNIUV: UIView {
             var index = 0
             
             for _ in self.rects {
-                
-                let dformatter = DateFormatter()
-                dformatter.dateFormat = "yyyy年MM月dd日 HH:mm:ss"
-                
-                print("当前日期时间：\(dformatter.string(from: Date()))","\((#file as NSString).lastPathComponent):(\(#line))\n",UserDefaults.standard.object(forKey: "用户剩余分数"))
-               
                 guard let xxx = UserDefaults.standard.object(forKey: "用户剩余分数") as? [String] else {
-                    let dformatter = DateFormatter()
-                    dformatter.dateFormat = "yyyy年MM月dd日 HH:mm:ss"
-                    
-                    print("当前日期时间：\(dformatter.string(from: Date()))","\((#file as NSString).lastPathComponent):(\(#line))\n","本地分数剩余存储为空")
+
                     return
                 }
                 
@@ -105,32 +96,38 @@ class ShowNIUNIUV: UIView {
     @objc fileprivate func listenPlayEnded() -> Void {
         
         
-    
+//        [CGRect.init(x: SW * 0.3, y: SH * 0.75, width: SW * 0.4, height: SH * 0.15),
+//                                            CGRect.init(x: SW * 0.25 - SW * 0.05, y: SH * 0.56, width: SW * 0.4, height: SH * 0.15),
+//                                            CGRect.init(x: SW * 0.25 - SW * 0.05, y: SH * 0.35, width: SW * 0.4, height: SH * 0.15),
+//                                            CGRect.init(x: SW * 0.5 - SW * 0.05, y: SH * 0.13, width: SW * 0.4, height: SH * 0.15),
+//                                            CGRect.init(x: SW * 0.6 - SW * 0.05, y: SH * 0.35, width: SW * 0.4, height: SH * 0.15),
+//                                            CGRect.init(x: SW * 0.6 - SW * 0.05, y: SH * 0.55, width: SW * 0.4, height: SH * 0.15)]
         /// 绘制牛牛纸牌的位置
         
         var rect = CGRect.init()
         
         switch playINdex {
         case 1:
-            rect = CGRect.init(x: self.bounds.width * 0.5 - self.Width * 0.05, y: self.Height * 0.9, width: self.Width * 0.1, height: self.Height * 0.1)
+            ///         let d : UIImageView = UIImageView.init(frame: CGRect.init(x: self.Width * 0.3, y: self.Height * 0.75, width: self.Width * 0.4, height: self.Height * 0.2))
+            rect = CGRect.init(x: SW * 0.3, y: SH * 0.75, width: SW * 0.4, height: SH * 0.15)
             break
         case 2:
-            rect = CGRect.init(x: self.bounds.width * 0.25 - self.Width * 0.05, y: self.Height * 0.68, width: self.Width * 0.1, height: self.Height * 0.1)
+            rect = CGRect.init(x: SW * 0.25 - SW * 0.05, y: SH * 0.56, width: SW * 0.4, height: SH * 0.15)
  
             break
         case 3:
-            rect = CGRect.init(x: self.bounds.width * 0.25 - self.Width * 0.05, y: self.Height * 0.46, width: self.Width * 0.1, height: self.Height * 0.1)
+            rect = CGRect.init(x: SW * 0.25 - SW * 0.05, y: SH * 0.35, width: SW * 0.4, height: SH * 0.15)
      
             break
         case 4:
-            rect = CGRect.init(x: self.bounds.width * 0.5 - self.Width * 0.05, y: self.Height * 0.165, width: self.Width * 0.1, height: self.Height * 0.1)
+            rect = CGRect.init(x: SW * 0.5 - SW * 0.05, y: SH * 0.13, width: SW * 0.4, height: SH * 0.15)
             break
         case 5:
-            rect = CGRect.init(x: self.bounds.width * 0.7 - self.Width * 0.05, y: self.Height * 0.46, width: self.Width * 0.1, height: self.Height * 0.1)
+            rect = CGRect.init(x: SW * 0.6 - SW * 0.05, y: SH * 0.35, width: SW * 0.4, height: SH * 0.15)
 
             break
         case 6:
-            rect = CGRect.init(x: self.bounds.width * 0.7 - self.Width * 0.05, y: self.Height * 0.68, width: self.Width * 0.1, height: self.Height * 0.1)
+            rect = CGRect.init(x: SW * 0.6 - SW * 0.05, y: SH * 0.55, width: SW * 0.4, height: SH * 0.15)
 
             break
 
@@ -143,7 +140,7 @@ class ShowNIUNIUV: UIView {
         imgs.image = UIImage.init(named: songsNameConvertToNNImgName(songsName: niuniuSongsName[playINdex - 1]))
 
         
-        imgs.backgroundColor = UIColor.green
+//        imgs.backgroundColor = UIColor.green
         self.addSubview(imgs)
         
         self.playMusicSongs(index: playINdex)
@@ -220,7 +217,6 @@ class CommonNNImg : UIImageView {
         super.init(frame: frame)
         
         self.contentMode = UIViewContentMode.scaleAspectFit
-        self.layer.borderWidth = 1
     }
     
     required init?(coder aDecoder: NSCoder) {

@@ -20,6 +20,10 @@
 
 import UIKit
 
+
+/// 房主ID
+var ownerID : String?
+
 class RoomOwner: NSObject {
     
     static let shared = RoomOwner()
@@ -32,8 +36,8 @@ class RoomOwner: NSObject {
         }
     }
     
-    /// 房主ID
-    var ownerID : String?
+//    /// 房主ID
+//    var ownerID : String?
     
     ///<M>
     //    <ty type="2">
@@ -54,8 +58,10 @@ class RoomOwner: NSObject {
         
         for user in users {
             if user.attribute(forName: "id") != nil {
-                self.ownerID = user.attribute(forName: "id")!.stringValue!
-                print("\((#file as NSString).lastPathComponent):(\(#line))\n",self.ownerID)
+                ownerID = user.attribute(forName: "id")!.stringValue!
+                
+                setFangzhuICON = true
+                print("\((#file as NSString).lastPathComponent):(\(#line))\n",ownerID)
                 
                 /// 发通知，
                 NotificationCenter.default.post(name: NSNotification.Name(rawValue: "RoomOnwer"), object: nil)

@@ -9,6 +9,8 @@
 
 import UIKit
 
+var setFangzhuICON = false
+
 class GameV: UIView {
     
     static let shared = GameV()
@@ -208,6 +210,15 @@ class GameV: UIView {
         return d
     }()
     
+    // MARK: - 提示时，显示当前的牛牛图标
+    lazy var showCurrentNiuNiuImg: UIImageView = {
+        let d : UIImageView = UIImageView.init(frame: CGRect.init(x: self.Width * 0.4, y: self.Height * 0.75, width: self.Width * 0.2, height: self.Height * 0.2))
+        
+        d.contentMode = UIViewContentMode.scaleAspectFit
+    
+        return d
+    }()
+    
     override init(frame: CGRect) {
         
         super.init(frame: frame)
@@ -262,15 +273,34 @@ class GameV: UIView {
         addSubview(P1)
         addSubview(P2)
         addSubview(P3)
+        addSubview(P4)
+        addSubview(P5)
+        addSubview(P6)
+        
         
         
         /// 对亮牌和提示进行显示和隐藏
         P2.bigCardLayout.alertBtn.isHidden = true
         P2.bigCardLayout.showCardBtn.isHidden = true
         
+        P3.bigCardLayout.alertBtn.isHidden = true
+        P3.bigCardLayout.showCardBtn.isHidden = true
+        
+        P4.bigCardLayout.alertBtn.isHidden = true
+        P4.bigCardLayout.showCardBtn.isHidden = true
+        
+        P5.bigCardLayout.alertBtn.isHidden = true
+        P5.bigCardLayout.showCardBtn.isHidden = true
+        
+        P6.bigCardLayout.alertBtn.isHidden = true
+        P6.bigCardLayout.showCardBtn.isHidden = true
+        
         P1.isHidden = true
         P2.isHidden = true
         P3.isHidden = true
+        P4.isHidden = true
+        P5.isHidden = true
+        P6.isHidden = true
         
         /// 开始按钮
         addSubview(startGameBtn)
@@ -308,13 +338,17 @@ class GameV: UIView {
         addSubview(headIMg)
         
         /// 重连--显示房主头像
-        if RoomOwner.shared.ownerID != nil {
+        if ownerID != nil {
             
             self.chooseOwnerSEL()
             
             self.isGameBeginSEL()
             
         }
+        
+        /// 添加当前用户显示的牛牛纸牌
+        addSubview(showCurrentNiuNiuImg)
+        showCurrentNiuNiuImg.isHidden = true
     }
     
     // MARK: - 本轮游戏结束
@@ -353,8 +387,6 @@ class GameV: UIView {
                     self.P1.addCards(cardsArray: CardNameModel.shared.currentUbackCardsName)
                 }
             }
-            
-            
             break
         case 3:
             /// 设置摆放纸牌位置
@@ -363,6 +395,28 @@ class GameV: UIView {
             P2.samllCardsShowLeftOrRight = 1
             
             P3.samllCardsShowLeftOrRight = 1
+            
+            /// 玩家1是否有牌
+            if CardNameModel.shared.currentUbackCardsName.count > 0 {
+                
+                print("\((#file as NSString).lastPathComponent):(\(#line))\n",CardNameModel.shared.currentUbackCardsName)
+                self.robOwner.isHidden = true
+                self.startGameBtn.isHidden = true
+                self.getCoins.isHidden = true
+                
+                DispatchQueue.main.async {
+                    self.P1.isShowBottomCardLayout = false
+                    self.P1.imgNames = CardNameModel.shared.currentUbackCardsName
+                    self.P1.addCards(cardsArray: CardNameModel.shared.currentUbackCardsName)
+                }
+            }
+            break
+        case 4:
+            /// 设置摆放纸牌位置
+            P1.samllCardsShowLeftOrRight = -1
+            P2.samllCardsShowLeftOrRight = 1
+            P3.samllCardsShowLeftOrRight = 1
+            P4.samllCardsShowLeftOrRight = -1
             
             
             /// 玩家1是否有牌
@@ -377,19 +431,83 @@ class GameV: UIView {
                     self.P1.isShowBottomCardLayout = false
                     self.P1.imgNames = CardNameModel.shared.currentUbackCardsName
                     self.P1.addCards(cardsArray: CardNameModel.shared.currentUbackCardsName)
-                    
-                    
-                    self.P2.imgNames = CardNameModel.shared.backCardsName
-                    //                    self.P2.isShowBottomCardLayout = true
-                    
-                    self.P3.imgNames = CardNameModel.shared.backCardsName
-                    self.P3.isShowBottomCardLayout = true
                 }
-                
-                
-            } else {
-                P1.isShowBottomCardLayout = true
             }
+            break
+        case 4:
+            /// 设置摆放纸牌位置
+            P1.samllCardsShowLeftOrRight = -1
+            P2.samllCardsShowLeftOrRight = 1
+            P3.samllCardsShowLeftOrRight = 1
+            P4.samllCardsShowLeftOrRight = -1
+            
+            
+            /// 玩家1是否有牌
+            if CardNameModel.shared.currentUbackCardsName.count > 0 {
+                
+                print("\((#file as NSString).lastPathComponent):(\(#line))\n",CardNameModel.shared.currentUbackCardsName)
+                self.robOwner.isHidden = true
+                self.startGameBtn.isHidden = true
+                self.getCoins.isHidden = true
+                
+                DispatchQueue.main.async {
+                    self.P1.isShowBottomCardLayout = false
+                    self.P1.imgNames = CardNameModel.shared.currentUbackCardsName
+                    self.P1.addCards(cardsArray: CardNameModel.shared.currentUbackCardsName)
+                }
+            }
+            
+            break
+        case 5:
+            /// 设置摆放纸牌位置
+            P1.samllCardsShowLeftOrRight = -1
+            P2.samllCardsShowLeftOrRight = 1
+            P3.samllCardsShowLeftOrRight = 1
+            P4.samllCardsShowLeftOrRight = -1
+            P5.samllCardsShowLeftOrRight = -1
+            
+            
+            /// 玩家1是否有牌
+            if CardNameModel.shared.currentUbackCardsName.count > 0 {
+                
+                print("\((#file as NSString).lastPathComponent):(\(#line))\n",CardNameModel.shared.currentUbackCardsName)
+                self.robOwner.isHidden = true
+                self.startGameBtn.isHidden = true
+                self.getCoins.isHidden = true
+                
+                DispatchQueue.main.async {
+                    self.P1.isShowBottomCardLayout = false
+                    self.P1.imgNames = CardNameModel.shared.currentUbackCardsName
+                    self.P1.addCards(cardsArray: CardNameModel.shared.currentUbackCardsName)
+                }
+            }
+            
+            break
+        case 5:
+            /// 设置摆放纸牌位置
+            P1.samllCardsShowLeftOrRight = -1
+            P2.samllCardsShowLeftOrRight = 1
+            P3.samllCardsShowLeftOrRight = 1
+            P4.samllCardsShowLeftOrRight = -1
+            P5.samllCardsShowLeftOrRight = -1
+            P6.samllCardsShowLeftOrRight = -1
+            
+            
+            /// 玩家1是否有牌
+            if CardNameModel.shared.currentUbackCardsName.count > 0 {
+                
+                print("\((#file as NSString).lastPathComponent):(\(#line))\n",CardNameModel.shared.currentUbackCardsName)
+                self.robOwner.isHidden = true
+                self.startGameBtn.isHidden = true
+                self.getCoins.isHidden = true
+                
+                DispatchQueue.main.async {
+                    self.P1.isShowBottomCardLayout = false
+                    self.P1.imgNames = CardNameModel.shared.currentUbackCardsName
+                    self.P1.addCards(cardsArray: CardNameModel.shared.currentUbackCardsName)
+                }
+            }
+            
             break
             
         default:
@@ -405,60 +523,92 @@ class GameV: UIView {
         return d
     }()
     
+    // MARK: - 显示积分视图
+    @objc fileprivate func RoomOnwerSEL() {
+        
+        print("\((#file as NSString).lastPathComponent):(\(#line))\n","显示积分事件")
+        
+        DispatchQueue.main.async {
+            self.startGameBtn.isHidden = true
+            self.robOwner.isHidden = true
+            
+            print("\((#file as NSString).lastPathComponent):(\(#line))\n",ownerID as Any)
+            print("\((#file as NSString).lastPathComponent):(\(#line))\n",LoginModel.shared.uid as Any)
+            
+            
+            /// 当前用户ID不等于登陆的ID
+            if ownerID != LoginModel.shared.uid {
+                
+                self.getCoins.isHidden = false
+            }
+            NotificationCenter.default.removeObserver(self, name: NSNotification.Name(rawValue: "RoomOnwer"), object: nil)
+        }
+    }
+    
+    
+    
     /// 根据选择的房主积分显示
     func chooseOwnerSEL() -> Void {
         
         DispatchQueue.main.async {
-            print("\((#file as NSString).lastPathComponent):(\(#line))\n","选出房主")
-            print("\((#file as NSString).lastPathComponent):(\(#line))\n",RoomOwner.shared.ownerID as Any)
-            /// 是房主就不显示积分
-            if RoomOwner.shared.ownerID != RoomModel.shared.userId[GetCurrenIndex.shared.currentUserIndex] {
-                //// 遍历房主所在的索引位置
-                var fangZhuIndex = 0
-                for value in GetCurrenIndex.shared.reverseRoomID() {
-                    
-                    print("房主ID",fangZhuIndex)
-                    
-                    if value != RoomOwner.shared.ownerID {
-                        fangZhuIndex += 1
-                    } else {
-                        break
-                    }
-                }
-                print("\((#file as NSString).lastPathComponent):(\(#line))\n",fangZhuIndex)
-                
-                // 显示对应的房间
-                self.headIMg.frame = self.rects[fangZhuIndex]
-                self.headIMg.isHidden = false
-                
-                
-                self.startGameBtn.isHidden = true
             
-                RoomOwner.shared.ownerID = nil
-            } else {
-                //// 遍历房主所在的索引位置
-                var fangZhuIndex = 0
-                for value in GetCurrenIndex.shared.reverseRoomID() {
-                    print("房主ID",fangZhuIndex)
-                    
-                    if value != RoomOwner.shared.ownerID {
-                        fangZhuIndex += 1
-                    } else {
-                        break
+            print("服务器获取的房主ID",ownerID)
+            
+            if setFangzhuICON {
+                /// 是房主就不显示积分
+                if ownerID != RoomModel.shared.userId[GetCurrenIndex.shared.currentUserIndex] {
+                    //// 遍历房主所在的索引位置
+                    var fangZhuIndex = 0
+                    for value in GetCurrenIndex.shared.reverseRoomID() {
+                        
+                        print("房主ID",fangZhuIndex)
+                        
+                        if value != ownerID {
+                            fangZhuIndex += 1
+                        } else {
+                            break
+                        }
                     }
+                    print("\((#file as NSString).lastPathComponent):(\(#line))\n",fangZhuIndex)
+                    
+                    // 显示对应的房间
+                    self.headIMg.frame = self.rects[fangZhuIndex]
+                    self.headIMg.isHidden = false
+                    
+                    
+                    self.startGameBtn.isHidden = true
+                    
+                    ownerID = nil
+                } else {
+                    //// 遍历房主所在的索引位置
+                    var fangZhuIndex = 0
+                    for value in GetCurrenIndex.shared.reverseRoomID() {
+                        print("房主ID",fangZhuIndex)
+                        
+                        if value != ownerID {
+                            fangZhuIndex += 1
+                        } else {
+                            break
+                        }
+                    }
+                    
+                    print("\((#file as NSString).lastPathComponent):(\(#line))\n",fangZhuIndex)
+                    
+                    // 显示对应的房间
+                    self.headIMg.frame = self.rects[fangZhuIndex]
+                    self.headIMg.isHidden = false
+                    self.getCoins.isHidden = true
+                    
+                    print("\((#file as NSString).lastPathComponent):(\(#line))\n",fangZhuIndex)
+                    
+                    ownerID = nil
+                    
+                    setFangzhuICON = false
+                    
                 }
-                
-                print("\((#file as NSString).lastPathComponent):(\(#line))\n",fangZhuIndex)
-                
-                // 显示对应的房间
-                self.headIMg.frame = self.rects[fangZhuIndex]
-                self.headIMg.isHidden = false
-                self.getCoins.isHidden = true
-                
-                print("\((#file as NSString).lastPathComponent):(\(#line))\n",fangZhuIndex)
-                
-                RoomOwner.shared.ownerID = nil
             }
+            
+            
         }
     }
     
@@ -474,7 +624,7 @@ class GameV: UIView {
             self.getCoins.isHidden = true
         }
         
-        if RoomOwner.shared.ownerID == RoomModel.shared.userId[GetCurrenIndex.shared.currentUserIndex] {
+        if ownerID == RoomModel.shared.userId[GetCurrenIndex.shared.currentUserIndex] {
             print("\((#file as NSString).lastPathComponent):(\(#line))\n")
             self.getCoins.isHidden = true
         } else {
@@ -558,21 +708,14 @@ extension GameV {
                 
                 self.P2.isHidden = false
                 self.P1.isHidden = false
-                
-                
-                
-                print("\((#file as NSString).lastPathComponent):(\(#line))\n")
-                
                 /// Q取出本地用户分数存储的值
                 guard let userScore = UserDefaults.standard.object(forKey: "用户原始分数") as? [String] else {
                     
                     return
                 }
                 
-                
                 self.P1.coinsLabel.text = userScore[0]
                 self.P2.coinsLabel.text = userScore[1]
-
             }
             
             break
@@ -586,13 +729,9 @@ extension GameV {
             P3.samllCardsShowLeftOrRight = 1
             
             
-            
             P1.nameLabel.text = RoomModel.shared.nameStr[GetCurrenIndex.shared.getCurrentIndex()]
             P2.nameLabel.text = GetCurrenIndex.shared.p2NameLabelWithoutP1()[0]
             P3.nameLabel.text = GetCurrenIndex.shared.p2NameLabelWithoutP1()[1]
-            
-            
-            
             
             /// 下载头像
             DispatchQueue.main.async {
@@ -608,11 +747,182 @@ extension GameV {
                 
                 
             }
-            P3.isHidden = false
+            DispatchQueue.main.async {
+                self.P3.isHidden = false
+                self.P2.isHidden = false
+                self.P1.isHidden = false
+                /// Q取出本地用户分数存储的值
+                guard let userScore = UserDefaults.standard.object(forKey: "用户原始分数") as? [String] else {
+                    
+                    return
+                }
+                
+                self.P1.coinsLabel.text = userScore[0]
+                self.P2.coinsLabel.text = userScore[1]
+                self.P3.coinsLabel.text = userScore[2]
+            }
+            break
+        case 4:
             
-            P2.isHidden = false
-            P1.isHidden = false
+            /// 设置摆放纸牌位置
+            P1.samllCardsShowLeftOrRight = -1
             
+            P2.samllCardsShowLeftOrRight = 1
+            P3.samllCardsShowLeftOrRight = 1
+            P4.samllCardsShowLeftOrRight = -1
+            
+            
+            
+            P1.nameLabel.text = RoomModel.shared.nameStr[GetCurrenIndex.shared.getCurrentIndex()]
+            P2.nameLabel.text = GetCurrenIndex.shared.p2NameLabelWithoutP1()[0]
+            P3.nameLabel.text = GetCurrenIndex.shared.p2NameLabelWithoutP1()[1]
+            P4.nameLabel.text = GetCurrenIndex.shared.p2NameLabelWithoutP1()[2]
+            
+            /// 下载头像
+            DispatchQueue.main.async {
+                
+                let headStr = RoomModel.shared.headUrlDic[GetCurrenIndex.shared.currentUserIndex]
+                let headStr2 = GetCurrenIndex.shared.p2ArrayWithoutP1()[0]
+                let headStr3 = GetCurrenIndex.shared.p2ArrayWithoutP1()[1]
+                let headStr4 = GetCurrenIndex.shared.p2ArrayWithoutP1()[2]
+                
+                
+                downImgWith(url: headStr!, toView: self.P1.headImg)
+                downImgWith(url: headStr2, toView: self.P2.headImg)
+                downImgWith(url: headStr3, toView: self.P3.headImg)
+                downImgWith(url: headStr4, toView: self.P4.headImg)
+            }
+            DispatchQueue.main.async {
+                self.P4.isHidden = false
+                self.P3.isHidden = false
+                self.P2.isHidden = false
+                self.P1.isHidden = false
+                /// Q取出本地用户分数存储的值
+                guard let userScore = UserDefaults.standard.object(forKey: "用户原始分数") as? [String] else {
+                    
+                    return
+                }
+                
+                self.P1.coinsLabel.text = userScore[0]
+                self.P2.coinsLabel.text = userScore[1]
+                self.P3.coinsLabel.text = userScore[2]
+                self.P4.coinsLabel.text = userScore[3]
+            }
+            break
+            
+        case 5:
+            
+            /// 设置摆放纸牌位置
+            P1.samllCardsShowLeftOrRight = -1
+            
+            P2.samllCardsShowLeftOrRight = 1
+            P3.samllCardsShowLeftOrRight = 1
+            P4.samllCardsShowLeftOrRight = -1
+            P5.samllCardsShowLeftOrRight = -1
+            
+            
+            
+            P1.nameLabel.text = RoomModel.shared.nameStr[GetCurrenIndex.shared.getCurrentIndex()]
+            P2.nameLabel.text = GetCurrenIndex.shared.p2NameLabelWithoutP1()[0]
+            P3.nameLabel.text = GetCurrenIndex.shared.p2NameLabelWithoutP1()[1]
+            P4.nameLabel.text = GetCurrenIndex.shared.p2NameLabelWithoutP1()[2]
+            P5.nameLabel.text = GetCurrenIndex.shared.p2NameLabelWithoutP1()[3]
+            
+            /// 下载头像
+            DispatchQueue.main.async {
+                
+                let headStr = RoomModel.shared.headUrlDic[GetCurrenIndex.shared.currentUserIndex]
+                let headStr2 = GetCurrenIndex.shared.p2ArrayWithoutP1()[0]
+                let headStr3 = GetCurrenIndex.shared.p2ArrayWithoutP1()[1]
+                let headStr4 = GetCurrenIndex.shared.p2ArrayWithoutP1()[2]
+                let headStr5 = GetCurrenIndex.shared.p2ArrayWithoutP1()[3]
+                
+                
+                downImgWith(url: headStr!, toView: self.P1.headImg)
+                downImgWith(url: headStr2, toView: self.P2.headImg)
+                downImgWith(url: headStr3, toView: self.P3.headImg)
+                downImgWith(url: headStr4, toView: self.P4.headImg)
+                downImgWith(url: headStr5, toView: self.P5.headImg)
+            }
+            DispatchQueue.main.async {
+                self.P5.isHidden = false
+                self.P4.isHidden = false
+                self.P3.isHidden = false
+                self.P2.isHidden = false
+                self.P1.isHidden = false
+                /// Q取出本地用户分数存储的值
+                guard let userScore = UserDefaults.standard.object(forKey: "用户原始分数") as? [String] else {
+                    
+                    return
+                }
+                
+                self.P1.coinsLabel.text = userScore[0]
+                self.P2.coinsLabel.text = userScore[1]
+                self.P3.coinsLabel.text = userScore[2]
+                self.P4.coinsLabel.text = userScore[3]
+                self.P5.coinsLabel.text = userScore[4]
+            }
+            break
+            
+        case 6:
+            
+            /// 设置摆放纸牌位置
+            P1.samllCardsShowLeftOrRight = -1
+            
+            P2.samllCardsShowLeftOrRight = 1
+            P3.samllCardsShowLeftOrRight = 1
+            P4.samllCardsShowLeftOrRight = -1
+            P5.samllCardsShowLeftOrRight = -1
+            P6.samllCardsShowLeftOrRight = -1
+            
+            
+            
+            
+            P1.nameLabel.text = RoomModel.shared.nameStr[GetCurrenIndex.shared.getCurrentIndex()]
+            P2.nameLabel.text = GetCurrenIndex.shared.p2NameLabelWithoutP1()[0]
+            P3.nameLabel.text = GetCurrenIndex.shared.p2NameLabelWithoutP1()[1]
+            P4.nameLabel.text = GetCurrenIndex.shared.p2NameLabelWithoutP1()[2]
+            P5.nameLabel.text = GetCurrenIndex.shared.p2NameLabelWithoutP1()[3]
+            P6.nameLabel.text = GetCurrenIndex.shared.p2NameLabelWithoutP1()[4]
+            
+            /// 下载头像
+            DispatchQueue.main.async {
+                
+                let headStr = RoomModel.shared.headUrlDic[GetCurrenIndex.shared.currentUserIndex]
+                let headStr2 = GetCurrenIndex.shared.p2ArrayWithoutP1()[0]
+                let headStr3 = GetCurrenIndex.shared.p2ArrayWithoutP1()[1]
+                let headStr4 = GetCurrenIndex.shared.p2ArrayWithoutP1()[2]
+                let headStr5 = GetCurrenIndex.shared.p2ArrayWithoutP1()[3]
+                let headStr6 = GetCurrenIndex.shared.p2ArrayWithoutP1()[4]
+                
+                
+                downImgWith(url: headStr!, toView: self.P1.headImg)
+                downImgWith(url: headStr2, toView: self.P2.headImg)
+                downImgWith(url: headStr3, toView: self.P3.headImg)
+                downImgWith(url: headStr4, toView: self.P4.headImg)
+                downImgWith(url: headStr5, toView: self.P5.headImg)
+                downImgWith(url: headStr6, toView: self.P6.headImg)
+            }
+            DispatchQueue.main.async {
+                self.P6.isHidden = false
+                self.P5.isHidden = false
+                self.P4.isHidden = false
+                self.P3.isHidden = false
+                self.P2.isHidden = false
+                self.P1.isHidden = false
+                /// Q取出本地用户分数存储的值
+                guard let userScore = UserDefaults.standard.object(forKey: "用户原始分数") as? [String] else {
+                    
+                    return
+                }
+                
+                self.P1.coinsLabel.text = userScore[0]
+                self.P2.coinsLabel.text = userScore[1]
+                self.P3.coinsLabel.text = userScore[2]
+                self.P4.coinsLabel.text = userScore[3]
+                self.P5.coinsLabel.text = userScore[4]
+                self.P6.coinsLabel.text = userScore[5]
+            }
             break
         default: break
         }
@@ -644,8 +954,7 @@ extension GameV : ShowAndAlertVDelegate {
     /// 亮牌
     func showSEL() {
         
-        
-        
+        /// 隐藏
         
         switch RoomModel.shared.currentPersonInRoom {
         case 1:
@@ -659,23 +968,97 @@ extension GameV : ShowAndAlertVDelegate {
             P1.addCards(cardsArray: CardNameModel.shared.rightCurrentIndexCards())
             
             
-                P2.samllCardsShowLeftOrRight = 1
-            
-            let dformatter = DateFormatter()
-            dformatter.dateFormat = "HH:mm:ss"
-            
-            print("\(dformatter.string(from: Date()))","\((#file as NSString).lastPathComponent):(\(#line))\n",CardNameModel.shared.allUserCardsNames.count)
-            
+            P2.samllCardsShowLeftOrRight = 1
+
             if CardNameModel.shared.allUserCardsNames.count == 6 {
-                    self.P2.addrightCards(cardsArray: CardNameModel.shared.allUserCardsNames[1])
+                self.P2.addrightCards(cardsArray: CardNameModel.shared.allUserCardsNames[1])
             }
             
+            break
+        case 3:
             
-                
-                print("===============")
+            showCardsFunc()
+            CardNameModel.shared.isShowP1Front = true
+            
+            P1.imgNames = CardNameModel.shared.rightCurrentIndexCards()
+            P1.addCards(cardsArray: CardNameModel.shared.rightCurrentIndexCards())
             
             
-           
+            P2.samllCardsShowLeftOrRight = 1
+            P3.samllCardsShowLeftOrRight = 1
+            
+            if CardNameModel.shared.allUserCardsNames.count == 6 {
+                self.P2.addrightCards(cardsArray: CardNameModel.shared.allUserCardsNames[1])
+                self.P3.addrightCards(cardsArray: CardNameModel.shared.allUserCardsNames[2])
+            }
+            
+            break
+            
+        case 4:
+            
+            showCardsFunc()
+            CardNameModel.shared.isShowP1Front = true
+            
+            P1.imgNames = CardNameModel.shared.rightCurrentIndexCards()
+            P1.addCards(cardsArray: CardNameModel.shared.rightCurrentIndexCards())
+            
+            
+            P2.samllCardsShowLeftOrRight = 1
+            P3.samllCardsShowLeftOrRight = 1
+            P4.samllCardsShowLeftOrRight = 1
+            
+            if CardNameModel.shared.allUserCardsNames.count == 6 {
+                self.P2.addrightCards(cardsArray: CardNameModel.shared.allUserCardsNames[1])
+                self.P3.addrightCards(cardsArray: CardNameModel.shared.allUserCardsNames[2])
+                self.P4.addrightCards(cardsArray: CardNameModel.shared.allUserCardsNames[3])
+            }
+            
+            break
+            
+        case 5:
+            
+            showCardsFunc()
+            CardNameModel.shared.isShowP1Front = true
+            
+            P1.imgNames = CardNameModel.shared.rightCurrentIndexCards()
+            P1.addCards(cardsArray: CardNameModel.shared.rightCurrentIndexCards())
+            
+            
+            P2.samllCardsShowLeftOrRight = 1
+            P3.samllCardsShowLeftOrRight = 1
+            P4.samllCardsShowLeftOrRight = 1
+            P5.samllCardsShowLeftOrRight = 1
+            
+            if CardNameModel.shared.allUserCardsNames.count == 6 {
+                self.P2.addrightCards(cardsArray: CardNameModel.shared.allUserCardsNames[1])
+                self.P3.addrightCards(cardsArray: CardNameModel.shared.allUserCardsNames[2])
+                self.P4.addrightCards(cardsArray: CardNameModel.shared.allUserCardsNames[3])
+                self.P5.addrightCards(cardsArray: CardNameModel.shared.allUserCardsNames[4])
+            }
+            
+            break
+        case 6:
+            
+            showCardsFunc()
+            CardNameModel.shared.isShowP1Front = true
+            
+            P1.imgNames = CardNameModel.shared.rightCurrentIndexCards()
+            P1.addCards(cardsArray: CardNameModel.shared.rightCurrentIndexCards())
+            
+            
+            P2.samllCardsShowLeftOrRight = 1
+            P3.samllCardsShowLeftOrRight = 1
+            P4.samllCardsShowLeftOrRight = 1
+            P5.samllCardsShowLeftOrRight = 1
+            P6.samllCardsShowLeftOrRight = 1
+            
+            if CardNameModel.shared.allUserCardsNames.count == 6 {
+                self.P2.addrightCards(cardsArray: CardNameModel.shared.allUserCardsNames[1])
+                self.P3.addrightCards(cardsArray: CardNameModel.shared.allUserCardsNames[2])
+                self.P4.addrightCards(cardsArray: CardNameModel.shared.allUserCardsNames[3])
+                self.P5.addrightCards(cardsArray: CardNameModel.shared.allUserCardsNames[4])
+                self.P6.addrightCards(cardsArray: CardNameModel.shared.allUserCardsNames[5])
+            }
             
             break
         default:
@@ -689,6 +1072,16 @@ extension GameV : ShowAndAlertVDelegate {
         
         P1.imgNames = CardNameModel.shared.rightCurrentIndexCards()
         P1.addCards(cardsArray: CardNameModel.shared.rightCurrentIndexCards())
+        
+        DispatchQueue.main.async {
+            /// 显示当前牛牛的图标
+            self.showCurrentNiuNiuImg.isHidden = false
+            let dformatter = DateFormatter()
+            dformatter.dateFormat = "HH:mm:ss"
+            
+            print("\(dformatter.string(from: Date()))","\((#file as NSString).lastPathComponent):(\(#line))\n",CardNameModel.shared.niuniuDealArray[0])
+            self.showCurrentNiuNiuImg.image = UIImage.init(named: CardNameModel.shared.niuniuArray[GetCurrenIndex.shared.getCurrentIndex()])
+        }
     }
 }
 
@@ -775,9 +1168,6 @@ extension GameV {
         default:
             break
         }
-        
-        
-        
     }
     
     
@@ -834,9 +1224,7 @@ extension GameV {
             /// 移除通知 prepared
             NotificationCenter.default.removeObserver(self, name: NSNotification.Name(rawValue: "prepared"), object: nil)
             
-            
             DispatchQueue.main.async {
-
                 
                 /// 根据在线人数进行判断
                 switch RoomModel.shared.currentPersonInRoom {
@@ -855,12 +1243,6 @@ extension GameV {
                             
                             self.P1.prepareImg.isHidden = true
                         }
-                        
-                        let dformatter = DateFormatter()
-                        dformatter.dateFormat = "HH:mm:ss"
-                        
-                        print("\(dformatter.string(from: Date()))","\((#file as NSString).lastPathComponent):(\(#line))\n",RoomModel.shared.prepareArrayDealed[1])
-                        
                         if RoomModel.shared.prepareArrayDealed[1] == "true" {
                             
                             self.P2.prepareImg.isHidden = false
@@ -870,8 +1252,6 @@ extension GameV {
                             self.P2.prepareImg.isHidden = true
                         }
                     }
-                    
-                
                     break
                 default:
                     break
@@ -887,26 +1267,7 @@ extension GameV {
         self.robOwner.isHidden = true
     }
     
-    // MARK: - 显示积分视图
-    @objc fileprivate func RoomOnwerSEL() {
-        
-        print("\((#file as NSString).lastPathComponent):(\(#line))\n","显示积分事件")
-        
-        DispatchQueue.main.async {
-            self.startGameBtn.isHidden = true
-            self.robOwner.isHidden = true
-            
-            print("\((#file as NSString).lastPathComponent):(\(#line))\n",RoomOwner.shared.ownerID as Any)
-            print("\((#file as NSString).lastPathComponent):(\(#line))\n",LoginModel.shared.uid as Any)
-            
-            /// 当前用户ID不等于登陆的ID
-            if RoomOwner.shared.ownerID != LoginModel.shared.uid {
-                
-                self.getCoins.isHidden = false
-            }
-            NotificationCenter.default.removeObserver(self, name: NSNotification.Name(rawValue: "RoomOnwer"), object: nil)
-        }
-    }
+    
     
     // MARK: - 显示解散视图
     @objc fileprivate func showXXX() -> Void {

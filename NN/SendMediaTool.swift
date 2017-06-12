@@ -36,7 +36,7 @@ var connectSuccess = false
 // MARK: - 连接服务器
 func testServer() {
     
-    //        client = TCPClient.init(address: "192.168.1.10", port: 2048)
+//            client = TCPClient.init(address: "192.168.1.10", port: 2048)
     client = TCPClient.init(address: "192.168.2.11", port: 8887)
     
     switch client.connect(timeout: 1) {
