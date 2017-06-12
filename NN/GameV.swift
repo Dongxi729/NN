@@ -354,6 +354,11 @@ class GameV: UIView {
     // MARK: - 本轮游戏结束
     func GameOverSEL() {
         showMusicAndNNImg.isHidden = false
+        DispatchQueue.main.async {
+            self.showMusicAndNNImg.jifenSEL()
+        }
+        
+        
         showMusicAndNNImg.niuniuSongsName = CardNameModel.shared.niuniuDealArray
         print("\((#file as NSString).lastPathComponent):(\(#line))\n")
     }

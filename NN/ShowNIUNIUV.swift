@@ -61,7 +61,7 @@ class ShowNIUNIUV: UIView {
         self.backgroundColor = UIColor.colorWithHexString("7F7F7F", alpha: 0.4)
         
         /// 积分视图
-        jifenSEL()
+//        jifenSEL()
     }
     
     // MARK: - 积分视图事件
@@ -79,19 +79,16 @@ class ShowNIUNIUV: UIView {
             case 0:
                 jifenV.leftOrRight = -1
                 jifenV.two = -1
-                if JIfenModel.shared.jifenAtrrayDealed.count > 0 {
-                    jifenV.jifenNums.text = String(JIfenModel.shared.jifenAtrrayDealed[0])
                     print("积分",String(JIfenModel.shared.jifenAtrrayDealed[0]))
-                }
-                
+
+                jifenV.jifenNums.text = String(JIfenModel.shared.jifenAtrrayDealed[0])
                 break
             case 1:
                 jifenV.leftOrRight = -1
                 jifenV.two = -1
-                if JIfenModel.shared.jifenAtrrayDealed.count > 0 {
+                
                     jifenV.jifenNums.text = String(JIfenModel.shared.jifenAtrrayDealed[1])
-                    print("积分",String(JIfenModel.shared.jifenAtrrayDealed[1]))
-                }
+                
                 break
             case 2:
                 jifenV.leftOrRight = -1
@@ -116,7 +113,7 @@ class ShowNIUNIUV: UIView {
             index += 1
             
 
-            if index > RoomModel.shared.currentPersonInRoom {
+            if index >= RoomModel.shared.currentPersonInRoom {
                 break
             }
         }
