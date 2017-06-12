@@ -11,19 +11,23 @@ import UIKit
 /// 抢装
 class RobRoomOwner: UIView {
     
-    /// 抢装
-    lazy var robBtn: UIButton = {
-        let d : UIButton = UIButton.init(frame: CGRect.init(x: 0, y: 0, width: self.Width * 0.4, height: self.Height))
+    // MARK: - 抢庄
+    lazy var robBtn: CommonBtn = {
+        let d : CommonBtn = CommonBtn.init(frame: CGRect.init(x: self.Width * 0.6, y: 0, width: self.Width * 0.4, height: self.Height))
         d.setImage(#imageLiteral(resourceName: "roomRob"), for: .normal)
+        d.layer.borderWidth = 1
+        d.layer.borderColor = UIColor.red.cgColor
         d.addTarget(self, action: #selector(robSEL(sender:)), for: .touchUpInside)
         return d
     }()
     
     
-    ///
-    lazy var notRobV: UIButton = {
-        let d : UIButton = UIButton.init(frame: CGRect.init(x: self.robBtn.RightX + self.Width * 0.2, y: 0, width: self.Width * 0.4, height: self.Height))
+    // MARK: - 不抢庄
+    lazy var notRobV: CommonBtn = {
+        let d : CommonBtn = CommonBtn.init(frame: CGRect.init(x: 0, y: 0, width: self.Width * 0.4, height: self.Height))
+
         d.setImage(#imageLiteral(resourceName: "roomNotRob"), for: .normal)
+        d.layer.borderWidth = 1
         d.addTarget(self, action: #selector(notRobSEL(sender:)), for: .touchUpInside)
         return d
     }()

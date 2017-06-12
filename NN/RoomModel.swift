@@ -265,9 +265,7 @@ class RoomModel: NSObject {
                 }
                 
             }
-            
-            
-            
+        
             
             ///=========================== 分数
             let scoreStr = user.attribute(forName: "g")?.stringValue

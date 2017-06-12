@@ -26,6 +26,13 @@ class ImgVC: UIViewController {
     var imgs : UIImageView = UIImageView()
     var scoreImg : ScoreV = ScoreV()
     
+    // MARK: - 抢庄视图
+    lazy var robOwner: RobRoomOwner = {
+        let d : RobRoomOwner = RobRoomOwner.init(frame: CGRect.init(x: SW * 0.35, y: SH * 0.5 - SH * 0.05, width: SW * 0.3, height: SH * 0.2))
+        d.layer.borderWidth = 1
+        return d
+    }()
+    
     lazy var jifenV: JifenV = {
         let d : JifenV = JifenV.init(frame: CGRect.init(x: 0, y: 0, width: 100, height: 50))
         d.layer.borderWidth = 1
@@ -35,6 +42,8 @@ class ImgVC: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        view.addSubview(robOwner)
+        
         var index = 0
         for rect in scoreRect {
             jifenV = JifenV.init(frame: rect)

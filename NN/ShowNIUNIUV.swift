@@ -40,7 +40,7 @@ class ShowNIUNIUV: UIView {
     
     
     // MARK: - 位置坐标
-    fileprivate var scoreRect : [CGRect] = [CGRect.init(x: SW * 0.414, y: SH * 0.74, width: SW * 0.15, height: SH * 0.15),
+    fileprivate var scoreRect : [CGRect] = [CGRect.init(x: SW * 0.5, y: SH * 0.6, width: SW * 0.15, height: SH * 0.15),
                                             CGRect.init(x: SW * 0.3, y: SH * 0.45, width: SW * 0.15, height: SH * 0.15),
                                             CGRect.init(x: SW * 0.3, y: SH * 0.35, width: SW * 0.15, height: SH * 0.15),
                                             CGRect.init(x: 0.53 * SW, y: 0.24 * SH, width: SW * 0.15, height: SH * 0.15),
@@ -59,9 +59,6 @@ class ShowNIUNIUV: UIView {
 
         /// 背景颜色
         self.backgroundColor = UIColor.colorWithHexString("7F7F7F", alpha: 0.4)
-        
-        /// 积分视图
-//        jifenSEL()
     }
     
     // MARK: - 积分视图事件

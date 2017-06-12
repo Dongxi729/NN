@@ -136,7 +136,7 @@ class GameV: UIView {
     
     // MARK: - 抢庄视图
     lazy var robOwner: RobRoomOwner = {
-        let d : RobRoomOwner = RobRoomOwner.init(frame: CGRect.init(x: self.Width * 0.25, y: self.Height * 0.5 - self.Height * 0.05, width: self.Width * 0.5, height: self.Height * 0.1))
+        let d : RobRoomOwner = RobRoomOwner.init(frame: CGRect.init(x: SW * 0.35, y: SH * 0.5 - SH * 0.05, width: SW * 0.3, height: SH * 0.2))
         d.layer.borderWidth = 1
         return d
     }()
