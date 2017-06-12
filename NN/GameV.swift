@@ -58,8 +58,8 @@ class GameV: UIView {
     }()
     
     // MARK: - 位置坐标
-    var rects : [CGRect] = [CGRect.init(x: SW * 0.15, y: SH * 0.8, width: SW * 0.18, height: SH * 0.15),
-                            CGRect.init(x: SW * 0.06, y: SH * 0.56, width: SW * 0.18, height: SH * 0.15),
+    var rects : [CGRect] = [CGRect.init(x: SW * 0.15, y: SH * 0.8, width: 15 * screenScale, height: 15 * screenScale),
+                            CGRect.init(x: SW * 0.06, y: SH * 0.56, width: 15 * screenScale, height: 15 * screenScale),
                             CGRect.init(x: SW * 0.06, y: SH * 0.35, width: SW * 0.18, height: SH * 0.15),
                             CGRect.init(x: 0.45 * SW, y: 0.13 * SH, width: SW * 0.18, height: SH * 0.15),
                             CGRect.init(x: SW * 0.8, y: SH * 0.35, width: SW * 0.18, height: SH * 0.15),

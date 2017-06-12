@@ -42,7 +42,7 @@ class ShowNIUNIUV: UIView {
         super.init(frame: frame)
 
         /// 背景颜色
-        self.backgroundColor = UIColor.colorWithHexString("7F7F7F", alpha: 0.8)
+        self.backgroundColor = UIColor.colorWithHexString("7F7F7F", alpha: 0.4)
 
     }
     
