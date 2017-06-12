@@ -38,16 +38,94 @@ class ShowNIUNIUV: UIView {
                             CGRect.init(x: SW * 0.8, y: SH * 0.35, width: 30 * screenScale, height: SH * 0.15),
                             CGRect.init(x: SW * 0.8, y: SH * 0.55, width: 30 * screenScale, height: SH * 0.15)]
     
+    
+    // MARK: - 位置坐标
+    fileprivate var scoreRect : [CGRect] = [CGRect.init(x: SW * 0.414, y: SH * 0.74, width: SW * 0.15, height: SH * 0.15),
+                                            CGRect.init(x: SW * 0.3, y: SH * 0.45, width: SW * 0.15, height: SH * 0.15),
+                                            CGRect.init(x: SW * 0.3, y: SH * 0.35, width: SW * 0.15, height: SH * 0.15),
+                                            CGRect.init(x: 0.53 * SW, y: 0.24 * SH, width: SW * 0.15, height: SH * 0.15),
+                                            CGRect.init(x: SW * 0.6, y: SH * 0.24, width: SW * 0.15, height: SH * 0.15),
+                                            CGRect.init(x: SW * 0.7, y: SH * 0.5, width: SW * 0.15, height: SH * 0.15)]
+    
+    // MARK: - 积分视图
+    lazy var jifenV: JifenV = {
+        let d : JifenV = JifenV.init(frame: CGRect.init(x: 0, y: 0, width: 100, height: 50))
+        d.layer.borderWidth = 1
+        return d
+    }()
+    
     override init(frame: CGRect) {
         super.init(frame: frame)
 
         /// 背景颜色
         self.backgroundColor = UIColor.colorWithHexString("7F7F7F", alpha: 0.4)
+        
+        /// 积分视图
+        jifenSEL()
+    }
+    
+    // MARK: - 积分视图事件
+    func jifenSEL() -> Void {
+        
+        var index = 0
+        for rect in scoreRect {
+            jifenV = JifenV.init(frame: rect)
+            self.addSubview(jifenV)
+            
+       
+            /// 显示积分
+            
+            switch index {
+            case 0:
+                jifenV.leftOrRight = -1
+                jifenV.two = -1
+                if JIfenModel.shared.jifenAtrrayDealed.count > 0 {
+                    jifenV.jifenNums.text = String(JIfenModel.shared.jifenAtrrayDealed[0])
+                    print("积分",String(JIfenModel.shared.jifenAtrrayDealed[0]))
+                }
+                
+                break
+            case 1:
+                jifenV.leftOrRight = -1
+                jifenV.two = -1
+                if JIfenModel.shared.jifenAtrrayDealed.count > 0 {
+                    jifenV.jifenNums.text = String(JIfenModel.shared.jifenAtrrayDealed[1])
+                    print("积分",String(JIfenModel.shared.jifenAtrrayDealed[1]))
+                }
+                break
+            case 2:
+                jifenV.leftOrRight = -1
+                jifenV.two = -1
+                break
+            case 3:
+                jifenV.leftOrRight = -1
+                jifenV.two = -1
+                break
+            case 4:
+                jifenV.leftOrRight = 1
+                jifenV.two = 1
+                break
+            case 5:
+                jifenV.leftOrRight = -1
+                jifenV.two = -1
+                
+                break
+            default:
+                break
+            }
+            index += 1
+            
 
+            if index > RoomModel.shared.currentPersonInRoom {
+                break
+            }
+        }
+        
     }
     
     // MARK: - 添加的分数图标
     var scoreImg = ScoreV()
+
     
     // MARK: - 播放分数
     func playScore() {
@@ -105,7 +183,7 @@ class ShowNIUNIUV: UIView {
         
         switch playINdex {
         case 1:
-            rect = CGRect.init(x: SW * 0.3, y: SH * 0.75, width: SW * 0.4, height: SH * 0.15)
+            rect = CGRect.init(x: SW * 0.3, y: SH * 0.8, width: SW * 0.4, height: SH * 0.15)
             break
         case 2:
             rect = CGRect.init(x: SW * 0.25 - SW * 0.05, y: SH * 0.56, width: SW * 0.4, height: SH * 0.15)

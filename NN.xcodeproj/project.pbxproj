@@ -85,6 +85,7 @@
 		26315CDA1ED293EA0026EC6B /* RobRoomOwner.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26315CD91ED293EA0026EC6B /* RobRoomOwner.swift */; };
 		26315CDC1ED2943C0026EC6B /* ScoreV.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26315CDB1ED2943C0026EC6B /* ScoreV.swift */; };
 		263541A51EE031A9005C4927 /* GetCurrenIndex.swift in Sources */ = {isa = PBXBuildFile; fileRef = 263541A41EE031A9005C4927 /* GetCurrenIndex.swift */; };
+		263A08CA1EEE716500E4AF63 /* JifenV.swift in Sources */ = {isa = PBXBuildFile; fileRef = 263A08C91EEE716500E4AF63 /* JifenV.swift */; };
 		26421EEE1EE15099000C9B25 /* OffLineV.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26421EED1EE15099000C9B25 /* OffLineV.swift */; };
 		26421EF01EE16718000C9B25 /* ConnectModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26421EEF1EE16718000C9B25 /* ConnectModel.swift */; };
 		264A2CE41EC4565A001B7F0E /* MarketV.swift in Sources */ = {isa = PBXBuildFile; fileRef = 264A2CE31EC4565A001B7F0E /* MarketV.swift */; };
@@ -314,6 +315,7 @@
 		26315CD91ED293EA0026EC6B /* RobRoomOwner.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RobRoomOwner.swift; sourceTree = "<group>"; };
 		26315CDB1ED2943C0026EC6B /* ScoreV.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScoreV.swift; sourceTree = "<group>"; };
 		263541A41EE031A9005C4927 /* GetCurrenIndex.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GetCurrenIndex.swift; sourceTree = "<group>"; };
+		263A08C91EEE716500E4AF63 /* JifenV.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JifenV.swift; sourceTree = "<group>"; };
 		26421EED1EE15099000C9B25 /* OffLineV.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OffLineV.swift; sourceTree = "<group>"; };
 		26421EEF1EE16718000C9B25 /* ConnectModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConnectModel.swift; sourceTree = "<group>"; };
 		264A2CE31EC4565A001B7F0E /* MarketV.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MarketV.swift; sourceTree = "<group>"; };
@@ -740,6 +742,7 @@
 				26A483381EE4ECF9007D977D /* GameV.swift */,
 				262B529A1EE6AEC3002BAC8B /* RightImgView.swift */,
 				2694F5521EE7D36100C0FEB6 /* finalResultScoreV */,
+				263A08C91EEE716500E4AF63 /* JifenV.swift */,
 			);
 			name = view;
 			sourceTree = "<group>";
@@ -1267,6 +1270,7 @@
 				264C0A3F1EE9360B0060540E /* ContinuePlayGameV.swift in Sources */,
 				2603D95B1EADCA3C0069B132 /* WXApiManager.m in Sources */,
 				266EC2031EBC854000AEA31C /* TimerLabel.swift in Sources */,
+				263A08CA1EEE716500E4AF63 /* JifenV.swift in Sources */,
 				260EBC241ECEC564003DD5CA /* CardsLayout.swift in Sources */,
 				260C66631EB23415006C119E /* POPAnimationEvent.mm in Sources */,
 				262433621ECBF46F003C41D1 /* InviteV.swift in Sources */,

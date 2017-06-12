@@ -20,13 +20,16 @@ class JIfenModel: NSObject {
         }
     }
     
-    /// 存放抢庄标
+    // MARK: - 存放抢庄标
     var isJifenArray : [Int] = []
     
-    /// 显示积分
+    // MARK: - 积分排序好的
+    var jifenAtrrayDealed : [Int] = []
+    
+    // MARK: - 显示积分
     var isShowJifenV = false
     
-    /// 是否抢庄开始
+    // MARK: - 是否抢庄开始
     var isRobOrNot = false
     
 //    <M>
@@ -38,10 +41,13 @@ class JIfenModel: NSObject {
 //    <Nn/>
 //    </M>
     
-    /// 解析的xml字符串1
+    // MARK: - 解析的xml字符串1
     fileprivate func xmlAnalyse(xmlStr : String) -> Void {
         
         self.isJifenArray = []
+        
+        self.jifenAtrrayDealed = []
+        
         //获取xml文件内容
         let data = xmlStr.data(using: String.Encoding.utf8)
         
@@ -69,15 +75,31 @@ class JIfenModel: NSObject {
                         }
                     }
                     
-                    print("\((#file as NSString).lastPathComponent):(\(#line))\n",index)
-                    
-                    print("\((#file as NSString).lastPathComponent):(\(#line))\n",self.isJifenArray)
                     
                     /// 如果取出压分的值都为0 的话，说明压根就没选分数过，但是还是不知道房主是谁
                     if index == RoomModel.shared.currentPersonInRoom {
                         self.isShowJifenV = true
                     } else {
                         self.isShowJifenV = false
+                    }
+                    
+                    /// 生成当前玩家的顺序积分显示
+                    
+                    jifenAtrrayDealed.insert(isJifenArray[GetCurrenIndex.shared.getCurrentIndex()], at: 0)
+                    var idex = 0
+                    for calue in isJifenArray {
+                        
+                        idex += 1
+
+                        
+                        if idex != GetCurrenIndex.shared.getCurrentIndex() + 1 {
+                            
+                            print("\((#file as NSString).lastPathComponent):(\(#line))\n",calue)
+                            jifenAtrrayDealed.append(calue)
+                            
+                            print("===========",jifenAtrrayDealed)
+                            
+                        }
                     }
                 }
             }

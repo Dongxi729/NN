@@ -11,50 +11,13 @@ import UIKit
 class ImgVC: UIViewController {
 
     
-    ///         let d : UIImageView = UIImageView.init(frame: CGRect.init(x: SW * 0.3, y: SH * 0.75, width: SW * 0.4, height: SH * 0.2))
-//    //            rect = CGRect.init(x: SW * 0.3, y: SH * 0.75, width: SW * 0.4, height: SH * 0.2)
-//    break
-//    case 2:
-//    rect = CGRect.init(x: SW * 0.25 - SW * 0.05, y: SH * 0.55, width: SW * 0.4, height: SH * 0.2)
-//    
-//    break
-//    case 3:
-//    rect = CGRect.init(x: SW * 0.25 - SW * 0.05, y: SH * 0.46, width: SW * 0.4, height: SH * 0.2)
-//    
-//    break
-//    case 4:
-//    rect = CGRect.init(x: SW * 0.5 - SW * 0.05, y: SH * 0.165, width: SW * 0.4, height: SH * 0.2)
-//    break
-//    case 5:
-//    rect = CGRect.init(x: SW * 0.7 - SW * 0.05, y: SH * 0.46, width: SW * 0.4, height: SH * 0.2)
-//    
-//    break
-//    case 6:
-//    rect = CGRect.init(x: SW * 0.7 - SW * 0.05, y: SH * 0.68, width: SW * 0.4, height: SH * 0.2)
-
-
-//    var rects : [CGRect] = [CGRect.init(x: SW * 0.15, y: SH * 0.8, width: SW * 0.18, height: SH * 0.15),
-//                            CGRect.init(x: SW * 0.06, y: SH * 0.56, width: SW * 0.18, height: SH * 0.15),
-//                            CGRect.init(x: SW * 0.06, y: SH * 0.35, width: SW * 0.18, height: SH * 0.15),
-//                            CGRect.init(x: 0.45 * SW, y: 0.13 * SH, width: SW * 0.18, height: SH * 0.15),
-//                            CGRect.init(x: SW * 0.8, y: SH * 0.35, width: SW * 0.18, height: SH * 0.15),
-//                            CGRect.init(x: SW * 0.8, y: SH * 0.55, width: SW * 0.18, height: SH * 0.15)]
-    
-    
     // MARK: - 位置坐标
-    fileprivate var rects : [CGRect] = [CGRect.init(x: SW * 0.3, y: SH * 0.75, width: SW * 0.4, height: SH * 0.15),
-                            CGRect.init(x: SW * 0.25 - SW * 0.05, y: SH * 0.56, width: SW * 0.4, height: SH * 0.15),
-                            CGRect.init(x: SW * 0.25 - SW * 0.05, y: SH * 0.35, width: SW * 0.4, height: SH * 0.15),
-                            CGRect.init(x: SW * 0.5 - SW * 0.05, y: SH * 0.13, width: SW * 0.4, height: SH * 0.15),
-                            CGRect.init(x: SW * 0.6 - SW * 0.05, y: SH * 0.35, width: SW * 0.4, height: SH * 0.15),
-                            CGRect.init(x: SW * 0.6 - SW * 0.05, y: SH * 0.55, width: SW * 0.4, height: SH * 0.15)]
-    
-    var scoreRect : [CGRect] = [CGRect.init(x: SW * 0.15, y: SH * 0.8, width: SW * 0.18, height: SH * 0.15),
-                            CGRect.init(x: SW * 0.06, y: SH * 0.56, width: SW * 0.18, height: SH * 0.15),
-                            CGRect.init(x: SW * 0.06, y: SH * 0.35, width: SW * 0.18, height: SH * 0.15),
-                            CGRect.init(x: 0.45 * SW, y: 0.13 * SH, width: SW * 0.18, height: SH * 0.15),
-                            CGRect.init(x: SW * 0.8, y: SH * 0.35, width: SW * 0.18, height: SH * 0.15),
-                            CGRect.init(x: SW * 0.8, y: SH * 0.55, width: SW * 0.18, height: SH * 0.15)]
+    fileprivate var scoreRect : [CGRect] = [CGRect.init(x: SW * 0.414, y: SH * 0.74, width: SW * 0.15, height: SH * 0.15),
+                            CGRect.init(x: SW * 0.3, y: SH * 0.45, width: SW * 0.15, height: SH * 0.15),
+                            CGRect.init(x: SW * 0.3, y: SH * 0.35, width: SW * 0.15, height: SH * 0.15),
+                            CGRect.init(x: 0.53 * SW, y: 0.24 * SH, width: SW * 0.15, height: SH * 0.15),
+                            CGRect.init(x: SW * 0.6, y: SH * 0.24, width: SW * 0.15, height: SH * 0.15),
+                            CGRect.init(x: SW * 0.7, y: SH * 0.5, width: SW * 0.15, height: SH * 0.15)]
     
     var imgsName = ["niu0","niu1","niu2","niu3","niu4","niu5"]
     
@@ -63,31 +26,80 @@ class ImgVC: UIViewController {
     var imgs : UIImageView = UIImageView()
     var scoreImg : ScoreV = ScoreV()
     
+    lazy var jifenV: JifenV = {
+        let d : JifenV = JifenV.init(frame: CGRect.init(x: 0, y: 0, width: 100, height: 50))
+        d.layer.borderWidth = 1
+        return d
+    }()
     
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        
         var index = 0
-        for value in rects {
-            imgs = UIImageView.init(frame: value)
-            imgs.image = UIImage.init(named: imgsName[index])
-            imgs.contentMode = UIViewContentMode.scaleAspectFit
+        for rect in scoreRect {
+            jifenV = JifenV.init(frame: rect)
+            view.addSubview(jifenV)
             
-            scoreImg = ScoreV.init(frame: value)
-            
-            scoreImg.abc(abc: "22", scoreType: 1)
-            scoreImg.backgroundColor = UIColor.randomColor()
-            view.addSubview(scoreImg)
-            
-            view.addSubview(imgs)
+            switch index {
+            case 0:
+                jifenV.leftOrRight = -1
+                jifenV.two = -1
+                jifenV.jifenNums.text = "15"
+                
+                break
+            case 1:
+                jifenV.leftOrRight = -1
+                jifenV.two = -1
+                jifenV.jifenNums.text = "15"
+                
+                break
+            case 2:
+                jifenV.leftOrRight = -1
+                jifenV.two = -1
+                jifenV.jifenNums.text = "15"
+                
+                break
+            case 3:
+                jifenV.leftOrRight = -1
+                jifenV.two = -1
+                jifenV.jifenNums.text = "15"
+                
+                break
+            case 4:
+                jifenV.leftOrRight = 1
+                jifenV.two = 1
+                jifenV.jifenNums.text = "15"
+                
+                break
+            case 5:
+                jifenV.leftOrRight = -1
+                jifenV.two = -1
+                jifenV.jifenNums.text = "15"
+                
+                break
+            default:
+                break
+            }
             index += 1
         }
         
     }
 
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        let touch: UITouch? = touches.first
+        let touchPoint: CGPoint? = touch?.location(in: self.view)
+        print("\((touchPoint?.x)! / SW)==\((touchPoint?.y)! / SH)")
+        let stringFloat = Int((touchPoint?.x)!)
+        let stringFloat1 = Int((touchPoint?.y)!)
+        print("\(stringFloat)\(stringFloat1)")
+    }
+    
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
 }
+
+
+
