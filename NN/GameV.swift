@@ -307,7 +307,7 @@ class GameV: UIView {
         addSubview(startGameBtn)
         
         
-        
+        createGamingLayout()
         
         /// 监听通知
         addNotifiListen()
@@ -361,14 +361,12 @@ class GameV: UIView {
         
         
         showMusicAndNNImg.niuniuSongsName = CardNameModel.shared.niuniuDealArray
-        print("\((#file as NSString).lastPathComponent):(\(#line))\n")
     }
     
     // MARK: - 收到牌，创建布局
     func showCardsSEL() -> Void {
         
         NotificationCenter.default.removeObserver(self, name: NSNotification.Name(rawValue: "showCards"), object: nil)
-        print("\((#file as NSString).lastPathComponent):(\(#line))\n")
         
         switch RoomModel.shared.currentPersonInRoom {
         case 1:
@@ -381,8 +379,6 @@ class GameV: UIView {
             
             /// 玩家1是否有牌
             if CardNameModel.shared.currentUbackCardsName.count > 0 {
-                
-                print("\((#file as NSString).lastPathComponent):(\(#line))\n",CardNameModel.shared.currentUbackCardsName)
                 self.robOwner.isHidden = true
                 self.startGameBtn.isHidden = true
                 self.getCoins.isHidden = true
@@ -406,8 +402,7 @@ class GameV: UIView {
             
             /// 玩家1是否有牌
             if CardNameModel.shared.currentUbackCardsName.count > 0 {
-                
-                print("\((#file as NSString).lastPathComponent):(\(#line))\n",CardNameModel.shared.currentUbackCardsName)
+
                 self.robOwner.isHidden = true
                 self.startGameBtn.isHidden = true
                 self.getCoins.isHidden = true
@@ -429,8 +424,6 @@ class GameV: UIView {
             
             /// 玩家1是否有牌
             if CardNameModel.shared.currentUbackCardsName.count > 0 {
-                
-                print("\((#file as NSString).lastPathComponent):(\(#line))\n",CardNameModel.shared.currentUbackCardsName)
                 self.robOwner.isHidden = true
                 self.startGameBtn.isHidden = true
                 self.getCoins.isHidden = true
@@ -452,8 +445,7 @@ class GameV: UIView {
             
             /// 玩家1是否有牌
             if CardNameModel.shared.currentUbackCardsName.count > 0 {
-                
-                print("\((#file as NSString).lastPathComponent):(\(#line))\n",CardNameModel.shared.currentUbackCardsName)
+            
                 self.robOwner.isHidden = true
                 self.startGameBtn.isHidden = true
                 self.getCoins.isHidden = true
@@ -477,8 +469,7 @@ class GameV: UIView {
             
             /// 玩家1是否有牌
             if CardNameModel.shared.currentUbackCardsName.count > 0 {
-                
-                print("\((#file as NSString).lastPathComponent):(\(#line))\n",CardNameModel.shared.currentUbackCardsName)
+
                 self.robOwner.isHidden = true
                 self.startGameBtn.isHidden = true
                 self.getCoins.isHidden = true
@@ -503,8 +494,7 @@ class GameV: UIView {
             
             /// 玩家1是否有牌
             if CardNameModel.shared.currentUbackCardsName.count > 0 {
-                
-                print("\((#file as NSString).lastPathComponent):(\(#line))\n",CardNameModel.shared.currentUbackCardsName)
+
                 self.robOwner.isHidden = true
                 self.startGameBtn.isHidden = true
                 self.getCoins.isHidden = true
@@ -539,11 +529,7 @@ class GameV: UIView {
         DispatchQueue.main.async {
             self.startGameBtn.isHidden = true
             self.robOwner.isHidden = true
-            
-            print("\((#file as NSString).lastPathComponent):(\(#line))\n",ownerID as Any)
-            print("\((#file as NSString).lastPathComponent):(\(#line))\n",LoginModel.shared.uid as Any)
-            
-            
+    
             /// 当前用户ID不等于登陆的ID
             if ownerID != LoginModel.shared.uid {
                 
@@ -576,7 +562,7 @@ class GameV: UIView {
                             break
                         }
                     }
-                    print("\((#file as NSString).lastPathComponent):(\(#line))\n",fangZhuIndex)
+
                     
                     // 显示对应的房间
                     self.headIMg.frame = self.rects[fangZhuIndex]
@@ -617,8 +603,7 @@ class GameV: UIView {
     /// 游戏开始时进行的动作
     func isGameBeginSEL() {
         NotificationCenter.default.removeObserver(self, name: NSNotification.Name(rawValue: "isGameBegin"), object: nil)
-        
-        print("\((#file as NSString).lastPathComponent):(\(#line))\n")
+
         
         if RoomModel.shared.isGameBegin {
             self.startGameBtn.isHidden = true
@@ -627,7 +612,6 @@ class GameV: UIView {
         }
         
         if ownerID == RoomModel.shared.userId[GetCurrenIndex.shared.currentUserIndex] {
-            print("\((#file as NSString).lastPathComponent):(\(#line))\n")
             self.getCoins.isHidden = true
         } else {
             self.getCoins.isHidden = false
@@ -637,11 +621,7 @@ class GameV: UIView {
     /// 显示抢庄
     func isRobOrNotSEL() -> Void {
         
-        print("\((#file as NSString).lastPathComponent):(\(#line))\n")
-        
         NotificationCenter.default.removeObserver(self, name: NSNotification.Name(rawValue: "beginRob"), object: nil)
-        
-        print("\((#file as NSString).lastPathComponent):(\(#line))\n",RobOwnerModel.shared.isRobOrNot)
         
         DispatchQueue.main.async {
             /// 没抢庄的话，显示抢庄视图
@@ -1078,7 +1058,7 @@ extension GameV : ShowAndAlertVDelegate {
             let dformatter = DateFormatter()
             dformatter.dateFormat = "HH:mm:ss"
             
-            print("\(dformatter.string(from: Date()))","\((#file as NSString).lastPathComponent):(\(#line))\n",CardNameModel.shared.niuniuDealArray[0])
+            
             self.showCurrentNiuNiuImg.image = UIImage.init(named: CardNameModel.shared.niuniuArray[GetCurrenIndex.shared.getCurrentIndex()])
         }
     }
@@ -1087,7 +1067,7 @@ extension GameV : ShowAndAlertVDelegate {
 // MARK: - 申请退出房间
 extension GameV {
     func dismissSEL() {
-        print("\((#file as NSString).lastPathComponent):(\(#line))\n")
+        
         
         exitRoomEvent()
         DispatchQueue.main.async {
@@ -1140,6 +1120,30 @@ extension GameV {
         
         /// 显示牛牛纸牌 niuniuArray
         NotificationCenter.default.addObserver(self, selector: #selector(niuniuArraySEL), name: NSNotification.Name(rawValue: "niuniuArray"), object: nil)
+        
+        /// 实时人数 currentPersonInRoom
+        NotificationCenter.default.addObserver(self, selector: #selector(currentPersonInRoomSEL(userInfo:)), name: NSNotification.Name(rawValue: "currentPersonInRoom"), object: nil)
+    }
+    
+    // MARK: - 人数变更
+    @objc fileprivate func currentPersonInRoomSEL(userInfo : NSNotification) {
+        print("人数xinxi",userInfo.userInfo as Any)
+        
+        guard let usrName = userInfo.userInfo as? [AnyHashable : Any] else {
+            return
+        }
+        var nameAr: [String] = usrName["nameStr"] as! [String]
+        
+        switch RoomModel.shared.currentPersonInRoom {
+        case 1:
+            break
+        case 2:
+            P1.nameLabel.text = nameAr[0]
+            P2.nameLabel.text = nameAr[1]
+            break
+        default:
+            break
+        }
     }
     
     // MARK: - 显示牛牛纸牌
@@ -1178,10 +1182,6 @@ extension GameV {
         
         NotificationCenter.default.removeObserver(self, name: NSNotification.Name(rawValue: "ShowScoretext"), object: nil)
         
-        let dformatter = DateFormatter()
-        dformatter.dateFormat = "yyyy年MM月dd日 HH:mm:ss"
-        
-        print("当前日期时间：\(dformatter.string(from: Date()))","\((#file as NSString).lastPathComponent):(\(#line))\n","显示分数")
         
         guard let userScore = UserDefaults.standard.object(forKey: "用户剩余分数") as? [String] else {
             return
@@ -1204,10 +1204,7 @@ extension GameV {
     
     // MARK: - 播放纸牌分数
     @objc fileprivate func showScoreNotifiSEL() {
-        let dformatter = DateFormatter()
-        dformatter.dateFormat = "yyyy年MM月dd日 HH:mm:ss"
         
-        print("当前日期时间：\(dformatter.string(from: Date()))","\((#file as NSString).lastPathComponent):(\(#line))\n")
         
         showMusicAndNNImg.playScore()
     }
@@ -1221,7 +1218,6 @@ extension GameV {
             self.robOwner.isHidden = true
             self.getCoins.isHidden = true
             
-            print("\((#file as NSString).lastPathComponent):(\(#line))\n",RoomModel.shared.prepareArrayDealed[0])
             
             /// 移除通知 prepared
             NotificationCenter.default.removeObserver(self, name: NSNotification.Name(rawValue: "prepared"), object: nil)
@@ -1264,7 +1260,7 @@ extension GameV {
     
     // MARK: - 下一局开始
     @objc fileprivate func NextRoundStartSEL() {
-        print("\((#file as NSString).lastPathComponent):(\(#line))\n","下一局开始")
+        
         self.startGameBtn.isHidden = false
         self.robOwner.isHidden = true
     }
@@ -1275,15 +1271,12 @@ extension GameV {
     @objc fileprivate func showXXX() -> Void {
         
         
-        print("\((#file as NSString).lastPathComponent):(\(#line))\n")
-        
         NotificationCenter.default.removeObserver(self, name: NSNotification.Name(rawValue: "exitRoomRequest"), object: nil)
     }
     
     // MARK: - 显示同意、不同意解散视图
     @objc fileprivate func AgreeToDismissNotiSEL() -> Void {
         
-        print("\((#file as NSString).lastPathComponent):(\(#line))\n")
         
         DispatchQueue.main.async {
             /// 隐藏协商视图
@@ -1309,12 +1302,5 @@ extension GameV {
             self.continuePlayV.center = self.center
             self.addSubview(self.continuePlayV)
         }
-    }
-}
-
-extension GameV {
-    override func layoutSubviews() {
-        super.layoutSubviews()
-        createGamingLayout()
     }
 }

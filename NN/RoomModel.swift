@@ -85,10 +85,15 @@ class RoomModel: NSObject {
     fileprivate var userName : [String] = []
     var nameStr = [Int : String]()
     
+    // MARK: - 处理过的名字
+    var nameStrDealed : [String] = []
+    
     // MARK: - 头像字典
     fileprivate var headURLArray : [String] = []
     var headUrlDic = [Int : String]()
     
+    // MARK: - 修改后的头像数组
+    var headURLArrayDealed : [String] = []
     
     // MARK: - 分数字典
     var userScore : [String] = []
@@ -162,6 +167,8 @@ class RoomModel: NSObject {
             /// 当前游戏人数
             self.currentPersonInRoom = Int(user.attribute(forName: "rnw")!.stringValue!)!
             
+            
+            
             /// 拟定开好房间的总人数
             self.limitedPlayersNum = Int(user.attribute(forName: "rn")!.stringValue!)!
             
@@ -198,7 +205,8 @@ class RoomModel: NSObject {
         
         self.userScoreCalued = []
         self.prepareArrayDealed = []
-        
+        self.nameStrDealed = []
+        self.headURLArrayDealed = []
         
         for user in _users {
             
@@ -210,6 +218,28 @@ class RoomModel: NSObject {
                 
                 if resultStr != nil {
                     self.userName.append(resultStr!)
+                    
+                    if userName.count == RoomModel.shared.currentPersonInRoom {
+                        
+                        nameStrDealed.insert(userName[GetCurrenIndex.shared.getCurrentIndex()], at: 0)
+                        
+                        var idex = 0
+                        for calue in userName {
+                            
+                            idex += 1
+                            
+                            if idex != GetCurrenIndex.shared.getCurrentIndex() + 1 {
+                                
+                                nameStrDealed.append(calue)
+                                print("===========",nameStrDealed)
+                                
+                                /// 发通知
+//                                NotificationCenter.default.post(name: NSNotification.Name(rawValue: "currentPersonInRoom"), object: nil)
+                                NotificationCenter.default.post(name: NSNotification.Name(rawValue: "currentPersonInRoom"), object: nil, userInfo: ["nameStr" : nameStrDealed])
+                                
+                            }
+                        }
+                    }
                 }
                 /// 索引
                 var index = 0
@@ -235,6 +265,23 @@ class RoomModel: NSObject {
                 
                 if headUrlStr != nil {
                     self.headURLArray.append(headUrlStr!)
+                    
+                    if userName.count == RoomModel.shared.currentPersonInRoom {
+                        
+                        headURLArrayDealed.insert(headURLArray[GetCurrenIndex.shared.getCurrentIndex()], at: 0)
+                        
+                        var idex = 0
+                        for calue in headURLArray {
+                            
+                            idex += 1
+                            
+                            if idex != GetCurrenIndex.shared.getCurrentIndex() + 1 {
+                                
+                                headURLArrayDealed.append(calue)
+                                print("头像===========",headURLArrayDealed)
+                            }
+                        }
+                    }
                 }
                 
                 /// 索引
