@@ -37,8 +37,6 @@ class CardsLayout : CommonV {
     /// 亮牌
     lazy var alertBtn: UIButton = {
         let d : UIButton = UIButton.init(frame: CGRect.init(x: self.Width * 0.75, y: 2 * screenScale, width: self.Width * 0.25, height: self.Height * 0.5))
-        d.layer.borderWidth = 1
-        
         d.setImage(#imageLiteral(resourceName: "roomAlert"), for: .normal)
         d.addTarget(self, action: #selector(alertSEL), for: .touchUpInside)
         return d

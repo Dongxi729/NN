@@ -231,7 +231,7 @@ class PeronheadInfoV: UIView {
                     DispatchQueue.main.async {
                         self.addSubview(self.backCardsLayout)
                     }
-                    print("\((#file as NSString).lastPathComponent):(\(#line))\n")
+                    
                 }
             }
         }
@@ -261,8 +261,6 @@ class PeronheadInfoV: UIView {
         for _ in 0..<5 {
             otherUserCardLayout =  UIImageView.init(frame: CGRect.init(x:self.Width * CGFloat(samllCardsShowLeftOrRight) + CGFloat(indexxxx) * self.Width * 0.15 , y: 2 * screenScale, width: self.Width * 0.3, height: self.Height - screenScale * 3))
             otherUserCardLayout.contentMode = UIViewContentMode.scaleAspectFit
-//            d.image = UIImage.init(named: cardsArray[indexxxx])
-            otherUserCardLayout.backgroundColor = UIColor.randomColor()
  
             addSubview(otherUserCardLayout)
         }

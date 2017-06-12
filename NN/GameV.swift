@@ -26,13 +26,11 @@ class GameV: UIView {
     /// 显示房间人员位置
     fileprivate lazy var P1: PeronheadInfoV = {
         let d : PeronheadInfoV = PeronheadInfoV()
-        d.layer.borderWidth = 1
         return d
     }()
     
     fileprivate lazy var P2: PeronheadInfoV = {
         let d : PeronheadInfoV = PeronheadInfoV.init(frame: CGRect.init(x: self.Width * 0.06, y: self.Height * 0.56, width: self.Width * 0.18, height: self.Height * 0.15))
-        d.layer.borderWidth = 1
         return d
     }()
     
@@ -309,7 +307,7 @@ class GameV: UIView {
         addSubview(startGameBtn)
         
         
-        createGamingLayout()
+        
         
         /// 监听通知
         addNotifiListen()
@@ -571,8 +569,7 @@ class GameV: UIView {
                     var fangZhuIndex = 0
                     for value in GetCurrenIndex.shared.reverseRoomID() {
                         
-                        print("房主ID",fangZhuIndex)
-                        
+    
                         if value != ownerID {
                             fangZhuIndex += 1
                         } else {
@@ -593,23 +590,18 @@ class GameV: UIView {
                     //// 遍历房主所在的索引位置
                     var fangZhuIndex = 0
                     for value in GetCurrenIndex.shared.reverseRoomID() {
-                        print("房主ID",fangZhuIndex)
-                        
+
                         if value != ownerID {
                             fangZhuIndex += 1
                         } else {
                             break
                         }
                     }
-                    
-                    print("\((#file as NSString).lastPathComponent):(\(#line))\n",fangZhuIndex)
-                    
                     // 显示对应的房间
                     self.headIMg.frame = self.rects[fangZhuIndex]
                     self.headIMg.isHidden = false
                     self.getCoins.isHidden = true
                     
-                    print("\((#file as NSString).lastPathComponent):(\(#line))\n",fangZhuIndex)
                     
                     ownerID = nil
                     
@@ -1101,14 +1093,13 @@ extension GameV {
         DispatchQueue.main.async {
             self.showDismissV.isHidden = false
         }
-        
     }
 }
 
 // MARK: - 监听的通知
 extension GameV {
     func addNotifiListen() {
-        NotificationCenter.default.addObserver(self, selector: #selector(createGamingLayout), name: NSNotification.Name(rawValue: "CardNameModelNotNIll"), object: nil)
+//        NotificationCenter.default.addObserver(self, selector: #selector(createGamingLayout), name: NSNotification.Name(rawValue: "CardNameModelNotNIll"), object: nil)
         
         /// 收到纸牌
         NotificationCenter.default.addObserver(self, selector: #selector(showCardsSEL), name: NSNotification.Name(rawValue: "showCards"), object: nil)
@@ -1118,10 +1109,6 @@ extension GameV {
         
         /// RoomOwner 选出房主
         NotificationCenter.default.addObserver(self, selector: #selector(chooseOwnerSEL), name: NSNotification.Name(rawValue: "RoomOwner"), object: nil)
-        
-        
-        /// 是否亮牌 isShowCard
-        
         
         /// 解散房间 exitRoomRequest
         NotificationCenter.default.addObserver(self, selector: #selector(showXXX), name: NSNotification.Name(rawValue: "exitRoomRequest"), object: nil)
@@ -1322,5 +1309,12 @@ extension GameV {
             self.continuePlayV.center = self.center
             self.addSubview(self.continuePlayV)
         }
+    }
+}
+
+extension GameV {
+    override func layoutSubviews() {
+        super.layoutSubviews()
+        createGamingLayout()
     }
 }
