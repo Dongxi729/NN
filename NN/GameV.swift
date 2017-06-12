@@ -213,7 +213,7 @@ class GameV: UIView {
         let d : UIImageView = UIImageView.init(frame: CGRect.init(x: self.Width * 0.4, y: self.Height * 0.75, width: self.Width * 0.2, height: self.Height * 0.2))
         
         d.contentMode = UIViewContentMode.scaleAspectFit
-    
+        
         return d
     }()
     
@@ -306,7 +306,6 @@ class GameV: UIView {
         /// 开始按钮
         addSubview(startGameBtn)
         
-        
         createGamingLayout()
         
         /// 监听通知
@@ -387,8 +386,6 @@ class GameV: UIView {
                     self.P1.isShowBottomCardLayout = false
                     self.P1.imgNames = CardNameModel.shared.currentUbackCardsName
                     self.P1.addCards(cardsArray: CardNameModel.shared.currentUbackCardsName)
-                    
-                    
                 }
             }
             break
@@ -402,7 +399,7 @@ class GameV: UIView {
             
             /// 玩家1是否有牌
             if CardNameModel.shared.currentUbackCardsName.count > 0 {
-
+                
                 self.robOwner.isHidden = true
                 self.startGameBtn.isHidden = true
                 self.getCoins.isHidden = true
@@ -445,7 +442,7 @@ class GameV: UIView {
             
             /// 玩家1是否有牌
             if CardNameModel.shared.currentUbackCardsName.count > 0 {
-            
+                
                 self.robOwner.isHidden = true
                 self.startGameBtn.isHidden = true
                 self.getCoins.isHidden = true
@@ -469,7 +466,7 @@ class GameV: UIView {
             
             /// 玩家1是否有牌
             if CardNameModel.shared.currentUbackCardsName.count > 0 {
-
+                
                 self.robOwner.isHidden = true
                 self.startGameBtn.isHidden = true
                 self.getCoins.isHidden = true
@@ -494,7 +491,7 @@ class GameV: UIView {
             
             /// 玩家1是否有牌
             if CardNameModel.shared.currentUbackCardsName.count > 0 {
-
+                
                 self.robOwner.isHidden = true
                 self.startGameBtn.isHidden = true
                 self.getCoins.isHidden = true
@@ -529,7 +526,7 @@ class GameV: UIView {
         DispatchQueue.main.async {
             self.startGameBtn.isHidden = true
             self.robOwner.isHidden = true
-    
+            
             /// 当前用户ID不等于登陆的ID
             if ownerID != LoginModel.shared.uid {
                 
@@ -555,14 +552,14 @@ class GameV: UIView {
                     var fangZhuIndex = 0
                     for value in GetCurrenIndex.shared.reverseRoomID() {
                         
-    
+                        
                         if value != ownerID {
                             fangZhuIndex += 1
                         } else {
                             break
                         }
                     }
-
+                    
                     
                     // 显示对应的房间
                     self.headIMg.frame = self.rects[fangZhuIndex]
@@ -576,7 +573,7 @@ class GameV: UIView {
                     //// 遍历房主所在的索引位置
                     var fangZhuIndex = 0
                     for value in GetCurrenIndex.shared.reverseRoomID() {
-
+                        
                         if value != ownerID {
                             fangZhuIndex += 1
                         } else {
@@ -603,7 +600,7 @@ class GameV: UIView {
     /// 游戏开始时进行的动作
     func isGameBeginSEL() {
         NotificationCenter.default.removeObserver(self, name: NSNotification.Name(rawValue: "isGameBegin"), object: nil)
-
+        
         
         if RoomModel.shared.isGameBegin {
             self.startGameBtn.isHidden = true
@@ -642,7 +639,6 @@ extension GameV {
     
     func createGamingLayout() -> Void {
         
-        
         NotificationCenter.default.removeObserver(self, name: NSNotification.Name(rawValue: "createGamingLayout"), object: nil)
         
         
@@ -672,21 +668,13 @@ extension GameV {
             
             P2.samllCardsShowLeftOrRight = 1
             
-            
-            P1.nameLabel.text = RoomModel.shared.nameStr[GetCurrenIndex.shared.getCurrentIndex()]
-            P2.nameLabel.text = GetCurrenIndex.shared.p2NameLabelWithoutP1()[0]
-            
-            /// 下载头像
             DispatchQueue.main.async {
+                self.P1.nameLabel.text = RoomModel.shared.nameStr[GetCurrenIndex.shared.getCurrentIndex()]
+                self.P2.nameLabel.text = RoomModel.shared.nameStrDealed[1]
                 
-                let headStr = RoomModel.shared.headUrlDic[GetCurrenIndex.shared.currentUserIndex]
-                let headStr2 = GetCurrenIndex.shared.p2ArrayWithoutP1()[0]
+                downImgWith(url: RoomModel.shared.headUrlDic[GetCurrenIndex.shared.currentUserIndex]!, toView: self.P1.headImg)
+                downImgWith(url: RoomModel.shared.headURLArrayDealed[1], toView: self.P2.headImg)
                 
-                downImgWith(url: headStr!, toView: self.P1.headImg)
-                downImgWith(url: headStr2, toView: self.P2.headImg)
-            }
-            
-            DispatchQueue.main.async {
                 
                 self.P2.isHidden = false
                 self.P1.isHidden = false
@@ -944,7 +932,7 @@ extension GameV : ShowAndAlertVDelegate {
             
             
             P2.samllCardsShowLeftOrRight = 1
-
+            
             if CardNameModel.shared.allUserCardsNames.count == 6 {
                 self.P2.addrightCards(cardsArray: CardNameModel.shared.allUserCardsNames[1])
                 
@@ -1079,7 +1067,7 @@ extension GameV {
 // MARK: - 监听的通知
 extension GameV {
     func addNotifiListen() {
-//        NotificationCenter.default.addObserver(self, selector: #selector(createGamingLayout), name: NSNotification.Name(rawValue: "CardNameModelNotNIll"), object: nil)
+        //        NotificationCenter.default.addObserver(self, selector: #selector(createGamingLayout), name: NSNotification.Name(rawValue: "CardNameModelNotNIll"), object: nil)
         
         /// 收到纸牌
         NotificationCenter.default.addObserver(self, selector: #selector(showCardsSEL), name: NSNotification.Name(rawValue: "showCards"), object: nil)
@@ -1144,6 +1132,8 @@ extension GameV {
         default:
             break
         }
+        
+        createGamingLayout()
     }
     
     // MARK: - 显示牛牛纸牌

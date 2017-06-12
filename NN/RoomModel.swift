@@ -112,7 +112,7 @@ class RoomModel: NSObject {
     
     
     var prepareDic = [Int : String]()
-
+    
     
     // MARK: - xml 当前游戏(还未开始的游戏房间的数据)
     var currentRoomPlayInfo : String = "" {
@@ -120,7 +120,7 @@ class RoomModel: NSObject {
             self.xmlAnalyse(xmlStr: currentRoomPlayInfo)
         }
     }
-
+    
     fileprivate func xmlAnalyse(xmlStr : String) -> Void {
         //获取xml文件内容
         let data = xmlStr.data(using: String.Encoding.utf8)
@@ -210,16 +210,28 @@ class RoomModel: NSObject {
         
         for user in _users {
             
-            
-            
+            /// 解析用户ID
+            ///=========================== 准备
+            if user.attribute(forName: "id") != nil {
+                let userUID = user.attribute(forName: "id")?.stringValue
+                
+                if userUID != nil {
+                    self.userId.append(userUID!)
+                }
+            }
+           
             ///=========================== 名字解析成字典供后面使用,展示使用
             if user.attribute(forName: "n") != nil {
                 let resultStr = user.attribute(forName: "n")?.stringValue
                 
                 if resultStr != nil {
                     self.userName.append(resultStr!)
-                    
+
                     if userName.count == RoomModel.shared.currentPersonInRoom {
+                        
+                        print("userrName",userName)
+                        print("index",GetCurrenIndex.shared.getCurrentIndex())
+                        
                         
                         nameStrDealed.insert(userName[GetCurrenIndex.shared.getCurrentIndex()], at: 0)
                         
@@ -231,17 +243,11 @@ class RoomModel: NSObject {
                             if idex != GetCurrenIndex.shared.getCurrentIndex() + 1 {
                                 
                                 nameStrDealed.append(calue)
-                                print("===========",nameStrDealed)
-                                
-                                /// 发通知
-//                                NotificationCenter.default.post(name: NSNotification.Name(rawValue: "currentPersonInRoom"), object: nil)
-                                NotificationCenter.default.post(name: NSNotification.Name(rawValue: "currentPersonInRoom"), object: nil, userInfo: ["nameStr" : nameStrDealed])
-                                
                             }
                         }
                     }
                 }
-                /// 索引
+                /// =========================索引
                 var index = 0
                 
                 
@@ -257,6 +263,82 @@ class RoomModel: NSObject {
                     index += 1
                 }
             }
+            ///=========================== 分数
+            let scoreStr = user.attribute(forName: "g")?.stringValue
+            
+            if scoreStr != nil {
+                self.userScore.append(scoreStr!)
+                
+                /// 添加当前局数的用户的原始分数
+                if self.userScore.count == currentPersonInRoom {
+                    
+                    if userScore.count == GetCurrenIndex.shared.getCurrentIndex() {
+                        userScoreCalued.insert(userScore[GetCurrenIndex.shared.getCurrentIndex()], at: 0)
+                        
+                        var idex = 0
+                        for calue in userScore {
+                            idex += 1
+                            if idex != GetCurrenIndex.shared.getCurrentIndex() + 1 {
+                                userScoreCalued.append(calue)
+                                if userScoreCalued.count == currentPersonInRoom {
+                                    
+                                    UserDefaults.standard.set(userScoreCalued, forKey: "用户原始分数")
+                                    UserDefaults.standard.synchronize()
+                                    /// 发通知，显示分数文字
+                                    NotificationCenter.default.post(name: NSNotification.Name(rawValue: "ShowScoretext"), object: nil)
+                                    
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+            
+            
+            
+            ///=========================== 准备
+            if user.attribute(forName: "re") != nil {
+                let prepareStr = user.attribute(forName: "re")?.stringValue
+                
+                if prepareStr != nil {
+                    self.prepareArray.append(prepareStr!)
+                    
+                    /// 进行当前正确的准备投放
+                    if prepareArray.count == RoomModel.shared.currentPersonInRoom {
+                        prepareArrayDealed.insert(prepareArray[GetCurrenIndex.shared.getCurrentIndex()], at: 0)
+                        
+                        var idex = 0
+                        for calue in prepareArray {
+                            
+                            idex += 1
+                            if idex != GetCurrenIndex.shared.getCurrentIndex() + 1 {
+                                prepareArrayDealed.append(calue)
+                                print("=====",prepareArrayDealed)
+                                
+                                
+                                if prepareArrayDealed.count == RoomModel.shared.currentPersonInRoom {
+                                    
+                                    /// 发通知、显示玩家准备状态-prepared
+                                    NotificationCenter.default.post(name: NSNotification.Name(rawValue: "prepared"), object: nil)
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+            
+            var prepareIndex = 0
+            
+            for ddd in self.prepareArray {
+                
+                prepareDic.updateValue(ddd, forKey: prepareIndex)
+                
+                prepareIndex += 1
+                
+                CardNameModel.shared.isShowP1Front = false
+            }
+            
+            
             
             
             ///=========================== 头像地址
@@ -267,6 +349,7 @@ class RoomModel: NSObject {
                     self.headURLArray.append(headUrlStr!)
                     
                     if userName.count == RoomModel.shared.currentPersonInRoom {
+                        
                         
                         headURLArrayDealed.insert(headURLArray[GetCurrenIndex.shared.getCurrentIndex()], at: 0)
                         
@@ -279,6 +362,8 @@ class RoomModel: NSObject {
                                 
                                 headURLArrayDealed.append(calue)
                                 print("头像===========",headURLArrayDealed)
+                                
+                                NotificationCenter.default.post(name: NSNotification.Name(rawValue: "currentPersonInRoom"), object: nil, userInfo: ["nameStr" : nameStrDealed])
                             }
                         }
                     }
@@ -312,99 +397,7 @@ class RoomModel: NSObject {
                 }
                 
             }
-        
-            
-            ///=========================== 分数
-            let scoreStr = user.attribute(forName: "g")?.stringValue
-            
-            if scoreStr != nil {
-                self.userScore.append(scoreStr!)
-                
-                /// 添加当前局数的用户的原始分数
-                if self.userScore.count == currentPersonInRoom {
-                    
-                    if userScore.count == GetCurrenIndex.shared.getCurrentIndex() {
-                        userScoreCalued.insert(userScore[GetCurrenIndex.shared.getCurrentIndex()], at: 0)
-                        
-                        var idex = 0
-                        for calue in userScore {
-                            idex += 1
-                            if idex != GetCurrenIndex.shared.getCurrentIndex() + 1 {
-                                userScoreCalued.append(calue)
-                                if userScoreCalued.count == currentPersonInRoom {
-                                    
-                                    UserDefaults.standard.set(userScoreCalued, forKey: "用户原始分数")
-                                    UserDefaults.standard.synchronize()
-                                    /// 发通知，显示分数文字
-                                    NotificationCenter.default.post(name: NSNotification.Name(rawValue: "ShowScoretext"), object: nil)
-                                    
-                                }
-                            }
-                        }
-                    }
-                }
-            }
 
-            
-            
-            ///=========================== 准备
-            if user.attribute(forName: "re") != nil {
-                let prepareStr = user.attribute(forName: "re")?.stringValue
-                
-                if prepareStr != nil {
-                    self.prepareArray.append(prepareStr!)
-                    
-                    /// 进行当前正确的准备投放
-                    if prepareArray.count == RoomModel.shared.currentPersonInRoom {
-                        prepareArrayDealed.insert(prepareArray[GetCurrenIndex.shared.getCurrentIndex()], at: 0)
-                        
-                        
-                        
-                        var idex = 0
-                        for calue in prepareArray {
-                            
-                            idex += 1
-                            if idex != GetCurrenIndex.shared.getCurrentIndex() + 1 {
-                                prepareArrayDealed.append(calue)
-                                print("=====",prepareArrayDealed)
-                                
-                                
-                                if prepareArrayDealed.count == RoomModel.shared.currentPersonInRoom {
-                                    
-                                    /// 发通知、显示玩家准备状态-prepared
-                                    NotificationCenter.default.post(name: NSNotification.Name(rawValue: "prepared"), object: nil)
-                                }
-                            }
-                        }
-                    }
-                }
-            }
-            
-            
-            
-            
-            
-            var prepareIndex = 0
-            
-            for ddd in self.prepareArray {
-                
-                prepareDic.updateValue(ddd, forKey: prepareIndex)
-                
-                prepareIndex += 1
-                
-                CardNameModel.shared.isShowP1Front = false
-            }
-            
-            /// 解析用户ID
-            ///=========================== 准备
-            if user.attribute(forName: "id") != nil {
-                let userUID = user.attribute(forName: "id")?.stringValue
-                
-                if userUID != nil {
-                    self.userId.append(userUID!)
-                }
-            }
-          
         }
     }
 }
