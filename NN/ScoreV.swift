@@ -25,6 +25,7 @@ class ScoreV: UIView {
         var index = 0
         
         if scoreType == 1 {
+            
             for scoreImgName in inPlusScore(xxx: abc) {
                 imgs = UIImageView.init(frame: CGRect.init(x: CGFloat(index) * self.Width / CGFloat(inPlusScore(xxx: abc).count), y: 0, width: self.Width / CGFloat(inPlusScore(xxx: abc).count), height: self.Height))
                 imgs.image = UIImage.init(named: scoreImgName)

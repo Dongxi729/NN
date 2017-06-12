@@ -84,6 +84,9 @@ func inMinusScore(xxx : String) -> [String] {
 /// 适用于加法的时候的图片
 func inPlusScore(xxx : String) -> [String] {
     var correctImg : [String] = []
+    correctImg.append("m+")
+    
+    
     for chas in xxx.characters {
         switch chas {
         case "+":

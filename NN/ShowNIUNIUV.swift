@@ -30,17 +30,20 @@ class ShowNIUNIUV: UIView {
     
     
     // MARK: - 位置坐标
-    var rects : [CGRect] = [CGRect.init(x: SW * 0.15, y: SH * 0.8, width: SW * 0.18, height: SH * 0.15),
-                            CGRect.init(x: SW * 0.06, y: SH * 0.56, width: SW * 0.18, height: SH * 0.15),
-                            CGRect.init(x: SW * 0.06, y: SH * 0.35, width: SW * 0.18, height: SH * 0.15),
-                            CGRect.init(x: 0.45 * SW, y: 0.13 * SH, width: SW * 0.18, height: SH * 0.15),
-                            CGRect.init(x: SW * 0.8, y: SH * 0.35, width: SW * 0.18, height: SH * 0.15),
-                            CGRect.init(x: SW * 0.8, y: SH * 0.55, width: SW * 0.18, height: SH * 0.15)]
+    
+    var rects : [CGRect] = [CGRect.init(x: SW * 0.15, y: SH * 0.8, width: 30 * screenScale, height: SH * 0.15),
+                            CGRect.init(x: SW * 0.06, y: SH * 0.56, width: 30 * screenScale, height: SH * 0.15),
+                            CGRect.init(x: SW * 0.06, y: SH * 0.35, width: 30 * screenScale, height: SH * 0.15),
+                            CGRect.init(x: 0.45 * SW, y: 0.13 * SH, width: 30 * screenScale, height: SH * 0.15),
+                            CGRect.init(x: SW * 0.8, y: SH * 0.35, width: 30 * screenScale, height: SH * 0.15),
+                            CGRect.init(x: SW * 0.8, y: SH * 0.55, width: 30 * screenScale, height: SH * 0.15)]
     
     override init(frame: CGRect) {
         super.init(frame: frame)
-        let dformatter = DateFormatter()
-        dformatter.dateFormat = "yyyy年MM月dd日 HH:mm:ss"
+
+        /// 背景颜色
+        self.backgroundColor = UIColor.colorWithHexString("7F7F7F", alpha: 0.8)
+
     }
     
     // MARK: - 添加的分数图标
@@ -69,7 +72,8 @@ class ShowNIUNIUV: UIView {
                 }
                 
                 self.scoreImg = ScoreV.init(frame: self.rects[index])
-                self.scoreImg.backgroundColor = UIColor.randomColor()
+                self.scoreImg.contentMode = UIViewContentMode.scaleAspectFit
+                
                 self.scoreImg.abc(abc: xxx[index], scoreType: type)
                 self.addSubview(self.scoreImg)
                 index += 1
@@ -94,21 +98,13 @@ class ShowNIUNIUV: UIView {
     var imgs : CommonNNImg!
     
     @objc fileprivate func listenPlayEnded() -> Void {
-        
-        
-//        [CGRect.init(x: SW * 0.3, y: SH * 0.75, width: SW * 0.4, height: SH * 0.15),
-//                                            CGRect.init(x: SW * 0.25 - SW * 0.05, y: SH * 0.56, width: SW * 0.4, height: SH * 0.15),
-//                                            CGRect.init(x: SW * 0.25 - SW * 0.05, y: SH * 0.35, width: SW * 0.4, height: SH * 0.15),
-//                                            CGRect.init(x: SW * 0.5 - SW * 0.05, y: SH * 0.13, width: SW * 0.4, height: SH * 0.15),
-//                                            CGRect.init(x: SW * 0.6 - SW * 0.05, y: SH * 0.35, width: SW * 0.4, height: SH * 0.15),
-//                                            CGRect.init(x: SW * 0.6 - SW * 0.05, y: SH * 0.55, width: SW * 0.4, height: SH * 0.15)]
+
         /// 绘制牛牛纸牌的位置
         
         var rect = CGRect.init()
         
         switch playINdex {
         case 1:
-            ///         let d : UIImageView = UIImageView.init(frame: CGRect.init(x: self.Width * 0.3, y: self.Height * 0.75, width: self.Width * 0.4, height: self.Height * 0.2))
             rect = CGRect.init(x: SW * 0.3, y: SH * 0.75, width: SW * 0.4, height: SH * 0.15)
             break
         case 2:
@@ -140,7 +136,6 @@ class ShowNIUNIUV: UIView {
         imgs.image = UIImage.init(named: songsNameConvertToNNImgName(songsName: niuniuSongsName[playINdex - 1]))
 
         
-//        imgs.backgroundColor = UIColor.green
         self.addSubview(imgs)
         
         self.playMusicSongs(index: playINdex)
