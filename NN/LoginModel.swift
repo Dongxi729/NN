@@ -27,13 +27,20 @@ class LoginModel: NSObject {
     var status : String?
     
     /// 用户ID
+//    var uid : String = "542967"
+//    
+//    /// token
+//    var token : String = "4d113a3d7aec4a6bb7e0ad8e64feba46"
+    
+    
     var uid : String?
+    
+    var token : String?
     
     /// 砖石数量
     var wealth : String?
     
-    /// token
-    var token : String?
+    
 
     static let shared = LoginModel()
     

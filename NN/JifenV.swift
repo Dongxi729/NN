@@ -13,7 +13,7 @@ class JifenV : UIView {
     
     var leftOrRight : Int? {
         didSet {
-            self.coinImg = UIImageView.init(frame: CGRect.init(x: CGFloat(self.leftOrRight!), y: 0, width: self.Width * 0.5, height: self.Height))
+            self.coinImg = UIImageView.init(frame: CGRect.init(x: CGFloat(self.leftOrRight!) + self.Width * 0.05, y: self.Height * 0.05, width: self.Width * 0.4, height: self.Height))
             self.coinImg.image = #imageLiteral(resourceName: "room_cn01")
             self.coinImg.contentMode = UIViewContentMode.scaleAspectFit
             addSubview(coinImg)
@@ -22,7 +22,7 @@ class JifenV : UIView {
     
     var two : Int? {
         didSet {
-            self.jifenNums = UILabel.init(frame: CGRect.init(x: CGFloat(two!) * self.Width * 0.5, y: self.Height * 0.2, width: self.Width * 0.5, height: self.Height * 0.6))
+            self.jifenNums = UILabel.init(frame: CGRect.init(x: CGFloat(two!) * self.Width * 0.5, y: self.Height * 0.33, width: self.Width * 0.5, height: self.Height * 0.4))
             self.jifenNums.backgroundColor = UIColor.gray
             self.jifenNums.textAlignment = .center
             self.jifenNums.font = UIFont(name: "SimHei", size: 10 * screenScale)
@@ -50,8 +50,9 @@ class JifenV : UIView {
     
     override init(frame: CGRect) {
         super.init(frame: frame)
+        self.layer.borderWidth = 1
         
-        
+        self.backgroundColor = UIColor.colorWithHexString("7F7F7F", alpha: 0.1)
         
     }
     

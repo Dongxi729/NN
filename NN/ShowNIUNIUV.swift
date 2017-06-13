@@ -40,7 +40,7 @@ class ShowNIUNIUV: UIView {
     
     
     // MARK: - 位置坐标
-    fileprivate var scoreRect : [CGRect] = [CGRect.init(x: SW * 0.5, y: SH * 0.6, width: SW * 0.15, height: SH * 0.15),
+    fileprivate var scoreRect : [CGRect] = [CGRect.init(x: SW * 0.5, y: SH * 0.5, width: SW * 0.15, height: SH * 0.15),
                                             CGRect.init(x: SW * 0.3, y: SH * 0.45, width: SW * 0.15, height: SH * 0.15),
                                             CGRect.init(x: SW * 0.3, y: SH * 0.35, width: SW * 0.15, height: SH * 0.15),
                                             CGRect.init(x: 0.53 * SW, y: 0.24 * SH, width: SW * 0.15, height: SH * 0.15),
@@ -89,18 +89,22 @@ class ShowNIUNIUV: UIView {
             case 2:
                 jifenV.leftOrRight = -1
                 jifenV.two = -1
+                jifenV.jifenNums.text = String(JIfenModel.shared.jifenAtrrayDealed[2])
                 break
             case 3:
                 jifenV.leftOrRight = -1
                 jifenV.two = -1
+                jifenV.jifenNums.text = String(JIfenModel.shared.jifenAtrrayDealed[3])
                 break
             case 4:
                 jifenV.leftOrRight = 1
                 jifenV.two = 1
+                jifenV.jifenNums.text = String(JIfenModel.shared.jifenAtrrayDealed[4])
                 break
             case 5:
                 jifenV.leftOrRight = -1
                 jifenV.two = -1
+                jifenV.jifenNums.text = String(JIfenModel.shared.jifenAtrrayDealed[5])
                 
                 break
             default:

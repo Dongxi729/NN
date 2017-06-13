@@ -89,17 +89,27 @@ class LoginViewController: UIViewController {
                 
             })
         }
-
     }
     
     func wxloginSEL(sender : UIButton) -> Void {
         
         /// 取出本地的微信授权信息opendi、accesstoken
-        guard let woid = localSave.object(forKey: wx_openID) as? String else {
+        guard let wxid = localSave.object(forKey: wx_openID) as? String else {
             
             /// 获取微信的openid、accesstoken
             if WXApi.isWXAppInstalled() == false {
-                CustomAlertView.shared.alertWithTitle(strTitle: "未安装微信或版本不支持")
+//                CustomAlertView.shared.alertWithTitle(strTitle: "未安装微信或版本不支持")
+                let dformatter = DateFormatter()
+                dformatter.dateFormat = "HH:mm:ss"
+                
+                print("\(dformatter.string(from: Date()))","\((#file as NSString).lastPathComponent):(\(#line))\n","未安装微信或者不支持")
+                
+                LoginModel.shared.token = "a2ada633c2f54b4293b4e779e451e3e5"
+                LoginModel.shared.uid = "542967"
+                LoginModel.shared.nickname = "🍀"
+                
+                self.present(MainGameViewController(), animated: true, completion: nil)
+                
             } else {
                 wxTool.clickAuto()
             }
@@ -110,12 +120,14 @@ class LoginViewController: UIViewController {
         
         guard let waccess = localSave.object(forKey: WX_ACCESS_TOKEN) as? String else {
             
+            /// 添加测试号码
+            print("空的token")
             return
         }
         
-        if woid.isEmpty == false && waccess.isEmpty == false {
+        if wxid.isEmpty == false && waccess.isEmpty == false {
             
-            LoginRequestTool.shared.getUserInfo(woid, waccess, finished: { (userDta) in
+            LoginRequestTool.shared.getUserInfo(wxid, waccess, finished: { (userDta) in
                 
                 let userDic : NSDictionary = (userDta as? NSDictionary)!
                 

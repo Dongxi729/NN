@@ -89,7 +89,7 @@ class RoomModel: NSObject {
     var nameStrDealed : [String] = []
     
     // MARK: - 头像字典
-    fileprivate var headURLArray : [String] = []
+    var headURLArray : [String] = []
     var headUrlDic = [Int : String]()
     
     // MARK: - 修改后的头像数组

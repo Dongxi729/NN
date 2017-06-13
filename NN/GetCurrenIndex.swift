@@ -24,7 +24,7 @@ class GetCurrenIndex: NSObject {
     // MARK: - 牛牛纸牌
     var niuniuReplaceArray : [String] = []
     
-
+    
     // MARK: - 获取对应用户所在的索引
     func getCurrentIndex() -> Int {
         /// 返回当前用户的分数位置(用户1)
@@ -89,6 +89,29 @@ class GetCurrenIndex: NSObject {
             }
         }
         return ddd
+    }
+    
+    // MARK: - 头像下载
+    func newHeadImg() -> [String] {
+        var dddddddd : [String] = []
+        
+        
+        if RoomModel.shared.headURLArray.count == RoomModel.shared.currentPersonInRoom {
+            
+            dddddddd.insert(RoomModel.shared.headURLArray[GetCurrenIndex.shared.getCurrentIndex()], at: 0)
+            
+            var idex = 0
+            for calue in RoomModel.shared.headURLArray {
+                
+                idex += 1
+                
+                if idex != GetCurrenIndex.shared.getCurrentIndex() + 1 {
+                    
+                    dddddddd.append(calue)
+                }
+            }
+        }
+        return dddddddd
     }
     
     // MARK: - 用户名
